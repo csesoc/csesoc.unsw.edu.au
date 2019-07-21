@@ -17,7 +17,7 @@ func main() {
 	e := echo.New()
 
 	t := &Template{
-		templates: template.Must(template.ParseGlob("C:/Users/User/Dropbox/Code/go/CSESocWebsite/templates/*.html")),
+		templates: template.Must(template.ParseGlob("templates/*.html")),
 	}
 	e.Renderer = t
 
