@@ -15,14 +15,8 @@ type Template struct {
 
 func main() {
 	e := echo.New()
-
-	t := &Template{
-		templates: template.Must(template.ParseGlob("templates/*.html")),
-	}
-	e.Renderer = t
-
+	e.Renderer = parseTemplates()
 	e.GET("/", serveLanding)
-
 	e.Start(":8000")
 }
 
@@ -36,4 +30,11 @@ func serveLanding(c echo.Context) error {
 //Render templates
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
 	return t.templates.ExecuteTemplate(w, name, data)
+}
+
+func parseTemplates() *Template {
+	t := &Template{
+		templates: template.Must(template.ParseGlob("templates/*.html")),
+	}
+	return t
 }
