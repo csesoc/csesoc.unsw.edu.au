@@ -6,11 +6,13 @@
 </template>
 
 <script>
-import { HomeGreeting } from '../components/HomeGreeting';
+import HomeGreeting from '@/components/HomeGreeting';
 
 export default {
   data: () => ({}),
-  components: [HomeGreeting],
+  components: {
+    HomeGreeting,
+  },
 };
 </script>
 
