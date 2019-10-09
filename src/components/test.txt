@@ -1,0 +1,4 @@
+// This becomes the content of your foo.txt file
+let text = `
+My test text goes here!
+`;
