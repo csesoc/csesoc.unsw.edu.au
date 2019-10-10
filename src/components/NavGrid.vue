@@ -29,20 +29,9 @@
 <script type="text/javascript">
 export default {
   name: 'NavGrid',
-  data: () => (
-    {
-      items: [],
-      // items have title, image url (src), and link
-    }
-  ),
-
-  mounted() {
-    fetch('')
-      .then(r => r.json())
-      .then((responseJson) => {
-        this.items = responseJson;
-      });
-  },
+  // Must be passed from parent object
+  // items have title, image url (src), and link
+  props: ['items'],
 
 };
 </script>
