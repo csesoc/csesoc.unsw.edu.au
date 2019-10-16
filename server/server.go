@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/labstack/echo/v4"
@@ -13,6 +14,10 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// H - interface for sending JSON
+type H map[string]interface{}
+
+// Post - struct to contain post data
 type Post struct {
 	postID       int
 	postTitle    string
@@ -25,6 +30,7 @@ type Post struct {
 	showInMenu   bool
 }
 
+// Category - struct to contain category data
 type Category struct {
 	categoryID   int
 	categoryName string
@@ -80,86 +86,109 @@ func serveAPI(e *echo.Echo) {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 
-	e.GET("/post/:id", getPost)
-	e.GET("/posts", getAllPosts)
-	e.GET("/category/:id/", getCat)
-	e.POST("/category/", makeCat)
-	e.PATCH("/category/", patchCat)
-	e.DELETE("/category/", delCat)
+	e.GET("/post/:id", getPost(postsCollection))
+	e.GET("/posts", getAllPosts(postsCollection))
+	e.GET("/category/:id/", getCat(catCollection))
+	e.POST("/category/", makeCat(catCollection))
+	// e.PATCH("/category/", patchCat)
+	e.DELETE("/category/", delCat(catCollection))
 }
 
-func getPost(id int, collection Collection) *Post {
-	var result *Post
-	filter := bson.D{{"postID", id}}
-	err := collection.FindOne(context.TODO(), filter).Decode(&result)
-	if err != nil {
-		log.Fatal(err)
+func getPost(collection *Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		var result *Post
+		filter := bson.D{{"postID", id}}
+		err := collection.FindOne(context.TODO(), filter).Decode(&result)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return c.JSON(http.StatusOK, H{
+			"post": result,
+		})
 	}
-	return result
 }
 
-func getAllPosts(count int64, category string, collection Collection) []*Post {
-	findOptions := options.Find()
-	if count != 10 {
-		findOptions.SetLimit(count)
-	} else {
-		findOptions.SetLimit(10)
-	}
+func getAllPosts(count int64, category string, collection *Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		count, _ := strconv.Atoi(c.QueryParam("id"))
+		name := c.QueryParam("category")
+		findOptions := options.Find()
+		if int64(count) != 10 {
+			findOptions.SetLimit(count)
+		} else {
+			findOptions.SetLimit(10)
+		}
 
-	var posts []*Post
-	var cur *Cursor
-	var err error
-	if category == "" {
-		cur, err := collection.Find(context.TODO(), bson.D{{}}, findOptions)
-	} else {
-		filter := bson.D{{"post_category", category}}
-		cur, err := collection.Find(context.TODO(), filter, findOptions)
-	}
+		var posts []*Post
+		var cur *Cursor
+		var err error
+		if category == "" {
+			cur, err := collection.Find(context.TODO(), bson.D{{}}, findOptions)
+		} else {
+			filter := bson.D{{"post_category", category}}
+			cur, err := collection.Find(context.TODO(), filter, findOptions)
+		}
 
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	for cur.Next(context.TODO()) {
-		var elem Post
-		err := cur.Decode(&elem)
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		posts = append(posts, &elem)
-	}
+		for cur.Next(context.TODO()) {
+			var elem Post
+			err := cur.Decode(&elem)
+			if err != nil {
+				log.Fatal(err)
+			}
 
-	return posts
-}
-
-func getCat(id int, collection Collection) *Category {
-	var result *Category
-	filter := bson.D{{"categoryID", id}}
-	err := collection.FindOne(context.TODO(), filter).Decode(&result)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return result
-}
-
-func makeCat(id int, collection Collection, newName string) {
-	filter := bson.D{{"categoryID", id}}
-	update := bson.D{
-		{"$set", bson.D{
-			{"name", newName},
-		}},
-	}
-	updateResult, err := collection.UpdateOne(context.TODO(), filter, update)
-	if err != nil {
-		log.Fatal(err)
+			posts = append(posts, &elem)
+		}
+		return c.JSON(http.StatusOK, H{
+			"posts": posts,
+		})
 	}
 }
 
-func delCat(id int, collection Collection) {
-	filter := bson.D{{"categoryID", id}}
-	deleteResult, err := collection.DeleteOne(context.TODO(), filter)
-	if err != nil {
-		log.Fatal(err)
+func getCat(collection *Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.QueryParam("id"))
+		var result *Category
+		filter := bson.D{{"categoryID", id}}
+		err := collection.FindOne(context.TODO(), filter).Decode(&result)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return c.JSON(http.StatusOK, H{
+			"category": result,
+		})
+	}
+}
+
+func makeCat(collection *Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.QueryParam("id"))
+		newName := c.QueryParam("name")
+		filter := bson.D{{"categoryID", id}}
+		update := bson.D{
+			{"$set", bson.D{
+				{"name", newName},
+			}},
+		}
+		updateResult, err := collection.UpdateOne(context.TODO(), filter, update)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return c.JSON(http.StatusOK, H{})
+	}
+}
+
+func delCat(collection *Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.QueryParam("id"))
+		filter := bson.D{{"categoryID", id}}
+		deleteResult, err := collection.DeleteOne(context.TODO(), filter)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return c.JSON(http.StatusOK, H{})
 	}
 }
