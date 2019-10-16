@@ -94,7 +94,7 @@ func serveAPI(e *echo.Echo) {
 	e.DELETE("/category/", delCat(catCollection))
 }
 
-func getPost(collection *Collection) echo.HandlerFunc {
+func getPost(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var result *Post
 		id, _ := strconv.Atoi(c.QueryParam("id"))
@@ -109,25 +109,27 @@ func getPost(collection *Collection) echo.HandlerFunc {
 	}
 }
 
-func getAllPosts(collection *Collection) echo.HandlerFunc {
+func getAllPosts(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		count, _ := strconv.Atoi(c.QueryParam("id"))
+
 		name := c.QueryParam("category")
 		findOptions := options.Find()
-		if int64(count) != 10 {
-			findOptions.SetLimit(count)
+		if count != 10 {
+			findOptions.SetLimit(int64(count))
 		} else {
 			findOptions.SetLimit(10)
 		}
 
 		var posts []*Post
-		var cur *Cursor
+		var cur *mongo.Cursor
 		var err error
+
 		if name == "" {
-			cur, err := collection.Find(context.TODO(), bson.D{{}}, findOptions)
+			cur, err = collection.Find(context.TODO(), bson.D{{}}, findOptions)
 		} else {
-			filter := bson.D{{"post_category", category}}
-			cur, err := collection.Find(context.TODO(), filter, findOptions)
+			filter := bson.D{{"post_category", name}}
+			cur, err = collection.Find(context.TODO(), filter, findOptions)
 		}
 
 		if err != nil {
@@ -149,7 +151,7 @@ func getAllPosts(collection *Collection) echo.HandlerFunc {
 	}
 }
 
-func getCat(collection *Collection) echo.HandlerFunc {
+func getCat(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		id, _ := strconv.Atoi(c.QueryParam("id"))
 		var result *Category
@@ -164,7 +166,7 @@ func getCat(collection *Collection) echo.HandlerFunc {
 	}
 }
 
-func makeCat(collection *Collection) echo.HandlerFunc {
+func makeCat(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		id, _ := strconv.Atoi(c.QueryParam("id"))
 		newName := c.QueryParam("name")
@@ -174,7 +176,7 @@ func makeCat(collection *Collection) echo.HandlerFunc {
 				{"name", newName},
 			}},
 		}
-		updateResult, err := collection.UpdateOne(context.TODO(), filter, update)
+		_, err := collection.UpdateOne(context.TODO(), filter, update)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -182,11 +184,11 @@ func makeCat(collection *Collection) echo.HandlerFunc {
 	}
 }
 
-func delCat(collection *Collection) echo.HandlerFunc {
+func delCat(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		id, _ := strconv.Atoi(c.QueryParam("id"))
 		filter := bson.D{{"categoryID", id}}
-		deleteResult, err := collection.DeleteOne(context.TODO(), filter)
+		_, err := collection.DeleteOne(context.TODO(), filter)
 		if err != nil {
 			log.Fatal(err)
 		}
