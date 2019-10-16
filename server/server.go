@@ -37,6 +37,22 @@ type Category struct {
 	index        int
 }
 
+// Users - struct to contain user data 
+type user struct {
+	userID		string
+	userToken	string
+	role		string
+}
+
+// Sponsor - struct to contain sponsor data
+type sponsor struct {
+	sponsorID 	int
+	sponsorName	string
+	sponsorLogo	string
+	sponsorTier	string
+	expiry		time.Time
+}
+
 func main() {
 	// Create new instance of echo
 	e := echo.New()
