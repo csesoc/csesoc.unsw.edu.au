@@ -108,7 +108,7 @@ func getPost(collection *Collection) echo.HandlerFunc {
 	}
 }
 
-func getAllPosts(count int64, category string, collection *Collection) echo.HandlerFunc {
+func getAllPosts(collection *Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		count, _ := strconv.Atoi(c.QueryParam("id"))
 		name := c.QueryParam("category")
