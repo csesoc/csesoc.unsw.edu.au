@@ -97,6 +97,7 @@ func serveAPI(e *echo.Echo) {
 func getPost(collection *Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var result *Post
+		id, _ := strconv.Atoi(c.QueryParam("id"))
 		filter := bson.D{{"postID", id}}
 		err := collection.FindOne(context.TODO(), filter).Decode(&result)
 		if err != nil {
@@ -122,7 +123,7 @@ func getAllPosts(collection *Collection) echo.HandlerFunc {
 		var posts []*Post
 		var cur *Cursor
 		var err error
-		if category == "" {
+		if name == "" {
 			cur, err := collection.Find(context.TODO(), bson.D{{}}, findOptions)
 		} else {
 			filter := bson.D{{"post_category", category}}
