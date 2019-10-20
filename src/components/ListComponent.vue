@@ -1,23 +1,22 @@
 <template>
   <!-- Insert post here-->
-  <div class="gridView">
-    <v-container class="pa-md-10 mx-lg-auto">
+  <div class="listComponent">
+    <v-container class="pa-md-1 mx-lg-auto">
       <v-row>
-        <v-col>
-          <img src="../assets/hackathonbanner.jpg" />
+        <v-col class="pa-2" v-if="piclist == true">
+          <img v-if="image.length != 0" :src="image" />
         </v-col>
         <v-col>
           <div class="pa-md-6">
-            <h2 class="eventName">
-              {{ event.name }}
+            <h2 class="listItemTitle">
+              {{ title }}
             </h2>
-            <h3 class="eventTime">{{ event.date }}</h3>
-            <h3>{{ event.time }}</h3>
+            <h3 class="listItemSubtitle">{{ subtitle }}</h3>
             <p>
-              {{ event.info }}
+              {{ content }}
             </p>
             <div class="text-center">
-              <v-btn rounded color="primary" dark style="float: right;"
+              <v-btn rounded color="primary" dark style="float: left;"
                 >More -></v-btn
               >
             </div>
@@ -30,17 +29,16 @@
 
 <script>
 export default {
-  name: 'EventsGrid',
+  name: 'ListComponent',
   el: '#nav',
   data() {
     return {
-      event: {
-        name: 'Annual Hackathon'.toUpperCase(),
-        date: '1st January 2020',
-        time: '0:00 - 23:59',
-        info: 'Do you love solving problems? Want to make a product that can potentially change the world? Here’s your opportunity to do so with your team of up to six people at CSESoc’s annual hackathon!  You and your team will be given 24 hours to come up with a solution for the problem presented. ',
-        image: '../assets/hackathonbanner.jpg',
-      },
+      piclist: true,
+      image: 'https://avatars0.githubusercontent.com/u/164179?s=280&v=4',
+      title: 'Header',
+      subtitle: 'Subtitle',
+      content: 'This is some text.',
+      link: '',
     };
   },
 };

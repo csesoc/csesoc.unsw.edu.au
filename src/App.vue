@@ -17,9 +17,10 @@
     <v-content>
       <v-container fluid>
         <BasePost />
-        <TextPost />
-        <h2>// UPCOMING EVENTS</h2>
+        <router-view></router-view>
         <EventsGrid />
+        <ListComponent />
+        <ListComponent />
       </v-container>
     </v-content>
     <v-footer dark app>
@@ -29,11 +30,12 @@
 </template>
 
 <script>
-import TextPost from './components/TextPost.vue';
+// import TextPost from './components/TextPost.vue';
 import Sidebar from './components/Sidebar.vue';
 import LoginForm from './components/LoginForm.vue';
 import BasePost from './components/BasePost.vue';
 import EventsGrid from './components/EventsGrid.vue';
+import ListComponent from './components/ListComponent.vue';
 // import SearchPage from './components/SearchPage.vue';
 
 export default {
@@ -41,11 +43,12 @@ export default {
     source: String,
   },
   components: {
-    TextPost,
+    // TextPost,
     Sidebar,
     LoginForm,
     BasePost,
     EventsGrid,
+    ListComponent,
     // SearchPage,
   },
   data: () => ({
