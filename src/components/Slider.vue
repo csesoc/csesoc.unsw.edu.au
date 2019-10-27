@@ -1,6 +1,6 @@
 <template>
     <div id="slider">
-        <h1 id="slider__title">#!/MEDIA</h1>
+        <h1 id="slider__title">#!/{{ title }}</h1>
         <section class="slider__items">
             <v-card v-for="item in items" :key="item.title" :href="item.link" width="30vw" class="ma-6 slider__item">
               <v-img
@@ -72,6 +72,11 @@
 <script type="text/javascript">
 export default {
   name: 'Slider',
+  data: () => (
+    {
+        title: "MEDIA"
+    }
+  ),
   // Must be passed from parent object
   // items have title, image url (src), and link
   props: ['items'],
