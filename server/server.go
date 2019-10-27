@@ -37,20 +37,20 @@ type Category struct {
 	index        int
 }
 
-// Users - struct to contain user data 
-type user struct {
-	userID		string
-	userToken	string
-	role		string
+// User - struct to contain user data
+type User struct {
+	userID    string
+	userToken string
+	role      string
 }
 
 // Sponsor - struct to contain sponsor data
-type sponsor struct {
-	sponsorID 	int
-	sponsorName	string
-	sponsorLogo	string
-	sponsorTier	string
-	expiry		time.Time
+type Sponsor struct {
+	sponsorID   int
+	sponsorName string
+	sponsorLogo string
+	sponsorTier string
+	expiry      time.Time
 }
 
 func main() {
@@ -96,18 +96,27 @@ func serveAPI(e *echo.Echo) {
 	}
 	postsCollection := client.Database("csesoc").Collection("posts")
 	catCollection := client.Database("csesoc").Collection("categories")
+	sponsorCollection := client.Database("csesoc").Collection("sponsors")
 
 	// Add more API routes here
 	e.GET("/api/v1/test", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 
-	e.GET("/post/:id", getPost(postsCollection))
-	e.GET("/posts", getAllPosts(postsCollection))
+	e.GET("/post/:id/", getPost(postsCollection))
+	e.GET("/posts/", getAllPosts(postsCollection))
+	e.POST("/post/", newPost(postsCollection))
+	e.PUT("/post/:id/", updatePost(postsCollection))
+	e.DELETE("/post/:id/", deletePost(postsCollection))
+
+	// e.POST("/login/", login())
+
 	e.GET("/category/:id/", getCat(catCollection))
-	e.POST("/category/", makeCat(catCollection))
+	e.POST("/category/", newCat(catCollection))
 	// e.PATCH("/category/", patchCat)
-	e.DELETE("/category/", delCat(catCollection))
+	e.DELETE("/category/", deleteCat(catCollection))
+
+	e.POST("/sponsor/", newSponsor(sponsorCollection))
 }
 
 func getPost(collection *mongo.Collection) echo.HandlerFunc {
@@ -167,6 +176,71 @@ func getAllPosts(collection *mongo.Collection) echo.HandlerFunc {
 	}
 }
 
+func newPost(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.FormValue("id"))
+		category, _ := strconv.Atoi(c.FormValue("category"))
+		showinMenu, _ := strconv.ParseBool(c.FormValue("showInMenu"))
+		post := Post{
+			postID:       id,
+			postTitle:    c.FormValue("title"),
+			postSubtitle: c.FormValue("subtitle"),
+			postType:     c.FormValue("type"),
+			postCategory: category,
+			createdOn:    time.Now(),
+			lastEditedOn: time.Now(),
+			postContent:  c.FormValue("content"),
+			showInMenu:   showinMenu,
+		}
+
+		_, err := collection.InsertOne(context.TODO(), post)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return c.JSON(http.StatusOK, H{})
+	}
+}
+
+func updatePost(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		postID, _ := strconv.Atoi(c.FormValue("id"))
+		postTitle := c.FormValue("title")
+		postSubtitle := c.FormValue("subtitle")
+		postType := c.FormValue("type")
+		postContent := c.FormValue("content")
+		showinMenu, _ := strconv.ParseBool(c.FormValue("showInMenu"))
+		filter := bson.D{{"postID", postID}}
+		update := bson.D{
+			{"$set", bson.D{
+				{"postTitle", postTitle},
+				{"postSubtitle", postSubtitle},
+				{"postType", postType},
+				{"postContent", postContent},
+				{"lastEditedOn", time.Now()},
+				{"showinMenu", showinMenu},
+			}},
+		}
+
+		_, err := collection.UpdateOne(context.TODO(), filter, update)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return c.JSON(http.StatusOK, H{})
+	}
+}
+
+func deletePost(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.FormValue("id"))
+		filter := bson.D{{"postID", id}}
+		_, err := collection.DeleteOne(context.TODO(), filter)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return c.JSON(http.StatusOK, H{})
+	}
+}
+
 func getCat(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		id, _ := strconv.Atoi(c.QueryParam("id"))
@@ -182,17 +256,18 @@ func getCat(collection *mongo.Collection) echo.HandlerFunc {
 	}
 }
 
-func makeCat(collection *mongo.Collection) echo.HandlerFunc {
+func newCat(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		id, _ := strconv.Atoi(c.QueryParam("id"))
-		newName := c.QueryParam("name")
-		filter := bson.D{{"categoryID", id}}
-		update := bson.D{
-			{"$set", bson.D{
-				{"name", newName},
-			}},
+		catID, _ := strconv.Atoi(c.FormValue("id"))
+		catName := c.FormValue("name")
+		index := 0 // Should this be auto generated??
+		category := Category{
+			categoryID:   catID,
+			categoryName: catName,
+			index:        index,
 		}
-		_, err := collection.UpdateOne(context.TODO(), filter, update)
+
+		_, err := collection.InsertOne(context.TODO(), category)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -200,10 +275,45 @@ func makeCat(collection *mongo.Collection) echo.HandlerFunc {
 	}
 }
 
-func delCat(collection *mongo.Collection) echo.HandlerFunc {
+func deleteCat(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		id, _ := strconv.Atoi(c.QueryParam("id"))
+		id, _ := strconv.Atoi(c.FormValue("id"))
 		filter := bson.D{{"categoryID", id}}
+		_, err := collection.DeleteOne(context.TODO(), filter)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return c.JSON(http.StatusOK, H{})
+	}
+}
+
+func newSponsor(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		name := c.FormValue("name")
+		logo := c.FormValue("logo")
+		tier := c.FormValue("tier")
+		//expiry := c.FormValue("expiry")
+
+		sponsor := Sponsor{
+			sponsorID:   0, // How should I generate the sponsorID? Will it be handled by the front end? Or should I keep a global counter?
+			sponsorName: name,
+			sponsorLogo: logo,
+			sponsorTier: tier,
+			//expiry: what do i do here lmao
+		}
+
+		_, err := collection.InsertOne(context.TODO(), sponsor)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return c.JSON(http.StatusOK, H{})
+	}
+}
+
+func deleteSponsor(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.FormValue("id"))
+		filter := bson.D{{"sponsorID", id}}
 		_, err := collection.DeleteOne(context.TODO(), filter)
 		if err != nil {
 			log.Fatal(err)
