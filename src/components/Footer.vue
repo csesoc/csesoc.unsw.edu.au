@@ -6,7 +6,7 @@
     >
         <v-card
           id="tiers__sponsors"
-          width="100%"
+          width="100vw"
           class="white--text text-center"
         >
 
