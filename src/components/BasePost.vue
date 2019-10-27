@@ -1,24 +1,21 @@
 <template>
   <div>
     <v-container class="pa-md-10 mx-lg-auto">
-      <router-link to="/">Home</router-link>
-      <router-link to="/post">Post</router-link>
-      <router-link to="/about">About</router-link>
       <!-- maybe a loop to print out path to home-->
       <div class="links">
         <span class="underline">home / post / </span>
-        <span class="underline">{{ nav }}</span>
+        <span class="underline">{{ parentData.nav }}</span>
       </div>
       <v-flex xs12>
-        <h1>#!/{{ header }}</h1>
-        <h3>{{ posttime }}</h3>
-        <h2>//{{ subtitle }}</h2>
+        <h1>#!/{{ parentData.header }}</h1>
+        <h3>{{ parentData.posttime }}</h3>
+        <h2>//{{ parentData.subtitle }}</h2>
       </v-flex>
     </v-container>
     <!-- Insert post here-->
     <div class="postText">
       <v-container class="pa-md-10 mx-lg-auto">
-        <p>{{ text }}</p>
+        <p>{{ parentData.text }}</p>
       </v-container>
     </div>
   </div>
@@ -27,6 +24,9 @@
 <script>
 export default {
   name: 'BasePost',
+  props: {
+    parentData: Object,
+  },
   data() {
     const title = 'Header';
     const subtitle = 'Subtitle';

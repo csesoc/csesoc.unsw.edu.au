@@ -16,8 +16,10 @@
               {{ content }}
             </p>
             <div class="text-center">
-              <v-btn rounded color="primary" dark style="float: left;"
-                >More -></v-btn
+              <router-link to="/post"
+                ><v-btn rounded color="primary" dark style="float: left;"
+                  >More -></v-btn
+                ></router-link
               >
             </div>
           </div>

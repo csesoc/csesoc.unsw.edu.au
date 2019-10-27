@@ -23,9 +23,11 @@
           :key="i"
           @click.stop="drawer = !drawer"
         >
-          <v-list-item-action>
-            <v-icon v-text="item.icon"></v-icon>
-          </v-list-item-action>
+          <router-link to="/post">
+            <v-list-item-action>
+              <v-icon v-text="item.icon"></v-icon>
+            </v-list-item-action>
+          </router-link>
           <v-list-item-content>
             <v-list-item-title v-text="item.title"></v-list-item-title>
           </v-list-item-content>
@@ -43,9 +45,11 @@
               >
                 <v-list-group v-for="(childItem, i) in item.children" :key="i">
                   <v-list-item-content>
-                    <v-list-item-title
-                      v-text="childItem.title"
-                    ></v-list-item-title>
+                    <router-link to="/">
+                      <v-list-item-title
+                        v-text="childItem.title"
+                      ></v-list-item-title>
+                    </router-link>
                   </v-list-item-content>
                 </v-list-group>
               </v-list>

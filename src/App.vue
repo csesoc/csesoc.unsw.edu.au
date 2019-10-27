@@ -3,22 +3,22 @@
     <Sidebar :drawer="drawer" />
     <v-app-bar app dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"> </v-app-bar-nav-icon>
-      <v-container
-        class="fill-height"
-        fluid
-        style="max-height: 64px; max-width:100px"
-      >
-        <v-img src="./assets/csesoclogobluewhite.png" />
-      </v-container>
+      <router-link to="/"
+        ><v-container
+          class="fill-height"
+          fluid
+          style="max-height: 64px; max-width:100px"
+        >
+          <v-img src="./assets/csesoclogobluewhite.png" /> </v-container
+      ></router-link>
       <div class="flex-grow-1"></div>
 
       <LoginForm align="right" />
     </v-app-bar>
     <v-content>
       <v-container fluid>
-        <BasePost />
         <router-view></router-view>
-        <EventsGrid />
+
         <ListComponent />
         <ListComponent />
       </v-container>
@@ -33,8 +33,8 @@
 // import TextPost from './components/TextPost.vue';
 import Sidebar from './components/Sidebar.vue';
 import LoginForm from './components/LoginForm.vue';
-import BasePost from './components/BasePost.vue';
-import EventsGrid from './components/EventsGrid.vue';
+// import BasePost from './components/BasePost.vue';
+// import EventsGrid from './components/EventsGrid.vue';
 import ListComponent from './components/ListComponent.vue';
 // import SearchPage from './components/SearchPage.vue';
 
@@ -46,8 +46,8 @@ export default {
     // TextPost,
     Sidebar,
     LoginForm,
-    BasePost,
-    EventsGrid,
+    // BasePost,
+    // EventsGrid,
     ListComponent,
     // SearchPage,
   },
@@ -75,6 +75,10 @@ export default {
 
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
 img {
   max-height: 100%;
   max-width: 100%;
