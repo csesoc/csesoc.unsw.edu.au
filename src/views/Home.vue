@@ -17,7 +17,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 // @ is an alias to /src
 import ListComponent from '@/components/ListComponent.vue';
 import EventsGrid from '@/components/EventsGrid.vue';
@@ -33,7 +32,8 @@ export default {
     ListComponent,
     EventsGrid,
     NavGrid,
-  },mounted() {
+  },
+  mounted() {
     fetch(this.apiUri)
       .then(r => r.json())
       .then((responseJson) => {
@@ -45,7 +45,6 @@ export default {
 </script>
 
 <style scoped>
-
 @import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
 
 * {

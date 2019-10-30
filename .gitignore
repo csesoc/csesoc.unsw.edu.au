@@ -80,3 +80,7 @@ typings/
 
 # vue build
 dist/
+
+#package-lock
+
+package-lock.json

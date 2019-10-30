@@ -110,20 +110,20 @@ export default {
   name: 'Footer',
   data: () => (
     {
-        // sponsors have name, logo, 'tier' value, and link
-        sponsors: [],
+      // sponsors have name, logo, 'tier' value, and link
+      sponsors: [],
     }
   ),
   computed: {
     // functions to determine sizing category of sponsor based on their value
     tierOne() {
-        return this.sponsors.filter(x => x.tier >= 1000);
+      return this.sponsors.filter(x => x.tier >= 1000);
     },
     tierTwo() {
-        return this.sponsors.filter(x => (x.tier >= 100 && x.tier < 1000));
+      return this.sponsors.filter(x => (x.tier >= 100 && x.tier < 1000));
     },
     tierThree() {
-        return this.sponsors.filter(x => (x.tier >= 10 && x.tier < 100));
+      return this.sponsors.filter(x => (x.tier >= 10 && x.tier < 100));
     },
   },
   mounted() {
