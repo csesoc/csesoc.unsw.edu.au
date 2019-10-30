@@ -39,7 +39,7 @@ type Category struct {
 
 // User - struct to contain user data
 type User struct {
-	userID    string
+	userID    string //sha256 the zid
 	userToken string
 	role      string
 }
@@ -113,7 +113,7 @@ func serveAPI(e *echo.Echo) {
 
 	e.GET("/category/:id/", getCat(catCollection))
 	e.POST("/category/", newCat(catCollection))
-	// e.PATCH("/category/", patchCat)
+	e.PATCH("/category/", patchCat) // UPDATE category info
 	e.DELETE("/category/", deleteCat(catCollection))
 
 	e.POST("/sponsor/", newSponsor(sponsorCollection))
@@ -275,6 +275,27 @@ func newCat(collection *mongo.Collection) echo.HandlerFunc {
 	}
 }
 
+func patchCat(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		categoryID, _ := strconv.Atoi(c.FormValue("id"))
+		categoryName := c.FormValue("name")
+		index, _ := strconv.atoi(c.FormValue("index"))
+		filter := bson.D{{"categoryID", categoryID}}
+		update := bson.D{
+			{"$set", bson.D{
+				{"categoryName", categoryName},
+				{"index", index},
+			}},
+		}
+
+		_, err := collection.UpdateOne(context.TODO(), filter, update)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return c.JSON(http.StatusOK, H{})
+	}
+}
+
 func deleteCat(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		id, _ := strconv.Atoi(c.FormValue("id"))
@@ -292,10 +313,10 @@ func newSponsor(collection *mongo.Collection) echo.HandlerFunc {
 		name := c.FormValue("name")
 		logo := c.FormValue("logo")
 		tier := c.FormValue("tier")
-		//expiry := c.FormValue("expiry")
+		//expiry := c.FormValue("expiry") turn it into a unix timestamp OR ISO 8601 - does mongo store 64bit??
 
 		sponsor := Sponsor{
-			sponsorID:   0, // How should I generate the sponsorID? Will it be handled by the front end? Or should I keep a global counter?
+			sponsorID:   0, //generated uuid universally unique identifier
 			sponsorName: name,
 			sponsorLogo: logo,
 			sponsorTier: tier,
