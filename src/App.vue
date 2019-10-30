@@ -30,6 +30,7 @@
 </template>
 
 <script>
+
 // import TextPost from './components/TextPost.vue';
 import Sidebar from './components/Sidebar.vue';
 import LoginForm from './components/LoginForm.vue';

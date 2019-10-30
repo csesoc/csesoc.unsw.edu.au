@@ -10,24 +10,42 @@
     </header>
     <ListComponent />
     <EventsGrid />
+
+    <p>This is a sample home view</p>
+    <NavGrid :items="items"></NavGrid>
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 // @ is an alias to /src
 import ListComponent from '@/components/ListComponent.vue';
 import EventsGrid from '@/components/EventsGrid.vue';
+import NavGrid from '@/components/NavGrid';
 
 export default {
   name: 'Home',
+  data: () => ({
+    apiUri: 'https://gistcdn.githack.com/gawdn/464b5ed74404481f7296fb24f9f28243/raw/c9f63e5117a1406db9af5266c8cfd448161bbfec/test_grid.json',
+    items: [],
+  }),
   components: {
     ListComponent,
     EventsGrid,
+    NavGrid,
+  },mounted() {
+    fetch(this.apiUri)
+      .then(r => r.json())
+      .then((responseJson) => {
+        this.items = responseJson;
+      });
   },
+
 };
 </script>
 
 <style scoped>
+
 @import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
 
 * {
