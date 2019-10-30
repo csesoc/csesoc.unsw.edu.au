@@ -6,7 +6,7 @@
     >
         <v-card
           id="tiers__sponsors"
-          width="100%"
+          width="100vw"
           class="white--text text-center"
         >
 
@@ -31,7 +31,7 @@
         </v-card-text>
 
         <h2>CONTACT US</h2>
-        <v-card-text class="white--text text-center">
+        <v-card-text class="white--text text-center tiers__contact">
             <a href="https://www.facebook.com/csesoc">Facebook Page</a>
             | <a href="https://www.facebook.com/groups/csesoc">Facebook Group</a>
             | <a href="https://www.linkedin.com/company/csesoc/about/">LinkedIn</a>
@@ -45,7 +45,7 @@
         <v-divider></v-divider>
 
         <v-card-text class="white--text text-center">
-          {{ new Date().getFullYear() }} — <strong>CSESoc</strong>
+          {{ new Date().getFullYear() }} — <strong>CSESoc UNSW</strong>
         </v-card-text>
 
         </v-card>
@@ -63,7 +63,7 @@
 
     #tiers__sponsors {
         background: #4a4a4a;
-        padding-top:  5%;
+        padding-top:  5vw;
     }
 
     .white--text {
@@ -85,12 +85,16 @@
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        margin-left: 1%;
-        margin-right: 1%;
+        margin-left: 1vw;
+        margin-right: 1vw;
     }
 
     .tiers__box{
         margin: 20px;
+    }
+
+    .tiers__contact {
+        margin-bottom: 1vw;
     }
 </style>
 
