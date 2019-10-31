@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 	"gopkg.in/ldap.v2"
@@ -129,7 +130,7 @@ func serveAPI(e *echo.Echo) {
 	e.DELETE("/sponsor/", deleteSponsor(sponsorCollection))
 }
 
-func login(collection *mongo.Collection) echo.HandlerFunc {
+func login(collection *mongo.Collection) echo.HandlerFunc { //CLARIFY
 	return func(c echo.Context) error {
 		// Connect to UNSW LDAP server
 		l, err := ldap.Dial("tcp", "ad.unsw.edu.au")
@@ -162,8 +163,32 @@ func login(collection *mongo.Collection) echo.HandlerFunc {
 			}
 		}
 
+		// Retrieve first name from Identity Manager
+		baseDN := "OU=IDM_People,OU=IDM,DC=ad,DC=unsw,DC=edu,DC=au"
+		searchScope := ldap.ScopeWholeSubtree
+		aliases := ldap.NeverDerefAliases
+		retrieveAttributes := []string{"givenName"}
+		searchFilter := "cn=" + username //cn = common name
+
+		searchRequest := ldap.NewSearchRequest(
+			baseDN, searchScope, aliases, 0, 0, false,
+			searchFilter, retrieveAttributes, nil,
+		)
+
+		searchResult, err := l.Search(searchRequest)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		user := searchResult.Entries[0]
+		token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+			"hashedZID": hashedZID,
+			"firstName": user.GetAttributeValue("firstName"),
+		})
+		tokenString, _ := token.SignedString([]byte("secret_text"))
+
 		return c.JSON(http.StatusOK, H{
-			"token": token,
+			"token": tokenString,
 		})
 	}
 }
@@ -410,7 +435,7 @@ func deleteSponsor(collection *mongo.Collection) echo.HandlerFunc {
 		parsedID := uuid.Must(uuid.Parse(id))
 
 		// Find a sponsor by ID and delete it
-		filter := bson.D{{"sponsorID", id}}
+		filter := bson.D{{"sponsorID", parsedID}}
 		_, err := collection.DeleteOne(context.TODO(), filter)
 		if err != nil {
 			log.Fatal(err)
