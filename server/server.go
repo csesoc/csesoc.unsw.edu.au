@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -46,11 +47,11 @@ type User struct {
 
 // Sponsor - struct to contain sponsor data
 type Sponsor struct {
-	sponsorID   int
+	sponsorID   uuid.UUID
 	sponsorName string
 	sponsorLogo string
 	sponsorTier string
-	expiry      time.Time
+	expiry      int64
 }
 
 func main() {
@@ -97,11 +98,14 @@ func serveAPI(e *echo.Echo) {
 	postsCollection := client.Database("csesoc").Collection("posts")
 	catCollection := client.Database("csesoc").Collection("categories")
 	sponsorCollection := client.Database("csesoc").Collection("sponsors")
+	userCollection := client.Database("csesoc").Collection("users")
 
 	// Add more API routes here
 	e.GET("/api/v1/test", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
+
+	e.POST("/login/", login(userCollection))
 
 	e.GET("/post/:id/", getPost(postsCollection))
 	e.GET("/posts/", getAllPosts(postsCollection))
@@ -109,21 +113,26 @@ func serveAPI(e *echo.Echo) {
 	e.PUT("/post/:id/", updatePost(postsCollection))
 	e.DELETE("/post/:id/", deletePost(postsCollection))
 
-	// e.POST("/login/", login())
-
 	e.GET("/category/:id/", getCat(catCollection))
 	e.POST("/category/", newCat(catCollection))
-	e.PATCH("/category/", patchCat) // UPDATE category info
+	e.PATCH("/category/", patchCat(catCollection)) // UPDATE category info
 	e.DELETE("/category/", deleteCat(catCollection))
 
 	e.POST("/sponsor/", newSponsor(sponsorCollection))
 }
 
+// func login(collection *mongo.Collection) echo.HandlerFunc {
+// 	return func(c echo.Context) error {
+
+// 	}
+// }
+
 func getPost(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var result *Post
 		id, _ := strconv.Atoi(c.QueryParam("id"))
-		filter := bson.D{{"postID", id}}
+		category := c.QueryParam("category")
+		filter := bson.D{{"postID", id}, {"category", category}}
 		err := collection.FindOne(context.TODO(), filter).Decode(&result)
 		if err != nil {
 			log.Fatal(err)
@@ -260,7 +269,7 @@ func newCat(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		catID, _ := strconv.Atoi(c.FormValue("id"))
 		catName := c.FormValue("name")
-		index := 0 // Should this be auto generated??
+		index, _ := strconv.Atoi(c.FormValue("index"))
 		category := Category{
 			categoryID:   catID,
 			categoryName: catName,
@@ -279,7 +288,7 @@ func patchCat(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		categoryID, _ := strconv.Atoi(c.FormValue("id"))
 		categoryName := c.FormValue("name")
-		index, _ := strconv.atoi(c.FormValue("index"))
+		index, _ := strconv.Atoi(c.FormValue("index"))
 		filter := bson.D{{"categoryID", categoryID}}
 		update := bson.D{
 			{"$set", bson.D{
@@ -313,14 +322,16 @@ func newSponsor(collection *mongo.Collection) echo.HandlerFunc {
 		name := c.FormValue("name")
 		logo := c.FormValue("logo")
 		tier := c.FormValue("tier")
-		//expiry := c.FormValue("expiry") turn it into a unix timestamp OR ISO 8601 - does mongo store 64bit??
+		expiryStr := c.FormValue("expiry")
+		expiryTime, _ := time.Parse(time.RFC3339, expiryStr)
+		id := uuid.New()
 
 		sponsor := Sponsor{
-			sponsorID:   0, //generated uuid universally unique identifier
+			sponsorID:   id,
 			sponsorName: name,
 			sponsorLogo: logo,
 			sponsorTier: tier,
-			//expiry: what do i do here lmao
+			expiry:      expiryTime.Unix(),
 		}
 
 		_, err := collection.InsertOne(context.TODO(), sponsor)
@@ -333,7 +344,8 @@ func newSponsor(collection *mongo.Collection) echo.HandlerFunc {
 
 func deleteSponsor(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		id, _ := strconv.Atoi(c.FormValue("id"))
+		id := c.FormValue("id")
+		parsedID := uuid.Must(uuid.Parse(id))
 		filter := bson.D{{"sponsorID", id}}
 		_, err := collection.DeleteOne(context.TODO(), filter)
 		if err != nil {
