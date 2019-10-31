@@ -9,6 +9,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
+	"gopkg.in/ldap.v2"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -115,17 +116,28 @@ func serveAPI(e *echo.Echo) {
 
 	e.GET("/category/:id/", getCat(catCollection))
 	e.POST("/category/", newCat(catCollection))
-	e.PATCH("/category/", patchCat(catCollection)) // UPDATE category info
+	e.PATCH("/category/", patchCat(catCollection))
 	e.DELETE("/category/", deleteCat(catCollection))
 
 	e.POST("/sponsor/", newSponsor(sponsorCollection))
 }
 
-// func login(collection *mongo.Collection) echo.HandlerFunc {
-// 	return func(c echo.Context) error {
+func login(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		l, err := ldap.Dial("tcp", "ad.unsw.edu.au")
+		if err != nil {
+			log.Fatal(err)
+		}
 
-// 	}
-// }
+		zid := c.FormValue("zid")
+		username := zid + "ad.unsw.edu.au"
+		password := c.FormValue("password")
+
+		err = l.Bind(username, password)
+
+		
+	}
+}
 
 func getPost(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
