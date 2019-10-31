@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"crypto/sha256"
 	"log"
 	"net/http"
 	"strconv"
@@ -124,18 +125,40 @@ func serveAPI(e *echo.Echo) {
 
 func login(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
+		// Connect to UNSW LDAP server
 		l, err := ldap.Dial("tcp", "ad.unsw.edu.au")
 		if err != nil {
 			log.Fatal(err)
 		}
 
+		// Attempt to sign in using credentials
 		zid := c.FormValue("zid")
 		username := zid + "ad.unsw.edu.au"
 		password := c.FormValue("password")
 
 		err = l.Bind(username, password)
+		if err != nil {
+			log.Fatal(err)
+		}
 
-		
+		// Add hashed zID to the database if not already in database
+		hashedZID := sha256.Sum256([]byte(zid))
+		filter := bson.D{{"hashedZID", hashedZID}}
+		var result *User
+		err = collection.FindOne(context.TODO(), filter).Decode(&result)
+		if err != nil {
+			log.Fatal(err)
+		}
+		if result == nil {
+			_, err = collection.InsertOne(context.TODO(), hashedZID)
+			if err != nil {
+				log.Fatal(err)
+			}
+		}
+
+		return c.JSON(http.StatusOK, H{
+			"token": token,
+		})
 	}
 }
 
