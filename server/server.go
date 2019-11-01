@@ -57,6 +57,13 @@ type Sponsor struct {
 	expiry      int64
 }
 
+// Claims - struct to store jwt data
+type Claims struct {
+	hashedZID [32]byte
+	firstName string
+	jwt.StandardClaims
+}
+
 func main() {
 	// Create new instance of echo
 	e := echo.New()
@@ -130,7 +137,7 @@ func serveAPI(e *echo.Echo) {
 	e.DELETE("/sponsor/", deleteSponsor(sponsorCollection))
 }
 
-func login(collection *mongo.Collection) echo.HandlerFunc { //CLARIFY
+func login(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		// Connect to UNSW LDAP server
 		l, err := ldap.Dial("tcp", "ad.unsw.edu.au")
@@ -140,27 +147,13 @@ func login(collection *mongo.Collection) echo.HandlerFunc { //CLARIFY
 
 		// Attempt to sign in using credentials
 		zid := c.FormValue("zid")
+		hashedZID := sha256.Sum256([]byte(zid))
 		username := zid + "ad.unsw.edu.au"
 		password := c.FormValue("password")
 
 		err = l.Bind(username, password)
 		if err != nil {
 			log.Fatal(err)
-		}
-
-		// Add hashed zID to the database if not already in database
-		hashedZID := sha256.Sum256([]byte(zid))
-		filter := bson.D{{"hashedZID", hashedZID}}
-		var result *User
-		err = collection.FindOne(context.TODO(), filter).Decode(&result)
-		if err != nil {
-			log.Fatal(err)
-		}
-		if result == nil {
-			_, err = collection.InsertOne(context.TODO(), hashedZID)
-			if err != nil {
-				log.Fatal(err)
-			}
 		}
 
 		// Retrieve first name from Identity Manager
@@ -180,12 +173,56 @@ func login(collection *mongo.Collection) echo.HandlerFunc { //CLARIFY
 			log.Fatal(err)
 		}
 
-		user := searchResult.Entries[0]
-		token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-			"hashedZID": hashedZID,
-			"firstName": user.GetAttributeValue("firstName"),
-		})
-		tokenString, _ := token.SignedString([]byte("secret_text"))
+		// Encode user details into a JWT and turn it into a string
+		jwtKey := []byte("secret_text")
+		userFound := searchResult.Entries[0]
+		expirationTime := time.Now().Add(time.Hour * 24)
+		claims := &Claims{
+			hashedZID: hashedZID,
+			firstName: userFound.GetAttributeValue("firstName"),
+			StandardClaims: jwt.StandardClaims{
+				ExpiresAt: expirationTime.Unix(),
+			},
+		}
+		tokenJWT := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+		tokenString, _ := tokenJWT.SignedString(jwtKey)
+
+		// Insert a new user into the collection if the token has expired or has never logged in before
+		user := User{
+			userID:    string(hashedZID[:]),
+			userToken: tokenString,
+			role:      "user", // Change this???
+		}
+
+		var isValidUser *User
+		userFilter := bson.D{{"userID", string(hashedZID[:])}}
+		err = collection.FindOne(context.TODO(), userFilter).Decode(&isValidUser)
+
+		if isValidUser == nil { // Never logged in before
+			_, err = collection.InsertOne(context.TODO(), user)
+			if err != nil {
+				log.Fatal(err)
+			}
+		} else { // Logged in before - check validity of token
+			claims = &Claims{}
+			decodedToken, _ := jwt.ParseWithClaims(isValidUser.userToken, claims, func(token *jwt.Token) (interface{}, error) {
+				return jwtKey, nil
+			})
+			decodedTokenString, _ := decodedToken.SignedString(jwtKey)
+
+			if !decodedToken.Valid { // Logged in before but token is invalid - replace with new token
+				filter := bson.D{{"userID", string(hashedZID[:])}}
+				update := bson.D{
+					{"$set", bson.D{
+						{"userToken", decodedTokenString},
+					}},
+				}
+				_, err = collection.UpdateOne(context.TODO(), filter, update)
+				if err != nil {
+					log.Fatal(err)
+				}
+			}
+		}
 
 		return c.JSON(http.StatusOK, H{
 			"token": tokenString,
