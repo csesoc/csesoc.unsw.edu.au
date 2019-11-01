@@ -23,15 +23,17 @@ type H map[string]interface{}
 
 // Post - struct to contain post data
 type Post struct {
-	postID       int
-	postTitle    string
-	postSubtitle string
-	postType     string
-	postCategory int
-	createdOn    time.Time
-	lastEditedOn time.Time
-	postContent  string
-	showInMenu   bool
+	postID           int
+	postTitle        string
+	postSubtitle     string
+	postType         string
+	postCategory     int
+	createdOn        time.Time
+	lastEditedOn     time.Time
+	postContent      string
+	postLinkGithub   string
+	postLinkFacebook string
+	showInMenu       bool
 }
 
 // Category - struct to contain category data
@@ -299,15 +301,17 @@ func newPost(collection *mongo.Collection) echo.HandlerFunc {
 		showinMenu, _ := strconv.ParseBool(c.FormValue("showInMenu"))
 
 		post := Post{
-			postID:       id,
-			postTitle:    c.FormValue("title"),
-			postSubtitle: c.FormValue("subtitle"),
-			postType:     c.FormValue("type"),
-			postCategory: category,
-			createdOn:    time.Now(),
-			lastEditedOn: time.Now(),
-			postContent:  c.FormValue("content"),
-			showInMenu:   showinMenu,
+			postID:           id,
+			postTitle:        c.FormValue("title"),
+			postSubtitle:     c.FormValue("subtitle"),
+			postType:         c.FormValue("type"),
+			postCategory:     category,
+			createdOn:        time.Now(),
+			lastEditedOn:     time.Now(),
+			postContent:      c.FormValue("content"),
+			postLinkGithub:   c.FormValue("linkGithub"),
+			postLinkFacebook: c.FormValue("linkFacebook"),
+			showInMenu:       showinMenu,
 		}
 
 		_, err := collection.InsertOne(context.TODO(), post)
@@ -325,7 +329,10 @@ func updatePost(collection *mongo.Collection) echo.HandlerFunc {
 		postTitle := c.FormValue("title")
 		postSubtitle := c.FormValue("subtitle")
 		postType := c.FormValue("type")
+		postCategory := c.FormValue("category")
 		postContent := c.FormValue("content")
+		postLinkGithub := c.FormValue("linkGithub")
+		postLinkFacebook := c.FormValue("linkFacebook")
 		showinMenu, _ := strconv.ParseBool(c.FormValue("showInMenu"))
 
 		filter := bson.D{{"postID", postID}}
@@ -334,8 +341,11 @@ func updatePost(collection *mongo.Collection) echo.HandlerFunc {
 				{"postTitle", postTitle},
 				{"postSubtitle", postSubtitle},
 				{"postType", postType},
-				{"postContent", postContent},
+				{"postCategory", postCategory},
 				{"lastEditedOn", time.Now()},
+				{"postContent", postContent},
+				{"postLinkGithub", postLinkGithub},
+				{"postLinkFacebook", postLinkFacebook},
 				{"showinMenu", showinMenu},
 			}},
 		}
@@ -386,12 +396,11 @@ func getCat(collection *mongo.Collection) echo.HandlerFunc {
 func newCat(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		catID, _ := strconv.Atoi(c.FormValue("id"))
-		catName := c.FormValue("name")
 		index, _ := strconv.Atoi(c.FormValue("index"))
 
 		category := Category{
 			categoryID:   catID,
-			categoryName: catName,
+			categoryName: c.FormValue("name"),
 			index:        index,
 		}
 
@@ -443,18 +452,15 @@ func deleteCat(collection *mongo.Collection) echo.HandlerFunc {
 
 func newSponsor(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		name := c.FormValue("name")
-		logo := c.FormValue("logo")
-		tier := c.FormValue("tier")
 		expiryStr := c.FormValue("expiry")
 		expiryTime, _ := time.Parse(time.RFC3339, expiryStr)
 		id := uuid.New()
 
 		sponsor := Sponsor{
 			sponsorID:   id,
-			sponsorName: name,
-			sponsorLogo: logo,
-			sponsorTier: tier,
+			sponsorName: c.FormValue("name"),
+			sponsorLogo: c.FormValue("logo"),
+			sponsorTier: c.FormValue("tier"),
 			expiry:      expiryTime.Unix(),
 		}
 
