@@ -150,6 +150,7 @@ func login(collection *mongo.Collection) echo.HandlerFunc {
 		// Attempt to sign in using credentials
 		zid := c.FormValue("zid")
 		hashedZID := sha256.Sum256([]byte(zid))
+		stringZID := string(hashedZID[:])
 		username := zid + "ad.unsw.edu.au"
 		password := c.FormValue("password")
 
@@ -189,15 +190,16 @@ func login(collection *mongo.Collection) echo.HandlerFunc {
 		tokenJWT := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 		tokenString, _ := tokenJWT.SignedString(jwtKey)
 
-		// Insert a new user into the collection if the token has expired or has never logged in before
+		// Insert a new user into the collection if user has never logged in before
+		// Or update the existing token if it has expired
 		user := User{
-			userID:    string(hashedZID[:]),
+			userID:    stringZID,
 			userToken: tokenString,
 			role:      "user", // Change this???
 		}
 
 		var isValidUser *User
-		userFilter := bson.D{{"userID", string(hashedZID[:])}}
+		userFilter := bson.D{{"userID", stringZID}}
 		err = collection.FindOne(context.TODO(), userFilter).Decode(&isValidUser)
 
 		if isValidUser == nil { // Never logged in before
@@ -213,7 +215,7 @@ func login(collection *mongo.Collection) echo.HandlerFunc {
 			decodedTokenString, _ := decodedToken.SignedString(jwtKey)
 
 			if !decodedToken.Valid { // Logged in before but token is invalid - replace with new token
-				filter := bson.D{{"userID", string(hashedZID[:])}}
+				filter := bson.D{{"userID", stringZID}}
 				update := bson.D{
 					{"$set", bson.D{
 						{"userToken", decodedTokenString},
