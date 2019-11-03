@@ -1,26 +1,38 @@
 <template>
   <div>
     <p>This is a sample home view</p>
-    <NavGrid :items="items"></NavGrid>
+    <NavGrid :gridItems="gridItems"></NavGrid>
+    <ListComponent/>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import NavGrid from '@/components/NavGrid';
+import ListComponent from '@/components/ListComponent';
+import Footer from '@/components/Footer';
+
+
 
 export default {
   data: () => ({
-    apiUri: 'https://gistcdn.githack.com/gawdn/464b5ed74404481f7296fb24f9f28243/raw/c9f63e5117a1406db9af5266c8cfd448161bbfec/test_grid.json',
-    items: [],
+    gridApiUri: 'https://gistcdn.githack.com/gawdn/464b5ed74404481f7296fb24f9f28243/raw/c9f63e5117a1406db9af5266c8cfd448161bbfec/test_grid.json',
+    gridItems: [],
+    listApiUri: 'https://gistcdn.githack.com/gawdn/464b5ed74404481f7296fb24f9f28243/raw/c9f63e5117a1406db9af5266c8cfd448161bbfec/test_grid.json',
+    listItems: [],
   }),
+
   components: {
     NavGrid,
+    ListComponent,
+    Footer,
   },
+
   mounted() {
-    fetch(this.apiUri)
+    fetch(this.gridApiUri)
       .then(r => r.json())
       .then((responseJson) => {
-        this.items = responseJson;
+        this.gridItems = responseJson;
       });
   },
 

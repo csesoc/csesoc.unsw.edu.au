@@ -2,7 +2,7 @@
   <v-container class="nav__grid" fluid>
     <v-col>
       <v-row align="center" justify="center">
-        <v-card v-for="item in items" :key="item.title" :href="item.link" width="30%" class="ma-3">
+        <v-card v-for="item in gridItems" :key="item.title" :href="item.link" width="30%" class="ma-3">
           <v-img
             :src="item.src"
             class="white--text"
@@ -31,7 +31,7 @@ export default {
   name: 'NavGrid',
   // Must be passed from parent object
   // items have title, image url (src), and link
-  props: ['items'],
+  props: ['gridItems'],
 
 };
 </script>
