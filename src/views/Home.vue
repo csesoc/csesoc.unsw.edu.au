@@ -1,5 +1,14 @@
 <template>
   <div>
+      <header id="showcase">
+        <img src="../assets/csesoclogobluewhite.png" />
+        <a href="#" class="button"> Join on spArc </a>
+        <br />
+        <v-btn text icon color="white">
+          <v-icon>mdi-chevron-down</v-icon>
+        </v-btn>
+      </header>
+
     <p>This is a sample home view</p>
     <NavGrid :gridItems="gridItems"></NavGrid>
     <ListComponent/>
