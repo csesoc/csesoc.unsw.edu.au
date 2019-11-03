@@ -140,352 +140,49 @@ func serveAPI(e *echo.Echo) {
 }
 
 func login(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		// Connect to UNSW LDAP server
-		l, err := ldap.Dial("tcp", "ad.unsw.edu.au")
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		// Attempt to sign in using credentials
-		zid := c.FormValue("zid")
-		hashedZID := sha256.Sum256([]byte(zid))
-		stringZID := string(hashedZID[:])
-		username := zid + "ad.unsw.edu.au"
-		password := c.FormValue("password")
-
-		err = l.Bind(username, password)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		// Retrieve first name from Identity Manager
-		baseDN := "OU=IDM_People,OU=IDM,DC=ad,DC=unsw,DC=edu,DC=au"
-		searchScope := ldap.ScopeWholeSubtree
-		aliases := ldap.NeverDerefAliases
-		retrieveAttributes := []string{"givenName"}
-		searchFilter := "cn=" + username //cn = common name
-
-		searchRequest := ldap.NewSearchRequest(
-			baseDN, searchScope, aliases, 0, 0, false,
-			searchFilter, retrieveAttributes, nil,
-		)
-
-		searchResult, err := l.Search(searchRequest)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		// Encode user details into a JWT and turn it into a string
-		jwtKey := []byte("secret_text")
-		userFound := searchResult.Entries[0]
-		expirationTime := time.Now().Add(time.Hour * 24)
-		claims := &Claims{
-			hashedZID: hashedZID,
-			firstName: userFound.GetAttributeValue("firstName"),
-			StandardClaims: jwt.StandardClaims{
-				ExpiresAt: expirationTime.Unix(),
-			},
-		}
-		tokenJWT := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-		tokenString, _ := tokenJWT.SignedString(jwtKey)
-
-		// Insert a new user into the collection if user has never logged in before
-		// Or update the existing token if it has expired
-		user := User{
-			userID:    stringZID,
-			userToken: tokenString,
-			role:      "user", // Change this???
-		}
-
-		var isValidUser *User
-		userFilter := bson.D{{"userID", stringZID}}
-		err = collection.FindOne(context.TODO(), userFilter).Decode(&isValidUser)
-
-		if isValidUser == nil { // Never logged in before
-			_, err = collection.InsertOne(context.TODO(), user)
-			if err != nil {
-				log.Fatal(err)
-			}
-		} else { // Logged in before - check validity of token
-			claims = &Claims{}
-			decodedToken, _ := jwt.ParseWithClaims(isValidUser.userToken, claims, func(token *jwt.Token) (interface{}, error) {
-				return jwtKey, nil
-			})
-			decodedTokenString, _ := decodedToken.SignedString(jwtKey)
-
-			if !decodedToken.Valid { // Logged in before but token is invalid - replace with new token
-				filter := bson.D{{"userID", stringZID}}
-				update := bson.D{
-					{"$set", bson.D{
-						{"userToken", decodedTokenString},
-					}},
-				}
-				_, err = collection.UpdateOne(context.TODO(), filter, update)
-				if err != nil {
-					log.Fatal(err)
-				}
-			}
-		}
-
-		return c.JSON(http.StatusOK, H{
-			"token": tokenString,
-		})
-	}
+	return auth(c)
 }
 
 func getPost(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		var result *Post
-		id, _ := strconv.Atoi(c.QueryParam("id"))
-		category := c.QueryParam("category")
-
-		// Search for post by id and category
-		filter := bson.D{{"postID", id}, {"category", category}}
-		err := collection.FindOne(context.TODO(), filter).Decode(&result)
-		if err != nil {
-			log.Fatal(err)
-		}
-		return c.JSON(http.StatusOK, H{
-			"post": result,
-		})
-	}
+	return GetPosts(c echo.Context)
 }
 
 func getAllPosts(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		count, _ := strconv.Atoi(c.QueryParam("id"))
-		cat := c.QueryParam("category")
-
-		findOptions := options.Find()
-		if count != 10 {
-			findOptions.SetLimit(int64(count))
-		} else {
-			findOptions.SetLimit(10)
-		}
-
-		var posts []*Post
-		var cur *mongo.Cursor
-		var err error
-
-		if cat == "" { // No specified category
-			cur, err = collection.Find(context.TODO(), bson.D{{}}, findOptions)
-		} else {
-			filter := bson.D{{"post_category", cat}}
-			cur, err = collection.Find(context.TODO(), filter, findOptions)
-		}
-
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		// Iterate through all results
-		for cur.Next(context.TODO()) {
-			var elem Post
-			err := cur.Decode(&elem)
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			posts = append(posts, &elem)
-		}
-
-		return c.JSON(http.StatusOK, H{
-			"posts": posts,
-		})
-	}
+	return GetAllPosts(c echo.Context)
 }
 
 func newPost(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		id, _ := strconv.Atoi(c.FormValue("id"))
-		category, _ := strconv.Atoi(c.FormValue("category"))
-		showinMenu, _ := strconv.ParseBool(c.FormValue("showInMenu"))
-
-		post := Post{
-			postID:           id,
-			postTitle:        c.FormValue("title"),
-			postSubtitle:     c.FormValue("subtitle"),
-			postType:         c.FormValue("type"),
-			postCategory:     category,
-			createdOn:        time.Now(),
-			lastEditedOn:     time.Now(),
-			postContent:      c.FormValue("content"),
-			postLinkGithub:   c.FormValue("linkGithub"),
-			postLinkFacebook: c.FormValue("linkFacebook"),
-			showInMenu:       showinMenu,
-		}
-
-		_, err := collection.InsertOne(context.TODO(), post)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		return c.JSON(http.StatusOK, H{})
-	}
+	return NewPost(c echo.Context)
 }
 
 func updatePost(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		postID, _ := strconv.Atoi(c.FormValue("id"))
-		postTitle := c.FormValue("title")
-		postSubtitle := c.FormValue("subtitle")
-		postType := c.FormValue("type")
-		postCategory := c.FormValue("category")
-		postContent := c.FormValue("content")
-		postLinkGithub := c.FormValue("linkGithub")
-		postLinkFacebook := c.FormValue("linkFacebook")
-		showinMenu, _ := strconv.ParseBool(c.FormValue("showInMenu"))
-
-		filter := bson.D{{"postID", postID}}
-		update := bson.D{
-			{"$set", bson.D{
-				{"postTitle", postTitle},
-				{"postSubtitle", postSubtitle},
-				{"postType", postType},
-				{"postCategory", postCategory},
-				{"lastEditedOn", time.Now()},
-				{"postContent", postContent},
-				{"postLinkGithub", postLinkGithub},
-				{"postLinkFacebook", postLinkFacebook},
-				{"showinMenu", showinMenu},
-			}},
-		}
-
-		// Find a post by id and update it
-		_, err := collection.UpdateOne(context.TODO(), filter, update)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		return c.JSON(http.StatusOK, H{})
-	}
+	return UpdatePost(c echo.Context)
 }
 
 func deletePost(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		id, _ := strconv.Atoi(c.FormValue("id"))
-		filter := bson.D{{"postID", id}}
-
-		// Find a post by id and delete it
-		_, err := collection.DeleteOne(context.TODO(), filter)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		return c.JSON(http.StatusOK, H{})
-	}
+	return DeletePost(c echo.Context)
 }
 
 func getCat(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		id, _ := strconv.Atoi(c.QueryParam("id"))
-		var result *Category
-		filter := bson.D{{"categoryID", id}}
-
-		// Find a category
-		err := collection.FindOne(context.TODO(), filter).Decode(&result)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		return c.JSON(http.StatusOK, H{
-			"category": result,
-		})
-	}
+	return GetCat(c echo.Context)
 }
 
 func newCat(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		catID, _ := strconv.Atoi(c.FormValue("id"))
-		index, _ := strconv.Atoi(c.FormValue("index"))
-
-		category := Category{
-			categoryID:   catID,
-			categoryName: c.FormValue("name"),
-			index:        index,
-		}
-
-		_, err := collection.InsertOne(context.TODO(), category)
-		if err != nil {
-			log.Fatal(err)
-		}
-		return c.JSON(http.StatusOK, H{})
-	}
+	return NewCat(c echo.Context)
 }
 
 func patchCat(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		categoryID, _ := strconv.Atoi(c.FormValue("id"))
-		categoryName := c.FormValue("name")
-		index, _ := strconv.Atoi(c.FormValue("index"))
-		filter := bson.D{{"categoryID", categoryID}}
-		update := bson.D{
-			{"$set", bson.D{
-				{"categoryName", categoryName},
-				{"index", index},
-			}},
-		}
-
-		// Find a category by id and update it
-		_, err := collection.UpdateOne(context.TODO(), filter, update)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		return c.JSON(http.StatusOK, H{})
-	}
+	return PatchCat(c echo.Context) 
 }
 
 func deleteCat(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		id, _ := strconv.Atoi(c.FormValue("id"))
-		filter := bson.D{{"categoryID", id}}
-
-		// Find a category by id and delete it
-		_, err := collection.DeleteOne(context.TODO(), filter)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		return c.JSON(http.StatusOK, H{})
-	}
+	return DeleteCat(c echo.Context) 
 }
 
 func newSponsor(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		expiryStr := c.FormValue("expiry")
-		expiryTime, _ := time.Parse(time.RFC3339, expiryStr)
-		id := uuid.New()
-
-		sponsor := Sponsor{
-			sponsorID:   id,
-			sponsorName: c.FormValue("name"),
-			sponsorLogo: c.FormValue("logo"),
-			sponsorTier: c.FormValue("tier"),
-			expiry:      expiryTime.Unix(),
-		}
-
-		_, err := collection.InsertOne(context.TODO(), sponsor)
-		if err != nil {
-			log.Fatal(err)
-		}
-		return c.JSON(http.StatusOK, H{})
-	}
+	return NewSponsor(c echo.Context)
 }
 
 func deleteSponsor(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		id := c.FormValue("id")
-		parsedID := uuid.Must(uuid.Parse(id))
-
-		// Find a sponsor by ID and delete it
-		filter := bson.D{{"sponsorID", parsedID}}
-		_, err := collection.DeleteOne(context.TODO(), filter)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		return c.JSON(http.StatusOK, H{})
-	}
+	return DeleteSponsor(c echo.Context)
 }
