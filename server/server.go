@@ -140,7 +140,7 @@ func serveAPI(e *echo.Echo) {
 }
 
 func login(collection *mongo.Collection) echo.HandlerFunc {
-	return auth(c)
+	return auth(c echo.Context)
 }
 
 func getPost(collection *mongo.Collection) echo.HandlerFunc {
