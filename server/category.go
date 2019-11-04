@@ -3,15 +3,13 @@ package main
 import (
 	"context"
 	"log"
-	"net/http"
-	"strconv"
 
-	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func GetCat(c echo.Context) error {
-	id, _ := strconv.Atoi(c.QueryParam("id"))
+func GetCat(collection *mongo.Collection, id int) *Category {
+
 	var result *Category
 	filter := bson.D{{"categoryID", id}}
 
@@ -21,18 +19,13 @@ func GetCat(c echo.Context) error {
 		log.Fatal(err)
 	}
 
-	return c.JSON(http.StatusOK, H{
-		"category": result,
-	})
+	return result
 }
 
-func NewCat(c echo.Context) error {
-	catID, _ := strconv.Atoi(c.FormValue("id"))
-	index, _ := strconv.Atoi(c.FormValue("index"))
-
+func NewCat(collection *mongo.Collection, catID int, index int, name string) {
 	category := Category{
 		categoryID:   catID,
-		categoryName: c.FormValue("name"),
+		categoryName: name,
 		index:        index,
 	}
 
@@ -40,17 +33,13 @@ func NewCat(c echo.Context) error {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return c.JSON(http.StatusOK, H{})
 }
 
-func PatchCat(c echo.Context) error {
-	categoryID, _ := strconv.Atoi(c.FormValue("id"))
-	categoryName := c.FormValue("name")
-	index, _ := strconv.Atoi(c.FormValue("index"))
-	filter := bson.D{{"categoryID", categoryID}}
+func PatchCat(collection *mongo.Collection, catID int, name string, index int) {
+	filter := bson.D{{"categoryID", catID}}
 	update := bson.D{
 		{"$set", bson.D{
-			{"categoryName", categoryName},
+			{"categoryName", name},
 			{"index", index},
 		}},
 	}
@@ -60,12 +49,9 @@ func PatchCat(c echo.Context) error {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	return c.JSON(http.StatusOK, H{})
 }
 
-func DeleteCat(c echo.Context) error {
-	id, _ := strconv.Atoi(c.FormValue("id"))
+func DeleteCat(collection *mongo.Collection, id int) {
 	filter := bson.D{{"categoryID", id}}
 
 	// Find a category by id and delete it
@@ -73,6 +59,4 @@ func DeleteCat(c echo.Context) error {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	return c.JSON(http.StatusOK, H{})
 }

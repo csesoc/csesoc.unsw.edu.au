@@ -3,20 +3,15 @@ package main
 import (
 	"context"
 	"log"
-	"net/http"
-	"strconv"
 	"time"
 
-	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func GetPost(c echo.Context) error {
+func GetPost(collection *mongo.Collection, id int, category string) *Post {
 	var result *Post
-	id, _ := strconv.Atoi(c.QueryParam("id"))
-	category := c.QueryParam("category")
 
 	// Search for post by id and category
 	filter := bson.D{{"postID", id}, {"category", category}}
@@ -24,15 +19,11 @@ func GetPost(c echo.Context) error {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return c.JSON(http.StatusOK, H{
-		"post": result,
-	})
+
+	return result
 }
 
-func GetAllPosts(c echo.Context) error {
-	count, _ := strconv.Atoi(c.QueryParam("id"))
-	cat := c.QueryParam("category")
-
+func GetAllPosts(collection *mongo.Collection, count int, cat string) []*Post {
 	findOptions := options.Find()
 	if count != 10 {
 		findOptions.SetLimit(int64(count))
@@ -66,61 +57,43 @@ func GetAllPosts(c echo.Context) error {
 		posts = append(posts, &elem)
 	}
 
-	return c.JSON(http.StatusOK, H{
-		"posts": posts,
-	})
+	return posts
 }
 
-func NewPost(c echo.Context) error {
-	id, _ := strconv.Atoi(c.FormValue("id"))
-	category, _ := strconv.Atoi(c.FormValue("category"))
-	showinMenu, _ := strconv.ParseBool(c.FormValue("showInMenu"))
-
+func NewPost(collection *mongo.Collection, id int, category int, showInMenu bool, title string, subtitle string, postType string, content string, github string, fb string) {
 	post := Post{
 		postID:           id,
-		postTitle:        c.FormValue("title"),
-		postSubtitle:     c.FormValue("subtitle"),
-		postType:         c.FormValue("type"),
+		postTitle:        title,
+		postSubtitle:     subtitle,
+		postType:         postType,
 		postCategory:     category,
 		createdOn:        time.Now(),
 		lastEditedOn:     time.Now(),
-		postContent:      c.FormValue("content"),
-		postLinkGithub:   c.FormValue("linkGithub"),
-		postLinkFacebook: c.FormValue("linkFacebook"),
-		showInMenu:       showinMenu,
+		postContent:      content,
+		postLinkGithub:   github,
+		postLinkFacebook: fb,
+		showInMenu:       showInMenu,
 	}
 
 	_, err := collection.InsertOne(context.TODO(), post)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	return c.JSON(http.StatusOK, H{})
 }
 
-func UpdatePost(c echo.Context) error {
-	postID, _ := strconv.Atoi(c.FormValue("id"))
-	postTitle := c.FormValue("title")
-	postSubtitle := c.FormValue("subtitle")
-	postType := c.FormValue("type")
-	postCategory := c.FormValue("category")
-	postContent := c.FormValue("content")
-	postLinkGithub := c.FormValue("linkGithub")
-	postLinkFacebook := c.FormValue("linkFacebook")
-	showinMenu, _ := strconv.ParseBool(c.FormValue("showInMenu"))
-
-	filter := bson.D{{"postID", postID}}
+func UpdatePost(collection *mongo.Collection, id int, category int, showInMenu bool, title string, subtitle string, postType string, content string, github string, fb string) {
+	filter := bson.D{{"postID", id}}
 	update := bson.D{
 		{"$set", bson.D{
-			{"postTitle", postTitle},
-			{"postSubtitle", postSubtitle},
+			{"postTitle", title},
+			{"postSubtitle", subtitle},
 			{"postType", postType},
-			{"postCategory", postCategory},
+			{"postCategory", category},
 			{"lastEditedOn", time.Now()},
-			{"postContent", postContent},
-			{"postLinkGithub", postLinkGithub},
-			{"postLinkFacebook", postLinkFacebook},
-			{"showinMenu", showinMenu},
+			{"postContent", content},
+			{"postLinkGithub", github},
+			{"postLinkFacebook", fb},
+			{"showinMenu", showInMenu},
 		}},
 	}
 
@@ -129,12 +102,9 @@ func UpdatePost(c echo.Context) error {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	return c.JSON(http.StatusOK, H{})
 }
 
-func DeletePost(c echo.Context) error {
-	id, _ := strconv.Atoi(c.FormValue("id"))
+func DeletePost(collection *mongo.Collection, id int) {
 	filter := bson.D{{"postID", id}}
 
 	// Find a post by id and delete it
@@ -142,6 +112,4 @@ func DeletePost(c echo.Context) error {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	return c.JSON(http.StatusOK, H{})
 }

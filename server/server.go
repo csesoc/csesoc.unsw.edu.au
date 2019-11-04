@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"crypto/sha256"
 	"log"
 	"net/http"
 	"strconv"
@@ -11,9 +10,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
-	"gopkg.in/ldap.v2"
 
-	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -140,49 +137,131 @@ func serveAPI(e *echo.Echo) {
 }
 
 func login(collection *mongo.Collection) echo.HandlerFunc {
-	return auth(c echo.Context)
+	return func(c echo.Context) error {
+		zid := c.FormValue("zid")
+		password := c.FormValue("password")
+		tokenString := auth(collection, zid, password)
+		return c.JSON(http.StatusOK, H{
+			"token": tokenString,
+		})
+	}
 }
 
 func getPost(collection *mongo.Collection) echo.HandlerFunc {
-	return GetPosts(c echo.Context)
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.QueryParam("id"))
+		category := c.QueryParam("category")
+		result := GetPost(collection, id, category)
+		return c.JSON(http.StatusOK, H{
+			"post": result,
+		})
+	}
 }
 
 func getAllPosts(collection *mongo.Collection) echo.HandlerFunc {
-	return GetAllPosts(c echo.Context)
+	return func(c echo.Context) error {
+		count, _ := strconv.Atoi(c.QueryParam("id"))
+		cat := c.QueryParam("category")
+		posts := GetAllPosts(collection, count, cat)
+		return c.JSON(http.StatusOK, H{
+			"posts": posts,
+		})
+	}
 }
 
 func newPost(collection *mongo.Collection) echo.HandlerFunc {
-	return NewPost(c echo.Context)
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.FormValue("id"))
+		category, _ := strconv.Atoi(c.FormValue("category"))
+		showInMenu, _ := strconv.ParseBool(c.FormValue("showInMenu"))
+		title := c.FormValue("title")
+		subtitle := c.FormValue("subtitle")
+		postType := c.FormValue("type")
+		content := c.FormValue("content")
+		github := c.FormValue("linkGithub")
+		fb := c.FormValue("linkFacebook")
+		NewPost(collection, id, category, showInMenu, title, subtitle, postType, content, github, fb)
+		return c.JSON(http.StatusOK, H{})
+	}
 }
 
 func updatePost(collection *mongo.Collection) echo.HandlerFunc {
-	return UpdatePost(c echo.Context)
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.FormValue("id"))
+		category, _ := strconv.Atoi(c.FormValue("category"))
+		showInMenu, _ := strconv.ParseBool(c.FormValue("showInMenu"))
+		title := c.FormValue("title")
+		subtitle := c.FormValue("subtitle")
+		postType := c.FormValue("type")
+		content := c.FormValue("content")
+		github := c.FormValue("linkGithub")
+		fb := c.FormValue("linkFacebook")
+		UpdatePost(collection, id, category, showInMenu, title, subtitle, postType, content, github, fb)
+		return c.JSON(http.StatusOK, H{})
+	}
 }
 
 func deletePost(collection *mongo.Collection) echo.HandlerFunc {
-	return DeletePost(c echo.Context)
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.FormValue("id"))
+		DeletePost(collection, id)
+		return c.JSON(http.StatusOK, H{})
+	}
 }
 
 func getCat(collection *mongo.Collection) echo.HandlerFunc {
-	return GetCat(c echo.Context)
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.QueryParam("id"))
+		result := GetCat(collection, id)
+		return c.JSON(http.StatusOK, H{
+			"category": result,
+		})
+	}
 }
 
 func newCat(collection *mongo.Collection) echo.HandlerFunc {
-	return NewCat(c echo.Context)
+	return func(c echo.Context) error {
+		catID, _ := strconv.Atoi(c.FormValue("id"))
+		index, _ := strconv.Atoi(c.FormValue("index"))
+		name := c.FormValue("name")
+		NewCat(collection, catID, index, name)
+		return c.JSON(http.StatusOK, H{})
+	}
 }
 
 func patchCat(collection *mongo.Collection) echo.HandlerFunc {
-	return PatchCat(c echo.Context) 
+	return func(c echo.Context) error {
+		catID, _ := strconv.Atoi(c.FormValue("id"))
+		name := c.FormValue("name")
+		index, _ := strconv.Atoi(c.FormValue("index"))
+		PatchCat(collection, catID, name, index)
+		return c.JSON(http.StatusOK, H{})
+	}
 }
 
 func deleteCat(collection *mongo.Collection) echo.HandlerFunc {
-	return DeleteCat(c echo.Context) 
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.FormValue("id"))
+		DeleteCat(collection, id)
+		return c.JSON(http.StatusOK, H{})
+	}
 }
 
 func newSponsor(collection *mongo.Collection) echo.HandlerFunc {
-	return NewSponsor(c echo.Context)
+	return func(c echo.Context) error {
+		expiryStr := c.FormValue("expiry")
+		name := c.FormValue("name")
+		logo := c.FormValue("logo")
+		tier := c.FormValue("tier")
+		NewSponsor(collection, expiryStr, name, logo, tier)
+		return c.JSON(http.StatusOK, H{})
+	}
 }
 
 func deleteSponsor(collection *mongo.Collection) echo.HandlerFunc {
-	return DeleteSponsor(c echo.Context)
+	return func(c echo.Context) error {
+		id := c.FormValue("id")
+		DeleteSponsor(collection, id)
+		return c.JSON(http.StatusOK, H{})
+	}
 }

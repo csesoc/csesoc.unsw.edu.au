@@ -4,16 +4,15 @@ import (
 	"context"
 	"crypto/sha256"
 	"log"
-	"net/http"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 	"gopkg.in/ldap.v2"
 )
 
-func auth(c echo.Context) error {
+func auth(collection *mongo.Collection, zid string, password string) string {
 	// Connect to UNSW LDAP server
 	l, err := ldap.Dial("tcp", "ad.unsw.edu.au")
 	if err != nil {
@@ -21,11 +20,9 @@ func auth(c echo.Context) error {
 	}
 
 	// Attempt to sign in using credentials
-	zid := c.FormValue("zid")
 	hashedZID := sha256.Sum256([]byte(zid))
 	stringZID := string(hashedZID[:])
 	username := zid + "ad.unsw.edu.au"
-	password := c.FormValue("password")
 
 	err = l.Bind(username, password)
 	if err != nil {
@@ -101,7 +98,5 @@ func auth(c echo.Context) error {
 		}
 	}
 
-	return c.JSON(http.StatusOK, H{
-		"token": tokenString,
-	})
+	return tokenString
 }
