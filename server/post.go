@@ -10,6 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// GetPost - Retrieve a post from the database
 func GetPost(collection *mongo.Collection, id int, category string) *Post {
 	var result *Post
 
@@ -23,6 +24,7 @@ func GetPost(collection *mongo.Collection, id int, category string) *Post {
 	return result
 }
 
+// GetAllPosts - Retrieve all posts
 func GetAllPosts(collection *mongo.Collection, count int, cat string) []*Post {
 	findOptions := options.Find()
 	if count != 10 {
@@ -60,6 +62,7 @@ func GetAllPosts(collection *mongo.Collection, count int, cat string) []*Post {
 	return posts
 }
 
+// NewPost - Add a new post
 func NewPost(collection *mongo.Collection, id int, category int, showInMenu bool, title string, subtitle string, postType string, content string, github string, fb string) {
 	post := Post{
 		postID:           id,
@@ -81,6 +84,7 @@ func NewPost(collection *mongo.Collection, id int, category int, showInMenu bool
 	}
 }
 
+// UpdatePost - Update a post with new information
 func UpdatePost(collection *mongo.Collection, id int, category int, showInMenu bool, title string, subtitle string, postType string, content string, github string, fb string) {
 	filter := bson.D{{"postID", id}}
 	update := bson.D{
@@ -104,6 +108,7 @@ func UpdatePost(collection *mongo.Collection, id int, category int, showInMenu b
 	}
 }
 
+// DeletePost - Delete a post from the database
 func DeletePost(collection *mongo.Collection, id int) {
 	filter := bson.D{{"postID", id}}
 

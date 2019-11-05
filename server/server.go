@@ -58,8 +58,9 @@ type Sponsor struct {
 
 // Claims - struct to store jwt data
 type Claims struct {
-	hashedZID [32]byte
-	firstName string
+	hashedZID   [32]byte
+	firstName   string
+	permissions string
 	jwt.StandardClaims
 }
 
@@ -140,7 +141,8 @@ func login(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		zid := c.FormValue("zid")
 		password := c.FormValue("password")
-		tokenString := auth(collection, zid, password)
+		permissions := c.FormValue("permissions")
+		tokenString := Auth(collection, zid, password, permissions)
 		return c.JSON(http.StatusOK, H{
 			"token": tokenString,
 		})
@@ -211,8 +213,9 @@ func deletePost(collection *mongo.Collection) echo.HandlerFunc {
 
 func getCat(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
+		token := c.FormValue("token")
 		id, _ := strconv.Atoi(c.QueryParam("id"))
-		result := GetCat(collection, id)
+		result := GetCat(collection, id, token)
 		return c.JSON(http.StatusOK, H{
 			"category": result,
 		})
@@ -221,47 +224,52 @@ func getCat(collection *mongo.Collection) echo.HandlerFunc {
 
 func newCat(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
+		token := c.FormValue("token")
 		catID, _ := strconv.Atoi(c.FormValue("id"))
 		index, _ := strconv.Atoi(c.FormValue("index"))
 		name := c.FormValue("name")
-		NewCat(collection, catID, index, name)
+		NewCat(collection, catID, index, name, token)
 		return c.JSON(http.StatusOK, H{})
 	}
 }
 
 func patchCat(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
+		token := c.FormValue("token")
 		catID, _ := strconv.Atoi(c.FormValue("id"))
 		name := c.FormValue("name")
 		index, _ := strconv.Atoi(c.FormValue("index"))
-		PatchCat(collection, catID, name, index)
+		PatchCat(collection, catID, name, index, token)
 		return c.JSON(http.StatusOK, H{})
 	}
 }
 
 func deleteCat(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
+		token := c.FormValue("token")
 		id, _ := strconv.Atoi(c.FormValue("id"))
-		DeleteCat(collection, id)
+		DeleteCat(collection, id, token)
 		return c.JSON(http.StatusOK, H{})
 	}
 }
 
 func newSponsor(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
+		token := c.FormValue("token")
 		expiryStr := c.FormValue("expiry")
 		name := c.FormValue("name")
 		logo := c.FormValue("logo")
 		tier := c.FormValue("tier")
-		NewSponsor(collection, expiryStr, name, logo, tier)
+		NewSponsor(collection, expiryStr, name, logo, tier, token)
 		return c.JSON(http.StatusOK, H{})
 	}
 }
 
 func deleteSponsor(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
+		token := c.FormValue("token")
 		id := c.FormValue("id")
-		DeleteSponsor(collection, id)
+		DeleteSponsor(collection, id, token)
 		return c.JSON(http.StatusOK, H{})
 	}
 }

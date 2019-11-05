@@ -12,7 +12,10 @@ import (
 	"gopkg.in/ldap.v2"
 )
 
-func auth(collection *mongo.Collection, zid string, password string) string {
+var jwtKey = []byte("secret_text")
+
+// Auth - to login
+func Auth(collection *mongo.Collection, zid string, password string, permissions string) string {
 	// Connect to UNSW LDAP server
 	l, err := ldap.Dial("tcp", "ad.unsw.edu.au")
 	if err != nil {
@@ -47,12 +50,13 @@ func auth(collection *mongo.Collection, zid string, password string) string {
 	}
 
 	// Encode user details into a JWT and turn it into a string
-	jwtKey := []byte("secret_text")
+
 	userFound := searchResult.Entries[0]
 	expirationTime := time.Now().Add(time.Hour * 24)
 	claims := &Claims{
-		hashedZID: hashedZID,
-		firstName: userFound.GetAttributeValue("firstName"),
+		hashedZID:   hashedZID,
+		firstName:   userFound.GetAttributeValue("firstName"),
+		permissions: permissions,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expirationTime.Unix(),
 		},
@@ -99,4 +103,24 @@ func auth(collection *mongo.Collection, zid string, password string) string {
 	}
 
 	return tokenString
+}
+
+// validToken - returns
+func validToken(tokenString string) bool {
+	claims := &Claims{}
+	tkn, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
+		return jwtKey, nil
+	})
+
+	if err != nil {
+		if err == jwt.ErrSignatureInvalid {
+			return false
+		}
+	}
+
+	if !tkn.Valid || claims.permissions != "staff" {
+		return false
+	}
+
+	return true
 }

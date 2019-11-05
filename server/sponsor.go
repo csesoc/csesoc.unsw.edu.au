@@ -10,7 +10,12 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func NewSponsor(collection *mongo.Collection, expiryStr string, name string, logo string, tier string) {
+// NewSponsor - Add a new sponsor
+func NewSponsor(collection *mongo.Collection, expiryStr string, name string, logo string, tier string, token string) {
+	if !validToken(token) {
+		return
+	}
+
 	expiryTime, _ := time.Parse(time.RFC3339, expiryStr)
 	id := uuid.New()
 
@@ -28,7 +33,12 @@ func NewSponsor(collection *mongo.Collection, expiryStr string, name string, log
 	}
 }
 
-func DeleteSponsor(collection *mongo.Collection, id string) {
+// DeleteSponsor - Delete a sponsor from the database
+func DeleteSponsor(collection *mongo.Collection, id string, token string) {
+	if !validToken(token) {
+		return
+	}
+
 	parsedID := uuid.Must(uuid.Parse(id))
 
 	// Find a sponsor by ID and delete it

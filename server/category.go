@@ -8,7 +8,11 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func GetCat(collection *mongo.Collection, id int) *Category {
+// GetCat - Retrieve a category from the database
+func GetCat(collection *mongo.Collection, id int, token string) *Category {
+	if !validToken(token) {
+		return nil
+	}
 
 	var result *Category
 	filter := bson.D{{"categoryID", id}}
@@ -22,7 +26,12 @@ func GetCat(collection *mongo.Collection, id int) *Category {
 	return result
 }
 
-func NewCat(collection *mongo.Collection, catID int, index int, name string) {
+// NewCat - Add a new category
+func NewCat(collection *mongo.Collection, catID int, index int, name string, token string) {
+	if !validToken(token) {
+		return
+	}
+
 	category := Category{
 		categoryID:   catID,
 		categoryName: name,
@@ -35,7 +44,12 @@ func NewCat(collection *mongo.Collection, catID int, index int, name string) {
 	}
 }
 
-func PatchCat(collection *mongo.Collection, catID int, name string, index int) {
+// PatchCat - Update a category with new information
+func PatchCat(collection *mongo.Collection, catID int, name string, index int, token string) {
+	if !validToken(token) {
+		return
+	}
+
 	filter := bson.D{{"categoryID", catID}}
 	update := bson.D{
 		{"$set", bson.D{
@@ -51,7 +65,12 @@ func PatchCat(collection *mongo.Collection, catID int, name string, index int) {
 	}
 }
 
-func DeleteCat(collection *mongo.Collection, id int) {
+// DeleteCat - Delete a category from the database
+func DeleteCat(collection *mongo.Collection, id int, token string) {
+	if !validToken(token) {
+		return
+	}
+
 	filter := bson.D{{"categoryID", id}}
 
 	// Find a category by id and delete it
