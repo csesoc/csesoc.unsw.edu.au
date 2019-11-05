@@ -105,7 +105,7 @@ func Auth(collection *mongo.Collection, zid string, password string, permissions
 	return tokenString
 }
 
-// validToken - returns
+// validToken - returns true if a token is valid and false otherwise.
 func validToken(tokenString string) bool {
 	claims := &Claims{}
 	tkn, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
