@@ -35,6 +35,13 @@
           <v-icon>mdi-chevron-down</v-icon>
         </v-btn>
       </header>
+
+      <div class="fb-page mt-10 ml-10" data-href="https://www.facebook.com/csesoc"
+      data-tabs="timeline, events, messages" data-width="450" data-height="" data-small-header="true"
+      data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true">
+      <blockquote cite="https://www.facebook.com/csesoc" class="fb-xfbml-parse-ignore">
+      <a href="https://www.facebook.com/csesoc">CSESoc UNSW</a></blockquote></div>
+
       <ListComponent class="pa-8 ma-8"/>
       <Slider :items="items" class="my-10"/>
     <NavGrid id='content-start' :gridItems="gridItems"></NavGrid>
