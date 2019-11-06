@@ -2,7 +2,7 @@
   <!-- Insert post here-->
     <v-container class="pa-md-1 mx-lg-auto">
       <v-row v-for="item in listItems">
-        <v-col class="pa-2" v-if="item.piclist">
+        <v-col class="pa-2" v-if="item.imageItem">
             <!-- use v-img -->
           <img v-if="item.image.length != 0" :src="item.image" />
         </v-col>
@@ -11,7 +11,7 @@
             <h2 class="listItemTitle">
               {{ item.title }}
             </h2>
-            <h3 class="listItemSubtitle">{{ subtitle }}</h3>
+            <h3 class="listItemSubtitle">{{ item.subtitle }}</h3>
             <p>
               {{ item.content }}
             </p>
@@ -66,19 +66,6 @@ img {
 
 
 <script>
-    // export default {
-    //     name: 'ListComponent',
-    //     data() {
-    //         return {
-    //             piclist: true,
-    //             image: 'https://avatars0.githubusercontent.com/u/164179?s=280&v=4',
-    //             title: 'Header',
-    //             subtitle: 'Subtitle',
-    //             content: 'This is some text.askjdbasbakc id isd ks  sj ks skdj dsl sdkl jsdlk sdlk sdk skd sdlj vld ldckhj sdk hsjjsdn sjd skd sjhds ksdk jsdk lskd sljadksa kjx slklkj sk sdk kld dk s    ds jsdklsdkdslk dslkj dkds vs dkjsd lksd lsj sdjhbcjsdc sdjhcb ',
-    //             link: '',
-    //         };
-    //     },
-    // };
 
     export default {
       name: 'ListComponent',

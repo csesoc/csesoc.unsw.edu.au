@@ -6,7 +6,7 @@
        v-model="dialog"
        dark
        no-click-animation
-     
+
        max-width="600px"
      >
        <v-card>
@@ -64,6 +64,14 @@
    </v-layout>
  </form>
 </template>
+
+<style scoped>
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+
+#login-form {
+  font-family: "Quicksand", sans-serif;
+}
+</style>
 
 <script>
 

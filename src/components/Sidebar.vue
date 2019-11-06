@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer v-model="drawer" app>
+    <v-navigation-drawer v-model="drawer" app class="sidebar">
 
       <v-container fluid>
 
@@ -142,6 +142,15 @@
      </v-list>
     </v-navigation-drawer>
 </template>
+
+<style scoped>
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+
+.sidebar {
+  font-family: "Quicksand", sans-serif;
+}
+</style>
+
 <script>
 export default {
   data() {
