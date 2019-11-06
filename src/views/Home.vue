@@ -10,6 +10,7 @@
 <!-- transparent + no logo until scroll point ??-->
     <v-app-bar app dark>
       <v-app-bar-nav-icon class="ma-2" @click.stop="drawer = !drawer"> </v-app-bar-nav-icon>
+      <div class="flex-grow-1"></div>
 
       <router-link to="/"
         ><v-container
@@ -17,7 +18,7 @@
           fluid
           style="max-height: 64px; max-width:100px"
         >
-          <!-- <v-img class="ma-8" src="https://github.com/csesoc/csesoc.unsw.edu.au/blob/frontendCombined/src/assets/csesoclogobluewhite.png?raw=true" />  -->
+          <v-img class="ma-8" src="https://github.com/csesoc/csesoc.unsw.edu.au/blob/frontendCombined/src/assets/csesoclogobluewhite.png?raw=true" /> 
       </v-container>
       </router-link>
        <div class="flex-grow-1"></div>
@@ -25,6 +26,7 @@
     </v-app-bar>
 
 
+<!-- make header a seperate component! -->
       <header id="showcase">
         <img src="https://github.com/csesoc/csesoc.unsw.edu.au/blob/frontendCombined/src/assets/csesoclogobluewhite.png?raw=true" />
         <a href="#" v-ripple class="button"> Join on spArc </a>
@@ -57,8 +59,10 @@
       <Slider :items="items" class="my-10"/>
 
       <Events/>
-      <h1> #!/RESOURCES </h1>
+      <h1 class="ml-12 mt-12"> #!/RESOURCES </h1>
+      <div class="square">
     <NavGrid id='content-start' :gridItems="gridItems"></NavGrid>
+    </div>
     <Footer/>
   </div>
 </template>
@@ -158,5 +162,9 @@ export default {
     transition:0.4s;
   background: rgb(32,62,207);
   color: #fff;
+}
+
+.square {
+    padding: 10px 300px 50px 300px;
 }
 </style>

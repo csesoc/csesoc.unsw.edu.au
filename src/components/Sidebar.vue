@@ -77,11 +77,13 @@
   <v-list-item-title>{{ item.title }}</v-list-item-title>
 </template>
 
-<!-- <router-link :to="child.route" class="route"> -->
-  <v-list-item v-for="child in item.children">
+<div v-for="child in item.children">
+<router-link :to="child.route" class="route">
+  <v-list-item v-ripple>
     <v-list-item-title>{{ child.title }}</v-list-item-title>
   </v-list-item>
-<!-- </router-link> -->
+</router-link>
+</div>
 
 </v-list-group>
 
@@ -162,7 +164,8 @@ export default {
           icon: 'mdi-information',
           route: '/about',
           children: [
-            { title: 'History', route: '/', icon: '' },
+          { title: 'Who are we?', route: '/about', icon: '' },
+
             { title: 'FAQ', route: '/about', icon: '' },
             { title: 'Constitution', route: '/', icon: '' },
           ],
