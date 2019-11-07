@@ -18,9 +18,6 @@
     <v-content>
       <v-container fluid>
         <router-view></router-view>
-
-        <ListComponent />
-        <ListComponent />
       </v-container>
     </v-content>
     <v-footer dark app>
@@ -36,7 +33,7 @@ import Sidebar from './components/Sidebar.vue';
 import LoginForm from './components/LoginForm.vue';
 // import BasePost from './components/BasePost.vue';
 // import EventsGrid from './components/EventsGrid.vue';
-import ListComponent from './components/ListComponent.vue';
+// import ListComponent from './components/ListComponent.vue';
 // import SearchPage from './components/SearchPage.vue';
 
 export default {
@@ -49,7 +46,7 @@ export default {
     LoginForm,
     // BasePost,
     // EventsGrid,
-    ListComponent,
+    // ListComponent,
     // SearchPage,
   },
   data: () => ({

@@ -4,19 +4,19 @@
     <v-container class="pa-md-1 mx-lg-auto">
       <v-row>
         <v-col class="pa-2" v-if="piclist == true">
-          <img v-if="image.length != 0" :src="image" />
+          <img v-if="parentData.image.length != 0" :src="parentData.image" />
         </v-col>
         <v-col>
           <div class="pa-md-6">
             <h2 class="listItemTitle">
-              {{ title }}
+              {{ parentData.title }}
             </h2>
-            <h3 class="listItemSubtitle">{{ subtitle }}</h3>
+            <h3 class="listItemSubtitle">{{ parentData.subtitle }}</h3>
             <p>
-              {{ content }}
+              {{ parentData.content }}
             </p>
             <div class="text-center">
-              <router-link to="/post"
+              <router-link :to="{ name: 'Post' , params: { id: parentData.id } }"
                 ><v-btn rounded color="primary" dark style="float: left;"
                   >More -></v-btn
                 ></router-link
@@ -33,6 +33,9 @@
 export default {
   name: 'ListComponent',
   el: '#nav',
+  props: {
+    parentData: Object,
+  },
   data() {
     return {
       piclist: true,

@@ -17,6 +17,7 @@
               {{ event.info }}
             </p>
             <div class="text-center">
+              <!--Change to link to facebook event-->
               <router-link to="/post"
                 ><v-btn rounded color="primary" dark style="float: right;"
                   >More -></v-btn

@@ -1,6 +1,7 @@
 <template>
   <div>
     <BasePost :parentData="myData" />
+    {{id}}
   </div>
 </template>
 
@@ -8,9 +9,13 @@
 import BasePost from '@/components/BasePost.vue';
 
 export default {
-  name: 'post',
+  name: 'Post',
   components: {
     BasePost,
+  },
+  created() {
+    this.id = this.$route.params.id;
+    // fetch post with this id
   },
   data() {
     const title = 'Sample Header';

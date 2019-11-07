@@ -2,13 +2,14 @@
   <div>
     <header id="showcase">
       <img src="../assets/csesoclogobluewhite.png" />
-      <a href="#" class="button"> Join on spArc </a>
+      <a href="https://member.arc.unsw.edu.au/login" class="button"> Join on spArc </a>
       <br />
       <v-btn text icon color="white">
         <v-icon>mdi-chevron-down</v-icon>
       </v-btn>
     </header>
-    <ListComponent />
+
+    <ListComponent v-for="item in list" :key="item" :parentData="item"/>
     <EventsGrid />
 
     <p>This is a sample home view</p>
@@ -26,7 +27,21 @@ export default {
   name: 'Home',
   data: () => ({
     apiUri: 'https://gistcdn.githack.com/gawdn/464b5ed74404481f7296fb24f9f28243/raw/c9f63e5117a1406db9af5266c8cfd448161bbfec/test_grid.json',
-    items: [],
+    list: [{
+      id: '1',
+      title: 'Title 1',
+      subtitle: 'Subtitle 1',
+      content: 'This is some content',
+      image: 'https://www.csesoc.unsw.edu.au/static/img/logo-navbar.png',
+      link: '',
+    }, {
+      id: '2',
+      title: 'Title 2',
+      subtitle: 'Subtitle 2',
+      content: 'This is also some content',
+      image: 'https://avatars.githubusercontent.com/u/164179?size=100',
+      link: '',
+    }],
   }),
   components: {
     ListComponent,

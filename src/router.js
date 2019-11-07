@@ -15,8 +15,8 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/post',
-      name: 'post',
+      path: '/post/:id',
+      name: 'Post',
       component: () => import('./views/Post.vue'),
     },
     {
