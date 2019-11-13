@@ -23,7 +23,7 @@
           :key="i"
           @click.stop="drawer = !drawer"
         >
-          <router-link to="/post">
+          <router-link :to="item.link">
             <v-list-item-action>
               <v-icon v-text="item.icon"></v-icon>
             </v-list-item-action>
@@ -65,7 +65,9 @@ export default {
   data() {
     return {
       items: [
-        { title: 'Home', icon: 'mdi-home', children: [] },
+        {
+          title: 'Home', icon: 'mdi-home', children: [], link: '/',
+        },
         {
           title: 'About',
           icon: 'mdi-information',
@@ -74,14 +76,29 @@ export default {
             { title: 'FAQ', icon: '' },
             { title: 'Constitution', icon: '' },
           ],
+          link: '/about',
         },
-        { title: 'Members', icon: 'mdi-account', children: [] },
-        { title: 'Media', icon: 'mdi-camera', children: [] },
-        { title: 'Merch', icon: 'mdi-shopping', children: [] },
-        { title: 'Events', icon: 'mdi-calendar', children: [] },
-        { title: 'Resources', icon: 'mdi-library-books', children: [] },
-        { title: 'Projects', icon: 'mdi-laptop', children: [] },
-        { title: 'Contact', icon: 'mdi-contact-mail', children: [] },
+        {
+          title: 'Members', icon: 'mdi-account', children: [], link: '/members',
+        },
+        {
+          title: 'Media', icon: 'mdi-camera', children: [], link: '/media',
+        },
+        {
+          title: 'Merch', icon: 'mdi-shopping', children: [], link: '/merch',
+        },
+        {
+          title: 'Events', icon: 'mdi-calendar', children: [], link: '/events',
+        },
+        {
+          title: 'Resources', icon: 'mdi-library-books', children: [], link: '/resources',
+        },
+        {
+          title: 'Projects', icon: 'mdi-laptop', children: [], link: '/projects',
+        },
+        {
+          title: 'Contact', icon: 'mdi-contact-mail', children: [], link: '/contact',
+        },
       ],
       search: { filter: null, text: '' },
       searchIcon: 'mdi-magnify',
