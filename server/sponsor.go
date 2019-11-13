@@ -11,10 +11,10 @@ import (
 )
 
 // GetSponsors - Retrieve a sponsor from the database
-func GetSponsors(collection *mongo.Collection, id string, token string) *Sponsor {
+func GetSponsors(collection *mongo.Collection, id string, token string) Sponsor {
 	parsedID := uuid.Must(uuid.Parse(id))
 
-	var result *Sponsor
+	var result Sponsor
 	filter := bson.D{{"sponsorID", parsedID}}
 	err := collection.FindOne(context.TODO(), filter).Decode(&result)
 	if err != nil {

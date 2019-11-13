@@ -19,17 +19,17 @@ type H map[string]interface{}
 
 // Post - struct to contain post data
 type Post struct {
-	postID           int
-	postTitle        string
-	postSubtitle     string
-	postType         string
-	postCategory     int
-	createdOn        int64
-	lastEditedOn     int64
-	postContent      string
-	postLinkGithub   string
-	postLinkFacebook string
-	showInMenu       bool
+	PostID           int
+	PostTitle        string
+	PostSubtitle     string
+	PostType         string
+	PostCategory     int
+	CreatedOn        int64
+	LastEditedOn     int64
+	PostContent      string
+	PostLinkGithub   string
+	PostLinkFacebook string
+	ShowInMenu       bool
 }
 
 // Category - struct to contain category data
@@ -119,10 +119,10 @@ func serveAPI(e *echo.Echo) {
 	// e.POST("/login/", login(userCollection))
 
 	// Routes for posts
-	e.GET("/posts/:id/", getPosts(postsCollection))
+	e.GET("/posts/", getPosts(postsCollection))
 	e.POST("/post/", newPosts(postsCollection))
-	e.PUT("/post/:id/", updatePosts(postsCollection))
-	e.DELETE("/post/:id/", deletePosts(postsCollection))
+	e.PUT("/post/", updatePosts(postsCollection))
+	e.DELETE("/post/", deletePosts(postsCollection))
 
 	// Routes for categories
 	e.GET("/category/:id/", getCats(catCollection))

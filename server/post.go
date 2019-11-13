@@ -11,8 +11,8 @@ import (
 )
 
 // GetPosts - Retrieve a post from the database
-func GetPosts(collection *mongo.Collection, id int, category string) *Post {
-	var result *Post
+func GetPosts(collection *mongo.Collection, id int, category string) Post {
+	var result Post
 
 	// Search for post by id and category
 	filter := bson.D{{"postID", id}, {"category", category}}
@@ -64,19 +64,19 @@ func GetAllPosts(collection *mongo.Collection, count int, cat string) []*Post {
 
 // NewPosts - Add a new post
 func NewPosts(collection *mongo.Collection, id int, category int, showInMenu bool, title string, subtitle string, postType string, content string, github string, fb string) {
-	currtime := time.Now()
+	currTime := time.Now()
 	post := Post{
-		postID:           id,
-		postTitle:        title,
-		postSubtitle:     subtitle,
-		postType:         postType,
-		postCategory:     category,
-		createdOn:        currtime.Unix(),
-		lastEditedOn:     currtime.Unix(),
-		postContent:      content,
-		postLinkGithub:   github,
-		postLinkFacebook: fb,
-		showInMenu:       showInMenu,
+		PostID:           id,
+		PostTitle:        title,
+		PostSubtitle:     subtitle,
+		PostType:         postType,
+		PostCategory:     category,
+		CreatedOn:        currTime.Unix(),
+		LastEditedOn:     currTime.Unix(),
+		PostContent:      content,
+		PostLinkGithub:   github,
+		PostLinkFacebook: fb,
+		ShowInMenu:       showInMenu,
 	}
 
 	_, err := collection.InsertOne(context.TODO(), post)

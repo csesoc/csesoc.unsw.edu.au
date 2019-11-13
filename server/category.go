@@ -9,12 +9,12 @@ import (
 )
 
 // GetCats - Retrieve a category from the database
-func GetCats(collection *mongo.Collection, id int, token string) *Category {
+func GetCats(collection *mongo.Collection, id int, token string) Category {
 	// if !validToken(token) {
 	// 	return nil
 	// }
 
-	var result *Category
+	var result Category
 	filter := bson.D{{"categoryID", id}}
 
 	// Find a category
