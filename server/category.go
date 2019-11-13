@@ -8,8 +8,8 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-// GetCat - Retrieve a category from the database
-func GetCat(collection *mongo.Collection, id int, token string) *Category {
+// GetCats - Retrieve a category from the database
+func GetCats(collection *mongo.Collection, id int, token string) *Category {
 	// if !validToken(token) {
 	// 	return nil
 	// }
@@ -26,8 +26,8 @@ func GetCat(collection *mongo.Collection, id int, token string) *Category {
 	return result
 }
 
-// NewCat - Add a new category
-func NewCat(collection *mongo.Collection, catID int, index int, name string, token string) {
+// NewCats - Add a new category
+func NewCats(collection *mongo.Collection, catID int, index int, name string, token string) {
 	// if !validToken(token) {
 	// 	return
 	// }
@@ -44,8 +44,8 @@ func NewCat(collection *mongo.Collection, catID int, index int, name string, tok
 	}
 }
 
-// PatchCat - Update a category with new information
-func PatchCat(collection *mongo.Collection, catID int, name string, index int, token string) {
+// PatchCats - Update a category with new information
+func PatchCats(collection *mongo.Collection, catID int, name string, index int, token string) {
 	// if !validToken(token) {
 	// 	return
 	// }
@@ -65,8 +65,8 @@ func PatchCat(collection *mongo.Collection, catID int, name string, index int, t
 	}
 }
 
-// DeleteCat - Delete a category from the database
-func DeleteCat(collection *mongo.Collection, id int, token string) {
+// DeleteCats - Delete a category from the database
+func DeleteCats(collection *mongo.Collection, id int, token string) {
 	// if !validToken(token) {
 	// 	return
 	// }

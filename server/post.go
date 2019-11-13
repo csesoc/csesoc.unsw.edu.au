@@ -10,8 +10,8 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// GetPost - Retrieve a post from the database
-func GetPost(collection *mongo.Collection, id int, category string) *Post {
+// GetPosts - Retrieve a post from the database
+func GetPosts(collection *mongo.Collection, id int, category string) *Post {
 	var result *Post
 
 	// Search for post by id and category
@@ -62,8 +62,8 @@ func GetAllPosts(collection *mongo.Collection, count int, cat string) []*Post {
 	return posts
 }
 
-// NewPost - Add a new post
-func NewPost(collection *mongo.Collection, id int, category int, showInMenu bool, title string, subtitle string, postType string, content string, github string, fb string) {
+// NewPosts - Add a new post
+func NewPosts(collection *mongo.Collection, id int, category int, showInMenu bool, title string, subtitle string, postType string, content string, github string, fb string) {
 	currtime := time.Now()
 	post := Post{
 		postID:           id,
@@ -85,8 +85,8 @@ func NewPost(collection *mongo.Collection, id int, category int, showInMenu bool
 	}
 }
 
-// UpdatePost - Update a post with new information
-func UpdatePost(collection *mongo.Collection, id int, category int, showInMenu bool, title string, subtitle string, postType string, content string, github string, fb string) {
+// UpdatePosts - Update a post with new information
+func UpdatePosts(collection *mongo.Collection, id int, category int, showInMenu bool, title string, subtitle string, postType string, content string, github string, fb string) {
 	filter := bson.D{{"postID", id}}
 	update := bson.D{
 		{"$set", bson.D{
@@ -109,8 +109,8 @@ func UpdatePost(collection *mongo.Collection, id int, category int, showInMenu b
 	}
 }
 
-// DeletePost - Delete a post from the database
-func DeletePost(collection *mongo.Collection, id int) {
+// DeletePosts - Delete a post from the database
+func DeletePosts(collection *mongo.Collection, id int) {
 	filter := bson.D{{"postID", id}}
 
 	// Find a post by id and delete it

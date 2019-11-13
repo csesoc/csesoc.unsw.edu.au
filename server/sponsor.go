@@ -10,8 +10,22 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-// NewSponsor - Add a new sponsor
-func NewSponsor(collection *mongo.Collection, expiryStr string, name string, logo string, tier string, token string) {
+// GetSponsors - Retrieve a sponsor from the database
+func GetSponsors(collection *mongo.Collection, id string, token string) *Sponsor {
+	parsedID := uuid.Must(uuid.Parse(id))
+
+	var result *Sponsor
+	filter := bson.D{{"sponsorID", parsedID}}
+	err := collection.FindOne(context.TODO(), filter).Decode(&result)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return result
+}
+
+// NewSponsors - Add a new sponsor
+func NewSponsors(collection *mongo.Collection, expiryStr string, name string, logo string, tier string, token string) {
 	// if !validToken(token) {
 	// 	return
 	// }
@@ -33,8 +47,8 @@ func NewSponsor(collection *mongo.Collection, expiryStr string, name string, log
 	}
 }
 
-// DeleteSponsor - Delete a sponsor from the database
-func DeleteSponsor(collection *mongo.Collection, id string, token string) {
+// DeleteSponsors - Delete a sponsor from the database
+func DeleteSponsors(collection *mongo.Collection, id string, token string) {
 	// if !validToken(token) {
 	// 	return
 	// }
@@ -47,11 +61,4 @@ func DeleteSponsor(collection *mongo.Collection, id string, token string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-}
-
-func GetSponsor(collection *mongo.Collection, id string, token string) {
-	parsedID := uuid.Must(uuid.Parse(id))
-
-	filter := bson.D{{"sponsorID".parsedID}}
-	_, err := collection.FindOne()
 }
