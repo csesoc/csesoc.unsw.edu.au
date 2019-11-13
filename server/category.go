@@ -10,9 +10,9 @@ import (
 
 // GetCat - Retrieve a category from the database
 func GetCat(collection *mongo.Collection, id int, token string) *Category {
-	if !validToken(token) {
-		return nil
-	}
+	// if !validToken(token) {
+	// 	return nil
+	// }
 
 	var result *Category
 	filter := bson.D{{"categoryID", id}}
@@ -28,9 +28,9 @@ func GetCat(collection *mongo.Collection, id int, token string) *Category {
 
 // NewCat - Add a new category
 func NewCat(collection *mongo.Collection, catID int, index int, name string, token string) {
-	if !validToken(token) {
-		return
-	}
+	// if !validToken(token) {
+	// 	return
+	// }
 
 	category := Category{
 		categoryID:   catID,
@@ -46,9 +46,9 @@ func NewCat(collection *mongo.Collection, catID int, index int, name string, tok
 
 // PatchCat - Update a category with new information
 func PatchCat(collection *mongo.Collection, catID int, name string, index int, token string) {
-	if !validToken(token) {
-		return
-	}
+	// if !validToken(token) {
+	// 	return
+	// }
 
 	filter := bson.D{{"categoryID", catID}}
 	update := bson.D{
@@ -67,9 +67,9 @@ func PatchCat(collection *mongo.Collection, catID int, name string, index int, t
 
 // DeleteCat - Delete a category from the database
 func DeleteCat(collection *mongo.Collection, id int, token string) {
-	if !validToken(token) {
-		return
-	}
+	// if !validToken(token) {
+	// 	return
+	// }
 
 	filter := bson.D{{"categoryID", id}}
 

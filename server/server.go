@@ -5,7 +5,6 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	"time"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/google/uuid"
@@ -25,8 +24,8 @@ type Post struct {
 	postSubtitle     string
 	postType         string
 	postCategory     int
-	createdOn        time.Time
-	lastEditedOn     time.Time
+	createdOn        int64
+	lastEditedOn     int64
 	postContent      string
 	postLinkGithub   string
 	postLinkFacebook string
@@ -110,14 +109,14 @@ func serveAPI(e *echo.Echo) {
 	postsCollection := client.Database("csesoc").Collection("posts")
 	catCollection := client.Database("csesoc").Collection("categories")
 	sponsorCollection := client.Database("csesoc").Collection("sponsors")
-	userCollection := client.Database("csesoc").Collection("users")
+	// userCollection := client.Database("csesoc").Collection("users")
 
 	// Add more API routes here
 	e.GET("/api/v1/test", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 
-	e.POST("/login/", login(userCollection))
+	// e.POST("/login/", login(userCollection))
 
 	// Routes for posts
 	e.GET("/post/:id/", getPost(postsCollection))
@@ -137,17 +136,17 @@ func serveAPI(e *echo.Echo) {
 	e.DELETE("/sponsor/", deleteSponsor(sponsorCollection))
 }
 
-func login(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		zid := c.FormValue("zid")
-		password := c.FormValue("password")
-		permissions := c.FormValue("permissions")
-		tokenString := Auth(collection, zid, password, permissions)
-		return c.JSON(http.StatusOK, H{
-			"token": tokenString,
-		})
-	}
-}
+// func login(collection *mongo.Collection) echo.HandlerFunc {
+// 	return func(c echo.Context) error {
+// 		zid := c.FormValue("zid")
+// 		password := c.FormValue("password")
+// 		permissions := c.FormValue("permissions")
+// 		tokenString := Auth(collection, zid, password, permissions)
+// 		return c.JSON(http.StatusOK, H{
+// 			"token": tokenString,
+// 		})
+// 	}
+// }
 
 func getPost(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {

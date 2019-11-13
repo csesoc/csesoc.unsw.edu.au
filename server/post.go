@@ -64,14 +64,15 @@ func GetAllPosts(collection *mongo.Collection, count int, cat string) []*Post {
 
 // NewPost - Add a new post
 func NewPost(collection *mongo.Collection, id int, category int, showInMenu bool, title string, subtitle string, postType string, content string, github string, fb string) {
+	currtime := time.Now()
 	post := Post{
 		postID:           id,
 		postTitle:        title,
 		postSubtitle:     subtitle,
 		postType:         postType,
 		postCategory:     category,
-		createdOn:        time.Now(),
-		lastEditedOn:     time.Now(),
+		createdOn:        currtime.Unix(),
+		lastEditedOn:     currtime.Unix(),
 		postContent:      content,
 		postLinkGithub:   github,
 		postLinkFacebook: fb,

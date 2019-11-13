@@ -12,9 +12,9 @@ import (
 
 // NewSponsor - Add a new sponsor
 func NewSponsor(collection *mongo.Collection, expiryStr string, name string, logo string, tier string, token string) {
-	if !validToken(token) {
-		return
-	}
+	// if !validToken(token) {
+	// 	return
+	// }
 
 	expiryTime, _ := time.Parse(time.RFC3339, expiryStr)
 	id := uuid.New()
@@ -35,9 +35,9 @@ func NewSponsor(collection *mongo.Collection, expiryStr string, name string, log
 
 // DeleteSponsor - Delete a sponsor from the database
 func DeleteSponsor(collection *mongo.Collection, id string, token string) {
-	if !validToken(token) {
-		return
-	}
+	// if !validToken(token) {
+	// 	return
+	// }
 
 	parsedID := uuid.Must(uuid.Parse(id))
 
@@ -47,4 +47,11 @@ func DeleteSponsor(collection *mongo.Collection, id string, token string) {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func GetSponsor(collection *mongo.Collection, id string, token string) {
+	parsedID := uuid.Must(uuid.Parse(id))
+
+	filter := bson.D{{"sponsorID".parsedID}}
+	_, err := collection.FindOne()
 }
