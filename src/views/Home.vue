@@ -21,9 +21,10 @@
             data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true">
             <blockquote cite="https://www.facebook.com/csesoc" class="fb-xfbml-parse-ignore">
             <a href="https://www.facebook.com/csesoc">CSESoc UNSW</a></blockquote></div>
+            <!-- wait for component to load before rendering - add event listener -->
         </v-col>
         <v-col>
-            <h1> #!/UPCOMING EVENTS </h1>
+            <h1> #!/ANNOUNCEMENTS </h1>
             <ListComponent :listItems="listItems" />
         </v-col>
       </v-row>
@@ -33,6 +34,7 @@
 
 
       <!-- media slider - could be showcase of recent posts?? -->
+      <!-- how to pass in OPTIONS -->
       <Slider :items="items" class="my-10"/>
 
       <Events/>

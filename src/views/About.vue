@@ -3,7 +3,6 @@
 
 <div class="content">
 
-    <NavGrid id='content-start' :gridItems="gridItems"></NavGrid>
 
     <h1 class="mt-12"> #!/ABOUT </h1>
     <p>
@@ -18,6 +17,7 @@ We cater to new and returning students alike, with a mix of events designed to h
 We're as passionate about computing as you are; we provide technical events to teach you new skills, as well as a fortnightly magazine to keep you updated on what's new and interesting within the university, school and industry.
 Most of all, we're here to help you settle in and have a great time at UNSW!
 </p>
+<NavGrid id='content-start' :gridItems="gridItems"></NavGrid>
 </div>
   </div>
 </template>
