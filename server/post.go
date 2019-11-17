@@ -10,9 +10,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// GetPost - Retrieve a post from the database
-func GetPost(collection *mongo.Collection, id int, category string) *Post {
-	var result *Post
+// GetPosts - Retrieve a post from the database
+func GetPosts(collection *mongo.Collection, id int, category string) Post {
+	var result Post
 
 	// Search for post by id and category
 	filter := bson.D{{"postID", id}, {"category", category}}
@@ -62,20 +62,21 @@ func GetAllPosts(collection *mongo.Collection, count int, cat string) []*Post {
 	return posts
 }
 
-// NewPost - Add a new post
-func NewPost(collection *mongo.Collection, id int, category int, showInMenu bool, title string, subtitle string, postType string, content string, github string, fb string) {
+// NewPosts - Add a new post
+func NewPosts(collection *mongo.Collection, id int, category int, showInMenu bool, title string, subtitle string, postType string, content string, github string, fb string) {
+	currTime := time.Now()
 	post := Post{
-		postID:           id,
-		postTitle:        title,
-		postSubtitle:     subtitle,
-		postType:         postType,
-		postCategory:     category,
-		createdOn:        time.Now(),
-		lastEditedOn:     time.Now(),
-		postContent:      content,
-		postLinkGithub:   github,
-		postLinkFacebook: fb,
-		showInMenu:       showInMenu,
+		PostID:           id,
+		PostTitle:        title,
+		PostSubtitle:     subtitle,
+		PostType:         postType,
+		PostCategory:     category,
+		CreatedOn:        currTime.Unix(),
+		LastEditedOn:     currTime.Unix(),
+		PostContent:      content,
+		PostLinkGithub:   github,
+		PostLinkFacebook: fb,
+		ShowInMenu:       showInMenu,
 	}
 
 	_, err := collection.InsertOne(context.TODO(), post)
@@ -84,8 +85,8 @@ func NewPost(collection *mongo.Collection, id int, category int, showInMenu bool
 	}
 }
 
-// UpdatePost - Update a post with new information
-func UpdatePost(collection *mongo.Collection, id int, category int, showInMenu bool, title string, subtitle string, postType string, content string, github string, fb string) {
+// UpdatePosts - Update a post with new information
+func UpdatePosts(collection *mongo.Collection, id int, category int, showInMenu bool, title string, subtitle string, postType string, content string, github string, fb string) {
 	filter := bson.D{{"postID", id}}
 	update := bson.D{
 		{"$set", bson.D{
@@ -108,8 +109,8 @@ func UpdatePost(collection *mongo.Collection, id int, category int, showInMenu b
 	}
 }
 
-// DeletePost - Delete a post from the database
-func DeletePost(collection *mongo.Collection, id int) {
+// DeletePosts - Delete a post from the database
+func DeletePosts(collection *mongo.Collection, id int) {
 	filter := bson.D{{"postID", id}}
 
 	// Find a post by id and delete it

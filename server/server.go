@@ -5,7 +5,6 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	"time"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/google/uuid"
@@ -20,17 +19,17 @@ type H map[string]interface{}
 
 // Post - struct to contain post data
 type Post struct {
-	postID           int
-	postTitle        string
-	postSubtitle     string
-	postType         string
-	postCategory     int
-	createdOn        time.Time
-	lastEditedOn     time.Time
-	postContent      string
-	postLinkGithub   string
-	postLinkFacebook string
-	showInMenu       bool
+	PostID           int
+	PostTitle        string
+	PostSubtitle     string
+	PostType         string
+	PostCategory     int
+	CreatedOn        int64
+	LastEditedOn     int64
+	PostContent      string
+	PostLinkGithub   string
+	PostLinkFacebook string
+	ShowInMenu       bool
 }
 
 // Category - struct to contain category data
@@ -110,68 +109,65 @@ func serveAPI(e *echo.Echo) {
 	postsCollection := client.Database("csesoc").Collection("posts")
 	catCollection := client.Database("csesoc").Collection("categories")
 	sponsorCollection := client.Database("csesoc").Collection("sponsors")
-	userCollection := client.Database("csesoc").Collection("users")
+	// userCollection := client.Database("csesoc").Collection("users")
 
 	// Add more API routes here
 	e.GET("/api/v1/test", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 
-	e.POST("/login/", login(userCollection))
+	// e.POST("/login/", login(userCollection))
 
 	// Routes for posts
-	e.GET("/post/:id/", getPost(postsCollection))
-	e.GET("/posts/", getAllPosts(postsCollection))
-	e.POST("/post/", newPost(postsCollection))
-	e.PUT("/post/:id/", updatePost(postsCollection))
-	e.DELETE("/post/:id/", deletePost(postsCollection))
+	e.GET("/posts/", getPosts(postsCollection))
+	e.POST("/post/", newPosts(postsCollection))
+	e.PUT("/post/", updatePosts(postsCollection))
+	e.DELETE("/post/", deletePosts(postsCollection))
 
 	// Routes for categories
-	e.GET("/category/:id/", getCat(catCollection))
-	e.POST("/category/", newCat(catCollection))
-	e.PATCH("/category/", patchCat(catCollection))
-	e.DELETE("/category/", deleteCat(catCollection))
+	e.GET("/category/:id/", getCats(catCollection))
+	e.POST("/category/", newCats(catCollection))
+	e.PATCH("/category/", patchCats(catCollection))
+	e.DELETE("/category/", deleteCats(catCollection))
 
 	// Routes for sponsors
-	e.POST("/sponsor/", newSponsor(sponsorCollection))
-	e.DELETE("/sponsor/", deleteSponsor(sponsorCollection))
+	e.POST("/sponsor/", newSponsors(sponsorCollection))
+	e.DELETE("/sponsor/", deleteSponsors(sponsorCollection))
 }
 
-func login(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		zid := c.FormValue("zid")
-		password := c.FormValue("password")
-		permissions := c.FormValue("permissions")
-		tokenString := Auth(collection, zid, password, permissions)
-		return c.JSON(http.StatusOK, H{
-			"token": tokenString,
-		})
-	}
-}
+// func login(collection *mongo.Collection) echo.HandlerFunc {
+// 	return func(c echo.Context) error {
+// 		zid := c.FormValue("zid")
+// 		password := c.FormValue("password")
+// 		permissions := c.FormValue("permissions")
+// 		tokenString := Auth(collection, zid, password, permissions)
+// 		return c.JSON(http.StatusOK, H{
+// 			"token": tokenString,
+// 		})
+// 	}
+// }
 
-func getPost(collection *mongo.Collection) echo.HandlerFunc {
+func getPosts(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		id, _ := strconv.Atoi(c.QueryParam("id"))
+		id := c.QueryParam("id")
+		count, _ := strconv.Atoi(c.QueryParam("nPosts"))
 		category := c.QueryParam("category")
-		result := GetPost(collection, id, category)
+		if id == "" {
+			posts := GetAllPosts(collection, count, category)
+			return c.JSON(http.StatusOK, H{
+				"post": posts,
+			})
+		}
+
+		idInt, _ := strconv.Atoi(id)
+		result := GetPosts(collection, idInt, category)
 		return c.JSON(http.StatusOK, H{
 			"post": result,
 		})
 	}
 }
 
-func getAllPosts(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		count, _ := strconv.Atoi(c.QueryParam("id"))
-		cat := c.QueryParam("category")
-		posts := GetAllPosts(collection, count, cat)
-		return c.JSON(http.StatusOK, H{
-			"posts": posts,
-		})
-	}
-}
-
-func newPost(collection *mongo.Collection) echo.HandlerFunc {
+func newPosts(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		id, _ := strconv.Atoi(c.FormValue("id"))
 		category, _ := strconv.Atoi(c.FormValue("category"))
@@ -182,12 +178,12 @@ func newPost(collection *mongo.Collection) echo.HandlerFunc {
 		content := c.FormValue("content")
 		github := c.FormValue("linkGithub")
 		fb := c.FormValue("linkFacebook")
-		NewPost(collection, id, category, showInMenu, title, subtitle, postType, content, github, fb)
+		NewPosts(collection, id, category, showInMenu, title, subtitle, postType, content, github, fb)
 		return c.JSON(http.StatusOK, H{})
 	}
 }
 
-func updatePost(collection *mongo.Collection) echo.HandlerFunc {
+func updatePosts(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		id, _ := strconv.Atoi(c.FormValue("id"))
 		category, _ := strconv.Atoi(c.FormValue("category"))
@@ -198,78 +194,78 @@ func updatePost(collection *mongo.Collection) echo.HandlerFunc {
 		content := c.FormValue("content")
 		github := c.FormValue("linkGithub")
 		fb := c.FormValue("linkFacebook")
-		UpdatePost(collection, id, category, showInMenu, title, subtitle, postType, content, github, fb)
+		UpdatePosts(collection, id, category, showInMenu, title, subtitle, postType, content, github, fb)
 		return c.JSON(http.StatusOK, H{})
 	}
 }
 
-func deletePost(collection *mongo.Collection) echo.HandlerFunc {
+func deletePosts(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		id, _ := strconv.Atoi(c.FormValue("id"))
-		DeletePost(collection, id)
+		DeletePosts(collection, id)
 		return c.JSON(http.StatusOK, H{})
 	}
 }
 
-func getCat(collection *mongo.Collection) echo.HandlerFunc {
+func getCats(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		token := c.FormValue("token")
 		id, _ := strconv.Atoi(c.QueryParam("id"))
-		result := GetCat(collection, id, token)
+		result := GetCats(collection, id, token)
 		return c.JSON(http.StatusOK, H{
 			"category": result,
 		})
 	}
 }
 
-func newCat(collection *mongo.Collection) echo.HandlerFunc {
+func newCats(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		token := c.FormValue("token")
 		catID, _ := strconv.Atoi(c.FormValue("id"))
 		index, _ := strconv.Atoi(c.FormValue("index"))
 		name := c.FormValue("name")
-		NewCat(collection, catID, index, name, token)
+		NewCats(collection, catID, index, name, token)
 		return c.JSON(http.StatusOK, H{})
 	}
 }
 
-func patchCat(collection *mongo.Collection) echo.HandlerFunc {
+func patchCats(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		token := c.FormValue("token")
 		catID, _ := strconv.Atoi(c.FormValue("id"))
 		name := c.FormValue("name")
 		index, _ := strconv.Atoi(c.FormValue("index"))
-		PatchCat(collection, catID, name, index, token)
+		PatchCats(collection, catID, name, index, token)
 		return c.JSON(http.StatusOK, H{})
 	}
 }
 
-func deleteCat(collection *mongo.Collection) echo.HandlerFunc {
+func deleteCats(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		token := c.FormValue("token")
 		id, _ := strconv.Atoi(c.FormValue("id"))
-		DeleteCat(collection, id, token)
+		DeleteCats(collection, id, token)
 		return c.JSON(http.StatusOK, H{})
 	}
 }
 
-func newSponsor(collection *mongo.Collection) echo.HandlerFunc {
+func newSponsors(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		token := c.FormValue("token")
 		expiryStr := c.FormValue("expiry")
 		name := c.FormValue("name")
 		logo := c.FormValue("logo")
 		tier := c.FormValue("tier")
-		NewSponsor(collection, expiryStr, name, logo, tier, token)
+		NewSponsors(collection, expiryStr, name, logo, tier, token)
 		return c.JSON(http.StatusOK, H{})
 	}
 }
 
-func deleteSponsor(collection *mongo.Collection) echo.HandlerFunc {
+func deleteSponsors(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		token := c.FormValue("token")
 		id := c.FormValue("id")
-		DeleteSponsor(collection, id, token)
+		DeleteSponsors(collection, id, token)
 		return c.JSON(http.StatusOK, H{})
 	}
 }

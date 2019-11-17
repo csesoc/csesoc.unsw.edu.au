@@ -8,13 +8,13 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-// GetCat - Retrieve a category from the database
-func GetCat(collection *mongo.Collection, id int, token string) *Category {
-	if !validToken(token) {
-		return nil
-	}
+// GetCats - Retrieve a category from the database
+func GetCats(collection *mongo.Collection, id int, token string) Category {
+	// if !validToken(token) {
+	// 	return nil
+	// }
 
-	var result *Category
+	var result Category
 	filter := bson.D{{"categoryID", id}}
 
 	// Find a category
@@ -26,11 +26,11 @@ func GetCat(collection *mongo.Collection, id int, token string) *Category {
 	return result
 }
 
-// NewCat - Add a new category
-func NewCat(collection *mongo.Collection, catID int, index int, name string, token string) {
-	if !validToken(token) {
-		return
-	}
+// NewCats - Add a new category
+func NewCats(collection *mongo.Collection, catID int, index int, name string, token string) {
+	// if !validToken(token) {
+	// 	return
+	// }
 
 	category := Category{
 		categoryID:   catID,
@@ -44,11 +44,11 @@ func NewCat(collection *mongo.Collection, catID int, index int, name string, tok
 	}
 }
 
-// PatchCat - Update a category with new information
-func PatchCat(collection *mongo.Collection, catID int, name string, index int, token string) {
-	if !validToken(token) {
-		return
-	}
+// PatchCats - Update a category with new information
+func PatchCats(collection *mongo.Collection, catID int, name string, index int, token string) {
+	// if !validToken(token) {
+	// 	return
+	// }
 
 	filter := bson.D{{"categoryID", catID}}
 	update := bson.D{
@@ -65,11 +65,11 @@ func PatchCat(collection *mongo.Collection, catID int, name string, index int, t
 	}
 }
 
-// DeleteCat - Delete a category from the database
-func DeleteCat(collection *mongo.Collection, id int, token string) {
-	if !validToken(token) {
-		return
-	}
+// DeleteCats - Delete a category from the database
+func DeleteCats(collection *mongo.Collection, id int, token string) {
+	// if !validToken(token) {
+	// 	return
+	// }
 
 	filter := bson.D{{"categoryID", id}}
 
