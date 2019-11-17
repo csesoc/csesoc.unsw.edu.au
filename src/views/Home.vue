@@ -2,29 +2,6 @@
 <template>
   <div id="home">
 
-      <Sidebar :drawer="drawer" />
-
-
-
-
-<!-- transparent + no logo until scroll point ??-->
-    <v-app-bar app dark>
-      <v-app-bar-nav-icon class="ma-2" @click.stop="drawer = !drawer"> </v-app-bar-nav-icon>
-      <div class="flex-grow-1"></div>
-
-      <router-link to="/"
-        ><v-container
-          class="fill-height"
-          fluid
-          style="max-height: 64px; max-width:100px"
-        >
-          <v-img class="ma-8" src="https://github.com/csesoc/csesoc.unsw.edu.au/blob/frontendCombined/src/assets/csesoclogobluewhite.png?raw=true" /> 
-      </v-container>
-      </router-link>
-       <div class="flex-grow-1"></div>
-      <LoginForm align="right"/>
-    </v-app-bar>
-
 
 <!-- make header a seperate component! -->
       <header id="showcase">
@@ -63,7 +40,6 @@
       <div class="square">
     <NavGrid id='content-start' :gridItems="gridItems"></NavGrid>
     </div>
-    <Footer/>
   </div>
 </template>
 
@@ -103,13 +79,15 @@ export default {
       .then((responseJson) => {
         this.gridItems = responseJson;
         this.items=responseJson;
-      });
+      }
+    );
 
-      fetch(this.listApiUri)
-        .then(r => r.json())
-        .then((responseJson) => {
-          this.listItems = responseJson;
-        });
+    fetch(this.listApiUri)
+      .then(r => r.json())
+      .then((responseJson) => {
+        this.listItems = responseJson;
+      }
+    );
   },
 
 };

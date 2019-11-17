@@ -1,27 +1,5 @@
 <template>
   <div>
-      <Sidebar :drawer="drawer" />
-
-
-
-
-
-      <v-app-bar app dark>
-        <v-app-bar-nav-icon class="ma-2" @click.stop="drawer = !drawer"> </v-app-bar-nav-icon>
-        <div class="flex-grow-1"></div>
-
-        <router-link to="/"
-          ><v-container
-            class="fill-height"
-            fluid
-            style="max-height: 64px; max-width:100px"
-          >
-            <v-img class="ma-8" src="https://github.com/csesoc/csesoc.unsw.edu.au/blob/frontendCombined/src/assets/csesoclogobluewhite.png?raw=true" />
-        </v-container>
-        </router-link>
-         <div class="flex-grow-1"></div>
-        <LoginForm align="right"/>
-      </v-app-bar>
 
 <div class="content">
 
@@ -41,7 +19,6 @@ We're as passionate about computing as you are; we provide technical events to t
 Most of all, we're here to help you settle in and have a great time at UNSW!
 </p>
 </div>
-    <Footer/>
   </div>
 </template>
 
@@ -125,6 +102,7 @@ export default {
   background: #3a76f8;
   color: #fff;
 }
+
 
 .content {
     padding: 2vw 15vw 5vw 15vw;
