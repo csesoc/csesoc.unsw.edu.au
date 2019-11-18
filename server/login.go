@@ -73,7 +73,7 @@ func Auth(collection *mongo.Collection, zid string, password string, permissions
 	}
 
 	var isValidUser *User
-	userFilter := bson.D{{"userID", stringZID}}
+	userFilter := bson.D{{Key: "userID", Value: stringZID}}
 	err = collection.FindOne(context.TODO(), userFilter).Decode(&isValidUser)
 
 	if isValidUser == nil { // Never logged in before
@@ -89,10 +89,10 @@ func Auth(collection *mongo.Collection, zid string, password string, permissions
 		decodedTokenString, _ := decodedToken.SignedString(jwtKey)
 
 		if !decodedToken.Valid { // Logged in before but token is invalid - replace with new token
-			filter := bson.D{{"userID", stringZID}}
+			filter := bson.D{{Key: "userID", Value: stringZID}}
 			update := bson.D{
-				{"$set", bson.D{
-					{"userToken", decodedTokenString},
+				{Key: "$set", Value: bson.D{
+					{Key: "userToken", Value: decodedTokenString},
 				}},
 			}
 			_, err = collection.UpdateOne(context.TODO(), filter, update)

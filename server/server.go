@@ -105,6 +105,8 @@ func serveAPI(e *echo.Echo) {
 		log.Fatal(err)
 	}
 
+	println("Serving API...")
+
 	// Creating collections
 	postsCollection := client.Database("csesoc").Collection("posts")
 	catCollection := client.Database("csesoc").Collection("categories")
