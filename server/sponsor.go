@@ -15,7 +15,7 @@ func GetSponsors(collection *mongo.Collection, id string, token string) Sponsor 
 	parsedID := uuid.Must(uuid.Parse(id))
 
 	var result Sponsor
-	filter := bson.D{{Key: "sponsorID", Value: parsedID}}
+	filter := bson.D{{Key: "sponsorid", Value: parsedID}}
 	err := collection.FindOne(context.TODO(), filter).Decode(&result)
 	if err != nil {
 		log.Fatal(err)
@@ -34,11 +34,11 @@ func NewSponsors(collection *mongo.Collection, expiryStr string, name string, lo
 	id := uuid.New()
 
 	sponsor := Sponsor{
-		sponsorID:   id,
-		sponsorName: name,
-		sponsorLogo: logo,
-		sponsorTier: tier,
-		expiry:      expiryTime.Unix(),
+		SponsorID:   id,
+		SponsorName: name,
+		SponsorLogo: logo,
+		SponsorTier: tier,
+		Expiry:      expiryTime.Unix(),
 	}
 
 	_, err := collection.InsertOne(context.TODO(), sponsor)
@@ -56,7 +56,7 @@ func DeleteSponsors(collection *mongo.Collection, id string, token string) {
 	parsedID := uuid.Must(uuid.Parse(id))
 
 	// Find a sponsor by ID and delete it
-	filter := bson.D{{Key: "sponsorID", Value: parsedID}}
+	filter := bson.D{{Key: "sponsorid", Value: parsedID}}
 	_, err := collection.DeleteOne(context.TODO(), filter)
 	if err != nil {
 		log.Fatal(err)

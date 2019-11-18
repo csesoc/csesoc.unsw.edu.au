@@ -15,7 +15,7 @@ func GetPosts(collection *mongo.Collection, id int, category string) Post {
 	var result Post
 
 	// Search for post by id and category
-	filter := bson.D{{Key: "postID", Value: id}, {Key: "category", Value: category}}
+	filter := bson.D{{Key: "postid", Value: id}, {Key: "category", Value: category}}
 	err := collection.FindOne(context.TODO(), filter).Decode(&result)
 	if err != nil {
 		log.Fatal(err)
@@ -40,7 +40,7 @@ func GetAllPosts(collection *mongo.Collection, count int, cat string) []*Post {
 	if cat == "" { // No specified category
 		cur, err = collection.Find(context.TODO(), bson.D{{}}, findOptions)
 	} else {
-		filter := bson.D{{Key: "post_category", Value: cat}}
+		filter := bson.D{{Key: "postcategory", Value: cat}}
 		cur, err = collection.Find(context.TODO(), filter, findOptions)
 	}
 
@@ -87,18 +87,18 @@ func NewPosts(collection *mongo.Collection, id int, category int, showInMenu boo
 
 // UpdatePosts - Update a post with new information
 func UpdatePosts(collection *mongo.Collection, id int, category int, showInMenu bool, title string, subtitle string, postType string, content string, github string, fb string) {
-	filter := bson.D{{Key: "postID", Value: id}}
+	filter := bson.D{{Key: "postid", Value: id}}
 	update := bson.D{
 		{Key: "$set", Value: bson.D{
-			{Key: "postTitle", Value: title},
-			{Key: "postSubtitle", Value: subtitle},
-			{Key: "postType", Value: postType},
-			{Key: "postCategory", Value: category},
-			{Key: "lastEditedOn", Value: time.Now()},
-			{Key: "postContent", Value: content},
-			{Key: "postLinkGithub", Value: github},
-			{Key: "postLinkFacebook", Value: fb},
-			{Key: "showinMenu", Value: showInMenu},
+			{Key: "posttitle", Value: title},
+			{Key: "postsubtitle", Value: subtitle},
+			{Key: "posttype", Value: postType},
+			{Key: "postcategory", Value: category},
+			{Key: "lasteditedon", Value: time.Now()},
+			{Key: "postcontent", Value: content},
+			{Key: "postlinkgithub", Value: github},
+			{Key: "postlinkfacebook", Value: fb},
+			{Key: "showinmenu", Value: showInMenu},
 		}},
 	}
 
@@ -111,7 +111,7 @@ func UpdatePosts(collection *mongo.Collection, id int, category int, showInMenu 
 
 // DeletePosts - Delete a post from the database
 func DeletePosts(collection *mongo.Collection, id int) {
-	filter := bson.D{{Key: "postID", Value: id}}
+	filter := bson.D{{Key: "postid", Value: id}}
 
 	// Find a post by id and delete it
 	_, err := collection.DeleteOne(context.TODO(), filter)

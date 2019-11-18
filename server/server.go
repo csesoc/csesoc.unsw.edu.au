@@ -34,32 +34,32 @@ type Post struct {
 
 // Category - struct to contain category data
 type Category struct {
-	categoryID   int
-	categoryName string
-	index        int
+	CategoryID   int
+	CategoryName string
+	Index        int
 }
 
 // User - struct to contain user data
 type User struct {
-	userID    string //sha256 the zid
-	userToken string
-	role      string
+	UserID    string //sha256 the zid
+	UserToken string
+	Role      string
 }
 
 // Sponsor - struct to contain sponsor data
 type Sponsor struct {
-	sponsorID   uuid.UUID
-	sponsorName string
-	sponsorLogo string
-	sponsorTier string
-	expiry      int64
+	SponsorID   uuid.UUID
+	SponsorName string
+	SponsorLogo string
+	SponsorTier string
+	Expiry      int64
 }
 
 // Claims - struct to store jwt data
 type Claims struct {
-	hashedZID   [32]byte
-	firstName   string
-	permissions string
+	HashedZID   [32]byte
+	FirstName   string
+	Permissions string
 	jwt.StandardClaims
 }
 

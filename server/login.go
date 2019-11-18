@@ -54,9 +54,9 @@ func Auth(collection *mongo.Collection, zid string, password string, permissions
 	userFound := searchResult.Entries[0]
 	expirationTime := time.Now().Add(time.Hour * 24)
 	claims := &Claims{
-		hashedZID:   hashedZID,
-		firstName:   userFound.GetAttributeValue("firstName"),
-		permissions: permissions,
+		HashedZID:   hashedZID,
+		FirstName:   userFound.GetAttributeValue("firstName"),
+		Permissions: permissions,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expirationTime.Unix(),
 		},
@@ -67,9 +67,9 @@ func Auth(collection *mongo.Collection, zid string, password string, permissions
 	// Insert a new user into the collection if user has never logged in before
 	// Or update the existing token if it has expired
 	user := User{
-		userID:    stringZID,
-		userToken: tokenString,
-		role:      "user", // Change this???
+		UserID:    stringZID,
+		UserToken: tokenString,
+		Role:      "user", // Change this???
 	}
 
 	var isValidUser *User
@@ -83,7 +83,7 @@ func Auth(collection *mongo.Collection, zid string, password string, permissions
 		}
 	} else { // Logged in before - check validity of token
 		claims = &Claims{}
-		decodedToken, _ := jwt.ParseWithClaims(isValidUser.userToken, claims, func(token *jwt.Token) (interface{}, error) {
+		decodedToken, _ := jwt.ParseWithClaims(isValidUser.UserToken, claims, func(token *jwt.Token) (interface{}, error) {
 			return jwtKey, nil
 		})
 		decodedTokenString, _ := decodedToken.SignedString(jwtKey)
@@ -118,7 +118,7 @@ func validToken(tokenString string) bool {
 		}
 	}
 
-	if !tkn.Valid || claims.permissions != "staff" {
+	if !tkn.Valid || claims.Permissions != "staff" {
 		return false
 	}
 
