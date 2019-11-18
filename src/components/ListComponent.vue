@@ -1,77 +1,58 @@
 <template>
-  <!-- Insert post here-->
-    <v-container class="pa-md-1 mx-lg-auto">
-      <v-row v-for="item in listItems">
-        <v-col class="pa-2" v-if="item.imageItem">
-            <!-- use v-img -->
-          <img v-if="item.image.length != 0" :src="item.image" />
-        </v-col>
-        <v-col>
-          <div class="pa-md-6">
-            <h2 class="listItemTitle">
-              {{ item.title }}
-            </h2>
-            <h3 class="listItemSubtitle">{{ item.subtitle }}</h3>
-            <p>
-              {{ item.content }}
-            </p>
-            <div class="text-center">
-              <router-link :to="item.link"
-                ><v-btn rounded color="primary" dark style="float: left;"
-                  >More -></v-btn
-                ></router-link
-              >
-            </div>
+  <v-container v-if="listItems.length > 0">
+    <v-row class="list--item mt-md-6 mb-md-6" v-for="item in listItems" :key="item.id">
+      <v-col sm="12" md="4">
+        <v-img :src="item.image" contain="true" class="list--img" v-if="item.image" />
+        <div class="img--wrapper__default" v-else>
+          <v-img
+            class="list--img list--img__default"
+            src="@/assets/csesocwhiteblue.png"
+            contain="true"
+          />
+        </div>
+      </v-col>
+      <v-col>
+        <div>
+          <h2 class="listItemTitle" v-if="item.title">{{ item.title }}</h2>
+          <h3 class="listItemSubtitle" v-if="item.subtitle">{{ item.subtitle }}</h3>
+          <p>{{ item.content }}</p>
+          <div class="text-center">
+            <router-link :to="item.link" v-if="item.link">
+              <v-btn rounded color="primary" dark style="float: left;">More -></v-btn>
+            </router-link>
           </div>
-        </v-col>
-      </v-row>
-    </v-container>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
+  <v-container v-else>
+    <p>No posts yet...stay tuned! 😎</p>
+  </v-container>
 </template>
 
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
-
-h1 {
-  font-size: 48px;
-  font-weight: normal;
+.list--item {
+  border-top: 1px solid rgba(25, 25, 25, 0.1);
+  max-width: 90vw;
 }
 
-body {
-  font-family: "Quicksand", sans-serif;
-  text-align: left;
+.list--img {
+  max-height: 40vh;
 }
 
-p {
-  font-size: 14px;
-  font-weight: 300;
-  -webkit-font-smoothing: subpixel-antialiased;
-}
-
-p span {
-  font-size: 16px;
-  font-style: italic;
-  display: inline-block;
-}
-
-.underline {
-  border-bottom: 1px solid grey;
-}
-
-img {
-  max-width: 100%;
-  max-height: 100%;
+.img--wrapper__default {
+  padding: 10% 10% 10% 10% !important;
+  background-color: rgb(25, 25, 25, 0.9);
 }
 </style>
 
 
 <script>
-
-    export default {
-      name: 'ListComponent',
-      // Must be passed from parent object
-      // items have title, image url (src), and link
-      props: ['listItems'],
-
-    };
+export default {
+  name: 'ListComponent',
+  // Must be passed from parent object
+  // items have title, image url (src), and link
+  props: ['listItems']
+};
 </script>
