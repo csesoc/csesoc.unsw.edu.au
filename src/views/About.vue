@@ -23,37 +23,11 @@
         school and industry.
         Most of all, we're here to help you settle in and have a great time at UNSW!
       </p>
-      <NavGrid :gridItems="gridItems"></NavGrid>
     </div>
   </div>
 </template>
 
 <script>
-import NavGrid from '@/components/NavGrid';
-
-export default {
-  data: () => ({
-    drawer: false,
-    gridApiUri:
-      'https://gistcdn.githack.com/gawdn/464b5ed74404481f7296fb24f9f28243/raw/c9f63e5117a1406db9af5266c8cfd448161bbfec/test_grid.json',
-    gridItems: [],
-    listApiUri:
-      'https://gistcdn.githack.com/gawdn/464b5ed74404481f7296fb24f9f28243/raw/c9f63e5117a1406db9af5266c8cfd448161bbfec/test_grid.json',
-    listItems: []
-  }),
-
-  components: {
-    NavGrid
-  },
-
-  mounted() {
-    fetch(this.gridApiUri)
-      .then(r => r.json())
-      .then((responseJson) => {
-        this.gridItems = responseJson;
-      });
-  }
-};
 </script>
 
 <style scoped>

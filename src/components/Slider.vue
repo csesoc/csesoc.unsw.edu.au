@@ -3,14 +3,13 @@
     <HeaderTitle id="slider__title" :title="'media'" />
 
     <section class="slider__items">
-      <v-card v-for="item in items" :href="item.link" :key="item.id" class="ma-6 slider__item">
-        <v-img
-          :src="item.src"
-          class="item__img"
-          gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.6)"
-        >
-          <v-card-title class="justify-center fill-height align-center" v-text="item.title"></v-card-title>
-        </v-img>
+      <v-card
+        v-for="item in items"
+        :href="item.link ? item.link : '#0'"
+        :key="item.id"
+        class="ma-6 slider__item"
+      >
+        <v-img :src="item.src" contain class="item__img"></v-img>
       </v-card>
     </section>
   </div>
@@ -26,7 +25,7 @@
     rgba(50, 112, 255, 1) 50%,
     rgba(30, 104, 255, 1) 100%
   );
-  height: 70vh;
+  height: 80vh;
 }
 
 #slider__title {
@@ -44,23 +43,26 @@
   padding-bottom: 2vw;
   margin-left: 5vw;
   margin-right: 5vw;
-  height: 50vh;
+  height: 60vh;
 }
 
 .slider__item {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   flex: 0 0 auto;
-  width: 30vw;
+  max-width: 30vw;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .slider__item,
 .item__img {
-  height: 35vh;
+  height: 45vh;
 }
 
 @media screen and (max-width: 992px) {
-  .slider__item {
+  .slider__item,
+  .item__img {
+    max-width: 80vw;
     width: 80vw;
   }
 }

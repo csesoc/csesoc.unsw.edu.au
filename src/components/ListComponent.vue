@@ -1,14 +1,10 @@
 <template>
-  <v-container v-if="listItems.length > 0">
-    <v-row class="list--item mt-md-6 mb-md-6" v-for="item in listItems" :key="item.id">
+  <v-container v-if="items.length > 0">
+    <v-row class="list--item mt-md-6 mb-md-6" v-for="item in items" :key="item.id">
       <v-col sm="12" md="4">
-        <v-img :src="item.image" contain="true" class="list--img" v-if="item.image" />
+        <v-img :src="item.image" contain class="list--img" v-if="item.image" />
         <div class="img--wrapper__default" v-else>
-          <v-img
-            class="list--img list--img__default"
-            src="@/assets/csesocwhiteblue.png"
-            contain="true"
-          />
+          <v-img class="list--img list--img__default" src="@/assets/csesocwhiteblue.png" contain />
         </div>
       </v-col>
       <v-col>
@@ -53,6 +49,6 @@ export default {
   name: 'ListComponent',
   // Must be passed from parent object
   // items have title, image url (src), and link
-  props: ['listItems']
+  props: ['items']
 };
 </script>

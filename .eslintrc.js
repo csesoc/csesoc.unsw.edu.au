@@ -13,7 +13,7 @@ module.exports = {
     'import/extensions': 'off',
     'max-len': ['error',
       {
-        code: 120, ignoreUrls: true
+        code: 130, ignoreUrls: true
       }
     ],
     'comma-dangle': 'off'

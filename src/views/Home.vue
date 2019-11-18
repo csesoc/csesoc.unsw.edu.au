@@ -3,7 +3,7 @@
   <div id="home">
     <!-- make header a seperate component! -->
     <header id="showcase">
-      <v-img max-width="35vw" max-height="20vh" contain="true" src="@/assets/csesocwhiteblue.png" />
+      <v-img max-width="35vw" max-height="20vh" contain src="@/assets/csesocwhiteblue.png" />
       <a href="#" v-ripple class="button">Join on spArc</a>
       <br />
       <v-btn text icon color="white" @click="scrollto('content-start')">
@@ -11,46 +11,42 @@
       </v-btn>
     </header>
 
-    <v-container ref="content-start" style="padding: 20px 10px 10px 10px">
+    <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <v-row>
         <v-col sm="12" md="6" lg="3">
           <HeaderTitle :title="'events'" />
-          <v-lazy>
-            <div
-              class="fb-page"
-              data-href="https://www.facebook.com/csesoc"
-              data-tabs="events"
-              data-small-header="false"
-              data-adapt-container-width="true"
-              data-hide-cover="false"
-              data-show-facepile="false"
-            >
-              <blockquote cite="https://www.facebook.com/csesoc" class="fb-xfbml-parse-ignore">
-                <a href="https://www.facebook.com/csesoc">Loading...</a>
-              </blockquote>
-            </div>
-          </v-lazy>
+          <div
+            class="fb-page"
+            data-href="https://www.facebook.com/csesoc"
+            data-tabs="events"
+            data-small-header="false"
+            data-adapt-container-width="true"
+            data-hide-cover="false"
+            data-show-facepile="false"
+          >
+            <blockquote cite="https://www.facebook.com/csesoc" class="fb-xfbml-parse-ignore">
+              <a href="https://www.facebook.com/csesoc">Loading...</a>
+            </blockquote>
+          </div>
         </v-col>
         <v-col sm="12" md="6" lg="9">
           <HeaderTitle :title="'announcements'" />
-          <ListComponent :listItems="listItems" />
+          <ListComponent :items="announceItems" />
         </v-col>
       </v-row>
     </v-container>
 
-    <!-- media slider - could be showcase of recent posts?? -->
-    <!-- how to pass in OPTIONS -->
-    <Slider :items="items" :title="'media'" class="my-10" />
+    <Slider :items="mediaItems" :title="'media'" class="my-10" />
 
-    <v-container style="padding: 20px 10px 10px 10px">
+    <v-container style="padding: 20px 30px 10px 30px">
       <HeaderTitle :title="'resources'" />
-      <NavGrid :gridItems="gridItems"></NavGrid>
+      <NavGrid :items="resourcesItems"></NavGrid>
     </v-container>
   </div>
 </template>
 
 <script>
-import NavGrid from '@/components/NavGridSquare';
+import NavGrid from '@/components/NavGrid';
 import ListComponent from '@/components/ListComponent';
 import Slider from '@/components/Slider';
 import HeaderTitle from '@/components/HeaderTitle';
@@ -58,12 +54,15 @@ import HeaderTitle from '@/components/HeaderTitle';
 export default {
   data: () => ({
     drawer: false,
-    gridApiUri:
-      'https://gistcdn.githack.com/esyw/f83b10232854534b64e475473406dfe6/raw/263a737400bc4e4e642a28cb9da9851ef76e3546/help.json',
-    gridItems: [],
-    listApiUri:
+    resourcesApiUrl:
+      'https://gist.githack.com/gawdn/6fb68af4e994dd72e50fb360d299cbb6/raw/6fa351ba05f90ce0906c4c7accdf8c712f28f60d/resources0b.json',
+    resourcesItems: [],
+    announceApiUri:
       'https://gist.githack.com/gawdn/79b9df83f2fd267a3287d13b9badce48/raw/7bfb85a4cb799712229bed5ea02234e773eb42d4/populated_list.json',
-    listItems: [],
+    announceItems: [],
+    mediaApiUri:
+      'https://gist.githack.com/gawdn/a590d5be689e3ffbee15c213928e3b4b/raw/bed82e02b6a4d01196a4390e1a8b12ccf5b377fa/media0a.json',
+    mediaItems: [],
     items: []
   }),
 
@@ -75,17 +74,22 @@ export default {
   },
 
   mounted() {
-    fetch(this.gridApiUri)
+    fetch(this.mediaApiUri)
       .then(r => r.json())
       .then((responseJson) => {
-        this.gridItems = responseJson;
-        this.items = responseJson;
+        this.mediaItems = responseJson;
       });
 
-    fetch(this.listApiUri)
+    fetch(this.resourcesApiUrl)
       .then(r => r.json())
       .then((responseJson) => {
-        this.listItems = responseJson;
+        this.resourcesItems = responseJson;
+      });
+
+    fetch(this.announceApiUri)
+      .then(r => r.json())
+      .then((responseJson) => {
+        this.announceItems = responseJson;
       });
   },
   methods: {
