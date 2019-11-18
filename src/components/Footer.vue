@@ -13,17 +13,17 @@
         <v-card-text class="white--text">
 
           <section class="tiers__grid">
-              <a v-for="sponsor in tierOne" class="tiers__box" :href="sponsor.link" :key="sponsor">
+              <a v-for="sponsor in tierOne" class="tiers__box" :href="sponsor.link">
                   <img :src="sponsor.logo" style=" max-width:300px;max-height:105px;">
               </a>
           </section>
           <section class="tiers__grid">
-              <a v-for="sponsor in tierTwo" class="tiers__box" :href="sponsor.link" :key="sponsor">
+              <a v-for="sponsor in tierTwo" class="tiers__box" :href="sponsor.link">
                   <img :src="sponsor.logo" style="max-width:200px;max-height:75px">
               </a>
           </section>
           <section class="tiers__grid">
-              <a v-for="sponsor in tierThree" class="tiers__box" :href="sponsor.link" :key="sponsor">
+              <a v-for="sponsor in tierThree" class="tiers__box" :href="sponsor.link">
                   <img :src="sponsor.logo" style="max-width:100px;max-height:50px">
               </a>
           </section>
@@ -120,7 +120,7 @@ export default {
     },
   },
   mounted() {
-    fetch('')
+    fetch('https://gistcdn.githack.com/esyw/4e35cd5fe73fa024020e67855ca733fb/raw/e85c9ae58a6323a4214ffa4ad89b0a5ebe404e31/sponsors.json')
       .then(r => r.json())
       .then((responseJson) => {
         console.log(responseJson);

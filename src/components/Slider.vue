@@ -2,7 +2,7 @@
     <div id="slider">
         <h1 id="slider__title">#!/{{ title }}</h1>
         <section class="slider__items">
-            <v-card v-for="item in items" :key="item.title" :href="item.link" width="30vw" class="ma-6 slider__item">
+            <v-card v-for="item in items" :href="item.link" width="30vw" class="ma-6 slider__item">
               <v-img
                 :src="item.src"
                 class="white--text"

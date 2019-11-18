@@ -2,7 +2,7 @@
   <v-container class="nav__grid" fluid>
     <v-col>
       <v-row align="center" justify="center">
-        <v-card v-for="item in gridItems" :key="item.title" :href="item.link" width="30%" class="ma-3">
+        <v-card v-for="item in gridItems"  :href="item.link" width="200px" height="200px" class="ma-3">
           <v-img
             :src="item.src"
             class="white--text"
