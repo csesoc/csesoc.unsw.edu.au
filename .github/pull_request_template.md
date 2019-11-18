@@ -1,6 +1,3 @@
-<!-- This is an generated PR template by @gawdn -->
-<!-- Please ensure you complete the checklist -->
-
 ## Changes
 - List all major changes made here
 
