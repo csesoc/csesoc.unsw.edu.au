@@ -15,7 +15,7 @@ func GetCats(collection *mongo.Collection, id int, token string) Category {
 	// }
 
 	var result Category
-	filter := bson.D{{"categoryID", id}}
+	filter := bson.D{{Key: "categoryid", Value: id}}
 
 	// Find a category
 	err := collection.FindOne(context.TODO(), filter).Decode(&result)
@@ -33,9 +33,9 @@ func NewCats(collection *mongo.Collection, catID int, index int, name string, to
 	// }
 
 	category := Category{
-		categoryID:   catID,
-		categoryName: name,
-		index:        index,
+		CategoryID:   catID,
+		CategoryName: name,
+		Index:        index,
 	}
 
 	_, err := collection.InsertOne(context.TODO(), category)
@@ -50,11 +50,11 @@ func PatchCats(collection *mongo.Collection, catID int, name string, index int, 
 	// 	return
 	// }
 
-	filter := bson.D{{"categoryID", catID}}
+	filter := bson.D{{Key: "categoryid", Value: catID}}
 	update := bson.D{
-		{"$set", bson.D{
-			{"categoryName", name},
-			{"index", index},
+		{Key: "$set", Value: bson.D{
+			{Key: "categoryname", Value: name},
+			{Key: "index", Value: index},
 		}},
 	}
 
@@ -71,7 +71,7 @@ func DeleteCats(collection *mongo.Collection, id int, token string) {
 	// 	return
 	// }
 
-	filter := bson.D{{"categoryID", id}}
+	filter := bson.D{{Key: "categoryid", Value: id}}
 
 	// Find a category by id and delete it
 	_, err := collection.DeleteOne(context.TODO(), filter)
