@@ -109,7 +109,6 @@ export default {
     )
       .then(r => r.json())
       .then((responseJson) => {
-        console.log(responseJson);
         this.sponsors = responseJson;
       });
   }

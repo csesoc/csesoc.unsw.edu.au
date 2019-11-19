@@ -3,8 +3,20 @@
   <div id="home">
     <!-- make header a seperate component! -->
     <header id="showcase">
-      <v-img max-width="35vw" max-height="20vh" contain src="@/assets/csesocwhiteblue.png" />
-      <a href="#" v-ripple class="button">Join on spArc</a>
+      <v-img
+        v-if="$vuetify.breakpoint.mdAndUp"
+        max-width="35vw"
+        max-height="20vh"
+        contain
+        src="@/assets/csesocwhiteblue.png"
+      />
+      <v-img v-else max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
+      <a
+        href="https://www.arc.unsw.edu.au/clubs"
+        target="_blank"
+        v-ripple
+        class="button"
+      >Join on spArc</a>
       <br />
       <v-btn text icon color="white" @click="scrollto('content-start')">
         <v-icon>mdi-chevron-down</v-icon>
@@ -13,7 +25,7 @@
 
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <v-row>
-        <v-col sm="12" md="6" lg="3">
+        <v-col sm="12" md="6" lg="4">
           <HeaderTitle :title="'events'" />
           <div
             class="fb-page"
@@ -29,8 +41,9 @@
             </blockquote>
           </div>
         </v-col>
-        <v-col sm="12" md="6" lg="9">
-          <HeaderTitle :title="'announcements'" />
+        <v-spacer v-if="$vuetify.breakpoint.mdAndUp"></v-spacer>
+        <v-col sm="12" md="5" lg="8">
+          <HeaderTitle :title="'latest'" />
           <ListComponent :items="announceItems" />
         </v-col>
       </v-row>
@@ -38,7 +51,7 @@
 
     <Slider :items="mediaItems" :title="'media'" class="my-10" />
 
-    <v-container style="padding: 20px 30px 10px 30px">
+    <v-container class="ml-md-8">
       <HeaderTitle :title="'resources'" />
       <NavGrid :items="resourcesItems"></NavGrid>
     </v-container>

@@ -9,7 +9,7 @@
             gradient="to bottom, rgba(255,255,255,0.1) 0%, rgba(41,41,41,0.6) 50%, rgba(24,24,24,0.8) 100%"
           >
             <v-card-title
-              class="justify-center fill-height align-center white--text .font-weight-semibold"
+              class="justify-center fill-height align-center white--text font-weight-medium text-truncate"
               v-text="item.title"
             ></v-card-title>
           </v-img>

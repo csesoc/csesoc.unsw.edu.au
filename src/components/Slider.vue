@@ -9,7 +9,9 @@
         :key="item.id"
         class="ma-6 slider__item"
       >
-        <v-img :src="item.src" contain class="item__img"></v-img>
+        <v-lazy>
+          <v-img :src="item.src" contain class="item__img"></v-img>
+        </v-lazy>
       </v-card>
     </section>
   </div>
@@ -62,8 +64,8 @@
 @media screen and (max-width: 992px) {
   .slider__item,
   .item__img {
-    max-width: 80vw;
-    width: 80vw;
+    max-width: 60vw;
+    width: auto;
   }
 }
 .slider__item:hover {
