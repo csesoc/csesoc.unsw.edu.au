@@ -1,19 +1,26 @@
 <template>
-  <form id="login-form">
+  <v-form ref="loginform">
     <v-btn color="normal" text dark @click="dialog = true">Login</v-btn>
     <v-layout row justify-center>
       <v-dialog v-model="dialog" dark no-click-animation max-width="600px">
         <v-card>
           <v-form ref="form">
             <v-card-title>
-              <span class="headline" colour="white">Login</span>
+              <span class="headline" colour="white">Login to CSESoc</span>
             </v-card-title>
 
             <v-card-text>
               <v-container grid-list-md>
                 <v-layout wrap>
                   <v-flex xs12>
-                    <v-text-field v-model="zid" :rules="inputRules" label="zID" required></v-text-field>
+                    <v-text-field
+                      type="text"
+                      autofocus
+                      v-model="zid"
+                      :rules="inputRules"
+                      label="zID"
+                      required
+                    ></v-text-field>
                   </v-flex>
 
                   <v-flex xs12>
@@ -23,6 +30,7 @@
                       @click:append="show = !show"
                       :rules="inputRules"
                       label="zPass"
+                      autocomlete="current-password"
                       required
                     ></v-text-field>
                   </v-flex>
@@ -33,29 +41,27 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                color="blue darken-1"
+                color="grey darken-1"
                 style="min-width:100px;min-height:50px;"
                 text
                 @click="dialog = false"
               >Close</v-btn>
               <v-btn
+                type="submit"
                 color="blue darken-1"
                 style="min-width:100px;min-height:50px;"
                 text
                 @click="login"
-              >Submit</v-btn>
+              >Login</v-btn>
             </v-card-actions>
           </v-form>
         </v-card>
       </v-dialog>
     </v-layout>
-  </form>
+  </v-form>
 </template>
 
 <style scoped>
-#login-form {
-  font-family: "Quicksand", sans-serif;
-}
 </style>
 
 <script>
