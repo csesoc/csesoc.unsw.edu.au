@@ -1,150 +1,155 @@
 
 <template>
   <div id="home">
+    <!-- make header a seperate component! -->
+    <header id="showcase">
+      <v-img
+        v-if="$vuetify.breakpoint.mdAndUp"
+        max-width="35vw"
+        max-height="20vh"
+        contain
+        src="@/assets/csesocwhiteblue.png"
+      />
+      <v-img v-else max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
+      <a
+        href="https://www.arc.unsw.edu.au/clubs"
+        target="_blank"
+        v-ripple
+        class="button"
+      >Join on spArc</a>
+      <br />
+      <v-btn text icon color="white" @click="scrollto('content-start')">
+        <v-icon>mdi-chevron-down</v-icon>
+      </v-btn>
+    </header>
 
-
-<!-- make header a seperate component! -->
-      <header id="showcase">
-        <img src="https://github.com/csesoc/csesoc.unsw.edu.au/blob/frontendCombined/src/assets/csesoclogobluewhite.png?raw=true" />
-        <a href="#" v-ripple class="button"> Join on spArc </a>
-        <br />
-        <v-btn text icon color="white" href="#content-start">
-          <v-icon>mdi-chevron-down</v-icon>
-        </v-btn>
-      </header>
-
-      <v-container class="ma-12 mt-20">
-      <v-row no-gutters>
-        <v-col>
-            <div class="fb-page ml-12" data-href="https://www.facebook.com/csesoc"
-            data-tabs="timeline, events, messages" data-width="450" data-height="750" data-small-header="true"
-            data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true">
+    <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
+      <v-row>
+        <v-col sm="12" md="6" lg="4">
+          <HeaderTitle :title="'events'" />
+          <div
+            class="fb-page"
+            data-href="https://www.facebook.com/csesoc"
+            data-tabs="events"
+            data-small-header="false"
+            data-adapt-container-width="true"
+            data-hide-cover="false"
+            data-show-facepile="false"
+          >
             <blockquote cite="https://www.facebook.com/csesoc" class="fb-xfbml-parse-ignore">
-            <a href="https://www.facebook.com/csesoc">CSESoc UNSW</a></blockquote></div>
-            <!-- wait for component to load before rendering - add event listener -->
+              <a href="https://www.facebook.com/csesoc">Loading...</a>
+            </blockquote>
+          </div>
         </v-col>
-        <v-col>
-            <h1> #!/ANNOUNCEMENTS </h1>
-            <ListComponent :listItems="listItems" />
+        <v-spacer v-if="$vuetify.breakpoint.mdAndUp"></v-spacer>
+        <v-col sm="12" md="5" lg="8">
+          <HeaderTitle :title="'latest'" />
+          <ListComponent :items="announceItems" />
         </v-col>
       </v-row>
-      </v-container>
+    </v-container>
 
+    <Slider :items="mediaItems" :title="'media'" class="my-10" />
 
-
-
-      <!-- media slider - could be showcase of recent posts?? -->
-      <!-- how to pass in OPTIONS -->
-      <Slider :items="items" class="my-10"/>
-
-      <Events/>
-      <h1 class="ml-12 mt-12"> #!/RESOURCES </h1>
-      <div class="square">
-    <NavGrid id='content-start' :gridItems="gridItems"></NavGrid>
-    </div>
+    <v-container class="ml-md-8">
+      <HeaderTitle :title="'resources'" />
+      <NavGrid :items="resourcesItems"></NavGrid>
+    </v-container>
   </div>
 </template>
 
 <script>
-import NavGrid from '@/components/NavGridSquare';
+import NavGrid from '@/components/NavGrid';
 import ListComponent from '@/components/ListComponent';
-import Footer from '@/components/Footer';
-import Sidebar from '@/components/Sidebar';
 import Slider from '@/components/Slider';
-import LoginForm from '@/components/LoginForm';
-import Events from '@/components/Events'
-
+import HeaderTitle from '@/components/HeaderTitle';
 
 export default {
   data: () => ({
     drawer: false,
-    gridApiUri: 'https://gistcdn.githack.com/esyw/f83b10232854534b64e475473406dfe6/raw/263a737400bc4e4e642a28cb9da9851ef76e3546/help.json',
-    gridItems: [],
-    listApiUri: 'https://gistcdn.githack.com/esyw/d3801d0bc2b3cefb7fe704a328bb22e8/raw/0010238c3dc744514faf2c859110db5eb6cf9cbe/list-test.json',
-    listItems: [],
-    items: [],
+    resourcesApiUrl:
+      'https://gist.githack.com/gawdn/6fb68af4e994dd72e50fb360d299cbb6/raw/6fa351ba05f90ce0906c4c7accdf8c712f28f60d/resources0b.json',
+    resourcesItems: [],
+    announceApiUri:
+      'https://gist.githack.com/gawdn/79b9df83f2fd267a3287d13b9badce48/raw/7bfb85a4cb799712229bed5ea02234e773eb42d4/populated_list.json',
+    announceItems: [],
+    mediaApiUri:
+      'https://gist.githack.com/gawdn/a590d5be689e3ffbee15c213928e3b4b/raw/bed82e02b6a4d01196a4390e1a8b12ccf5b377fa/media0a.json',
+    mediaItems: [],
+    items: []
   }),
 
   components: {
     NavGrid,
     ListComponent,
-    Footer,
-    Sidebar,
     Slider,
-    LoginForm,
-    Events,
+    HeaderTitle
   },
 
   mounted() {
-    fetch(this.gridApiUri)
+    fetch(this.mediaApiUri)
       .then(r => r.json())
       .then((responseJson) => {
-        this.gridItems = responseJson;
-        this.items=responseJson;
-      }
-    );
+        this.mediaItems = responseJson;
+      });
 
-    fetch(this.listApiUri)
+    fetch(this.resourcesApiUrl)
       .then(r => r.json())
       .then((responseJson) => {
-        this.listItems = responseJson;
-      }
-    );
+        this.resourcesItems = responseJson;
+      });
+
+    fetch(this.announceApiUri)
+      .then(r => r.json())
+      .then((responseJson) => {
+        this.announceItems = responseJson;
+      });
   },
-
+  methods: {
+    scrollto(anchor) {
+      const element = this.$refs[anchor];
+      const top = element.offsetTop;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }
 };
 </script>
 
 <style scoped>
-    @import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-}
-#home {
-    font-family: "Quicksand", sans-serif;
-
-}
 #showcase {
-  background-image: url("https://backgroundcheckall.com/wp-content/uploads/2017/12/black-tech-background-12.jpg");
-  background-size: cover;
+  align-items: center;
+  background-blend-mode: darken;
+  background-image: url("../assets/black_lozenge_@2X.png");
   background-position: center;
-  height: 100vh;
+  background-repeat: repeat;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  width: 100vw;
   justify-content: center;
-  align-items: center;
-  text-align: center;
   padding: 0 20px;
+  text-align: center;
 }
 #showcase img {
-  max-width: 30%;
   max-height: 30vh;
-}
-#showcase h1 {
-  font-size: 50px;
-  line-height: 1.2;
+  max-width: 30%;
 }
 #showcase p {
   font-size: 20px;
 }
 #showcase .button {
-  font-size: 18px;
-  text-decoration: none;
-  color: #fff;
-  background: rgb(54, 119,243);
-  padding: 10px 20px;
+  background: rgb(54, 119, 243);
   border-radius: 10px;
+  color: #fff;
+  font-size: 18px;
   margin-top: 20px;
+  padding: 10px 20px;
+  text-decoration: none;
   width: 250px;
 }
 #showcase .button:hover {
-    transition:0.4s;
-  background: rgb(32,62,207);
+  transition: 0.4s;
+  background: rgb(32, 62, 207);
   color: #fff;
-}
-
-.square {
-    padding: 10px 300px 50px 300px;
 }
 </style>
