@@ -92,8 +92,8 @@ func servePages(e *echo.Echo) {
 }
 
 func serveAPI(e *echo.Echo) {
-	//Set client options
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+	//Set client options - this line needs to change when moving from local deployment to docker containers
+	clientOptions := options.Client().ApplyURI("mongodb://mongo:27017")
 	//Connect to MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
