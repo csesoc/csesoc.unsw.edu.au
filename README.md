@@ -3,7 +3,6 @@
 This repo houses the CSESoc website.
 
 ## Getting Started
----
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
@@ -53,46 +52,38 @@ And then proceed with previous steps to get start local deployment.
 The server will start on `0.0.0.0:1323` (`[::]:1323`) which serves both the frontend and API simultaneously.
 
 ## Running the tests
----
 
 As of this moment, Jenkins is being used for continuous integration and automated testing but tests have not been written and no pipelines started.
 
 
 ## Deployment
----
 
 [Gordon Zhong](https://github.com/gawdn) has written up deployment steps on CSESOC servers which can be viewed here: [How to deploy a project on Wheatley](https://compclub.atlassian.net/wiki/spaces/Projects/pages/733118519/How+to+deploy+a+project+on+Wheatley)
 
 ## Built With
----
 
 * [Vue + Vuetify](https://vuejs.org/) - The web framework used
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [Golang](https://golang.org/) - Used to write the API and Server backend. To view "[api docs](https://gawdn.com/api-docs)" (link may eventually break in the future).
 
 ## System Architecture
----
 
 To be updated.
 
 ## Contributing
----
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
----
 
 * **Tommy Truong** - *Initial work for README.md file* - [glebme](https://github.com/glebme)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
----
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
-===
 
 None as of yet, but certainly will be added.
