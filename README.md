@@ -63,7 +63,7 @@ As of this moment, Jenkins is being used for continuous integration and automate
 ## Built With
 
 * [Vue + Vuetify](https://vuejs.org/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
+* [MongoDB](https://www.mongodb.com/) - Database
 * [Golang](https://golang.org/) - Used to write the API and Server backend. To view "[api docs](https://gawdn.com/api-docs)" (link may eventually break in the future).
 
 ## System Architecture
