@@ -21,13 +21,16 @@ func GetSponsors(collection *mongo.Collection, id string, token string) (Sponsor
 }
 
 // NewSponsors - Add a new sponsor
-func NewSponsors(collection *mongo.Collection, expiryStr string, name string, logo string, tier string, token string) error {
+func NewSponsors(collection *mongo.Collection, expiryStr string, name string, logo string, tier string, token string) (uuid.UUID, error) {
 	// if !validToken(token) {
 	// 	return
 	// }
 
-	expiryTime, _ := time.Parse(time.RFC3339, expiryStr)
 	id := uuid.New()
+	expiryTime, err := time.Parse(time.RFC3339, expiryStr)
+	if err != nil {
+		return id, err
+	}
 
 	sponsor := Sponsor{
 		SponsorID:   id,
@@ -37,8 +40,8 @@ func NewSponsors(collection *mongo.Collection, expiryStr string, name string, lo
 		Expiry:      expiryTime.Unix(),
 	}
 
-	_, err := collection.InsertOne(context.TODO(), sponsor)
-	return err
+	_, err = collection.InsertOne(context.TODO(), sponsor)
+	return id, err
 }
 
 // DeleteSponsors - Delete a sponsor from the database
