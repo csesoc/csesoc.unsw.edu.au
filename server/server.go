@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"net/http"
+	"regexp"
 	"strconv"
 
 	"github.com/dgrijalva/jwt-go"
@@ -135,6 +136,29 @@ func serveAPI(e *echo.Echo) {
 	// Routes for sponsors
 	e.POST("/sponsor/", newSponsors(sponsorCollection))
 	e.DELETE("/sponsor/", deleteSponsors(sponsorCollection))
+
+	// Routes for enquiries
+	e.POST("/enquiry/sponsorship", handleEnquiry("sponsorship@csesoc.org.au"))
+	e.POST("/enquiry/info", handleEnquiry("info@csesoc.org.au"))
+}
+
+// Handle enquiry by forwarding it to a specified email
+func handleEnquiry(targetEmail string) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		name := c.FormValue("name")
+		email := c.FormValue("email")
+		message := c.FormValue("message")
+
+		// Email validation
+		emailRegex := regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
+
+		if emailRegex.MatchString(email) && len(name) > 0 && len(message) > 0 {
+			// TODO: Compose and send email
+			return c.JSON(http.StatusOK, H{})
+		} else {
+			return c.JSON(http.StatusBadRequest, H{})
+		}
+	}
 }
 
 // func login(collection *mongo.Collection) echo.HandlerFunc {
