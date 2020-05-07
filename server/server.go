@@ -258,8 +258,13 @@ func newSponsors(collection *mongo.Collection) echo.HandlerFunc {
 		name := c.FormValue("name")
 		logo := c.FormValue("logo")
 		tier := c.FormValue("tier")
-		NewSponsors(collection, expiryStr, name, logo, tier, token)
-		return c.JSON(http.StatusOK, H{})
+		id, err := NewSponsors(collection, expiryStr, name, logo, tier, token)
+		if err != nil {
+			return c.JSON(http.StatusInternalServerError, H{})
+		}
+		return c.JSON(http.StatusCreated, H{
+			"sponsor_id": id.String,
+		})
 	}
 }
 
@@ -267,7 +272,10 @@ func deleteSponsors(collection *mongo.Collection) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		token := c.FormValue("token")
 		id := c.FormValue("id")
-		DeleteSponsors(collection, id, token)
+		err := DeleteSponsors(collection, id, token)
+		if err != nil {
+			return c.JSON(http.StatusInternalServerError, H{})
+		}
 		return c.JSON(http.StatusOK, H{})
 	}
 }
