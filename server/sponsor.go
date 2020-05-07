@@ -27,10 +27,7 @@ func NewSponsors(collection *mongo.Collection, expiryStr string, name string, lo
 	// }
 
 	id := uuid.New()
-	expiryTime, err := time.Parse(time.RFC3339, expiryStr)
-	if err != nil {
-		return id, err
-	}
+	expiryTime, _ := time.Parse(time.RFC3339, expiryStr)
 
 	sponsor := Sponsor{
 		SponsorID:   id,
@@ -40,7 +37,7 @@ func NewSponsors(collection *mongo.Collection, expiryStr string, name string, lo
 		Expiry:      expiryTime.Unix(),
 	}
 
-	_, err = collection.InsertOne(context.TODO(), sponsor)
+	_, err := collection.InsertOne(context.TODO(), sponsor)
 	return id, err
 }
 
