@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	"github.com/google/uuid"
@@ -21,36 +22,32 @@ func GetSponsors(collection *mongo.Collection, id string, token string) (Sponsor
 }
 
 // NewSponsors - Add a new sponsor
-func NewSponsors(collection *mongo.Collection, expiryStr string, name string, logo string, tier string, token string) (uuid.UUID, error) {
+func NewSponsors(collection *mongo.Collection, name string, logo string, tier string, expiryStr string, token string) error {
 	// if !validToken(token) {
 	// 	return
 	// }
 
-	id := uuid.New()
 	expiryTime, _ := time.Parse(time.RFC3339, expiryStr)
-
 	sponsor := Sponsor{
-		SponsorID:   id,
 		SponsorName: name,
 		SponsorLogo: logo,
 		SponsorTier: tier,
 		Expiry:      expiryTime.Unix(),
 	}
 
-	_, err := collection.InsertOne(context.TODO(), sponsor)
-	return id, err
+	insertResult, err := collection.InsertOne(context.TODO(), sponsor)
+	fmt.Println("Inserted a single document: ", insertResult.InsertedID)
+	return err
 }
 
 // DeleteSponsors - Delete a sponsor from the database
-func DeleteSponsors(collection *mongo.Collection, id string, token string) error {
+func DeleteSponsors(collection *mongo.Collection, sponsorName string, token string) error {
 	// if !validToken(token) {
 	// 	return
 	// }
 
-	parsedID := uuid.Must(uuid.Parse(id))
-
 	// Find a sponsor by ID and delete it
-	filter := bson.D{{Key: "sponsorid", Value: parsedID}}
+	filter := bson.D{{Key: "sponsorname", Value: sponsorName}}
 	_, err := collection.DeleteOne(context.TODO(), filter)
 	return err
 }
