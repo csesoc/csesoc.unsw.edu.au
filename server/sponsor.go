@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net/http"
 	"time"
@@ -13,40 +12,85 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// Sponsor - struct to contain sponsor data
+type Sponsor struct {
+	SponsorName string `validate:"required"`
+	SponsorLogo string `validate:"required"`
+	SponsorTier string `validate:"required"`
+	Expiry      int64
+}
+
 var sponsorColl *mongo.Collection
 
-// Setup
+/* Setup */
+
+// SponsorSetup - Setup the collection to be used for sponsors
 func SponsorSetup(client *mongo.Client) {
 	sponsorColl = client.Database("csesoc").Collection("sponsors")
 	opt := options.Index()
 	opt.SetUnique(true)
 	index := mongo.IndexModel{Keys: bson.M{"sponsorname": 1}, Options: opt}
 	if _, err := sponsorColl.Indexes().CreateOne(context.Background(), index); err != nil {
-		log.Println("Could not create index:", err)
+		log.Fatal("Could not create index: ", err)
 	}
 }
 
-// NewSponsors - Add a sponsor
-func NewSponsors() echo.HandlerFunc {
+/* Handles */
+
+// NewSponsor - Add a sponsor
+func NewSponsor() echo.HandlerFunc {
 	return func(c echo.Context) error {
-		token := c.FormValue("token")
-		expiryStr := c.FormValue("expiry")
 		name := c.FormValue("name")
 		logo := c.FormValue("logo")
 		tier := c.FormValue("tier")
+		expiryStr := c.FormValue("expiry")
+		token := c.FormValue("token")
 		err := addSponsors(name, logo, tier, expiryStr, token)
 		if err != nil {
-			return c.JSON(http.StatusInternalServerError, H{
-				"error": err,
-			})
+			return c.JSON(http.StatusConflict, H{})
 		}
 		return c.JSON(http.StatusCreated, H{})
 	}
 
 }
 
-// DeleteSponsors - Delete a sponsor
-func DeleteSponsors() echo.HandlerFunc {
+// GetSponsor - find entry for a specific sponsor.
+func GetSponsor() echo.HandlerFunc {
+	return func(c echo.Context) error {
+		token := c.FormValue("token")
+		name := c.FormValue("name")
+		result, err := getSponsor(name, token)
+		if err != nil {
+			return c.JSON(http.StatusNotFound, H{
+				"response": "No such sponsor.",
+			})
+		}
+		return c.JSON(http.StatusOK, H{
+			"sponsors": result,
+		})
+	}
+}
+
+// GetSponsors - gives a list of sponsors stored.
+func GetSponsors() echo.HandlerFunc {
+	return func(c echo.Context) error {
+		token := c.FormValue("token")
+		results, err := getSponsors(token)
+		if err != nil {
+			return c.JSON(http.StatusInternalServerError, H{})
+		}
+		content := H{}
+		if results != nil {
+			content = H{
+				"sponsors": results,
+			}
+		}
+		return c.JSON(http.StatusOK, content)
+	}
+}
+
+// DeleteSponsor - Delete a sponsor
+func DeleteSponsor() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		token := c.FormValue("token")
 		sponsorName := c.FormValue("name")
@@ -56,12 +100,17 @@ func DeleteSponsors() echo.HandlerFunc {
 				"error": err,
 			})
 		}
-		return c.JSON(http.StatusOK, H{})
+		return c.JSON(http.StatusOK, H{
+			"response": "Deleted " + sponsorName,
+		})
 	}
 }
 
+/* Database Queries */
+
 // addSponsors - Add a new sponsor
 func addSponsors(name string, logo string, tier string, expiryStr string, token string) error {
+	// should validating be done by the handler or database function
 	// if !validToken(token) {
 	// 	return
 	// }
@@ -74,13 +123,12 @@ func addSponsors(name string, logo string, tier string, expiryStr string, token 
 		Expiry:      expiryTime.Unix(),
 	}
 
-	insertResult, err := sponsorColl.InsertOne(context.TODO(), sponsor)
-	fmt.Println("Inserted a single document: ", insertResult.InsertedID)
+	_, err := sponsorColl.InsertOne(context.TODO(), sponsor)
 	return err
 }
 
-// GetSponsor - Retrieve a list of sponsors from the database
-func GetSponsor(sponsorName string, token string) (Sponsor, error) {
+// getSponsor - Retrieve a list of sponsors from the database
+func getSponsor(sponsorName string, token string) (Sponsor, error) {
 	var result Sponsor
 	filter := bson.D{{Key: "sponsorname", Value: sponsorName}}
 	err := sponsorColl.FindOne(context.TODO(), filter).Decode(&result)
@@ -88,8 +136,8 @@ func GetSponsor(sponsorName string, token string) (Sponsor, error) {
 	return result, err
 }
 
-// GetSponsors - Retrieve a sponsor from the database
-func GetSponsors(token string) ([]*Sponsor, error) {
+// getSponsors - Retrieve a sponsor from the database
+func getSponsors(token string) ([]*Sponsor, error) {
 	var results []*Sponsor
 
 	curr, err := sponsorColl.Find(context.TODO(), bson.D{{}}, options.Find())
