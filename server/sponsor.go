@@ -3,15 +3,51 @@ package main
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"time"
 
+	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// NewSponsors - Add a new sponsor
-func NewSponsors(collection *mongo.Collection, name string, logo string, tier string, expiryStr string, token string) error {
+// Handlers
+func NewSponsors(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		token := c.FormValue("token")
+		expiryStr := c.FormValue("expiry")
+		name := c.FormValue("name")
+		logo := c.FormValue("logo")
+		tier := c.FormValue("tier")
+		err := addSponsors(collection, name, logo, tier, expiryStr, token)
+		if err != nil {
+			return c.JSON(http.StatusInternalServerError, H{
+				"error": err,
+			})
+		}
+		return c.JSON(http.StatusCreated, H{})
+	}
+
+}
+
+// DeleteSponsors - Delete a sponsor from the database
+func DeleteSponsors(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		token := c.FormValue("token")
+		sponsorName := c.FormValue("name")
+		err := removeSponsors(collection, sponsorName, token)
+		if err != nil {
+			return c.JSON(http.StatusInternalServerError, H{
+				"error": err,
+			})
+		}
+		return c.JSON(http.StatusOK, H{})
+	}
+}
+
+// addSponsors - Add a new sponsor
+func addSponsors(collection *mongo.Collection, name string, logo string, tier string, expiryStr string, token string) error {
 	// if !validToken(token) {
 	// 	return
 	// }
@@ -54,8 +90,8 @@ func GetSponsors(collection *mongo.Collection, token string) ([]*Sponsor, error)
 	return results, err
 }
 
-// DeleteSponsors - Delete a sponsor from the database
-func DeleteSponsors(collection *mongo.Collection, sponsorName string, token string) error {
+// removeSponsors - Remove a sponsor from the database
+func removeSponsors(collection *mongo.Collection, sponsorName string, token string) error {
 	// if !validToken(token) {
 	// 	return
 	// }

@@ -10,6 +10,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -71,6 +72,7 @@ func main() {
 	serveAPI(e)
 
 	// Start echo instance on 1323 port
+	e.Debug = true
 	e.Logger.Fatal(e.Start(":1323"))
 }
 
@@ -111,6 +113,12 @@ func serveAPI(e *echo.Echo) {
 	postsCollection := client.Database("csesoc").Collection("posts")
 	catCollection := client.Database("csesoc").Collection("categories")
 	sponsorCollection := client.Database("csesoc").Collection("sponsors")
+	opt := options.Index()
+	opt.SetUnique(true)
+	index := mongo.IndexModel{Keys: bson.M{"sponsorname": 1}, Options: opt}
+	if _, err := sponsorCollection.Indexes().CreateOne(context.Background(), index); err != nil {
+		log.Println("Could not create index:", err)
+	}
 	// userCollection := client.Database("csesoc").Collection("users")
 
 	// Add more API routes here
@@ -133,8 +141,8 @@ func serveAPI(e *echo.Echo) {
 	e.DELETE("/category/", deleteCats(catCollection))
 
 	// Routes for sponsors
-	e.POST("/sponsor/", newSponsors(sponsorCollection))
-	e.DELETE("/sponsor/", deleteSponsors(sponsorCollection))
+	e.POST("/sponsor/", NewSponsors(sponsorCollection))
+	e.DELETE("/sponsor/", DeleteSponsors(sponsorCollection))
 }
 
 // func login(collection *mongo.Collection) echo.HandlerFunc {
@@ -247,35 +255,6 @@ func deleteCats(collection *mongo.Collection) echo.HandlerFunc {
 		token := c.FormValue("token")
 		id, _ := strconv.Atoi(c.FormValue("id"))
 		DeleteCats(collection, id, token)
-		return c.JSON(http.StatusOK, H{})
-	}
-}
-
-func newSponsors(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		token := c.FormValue("token")
-		expiryStr := c.FormValue("expiry")
-		name := c.FormValue("name")
-		logo := c.FormValue("logo")
-		tier := c.FormValue("tier")
-		id, err := NewSponsors(collection, expiryStr, name, logo, tier, token)
-		if err != nil {
-			return c.JSON(http.StatusInternalServerError, H{})
-		}
-		return c.JSON(http.StatusCreated, H{
-			"sponsor_id": id.String,
-		})
-	}
-}
-
-func deleteSponsors(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		token := c.FormValue("token")
-		id := c.FormValue("id")
-		err := DeleteSponsors(collection, id, token)
-		if err != nil {
-			return c.JSON(http.StatusInternalServerError, H{})
-		}
 		return c.JSON(http.StatusOK, H{})
 	}
 }
