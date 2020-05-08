@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 
@@ -12,15 +13,28 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// Handlers
-func NewSponsors(collection *mongo.Collection) echo.HandlerFunc {
+var sponsorColl *mongo.Collection
+
+// Setup
+func SponsorSetup(client *mongo.Client) {
+	sponsorColl = client.Database("csesoc").Collection("sponsors")
+	opt := options.Index()
+	opt.SetUnique(true)
+	index := mongo.IndexModel{Keys: bson.M{"sponsorname": 1}, Options: opt}
+	if _, err := sponsorColl.Indexes().CreateOne(context.Background(), index); err != nil {
+		log.Println("Could not create index:", err)
+	}
+}
+
+// NewSponsors - Add a sponsor
+func NewSponsors() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		token := c.FormValue("token")
 		expiryStr := c.FormValue("expiry")
 		name := c.FormValue("name")
 		logo := c.FormValue("logo")
 		tier := c.FormValue("tier")
-		err := addSponsors(collection, name, logo, tier, expiryStr, token)
+		err := addSponsors(name, logo, tier, expiryStr, token)
 		if err != nil {
 			return c.JSON(http.StatusInternalServerError, H{
 				"error": err,
@@ -31,12 +45,12 @@ func NewSponsors(collection *mongo.Collection) echo.HandlerFunc {
 
 }
 
-// DeleteSponsors - Delete a sponsor from the database
-func DeleteSponsors(collection *mongo.Collection) echo.HandlerFunc {
+// DeleteSponsors - Delete a sponsor
+func DeleteSponsors() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		token := c.FormValue("token")
 		sponsorName := c.FormValue("name")
-		err := removeSponsors(collection, sponsorName, token)
+		err := removeSponsors(sponsorName, token)
 		if err != nil {
 			return c.JSON(http.StatusInternalServerError, H{
 				"error": err,
@@ -47,7 +61,7 @@ func DeleteSponsors(collection *mongo.Collection) echo.HandlerFunc {
 }
 
 // addSponsors - Add a new sponsor
-func addSponsors(collection *mongo.Collection, name string, logo string, tier string, expiryStr string, token string) error {
+func addSponsors(name string, logo string, tier string, expiryStr string, token string) error {
 	// if !validToken(token) {
 	// 	return
 	// }
@@ -60,25 +74,25 @@ func addSponsors(collection *mongo.Collection, name string, logo string, tier st
 		Expiry:      expiryTime.Unix(),
 	}
 
-	insertResult, err := collection.InsertOne(context.TODO(), sponsor)
+	insertResult, err := sponsorColl.InsertOne(context.TODO(), sponsor)
 	fmt.Println("Inserted a single document: ", insertResult.InsertedID)
 	return err
 }
 
 // GetSponsor - Retrieve a list of sponsors from the database
-func GetSponsor(collection *mongo.Collection, sponsorName string, token string) (Sponsor, error) {
+func GetSponsor(sponsorName string, token string) (Sponsor, error) {
 	var result Sponsor
 	filter := bson.D{{Key: "sponsorname", Value: sponsorName}}
-	err := collection.FindOne(context.TODO(), filter).Decode(&result)
+	err := sponsorColl.FindOne(context.TODO(), filter).Decode(&result)
 
 	return result, err
 }
 
 // GetSponsors - Retrieve a sponsor from the database
-func GetSponsors(collection *mongo.Collection, token string) ([]*Sponsor, error) {
+func GetSponsors(token string) ([]*Sponsor, error) {
 	var results []*Sponsor
 
-	curr, err := collection.Find(context.TODO(), bson.D{{}}, options.Find())
+	curr, err := sponsorColl.Find(context.TODO(), bson.D{{}}, options.Find())
 	if err == nil {
 		for curr.Next(context.TODO()) {
 
@@ -91,13 +105,13 @@ func GetSponsors(collection *mongo.Collection, token string) ([]*Sponsor, error)
 }
 
 // removeSponsors - Remove a sponsor from the database
-func removeSponsors(collection *mongo.Collection, sponsorName string, token string) error {
+func removeSponsors(sponsorName string, token string) error {
 	// if !validToken(token) {
 	// 	return
 	// }
 
 	// Find a sponsor by ID and delete it
 	filter := bson.D{{Key: "sponsorname", Value: sponsorName}}
-	_, err := collection.DeleteOne(context.TODO(), filter)
+	_, err := sponsorColl.DeleteOne(context.TODO(), filter)
 	return err
 }

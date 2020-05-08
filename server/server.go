@@ -10,7 +10,6 @@ import (
 	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 
-	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -112,13 +111,7 @@ func serveAPI(e *echo.Echo) {
 	// Creating collections
 	postsCollection := client.Database("csesoc").Collection("posts")
 	catCollection := client.Database("csesoc").Collection("categories")
-	sponsorCollection := client.Database("csesoc").Collection("sponsors")
-	opt := options.Index()
-	opt.SetUnique(true)
-	index := mongo.IndexModel{Keys: bson.M{"sponsorname": 1}, Options: opt}
-	if _, err := sponsorCollection.Indexes().CreateOne(context.Background(), index); err != nil {
-		log.Println("Could not create index:", err)
-	}
+	SponsorSetup(client)
 	// userCollection := client.Database("csesoc").Collection("users")
 
 	// Add more API routes here
@@ -141,8 +134,8 @@ func serveAPI(e *echo.Echo) {
 	e.DELETE("/category/", deleteCats(catCollection))
 
 	// Routes for sponsors
-	e.POST("/sponsor/", NewSponsors(sponsorCollection))
-	e.DELETE("/sponsor/", DeleteSponsors(sponsorCollection))
+	e.POST("/sponsor/", NewSponsors())
+	e.DELETE("/sponsor/", DeleteSponsors())
 }
 
 // func login(collection *mongo.Collection) echo.HandlerFunc {
