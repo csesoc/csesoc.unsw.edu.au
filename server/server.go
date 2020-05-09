@@ -137,8 +137,10 @@ func serveAPI(e *echo.Echo) {
 	e.DELETE("/category/", deleteCats(catCollection))
 
 	// Routes for sponsors
+	e.GET("/sponsor/", GetSponsor())
 	e.POST("/sponsor/", NewSponsor())
 	e.DELETE("/sponsor/", DeleteSponsor())
+	e.GET("/sponsors/", GetSponsors())
 }
 
 // func login(collection *mongo.Collection) echo.HandlerFunc {
