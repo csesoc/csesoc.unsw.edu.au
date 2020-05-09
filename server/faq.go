@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -40,11 +39,6 @@ func getFaq() {
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 	var faqs []faq
 	json.Unmarshal(byteValue, &faqs)
-
-	for i := 0; i < len(faqs); i++ {
-		fmt.Println("Question: " + faqs[i].Question)
-		fmt.Println("Answer: " + faqs[i].Answer)
-	}
 
 	defer jsonFile.Close()
 }
