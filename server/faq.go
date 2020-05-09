@@ -28,7 +28,7 @@ func GetFaq() echo.HandlerFunc {
 }
 
 // GetFaq - returns a list of questions and answers from a json file in /static
-func getFaq() {
+func getFaq() []faq {
 	abspath, _ := filepath.Abs("static/faq.json")
 	jsonFile, err := os.Open(abspath)
 
@@ -41,6 +41,7 @@ func getFaq() {
 	json.Unmarshal(byteValue, &faqs)
 
 	defer jsonFile.Close()
+	return faqs
 }
 
 /*

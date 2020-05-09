@@ -142,7 +142,7 @@ func serveAPI(e *echo.Echo) {
 	e.POST("/enquiry/info", handleEnquiry("info@csesoc.org.au"))
 
 	// Routes for faq
-	e.GET("/faq/", getFaq(faqCollection))
+	e.GET("/faq/", GetFaq())
 
 }
 
