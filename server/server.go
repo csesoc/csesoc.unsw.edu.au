@@ -113,7 +113,6 @@ func serveAPI(e *echo.Echo) {
 	catCollection := client.Database("csesoc").Collection("categories")
 	sponsorCollection := client.Database("csesoc").Collection("sponsors")
 	// userCollection := client.Database("csesoc").Collection("users")
-	faqCollection := client.Database("csesoc").Collection("faq")
 
 	// Add more API routes here
 	e.GET("/api/v1/test", func(c echo.Context) error {
