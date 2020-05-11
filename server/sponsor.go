@@ -106,7 +106,6 @@ func GetSponsor() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var result Sponsor
 		// token := c.FormValue("token")
-		name := strings.ToLower(c.FormValue("name"))
 		filter := bson.D{{Key: "name", Value: name}}
 		if err := sponsorColl.FindOne(context.TODO(), filter).Decode(&result); err != nil {
 			return c.JSON(http.StatusNotFound, H{
