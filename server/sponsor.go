@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	"strings"
 	"time"
 
 	"github.com/labstack/echo/v4"
@@ -106,7 +105,7 @@ func GetSponsor() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var result Sponsor
 		// token := c.FormValue("token")
-		filter := bson.D{{Key: "name", Value: name}}
+		filter := bson.D{{Key: "name", Value: c.FormValue("name")}}
 		if err := sponsorColl.FindOne(context.TODO(), filter).Decode(&result); err != nil {
 			return c.JSON(http.StatusNotFound, H{
 				"response": "No such sponsor.",
