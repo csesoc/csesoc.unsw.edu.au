@@ -142,8 +142,7 @@ func GetSponsors() echo.HandlerFunc {
 func DeleteSponsor() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		// token := c.FormValue("token")
-		name := strings.ToLower(c.FormValue("name"))
-		filter := bson.D{{Key: "name", Value: name}}
+		filter := bson.D{{Key: "name", Value: c.FormValue("name")}}
 		if _, err := sponsorColl.DeleteOne(context.TODO(), filter); err != nil {
 			return c.JSON(http.StatusInternalServerError, H{
 				"error": err,
