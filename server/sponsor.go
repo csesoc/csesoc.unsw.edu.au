@@ -20,7 +20,7 @@ import (
 type Sponsor struct {
 	Name   string `validate:"required"`
 	Logo   string `validate:"required,url"`
-	Tier   int    `validate:"required,numeric,eq=10,eq=100,eq=1000"`
+	Tier   int    `validate:"required,numeric,eq=10|eq=100|eq=1000"`
 	Expiry int64  // check because if this will be null most of the time then what would this number be?
 }
 
