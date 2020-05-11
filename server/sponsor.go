@@ -32,10 +32,6 @@ func SponsorSetup(client *mongo.Client) {
 	sponsorColl = client.Database("csesoc").Collection("sponsors")
 	opt := options.Index()
 	opt.SetUnique(true)
-	opt.SetCollation(&options.Collation{
-		Locale:    "en",
-		CaseLevel: true,
-	})
 	index := mongo.IndexModel{
 		Keys:    bson.M{"name": 1},
 		Options: opt,
