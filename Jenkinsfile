@@ -19,6 +19,7 @@ pipeline {
             }
         }
         stage('Test') {
+            agent any
             steps {
                 echo 'Testing...'
                 sh 'newman run sponsors.postman_collection --suppress-exit-code 1'
