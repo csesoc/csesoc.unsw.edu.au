@@ -7,13 +7,12 @@ WORKDIR /~/app
 # Copy files into container
 COPY . /~/app
 
-# Install yarn and build dependencies
-RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+# Install yarn build dependencies
 RUN yarn
 RUN yarn build
 
 # Multi stage build to enable code for static files to be served
-FROM golang:1.13-buster
+FROM golang:1.13-buster AS server
 
 # Copy the files from stage builder into this stage
 COPY --from=builder /~ /~

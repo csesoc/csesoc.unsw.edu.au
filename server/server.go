@@ -14,10 +14,11 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// H - interface for sending JSON
 type (
+	// H - interface for sending JSON
 	H map[string]interface{}
 
+	// CustomValidator - struct for simple validation
 	CustomValidator struct {
 		validator *validator.Validate
 	}
@@ -68,6 +69,7 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 func main() {
 	// Create new instance of echo
 	e := echo.New()
+	// Validator for structs used 
 	e.Validator = &CustomValidator{validator: validator.New()}
 
 	servePages(e)

@@ -17,10 +17,10 @@ import (
 
 // Sponsor - struct to contain sponsor data
 type Sponsor struct {
-	Name   string `validate:"required"`
-	Logo   string `validate:"required,url"`
-	Tier   int    `validate:"required,numeric,eq=10|eq=100|eq=1000"`
-	Expiry int64  // check because if this will be null most of the time then what would this number be?
+	Name   string `json:"name" validate:"required"`
+	Logo   string `json:"logo" validate:"required,url"`
+	Tier   int    `json:"tier" validate:"required,numeric,eq=10|eq=100|eq=1000"`
+	Expiry int64  `json:"expiry"` // check because if this will be null most of the time then what would this number be?
 }
 
 var sponsorColl *mongo.Collection
