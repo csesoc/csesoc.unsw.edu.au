@@ -22,7 +22,7 @@ pipeline {
             agent any
             steps {
                 echo 'Testing...'
-                sh 'newman run sponsors.postman_collection --suppress-exit-code 1'
+                sh 'newman run sponsors.postman_collection.json --suppress-exit-code 1'
             }
         }
         stage('Deploy') {
