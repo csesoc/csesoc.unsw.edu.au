@@ -149,10 +149,18 @@ func DeleteSponsor() echo.HandlerFunc {
 }
 
 // getSponsors - Retrieve a sponsor from the database
-func getSponsors(token string, tier string) ([]*Sponsor, error) {
+func getSponsors(token string, tierString string) ([]*Sponsor, error) {
 	var results []*Sponsor
 
-	curr, err := sponsorColl.Find(context.TODO(), bson.D{{}}, options.Find())
+	filter := bson.D{{}}
+	if tierString != "" {
+		tier, err := strconv.Atoi(tierString)
+		if err != nil {
+			return results, err
+		}
+		filter = bson.D{{Key: "tier", Value: tier}}
+	}
+	curr, err := sponsorColl.Find(context.TODO(), filter, options.Find())
 	if err == nil {
 		for curr.Next(context.TODO()) {
 
