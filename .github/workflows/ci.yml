@@ -20,6 +20,7 @@ jobs:
         run: |
           ls
           docker-compose up -d
+      - uses: matt-ball/newman-action@master
       - name: Testing API
         run: sh test_api.sh
         working-directory: ./tests/postman
