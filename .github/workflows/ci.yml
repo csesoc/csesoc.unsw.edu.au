@@ -15,11 +15,14 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Building docker containers usind docker-compose
-        run: docker-compose up -d
+      run: docker-compose up -d
   test:
     runs-on: macos-latest
+    needs: [ build ]
     steps:
+      - uses: actions/checkout@v2
       - name: Testing API
-        run: sh test_api.sh
-        working-directory: /tests/postman
+      run: sh test_api.sh
+      working-directory: /tests/postman/
