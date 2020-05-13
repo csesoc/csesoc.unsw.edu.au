@@ -20,8 +20,8 @@ jobs:
         run: |
           ls
           docker-compose up -d
-      - uses: matt-ball/newman-action@master
       - name: Testing API
-        with:
-          collection: ./tests/postman/sponsors.postman_collection.json
-          envionrment: ./tests/postman/sponsors.postman_collection.json
+        run: |
+          npm install newman
+          newman run *.json
+       working-directory: ./tests/postman
