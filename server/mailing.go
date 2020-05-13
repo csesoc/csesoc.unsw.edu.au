@@ -1,11 +1,13 @@
 package main
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
@@ -92,6 +94,33 @@ func InitMailingClient() error {
 		return fmt.Errorf("Unable to parse client secret file to config: %v", err)
 	}
 	client, err = getClient(config)
+
+	return nil
+}
+
+// SendEmail composes the email to send
+func SendEmail(name string, email string, message string, targetEmail string) error {
+	srv, err := gmail.New(client)
+	if err != nil {
+		return fmt.Errorf("Unable to retrieve Gmail client: %v", err)
+	}
+
+	var msg gmail.Message
+
+	temp := []byte("From: '" + name + "' " + "<" + email + ">" + "\r\n" +
+		"To: " + targetEmail + "\r\n" +
+		"Subject: Enquiry from CSESoc Website\r\n" +
+		"\r\n" + message)
+
+	msg.Raw = base64.StdEncoding.EncodeToString(temp)
+	msg.Raw = strings.Replace(msg.Raw, "/", "_", -1)
+	msg.Raw = strings.Replace(msg.Raw, "+", "-", -1)
+	msg.Raw = strings.Replace(msg.Raw, "=", "", -1)
+
+	_, err = srv.Users.Messages.Send(name, &msg).Do()
+	if err != nil {
+		return fmt.Errorf("Unable to send: %v", err)
+	}
 
 	return nil
 }

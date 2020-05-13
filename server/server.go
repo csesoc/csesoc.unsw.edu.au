@@ -158,12 +158,18 @@ func handleEnquiry(targetEmail string) echo.HandlerFunc {
 		// Email validation
 		emailRegex := regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
 
+		var status int
 		if emailRegex.MatchString(email) && len(name) > 0 && len(message) > 0 {
-			// TODO: Compose and send email
-			return c.JSON(http.StatusOK, H{})
+			err := SendEmail(name, email, message, targetEmail)
+			if err != nil {
+				status = http.StatusServiceUnavailable
+			} else {
+				status = http.StatusOK
+			}
 		} else {
-			return c.JSON(http.StatusBadRequest, H{})
+			status = http.StatusBadRequest
 		}
+		return c.JSON(status, H{})
 	}
 }
 
