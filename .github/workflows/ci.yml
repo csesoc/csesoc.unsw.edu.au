@@ -22,6 +22,6 @@ jobs:
           docker-compose up -d
       - name: Testing API
         run: |
-          npm install -g newman 
+          npm install newman 
           sh test_api.sh
         working-directory: ./tests/postman
