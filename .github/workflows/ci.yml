@@ -24,4 +24,4 @@ jobs:
         run: |
           npm install newman
           newman run *.json
-       working-directory: ./tests/postman
+        working-directory: ./tests/postman
