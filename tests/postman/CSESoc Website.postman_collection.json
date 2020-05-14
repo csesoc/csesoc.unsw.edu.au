@@ -1,0 +1,749 @@
+{
+	"info": {
+		"_postman_id": "8d35e257-53b3-4cb2-9a4d-286a971c5fbb",
+		"name": "CSESoc Website",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Enquiries",
+			"item": [
+				{
+					"name": "Handle successful request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "69e38e51-8064-4d0e-957d-012be57d2ebd",
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "John Smith",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "john.smith@company.com.au",
+									"type": "text"
+								},
+								{
+									"key": "message",
+									"value": "I'd like to start a partnership with CSESoc",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:1323/enquiry/sponsorship",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"enquiry",
+								"sponsorship"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Handle request with missing name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "501d473b-552f-4d49-996b-1982a7b6b7d6",
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "john.smith@company.com.au",
+									"type": "text"
+								},
+								{
+									"key": "message",
+									"value": "I'd like to start a partnership with CSESoc",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:1323/enquiry/sponsorship",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"enquiry",
+								"sponsorship"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Handle request with missing email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1ec3b380-1e08-44d6-9643-e0cc0f3c40de",
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "John Smith",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "message",
+									"value": "I'd like to start a partnership with CSESoc",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:1323/enquiry/sponsorship",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"enquiry",
+								"sponsorship"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Handle request with no message",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7ad129e9-fadc-470b-a44b-f1bc32e22bf0",
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "John Smith",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "john.smith@company.com.au",
+									"type": "text"
+								},
+								{
+									"key": "message",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:1323/enquiry/sponsorship",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"enquiry",
+								"sponsorship"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Sponsors",
+			"item": [
+				{
+					"name": "Get Sponsors - Filter Tiers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fe6b9e6e-54be-4a0f-bd80-6d204fde2afe",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response includes list of sponsors\", function() {",
+									"    pm.expect(pm.response.json()).to.include.keys(\"sponsors\")",
+									"})",
+									"",
+									"var list = pm.response.json().sponsors",
+									"",
+									"for (let i = 0; i < list.length; i += 1) {",
+									"    pm.expect(list[i]).to.include.keys(\"tier\")",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1323/sponsors/?token=&tier=100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"sponsors",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "",
+									"description": "Replace w/ proper aut"
+								},
+								{
+									"key": "tier",
+									"value": "100",
+									"description": "Filter on tiers"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sponsors - Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "695c1d6b-a7f3-4846-ae04-b6495787cbee",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response includes list of sponsors\", function() {",
+									"    pm.expect(pm.response.json()).to.include.keys(\"sponsors\")",
+									"})",
+									"",
+									"var list = pm.response.json().sponsors",
+									"",
+									"for (let i = 0; i < list.length; i += 1) {",
+									"    pm.expect(list[i]).to.include.keys(\"tier\")",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1323/sponsors/?token=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"sponsors",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "",
+									"description": "Replace w/ proper aut"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Sponsors Valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a1bfd014-a298-4ad9-889a-a2d21b301705",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1323/sponsor/?token=&expire=2020-11-01T22:08:41+00:00&name={{sponsor_name}}&logo=https://static.canva.com/static/images/canva_logo_100x100@2x.png&tier=100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"sponsor",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								},
+								{
+									"key": "expire",
+									"value": "2020-11-01T22:08:41+00:00"
+								},
+								{
+									"key": "name",
+									"value": "{{sponsor_name}}"
+								},
+								{
+									"key": "logo",
+									"value": "https://static.canva.com/static/images/canva_logo_100x100@2x.png"
+								},
+								{
+									"key": "tier",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Sponsors Invalid Duplicate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "564d18e1-a085-4f7b-bf0e-e9b00634be5e",
+								"exec": [
+									"pm.test(\"Unsucessful POST request because of duplicates\", function () {",
+									"    pm.response.to.have.status(409);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1323/sponsor/?token=&expire=2020-11-01T22:08:41+00:00&name={{sponsor_name}}&logo=https://static.canva.com/static/images/canva_logo_100x100@2x.png&tier=1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"sponsor",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								},
+								{
+									"key": "expire",
+									"value": "2020-11-01T22:08:41+00:00"
+								},
+								{
+									"key": "name",
+									"value": "{{sponsor_name}}"
+								},
+								{
+									"key": "logo",
+									"value": "https://static.canva.com/static/images/canva_logo_100x100@2x.png"
+								},
+								{
+									"key": "tier",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Sponsors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dae58385-8249-4c0f-8514-01ba4c1756fa",
+								"exec": [
+									"pm.test(\"Status code is 400 because of invalid response\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1323/sponsor/?token=&name=Example Company 1&logo=&tier=&expiry",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"sponsor",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "",
+									"description": "Replace w/ proper auth"
+								},
+								{
+									"key": "name",
+									"value": "Example Company 1",
+									"description": "Name of the sponsor"
+								},
+								{
+									"key": "logo",
+									"value": "",
+									"description": "Link to a fixed url of a logo for the sponsor (typically served statically by us)"
+								},
+								{
+									"key": "tier",
+									"value": "",
+									"description": "Sponsorship tier as a value - relates to promenience on page"
+								},
+								{
+									"key": "expiry",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sponsors Valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "53932f4f-1437-4c85-9cfe-b5888a6f4be3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1323/sponsors/?token=null",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"sponsors",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "null",
+									"description": "Replace w/ proper aut"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sponsor Valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3d9ab413-6932-404a-b284-66f4016d96f3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1323/sponsor/?name={{sponsor_name}}&token=null",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"sponsor",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "{{sponsor_name}}",
+									"description": "Sponsor ID in database"
+								},
+								{
+									"key": "token",
+									"value": "null",
+									"description": "Replace w/ proper auth"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sponsor Non Existent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "47f17447-103c-49ca-be45-55081751f829",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1323/sponsor/?token=null&name=Non existent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"sponsor",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "null",
+									"description": "Replace w/ proper auth"
+								},
+								{
+									"key": "name",
+									"value": "Non existent",
+									"description": "Sponsor ID in database"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete sponsor Valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eef6eb2d-a808-494c-80bf-d3856a414278",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1323/sponsor/?token=null&name={{sponsor_name}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"sponsor",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "null",
+									"description": "Replace w/ proper aut"
+								},
+								{
+									"key": "name",
+									"value": "{{sponsor_name}}",
+									"description": "Sponsor Name in database"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f2a9d0ef-7d45-47c3-8cc1-2ed63f643170",
+								"exec": [
+									"pm.test(\"Status code is 404 for deleted sponsor\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"JSON should be no such sponsor\", function() {",
+									"    var data = pm.response.json()",
+									"    pm.expect(data.response).to.eql(\"No such sponsor.\")",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1323/sponsor/?name={{sponsor_name}}&token=null",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"sponsor",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "{{sponsor_name}}",
+									"description": "Sponsor ID in database"
+								},
+								{
+									"key": "token",
+									"value": "null",
+									"description": "Replace w/ proper auth"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
