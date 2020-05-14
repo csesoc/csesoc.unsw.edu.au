@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -26,10 +25,11 @@ type Sponsor struct {
 var sponsorColl *mongo.Collection
 
 /* Setup */
-
 // SponsorSetup - Setup the collection to be used for sponsors
 func SponsorSetup(client *mongo.Client) {
 	sponsorColl = client.Database("csesoc").Collection("sponsors")
+
+	// Creating unique index for sponsor name
 	opt := options.Index()
 	opt.SetUnique(true)
 	index := mongo.IndexModel{
@@ -40,6 +40,7 @@ func SponsorSetup(client *mongo.Client) {
 		log.Fatal("Could not create index: ", err)
 	}
 
+	// Fetching sponsor list
 	resp, err := http.Get("https://gistcdn.githack.com/esyw/4e35cd5fe73fa024020e67855ca733fb/raw/e85c9ae58a6323a4214ffa4ad89b0a5ebe404e31/sponsors.json")
 	if err != nil {
 		log.Fatal("Could not get sponsor list: ", err)
@@ -51,7 +52,6 @@ func SponsorSetup(client *mongo.Client) {
 		log.Printf("Could not convert JSON response to Sponsors")
 	}
 
-	fmt.Println(sponsors)
 	for _, sponsor := range sponsors {
 		log.Println(sponsor)
 		if _, err := sponsorColl.InsertOne(context.TODO(), sponsor); err != nil {
@@ -79,12 +79,15 @@ func NewSponsor() echo.HandlerFunc {
 			Tier:   tier,
 			Expiry: expiryTime.Unix(),
 		}
+
+		// validate the struct with golang validator package
 		if err := c.Validate(sponsor); err != nil {
 			return c.JSON(http.StatusBadRequest, H{
 				"error": err,
 			})
 		}
 		// token := c.FormValue("token")
+
 		if _, err := sponsorColl.InsertOne(context.TODO(), sponsor); err != nil {
 			return c.JSON(http.StatusConflict, H{})
 		}
@@ -118,7 +121,7 @@ func GetSponsors() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		token := c.FormValue("token")
 		tier := c.FormValue("tier")
-		results, err := getSponsors(token, tier)
+		results, err := retrieveSponsors(token, tier)
 		if err != nil {
 			return c.JSON(http.StatusInternalServerError, H{})
 		}
@@ -148,8 +151,8 @@ func DeleteSponsor() echo.HandlerFunc {
 	}
 }
 
-// getSponsors - Retrieve a sponsor from the database
-func getSponsors(token string, tierString string) ([]*Sponsor, error) {
+// retrieveSponsors - Retrieve a sponsor from the database
+func retrieveSponsors(token string, tierString string) ([]*Sponsor, error) {
 	var results []*Sponsor
 
 	filter := bson.D{{}}
@@ -161,9 +164,9 @@ func getSponsors(token string, tierString string) ([]*Sponsor, error) {
 		filter = bson.D{{Key: "tier", Value: tier}}
 	}
 	curr, err := sponsorColl.Find(context.TODO(), filter, options.Find())
+	// decode result into sponsor array
 	if err == nil {
 		for curr.Next(context.TODO()) {
-
 			var elem Sponsor
 			curr.Decode(&elem)
 			results = append(results, &elem)
