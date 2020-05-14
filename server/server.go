@@ -66,10 +66,7 @@ type Claims struct {
 
 func main() {
 	// Initialse mailing client
-	err := InitMailingClient()
-	if err != nil {
-		log.Fatal(err)
-	}
+	InitMailingClient()
 
 	// Create new instance of echo
 	e := echo.New()

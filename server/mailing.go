@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -82,20 +83,18 @@ func saveToken(path string, token *oauth2.Token) error {
 }
 
 // InitMailingClient initialises a session with the Gmail API and stores it in a global variable
-func InitMailingClient() error {
+func InitMailingClient() {
 	b, err := ioutil.ReadFile("credentials.json")
 	if err != nil {
-		return fmt.Errorf("Unable to read client secret file: %v", err)
+		log.Fatalf("Unable to read client secret file: %v", err)
 	}
 
 	// If modifying these scopes, delete your previously saved token.json.
 	config, err := google.ConfigFromJSON(b, gmail.GmailReadonlyScope)
 	if err != nil {
-		return fmt.Errorf("Unable to parse client secret file to config: %v", err)
+		log.Fatalf("Unable to parse client secret file to config: %v", err)
 	}
 	client, err = getClient(config)
-
-	return nil
 }
 
 // SendEmail composes the email to send
