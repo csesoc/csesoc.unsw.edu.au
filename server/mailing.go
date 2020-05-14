@@ -2,10 +2,13 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"net/smtp"
+	"syscall"
 
 	"github.com/labstack/echo/v4"
+	"golang.org/x/crypto/ssh/terminal"
 )
 
 // Message - struct to contain email message data
@@ -23,7 +26,7 @@ var serverEmail string
 // InitSMTPClient initialises a session with the Gmail API and stores it in a global variable
 func InitSMTPClient() {
 	serverEmail = "csesoc@csesoc.org.au"
-	password := "gmail-app-password"
+	password := getPassword()
 	host = "smtp.gmail.com:587"
 	auth = smtp.PlainAuth("", serverEmail, password, "smtp.gmail.com")
 }
@@ -78,6 +81,17 @@ func composeEmail(message Message, targetEmail string) string {
 
 	// Return concatenated header and body
 	return headerMsg + "\r\n" + message.Body
+}
+
+func getPassword() string {
+	fmt.Print("Enter Password: ")
+
+	bytePassword, err := terminal.ReadPassword(int(syscall.Stdin))
+	if err == nil {
+		log.Fatal("Could not process password: ", err)
+	}
+
+	return string(bytePassword)
 }
 
 // Gmail API approach
