@@ -53,8 +53,19 @@ The server will start on `0.0.0.0:1323` (`[::]:1323`) which serves both the fron
 
 ## Running the tests
 
-As of this moment, Jenkins is being used for continuous integration and automated testing but tests have not been written and no pipelines started.
+The project uses Jenkins for continuous integration and automated testing.
 
+### Postman
+API testing is performed using the platform Postman. To run standalone tests, please check the [Postman website](https://www.postman.com/). Please make sure you have newman downloaded, using `npm install -g newman`.
+
+1. Before coding of the feature occurs, API testing must be done to ensure that integration is as smooth as possible.
+2. After you have written the tests and applied it to your code, export the Postman collection (a collection of related test) and place it in tests/postman. 
+3. Proceed to the Jenkinsfile and in the `Testing` stage add a sh command to run your Postman tests. To do so add the line
+```
+sh newman run /path/to/your/exported/json --suppress-exit-code-1
+```
+4. Open a pull request. This will automatically run previous test in the `dev` branch so that your code integrates and does not (hopefully) break existing code.
+5. Fix any errors that do occur and once done then merge. Your new api tests should now be run every time there is a PR into dev.
 
 ## Deployment
 

@@ -105,11 +105,11 @@ export default {
   },
   mounted() {
     fetch(
-      'https://gistcdn.githack.com/esyw/4e35cd5fe73fa024020e67855ca733fb/raw/e85c9ae58a6323a4214ffa4ad89b0a5ebe404e31/sponsors.json'
+      '/sponsors/?token=null'
     )
       .then(r => r.json())
       .then((responseJson) => {
-        this.sponsors = responseJson;
+        this.sponsors = responseJson.sponsors;
       });
   }
 };

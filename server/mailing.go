@@ -10,11 +10,19 @@ import (
 	"os"
 	"strings"
 
+	"github.com/labstack/echo/v4"
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/gmail/v1"
 )
+
+// Message - struct to contain email message data
+type Message struct {
+	Name  string `validate:"required"`
+	Email string `validate:"required,email"`
+	Body  string `validate:"required"`
+}
 
 // Current client session
 var client *http.Client
@@ -122,4 +130,24 @@ func SendEmail(name string, email string, message string, targetEmail string) er
 	}
 
 	return nil
+}
+
+// HandleEnquiry by forwarding emails to relevant inboxes
+func HandleEnquiry(targetEmail string) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		message := Message{
+			Name:  c.FormValue("name"),
+			Email: c.FormValue("email"),
+			Body:  c.FormValue("body"),
+		}
+
+		if err := c.Validate(message); err != nil {
+			return c.JSON(http.StatusBadRequest, H{
+				"error": err,
+			})
+		}
+
+		// TODO: Compose and send email
+		return c.JSON(http.StatusOK, H{})
+	}
 }

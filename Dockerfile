@@ -7,24 +7,23 @@ WORKDIR /~/app
 # Copy files into container
 COPY . /~/app
 
-# Install yarn and build dependencies
-RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+# Install yarn build dependencies
 RUN yarn
 RUN yarn build
 
-# # Run python and run server
-# EXPOSE 8080
-# CMD [ "python3", "-m", "http.server", "8080"]
+# Multi stage build to enable code for static files to be served
+FROM golang:1.13-buster AS server
 
-FROM golang:1.13-buster
-
+# Copy the files from stage builder into this stage
 COPY --from=builder /~ /~
 
+# Set the working directory
 WORKDIR /~/app/server/
 
+# Build dependencies 
 RUN go mod download
 
-# # Build and run the server
+# Build and run the server
 RUN go build -o  main .
 EXPOSE 1323
 CMD [ "./main" ]
