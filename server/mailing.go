@@ -1,20 +1,11 @@
 package main
 
 import (
-	"encoding/base64"
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"log"
 	"net/http"
-	"os"
-	"strings"
+	"net/smtp"
 
 	"github.com/labstack/echo/v4"
-	"golang.org/x/net/context"
-	"golang.org/x/oauth2"
-	"golang.org/x/oauth2/google"
-	"google.golang.org/api/gmail/v1"
 )
 
 // Message - struct to contain email message data
@@ -24,6 +15,64 @@ type Message struct {
 	Body  string `validate:"required"`
 }
 
+// SMTP session variables
+var host string
+var auth smtp.Auth
+var serverEmail string
+
+// InitSMTPClient initialises a session with the Gmail API and stores it in a global variable
+func InitSMTPClient() {
+	serverEmail = "csesoc@csesoc.org.au"
+	password := "gmail-app-password"
+	host = "smtp.gmail.com:587"
+	auth = smtp.PlainAuth("", serverEmail, password, "smtp.gmail.com")
+}
+
+// HandleEnquiry by forwarding emails to relevant inboxes
+func HandleEnquiry(targetEmail string) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		// Extract fields from form
+		message := Message{
+			Name:  c.FormValue("name"),
+			Email: c.FormValue("email"),
+			Body:  c.FormValue("body"),
+		}
+
+		// Validate struct
+		if err := c.Validate(message); err != nil {
+			return c.JSON(http.StatusBadRequest, H{
+				"error": err,
+			})
+		}
+
+		// Compose header
+		header := make(map[string]string)
+		header["Resent-From"] = message.Email
+		header["From"] = serverEmail
+		header["To"] = targetEmail
+		header["Subject"] = fmt.Sprintf("Enquiry from '%s' <%s>", message.Name, message.Email)
+		headerMsg := ""
+		for key, value := range header {
+			headerMsg += fmt.Sprintf("%s: %s\r\n", key, value)
+		}
+
+		// Format message and targetEmail
+		to := []string{targetEmail}
+		finalMsg := []byte(headerMsg + "\r\n" + message.Body)
+
+		// Send mail to address
+		if err := smtp.SendMail(host, auth, serverEmail, to, finalMsg); err != nil {
+			return c.JSON(http.StatusServiceUnavailable, H{
+				"error": err,
+			})
+		}
+
+		return c.JSON(http.StatusOK, H{})
+	}
+}
+
+// Gmail API approach
+/*
 // Current client session
 var client *http.Client
 
@@ -156,3 +205,4 @@ func HandleEnquiry(targetEmail string) echo.HandlerFunc {
 		return c.JSON(http.StatusOK, H{})
 	}
 }
+*/
