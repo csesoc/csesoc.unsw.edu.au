@@ -45,23 +45,12 @@ func HandleEnquiry(targetEmail string) echo.HandlerFunc {
 			})
 		}
 
-		// Compose header
-		header := make(map[string]string)
-		header["Resent-From"] = message.Email
-		header["From"] = serverEmail
-		header["To"] = targetEmail
-		header["Subject"] = fmt.Sprintf("Enquiry from '%s' <%s>", message.Name, message.Email)
-		headerMsg := ""
-		for key, value := range header {
-			headerMsg += fmt.Sprintf("%s: %s\r\n", key, value)
-		}
-
 		// Format message and targetEmail
 		to := []string{targetEmail}
-		finalMsg := []byte(headerMsg + "\r\n" + message.Body)
+		msg := []byte(composeEmail(message, targetEmail))
 
 		// Send mail to address
-		if err := smtp.SendMail(host, auth, serverEmail, to, finalMsg); err != nil {
+		if err := smtp.SendMail(host, auth, serverEmail, to, msg); err != nil {
 			return c.JSON(http.StatusServiceUnavailable, H{
 				"error": err,
 			})
@@ -69,6 +58,26 @@ func HandleEnquiry(targetEmail string) echo.HandlerFunc {
 
 		return c.JSON(http.StatusOK, H{})
 	}
+}
+
+// Format Message to be of RFC 822-style
+func composeEmail(message Message, targetEmail string) string {
+	// Define header fields
+	header := make(map[string]string)
+	header["Resent-From"] = message.Email
+	header["Reply-To"] = message.Email
+	header["From"] = serverEmail
+	header["To"] = targetEmail
+	header["Subject"] = fmt.Sprintf("Enquiry from '%s' <%s>", message.Name, message.Email)
+
+	// Stringify header
+	headerMsg := ""
+	for key, value := range header {
+		headerMsg += fmt.Sprintf("%s: %s\r\n", key, value)
+	}
+
+	// Return concatenated header and body
+	return headerMsg + "\r\n" + message.Body
 }
 
 // Gmail API approach
