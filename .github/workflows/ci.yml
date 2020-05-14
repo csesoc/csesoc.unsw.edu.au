@@ -1,0 +1,22 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master, dev, feat/*, fix/*, hotfix/* ]
+  pull_request:
+    branches: [ master, dev ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Building docker containers usind docker-compose
+        run: |
+          ls
+          docker-compose up -d
