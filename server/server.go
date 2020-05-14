@@ -8,70 +8,76 @@ import (
 	"strconv"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 
+	"github.com/go-playground/validator/v10"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// H - interface for sending JSON
-type H map[string]interface{}
+type (
+	// H - interface for sending JSON
+	H map[string]interface{}
 
-// Post - struct to contain post data
-type Post struct {
-	PostID           int
-	PostTitle        string
-	PostSubtitle     string
-	PostType         string
-	PostCategory     int
-	CreatedOn        int64
-	LastEditedOn     int64
-	PostContent      string
-	PostLinkGithub   string
-	PostLinkFacebook string
-	ShowInMenu       bool
-}
+	// CustomValidator - struct for simple validation
+	CustomValidator struct {
+		validator *validator.Validate
+	}
 
-// Category - struct to contain category data
-type Category struct {
-	CategoryID   int
-	CategoryName string
-	Index        int
-}
+	// Post - struct to contain post data
+	Post struct {
+		PostID           int
+		PostTitle        string
+		PostSubtitle     string
+		PostType         string
+		PostCategory     int
+		CreatedOn        int64
+		LastEditedOn     int64
+		PostContent      string
+		PostLinkGithub   string
+		PostLinkFacebook string
+		ShowInMenu       bool
+	}
 
-// User - struct to contain user data
-type User struct {
-	UserID    string //sha256 the zid
-	UserToken string
-	Role      string
-}
+	// Category - struct to contain category data
+	Category struct {
+		CategoryID   int
+		CategoryName string
+		Index        int
+	}
 
-// Sponsor - struct to contain sponsor data
-type Sponsor struct {
-	SponsorID   uuid.UUID
-	SponsorName string
-	SponsorLogo string
-	SponsorTier string
-	Expiry      int64
-}
+	// User - struct to contain user data
+	User struct {
+		UserID    string //sha256 the zid
+		UserToken string
+		Role      string
+	}
 
-// Claims - struct to store jwt data
-type Claims struct {
-	HashedZID   [32]byte
-	FirstName   string
-	Permissions string
-	jwt.StandardClaims
+	// Claims - struct to store jwt data
+	Claims struct {
+		HashedZID   [32]byte
+		FirstName   string
+		Permissions string
+		jwt.StandardClaims
+	}
+)
+
+// Validate - custom validator for user input.
+func (cv *CustomValidator) Validate(i interface{}) error {
+	return cv.validator.Struct(i)
 }
 
 func main() {
 	// Create new instance of echo
 	e := echo.New()
+	// Validator for structs used
+	e.Validator = &CustomValidator{validator: validator.New()}
 
 	servePages(e)
 	serveAPI(e)
 
 	// Start echo instance on 1323 port
+	e.Debug = true
 	e.Logger.Fatal(e.Start(":1323"))
 }
 
@@ -111,7 +117,7 @@ func serveAPI(e *echo.Echo) {
 	// Creating collections
 	postsCollection := client.Database("csesoc").Collection("posts")
 	catCollection := client.Database("csesoc").Collection("categories")
-	sponsorCollection := client.Database("csesoc").Collection("sponsors")
+	SponsorSetup(client)
 	// userCollection := client.Database("csesoc").Collection("users")
 
 	// Add more API routes here
@@ -134,8 +140,10 @@ func serveAPI(e *echo.Echo) {
 	e.DELETE("/category/", deleteCats(catCollection))
 
 	// Routes for sponsors
-	e.POST("/sponsor/", newSponsors(sponsorCollection))
-	e.DELETE("/sponsor/", deleteSponsors(sponsorCollection))
+	e.GET("/sponsor/", GetSponsor())
+	e.POST("/sponsor/", NewSponsor())
+	e.DELETE("/sponsor/", DeleteSponsor())
+	e.GET("/sponsors/", GetSponsors())
 
 	// Routes for enquiries
 	e.POST("/enquiry/sponsorship", handleEnquiry("sponsorship@csesoc.org.au"))
@@ -159,6 +167,7 @@ func handleEnquiry(targetEmail string) echo.HandlerFunc {
 			return c.JSON(http.StatusBadRequest, H{})
 		}
 	}
+
 }
 
 // func login(collection *mongo.Collection) echo.HandlerFunc {
@@ -271,27 +280,6 @@ func deleteCats(collection *mongo.Collection) echo.HandlerFunc {
 		token := c.FormValue("token")
 		id, _ := strconv.Atoi(c.FormValue("id"))
 		DeleteCats(collection, id, token)
-		return c.JSON(http.StatusOK, H{})
-	}
-}
-
-func newSponsors(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		token := c.FormValue("token")
-		expiryStr := c.FormValue("expiry")
-		name := c.FormValue("name")
-		logo := c.FormValue("logo")
-		tier := c.FormValue("tier")
-		NewSponsors(collection, expiryStr, name, logo, tier, token)
-		return c.JSON(http.StatusOK, H{})
-	}
-}
-
-func deleteSponsors(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		token := c.FormValue("token")
-		id := c.FormValue("id")
-		DeleteSponsors(collection, id, token)
 		return c.JSON(http.StatusOK, H{})
 	}
 }

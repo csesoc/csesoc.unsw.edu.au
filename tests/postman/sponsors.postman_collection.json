@@ -1,0 +1,521 @@
+{
+	"info": {
+		"_postman_id": "0115635e-6ccb-4946-bd59-23d48896bc80",
+		"name": "sponsors",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Sponsors - Check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5a8ecdd3-46dc-4a1f-9418-978268b3c9f4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response includes list of sponsors\", function() {",
+							"    pm.expect(pm.response.json()).to.include.keys(\"sponsors\")",
+							"})",
+							"",
+							"var list = pm.response.json().sponsors",
+							"",
+							"for (let i = 0; i < list.length; i += 1) {",
+							"    pm.expect(list[i]).to.include.keys(\"tier\")",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1323/sponsors/?token=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"sponsors",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "",
+							"description": "Replace w/ proper aut"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sponsors - Filter Tiers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9912e795-6858-47e9-a11c-22fc37de0d6b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response includes list of sponsors\", function() {",
+							"    pm.expect(pm.response.json()).to.include.keys(\"sponsors\")",
+							"})",
+							"",
+							"var list = pm.response.json().sponsors",
+							"",
+							"for (let i = 0; i < list.length; i += 1) {",
+							"    pm.expect(list[i]).to.include.keys(\"tier\")",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1323/sponsors/?token=&tier=100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"sponsors",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "",
+							"description": "Replace w/ proper aut"
+						},
+						{
+							"key": "tier",
+							"value": "100",
+							"description": "Filter on tiers"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Sponsors Valid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e52d2a17-e8b6-4304-9707-75258c0b657b",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1323/sponsor/?token=&expire=2020-11-01T22:08:41+00:00&name={{sponsor_name}}&logo=https://static.canva.com/static/images/canva_logo_100x100@2x.png&tier=100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"sponsor",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": ""
+						},
+						{
+							"key": "expire",
+							"value": "2020-11-01T22:08:41+00:00"
+						},
+						{
+							"key": "name",
+							"value": "{{sponsor_name}}"
+						},
+						{
+							"key": "logo",
+							"value": "https://static.canva.com/static/images/canva_logo_100x100@2x.png"
+						},
+						{
+							"key": "tier",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Sponsors Invalid Duplicate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c591b501-3b78-46e1-92fd-05ff6ee7414a",
+						"exec": [
+							"pm.test(\"Unsucessful POST request because of duplicates\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1323/sponsor/?token=&expire=2020-11-01T22:08:41+00:00&name={{sponsor_name}}&logo=https://static.canva.com/static/images/canva_logo_100x100@2x.png&tier=1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"sponsor",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": ""
+						},
+						{
+							"key": "expire",
+							"value": "2020-11-01T22:08:41+00:00"
+						},
+						{
+							"key": "name",
+							"value": "{{sponsor_name}}"
+						},
+						{
+							"key": "logo",
+							"value": "https://static.canva.com/static/images/canva_logo_100x100@2x.png"
+						},
+						{
+							"key": "tier",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Sponsors",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4477ae17-c453-4b6f-9501-bc3dae76e672",
+						"exec": [
+							"pm.test(\"Status code is 400 because of invalid response\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1323/sponsor/?token=&name=Example Company 1&logo=&tier=&expiry",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"sponsor",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "",
+							"description": "Replace w/ proper auth"
+						},
+						{
+							"key": "name",
+							"value": "Example Company 1",
+							"description": "Name of the sponsor"
+						},
+						{
+							"key": "logo",
+							"value": "",
+							"description": "Link to a fixed url of a logo for the sponsor (typically served statically by us)"
+						},
+						{
+							"key": "tier",
+							"value": "",
+							"description": "Sponsorship tier as a value - relates to promenience on page"
+						},
+						{
+							"key": "expiry",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sponsors Valid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "89545507-2989-4bb5-9487-72f83333002f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1323/sponsors/?token=null",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"sponsors",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "null",
+							"description": "Replace w/ proper aut"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sponsor Valid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "016c44ef-e4fc-456d-beed-eab9fbc1edc3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1323/sponsor/?name={{sponsor_name}}&token=null",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"sponsor",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{sponsor_name}}",
+							"description": "Sponsor ID in database"
+						},
+						{
+							"key": "token",
+							"value": "null",
+							"description": "Replace w/ proper auth"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sponsor Non Existent",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed26e16c-51f8-4932-bafb-b2c238fee72a",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1323/sponsor/?token=null&name=Non existent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"sponsor",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "null",
+							"description": "Replace w/ proper auth"
+						},
+						{
+							"key": "name",
+							"value": "Non existent",
+							"description": "Sponsor ID in database"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete sponsor Valid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d27d7139-109f-4a4b-ae3f-e931b2aef37d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1323/sponsor/?token=null&name={{sponsor_name}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"sponsor",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "null",
+							"description": "Replace w/ proper aut"
+						},
+						{
+							"key": "name",
+							"value": "{{sponsor_name}}",
+							"description": "Sponsor Name in database"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "09c9359b-2581-4477-91c4-bb33be98ae6c",
+						"exec": [
+							"pm.test(\"Status code is 404 for deleted sponsor\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"JSON should be no such sponsor\", function() {",
+							"    var data = pm.response.json()",
+							"    pm.expect(data.response).to.eql(\"No such sponsor.\")",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1323/sponsor/?name={{sponsor_name}}&token=null",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"sponsor",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{sponsor_name}}",
+							"description": "Sponsor ID in database"
+						},
+						{
+							"key": "token",
+							"value": "null",
+							"description": "Replace w/ proper auth"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
