@@ -55,6 +55,9 @@ The server will start on `0.0.0.0:1323` (`[::]:1323`) which serves both the fron
 
 The project uses Github Actions for continuous integration and automated testing.
 
+### Input Validation
+To validate test, we are utilising a feature of the echo web framework that allows us to couple a validator package to validate structs that contain user inputs from requests. The package is golang's [package validator](https://pkg.go.dev/gopkg.in/go-playground/validator.v9?tab=doc#pkg-index). Everytime validation needs to occur for inserting into a database please use `echo-context.Validator(&struct)` to validate and handle any errors accordingly.
+
 ### Postman
 API testing is performed using the platform Postman. To run standalone tests, please check the [Postman website](https://www.postman.com/). Please make sure you have newman downloaded, using `npm install -g newman`.
 
