@@ -20,8 +20,3 @@ jobs:
         run: |
           ls
           docker-compose up -d
-      - name: Testing API
-        run: |
-          npm install newman
-          newman run *.json
-       working-directory: ./tests/postman
