@@ -90,6 +90,33 @@ func saveToken(path string, token *oauth2.Token) error {
 	return nil
 }
 
+// Composes the email to send
+func sendEmail(message Message, targetEmail string) error {
+	srv, err := gmail.New(client)
+	if err != nil {
+		return fmt.Errorf("Unable to retrieve Gmail client: %v", err)
+	}
+
+	var msg gmail.Message
+
+	temp := []byte("From: '" + message.Name + "' " + "<" + message.Email + ">" + "\r\n" +
+		"To: " + targetEmail + "\r\n" +
+		"Subject: Enquiry from CSESoc Website\r\n" +
+		"\r\n" + message.Body)
+
+	msg.Raw = base64.StdEncoding.EncodeToString(temp)
+	msg.Raw = strings.Replace(msg.Raw, "/", "_", -1)
+	msg.Raw = strings.Replace(msg.Raw, "+", "-", -1)
+	msg.Raw = strings.Replace(msg.Raw, "=", "", -1)
+
+	_, err = srv.Users.Messages.Send(message.Name, &msg).Do()
+	if err != nil {
+		return fmt.Errorf("Unable to send: %v", err)
+	}
+
+	return nil
+}
+
 // InitMailingClient initialises a session with the Gmail API and stores it in a global variable
 func InitMailingClient() {
 	b, err := ioutil.ReadFile("credentials.json")
@@ -103,33 +130,6 @@ func InitMailingClient() {
 		log.Fatalf("Unable to parse client secret file to config: %v", err)
 	}
 	client, err = getClient(config)
-}
-
-// SendEmail composes the email to send
-func SendEmail(name string, email string, message string, targetEmail string) error {
-	srv, err := gmail.New(client)
-	if err != nil {
-		return fmt.Errorf("Unable to retrieve Gmail client: %v", err)
-	}
-
-	var msg gmail.Message
-
-	temp := []byte("From: '" + name + "' " + "<" + email + ">" + "\r\n" +
-		"To: " + targetEmail + "\r\n" +
-		"Subject: Enquiry from CSESoc Website\r\n" +
-		"\r\n" + message)
-
-	msg.Raw = base64.StdEncoding.EncodeToString(temp)
-	msg.Raw = strings.Replace(msg.Raw, "/", "_", -1)
-	msg.Raw = strings.Replace(msg.Raw, "+", "-", -1)
-	msg.Raw = strings.Replace(msg.Raw, "=", "", -1)
-
-	_, err = srv.Users.Messages.Send(name, &msg).Do()
-	if err != nil {
-		return fmt.Errorf("Unable to send: %v", err)
-	}
-
-	return nil
 }
 
 // HandleEnquiry by forwarding emails to relevant inboxes
@@ -147,7 +147,12 @@ func HandleEnquiry(targetEmail string) echo.HandlerFunc {
 			})
 		}
 
-		// TODO: Compose and send email
+		if err := sendEmail(message, targetEmail); err != nil {
+			return c.JSON(http.StatusServiceUnavailable, H{
+				"error": err,
+			})
+		}
+
 		return c.JSON(http.StatusOK, H{})
 	}
 }
