@@ -69,7 +69,7 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 func main() {
 	// Create new instance of echo
 	e := echo.New()
-	// Validator for structs used 
+	// Validator for structs used
 	e.Validator = &CustomValidator{validator: validator.New()}
 
 	servePages(e)
@@ -143,6 +143,10 @@ func serveAPI(e *echo.Echo) {
 	e.POST("/sponsor/", NewSponsor())
 	e.DELETE("/sponsor/", DeleteSponsor())
 	e.GET("/sponsors/", GetSponsors())
+
+	// Routes for enquiries
+	e.POST("/enquiry/sponsorship", HandleEnquiry("sponsorship@csesoc.org.au"))
+	e.POST("/enquiry/info", HandleEnquiry("info@csesoc.org.au"))
 }
 
 // func login(collection *mongo.Collection) echo.HandlerFunc {
