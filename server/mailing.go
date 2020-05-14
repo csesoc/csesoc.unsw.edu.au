@@ -87,7 +87,7 @@ func getPassword() string {
 	fmt.Print("Enter Password: ")
 
 	bytePassword, err := terminal.ReadPassword(int(syscall.Stdin))
-	if err == nil {
+	if err != nil {
 		log.Fatal("Could not process password: ", err)
 	}
 
