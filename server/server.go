@@ -4,7 +4,6 @@ import (
 	"context"
 	"log"
 	"net/http"
-	"regexp"
 	"strconv"
 
 	"github.com/dgrijalva/jwt-go"
