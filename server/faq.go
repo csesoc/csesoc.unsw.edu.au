@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -20,7 +20,14 @@ type Faq struct {
 // GetFaq - Returns all faq questions and answers pairs
 func GetFaq() echo.HandlerFunc {
 	return func(c echo.Context) error {
-		result := retriveFaqJSON()
+		result, err := retriveFaqJSON()
+
+		if err != nil {
+			return c.JSON(http.StatusServiceUnavailable, H{
+				"error": err,
+			})
+		}
+
 		return c.JSON(http.StatusOK, H{
 			"faq": result,
 		})
@@ -28,14 +35,12 @@ func GetFaq() echo.HandlerFunc {
 }
 
 // retriveFaqJSON - returns a list of questions and answers from a json file in /static
-func retriveFaqJSON() []Faq {
+func retriveFaqJSON() ([]Faq, error) {
 	abspath, _ := filepath.Abs("static/faq.json")
 	jsonFile, err := os.Open(abspath)
 
-	// TODO: Return http status instead of fatal
-	// look at mailing.go SendEmial
 	if err != nil {
-		log.Fatal(err)
+		return nil, fmt.Errorf("Cound not open file faq.json: %v", err)
 	}
 
 	byteValue, _ := ioutil.ReadAll(jsonFile)
@@ -43,7 +48,7 @@ func retriveFaqJSON() []Faq {
 	json.Unmarshal(byteValue, &faqs)
 
 	defer jsonFile.Close()
-	return faqs
+	return faqs, nil
 }
 
 /*
