@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8d35e257-53b3-4cb2-9a4d-286a971c5fbb",
+		"_postman_id": "b1c000f2-fdb7-421b-a413-36577266e1bb",
 		"name": "CSESoc Website",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "69e38e51-8064-4d0e-957d-012be57d2ebd",
+								"id": "377614eb-de6e-4f14-a914-608b735fb6aa",
 								"exec": [
 									"pm.test(\"Status test\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -68,7 +68,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "501d473b-552f-4d49-996b-1982a7b6b7d6",
+								"id": "794dd2ef-e028-4738-8da0-a7e39dd371f8",
 								"exec": [
 									"pm.test(\"Status test\", function () {\r",
 									"    pm.response.to.have.status(400);\r",
@@ -122,7 +122,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ec3b380-1e08-44d6-9643-e0cc0f3c40de",
+								"id": "2ac3bcbb-002b-4bf8-8974-99a7e9cb356b",
 								"exec": [
 									"pm.test(\"Status test\", function () {\r",
 									"    pm.response.to.have.status(400);\r",
@@ -176,7 +176,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "7ad129e9-fadc-470b-a44b-f1bc32e22bf0",
+								"id": "61b15b99-5af3-4487-a199-aadb631d79c7",
 								"exec": [
 									"pm.test(\"Status test\", function () {\r",
 									"    pm.response.to.have.status(400);\r",
@@ -223,6 +223,222 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Feedback successful",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a3791105-418e-4598-8941-3b55fc573a2b",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "John Smith",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "john.smith@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "feedback",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:1323/enquiry/feedback",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"enquiry",
+								"feedback"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Feedback missing name, missing email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d49eb063-6976-42e4-b432-e6cba5bcedc7",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "feedback",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:1323/enquiry/feedback",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"enquiry",
+								"feedback"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Feedback invalid email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "60b1ce8c-e9d6-4c85-8de3-c7ffdb117b28",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "abcde",
+									"type": "text"
+								},
+								{
+									"key": "feedback",
+									"value": "feedback",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:1323/enquiry/feedback",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"enquiry",
+								"feedback"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Feedback missing body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ebe90f68-e477-4e5a-8972-cc75bbafe907",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:1323/enquiry/feedback",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"enquiry",
+								"feedback"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -236,7 +452,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "fe6b9e6e-54be-4a0f-bd80-6d204fde2afe",
+								"id": "9fee9852-01ad-4afb-9dbf-874df6506e9d",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -292,7 +508,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "695c1d6b-a7f3-4846-ae04-b6495787cbee",
+								"id": "d30fcda2-2003-438f-8247-46c05acf0730",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -343,7 +559,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a1bfd014-a298-4ad9-889a-a2d21b301705",
+								"id": "bf3e64ba-6757-4b69-890a-5cef25aa16b0",
 								"exec": [
 									"pm.test(\"Successful POST request\", function () {",
 									"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
@@ -399,7 +615,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "564d18e1-a085-4f7b-bf0e-e9b00634be5e",
+								"id": "8d451bd1-6731-4648-b647-67c49ff04085",
 								"exec": [
 									"pm.test(\"Unsucessful POST request because of duplicates\", function () {",
 									"    pm.response.to.have.status(409);",
@@ -457,7 +673,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "dae58385-8249-4c0f-8514-01ba4c1756fa",
+								"id": "67f1e6a5-511d-488f-b817-4e511e6db5ea",
 								"exec": [
 									"pm.test(\"Status code is 400 because of invalid response\", function () {",
 									"    pm.response.to.have.status(400);",
@@ -517,7 +733,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "53932f4f-1437-4c85-9cfe-b5888a6f4be3",
+								"id": "9d25bf9f-8f90-4c87-8d6d-683f727f0ff7",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -558,7 +774,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3d9ab413-6932-404a-b284-66f4016d96f3",
+								"id": "5cf7515b-3127-4690-a3a8-030b6a4a2710",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -604,7 +820,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "47f17447-103c-49ca-be45-55081751f829",
+								"id": "ff566c92-89d9-4590-9457-d21c1f27af1b",
 								"exec": [
 									"pm.test(\"Status code is 404\", function () {",
 									"    pm.response.to.have.status(404);",
@@ -650,7 +866,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "eef6eb2d-a808-494c-80bf-d3856a414278",
+								"id": "a078f2c3-3db6-4c6f-a000-8e5e1ead1111",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -696,7 +912,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f2a9d0ef-7d45-47c3-8cc1-2ed63f643170",
+								"id": "0030c6fe-e67c-4785-9fc7-7dac4b26e0c1",
 								"exec": [
 									"pm.test(\"Status code is 404 for deleted sponsor\", function () {",
 									"    pm.response.to.have.status(404);",
