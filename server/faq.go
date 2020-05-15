@@ -12,7 +12,7 @@ import (
 )
 
 // Faq - struct to store faq pairs
-type faq struct {
+type Faq struct {
 	Question string `json:"Question"`
 	Answer   string `json:"Answer"`
 }
@@ -20,24 +20,26 @@ type faq struct {
 // GetFaq - Returns all faq questions and answers pairs
 func GetFaq() echo.HandlerFunc {
 	return func(c echo.Context) error {
-		result := getFaq()
+		result := retriveFaqJSON()
 		return c.JSON(http.StatusOK, H{
 			"faq": result,
 		})
 	}
 }
 
-// GetFaq - returns a list of questions and answers from a json file in /static
-func getFaq() []faq {
+// retriveFaqJSON - returns a list of questions and answers from a json file in /static
+func retriveFaqJSON() []Faq {
 	abspath, _ := filepath.Abs("static/faq.json")
 	jsonFile, err := os.Open(abspath)
 
+	// TODO: Return http status instead of fatal
+	// look at mailing.go SendEmial
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	byteValue, _ := ioutil.ReadAll(jsonFile)
-	var faqs []faq
+	var faqs []Faq
 	json.Unmarshal(byteValue, &faqs)
 
 	defer jsonFile.Close()
