@@ -147,6 +147,7 @@ func serveAPI(e *echo.Echo) {
 	// Routes for enquiries
 	e.POST("/enquiry/sponsorship", HandleEnquiry("sponsorship@csesoc.org.au"))
 	e.POST("/enquiry/info", HandleEnquiry("info@csesoc.org.au"))
+	e.POST("/enquiry/feedback", FeedbackEnquiry("info@csesoc.org.au"))
 }
 
 // func login(collection *mongo.Collection) echo.HandlerFunc {
