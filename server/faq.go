@@ -13,8 +13,8 @@ import (
 
 // Faq - struct to store faq pairs
 type Faq struct {
-	Question string `json:"Question"`
-	Answer   string `json:"Answer"`
+	Question string `json:"question"`
+	Answer   string `json:"answer"`
 }
 
 // GetFaq - Returns all faq questions and answers pairs
