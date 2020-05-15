@@ -1,10 +1,10 @@
 [
     {
-        "Question": "Question 1",
-        "Answer": "Answer 1"
+        "question": "Question 1",
+        "answer": "Answer 1"
     },
     {
-        "Question": "Question 2",
-        "Answer": "Answer 2"
+        "question": "Question 2",
+        "answer": "Answer 2"
     }
 ]
