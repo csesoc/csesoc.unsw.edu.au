@@ -53,8 +53,20 @@ The server will start on `0.0.0.0:1323` (`[::]:1323`) which serves both the fron
 
 ## Running the tests
 
-As of this moment, Jenkins is being used for continuous integration and automated testing but tests have not been written and no pipelines started.
+The project uses Github Actions for continuous integration and automated testing.
 
+### Input Validation
+To validate test, we are utilising a feature of the echo web framework that allows us to couple a validator package to validate structs that contain user inputs from requests. The package is golang's [package validator](https://pkg.go.dev/gopkg.in/go-playground/validator.v9?tab=doc#pkg-index). Everytime validation needs to occur for inserting into a database please use `echo-context.Validator(&struct)` to validate and handle any errors accordingly.
+
+### Postman
+API testing is performed using the platform Postman. To run standalone tests, please check the [Postman website](https://www.postman.com/). Please make sure you have newman downloaded, using `npm install -g newman`.
+
+1. Before coding of the feature occurs, API testing must be done to ensure that integration is as smooth as possible.
+2. After you have written the tests and applied it to your code, export the Postman collection (a collection of related test) and place it in tests/postman in the collective postman file. 
+3. Open a pull request. This will automatically run previous test in the `dev` branch so that your code integrates and does not (hopefully) break existing code.
+4. Fix any errors that do occur and once done then merge. Your new api tests should now be run every time there is a PR into dev.
+
+As of this moment, a fix is taking place to get the github actions to run newman.
 
 ## Deployment
 
@@ -68,7 +80,7 @@ As of this moment, Jenkins is being used for continuous integration and automate
 
 ## System Architecture
 
-To be updated.
+For more on the system's architecture, please head to the [confluence page](https://compclub.atlassian.net/wiki/spaces/Projects/pages/845414415/Architectural+Guide)
 
 ## Contributing
 
