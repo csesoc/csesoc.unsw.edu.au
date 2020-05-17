@@ -127,29 +127,29 @@ func serveAPI(e *echo.Echo) {
 	// e.POST("/login/", login(userCollection))
 
 	// Routes for posts
-	e.GET("/posts/", getPosts(postsCollection))
-	e.POST("/post/", newPosts(postsCollection))
-	e.PUT("/post/", updatePosts(postsCollection))
-	e.DELETE("/post/", deletePosts(postsCollection))
+	e.GET("/api/posts/", getPosts(postsCollection))
+	e.POST("/api/post/", newPosts(postsCollection))
+	e.PUT("/api/post/", updatePosts(postsCollection))
+	e.DELETE("/api/post/", deletePosts(postsCollection))
 
 	// Routes for categories
-	e.GET("/category/:id/", getCats(catCollection))
-	e.POST("/category/", newCats(catCollection))
-	e.PATCH("/category/", patchCats(catCollection))
-	e.DELETE("/category/", deleteCats(catCollection))
+	e.GET("/api/category/:id/", getCats(catCollection))
+	e.POST("/api/category/", newCats(catCollection))
+	e.PATCH("/api/category/", patchCats(catCollection))
+	e.DELETE("/api/category/", deleteCats(catCollection))
 
 	// Routes for sponsors
-	e.GET("/sponsor/", GetSponsor())
-	e.POST("/sponsor/", NewSponsor())
-	e.DELETE("/sponsor/", DeleteSponsor())
-	e.GET("/sponsors/", GetSponsors())
+	e.GET("/api/sponsor/", GetSponsor())
+	e.POST("/api/sponsor/", NewSponsor())
+	e.DELETE("/api/sponsor/", DeleteSponsor())
+	e.GET("/api/sponsors/", GetSponsors())
 
 	// Routes for enquiries
-	e.POST("/enquiry/sponsorship", HandleEnquiry("sponsorship@csesoc.org.au"))
-	e.POST("/enquiry/info", HandleEnquiry("info@csesoc.org.au"))
+	e.POST("/api/enquiry/sponsorship", HandleEnquiry("sponsorship@csesoc.org.au"))
+	e.POST("/api/enquiry/info", HandleEnquiry("info@csesoc.org.au"))
   
   // Routes for faq
-	e.GET("/faq/", GetFaq())
+	e.GET("/api/faq/", GetFaq())
 }
 
 // func login(collection *mongo.Collection) echo.HandlerFunc {

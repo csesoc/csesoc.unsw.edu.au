@@ -48,13 +48,14 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:1323/enquiry/sponsorship",
+							"raw": "http://localhost:1323/api/enquiry/sponsorship",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "1323",
 							"path": [
+								"api",
 								"enquiry",
 								"sponsorship"
 							]
@@ -102,13 +103,14 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:1323/enquiry/sponsorship",
+							"raw": "http://localhost:1323/api/enquiry/sponsorship",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "1323",
 							"path": [
+								"api",
 								"enquiry",
 								"sponsorship"
 							]
@@ -156,13 +158,14 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:1323/enquiry/sponsorship",
+							"raw": "http://localhost:1323/api/enquiry/sponsorship",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "1323",
 							"path": [
+								"api",
 								"enquiry",
 								"sponsorship"
 							]
@@ -210,13 +213,14 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:1323/enquiry/sponsorship",
+							"raw": "http://localhost:1323/api/enquiry/sponsorship",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "1323",
 							"path": [
+								"api",
 								"enquiry",
 								"sponsorship"
 							]
@@ -260,13 +264,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:1323/sponsors/?token=&tier=100",
+							"raw": "http://localhost:1323/api/sponsors/?token=&tier=100",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "1323",
 							"path": [
+								"api",
 								"sponsors",
 								""
 							],
@@ -316,13 +321,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:1323/sponsors/?token=",
+							"raw": "http://localhost:1323/api/sponsors/?token=",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "1323",
 							"path": [
+								"api",
 								"sponsors",
 								""
 							],
@@ -357,13 +363,14 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:1323/sponsor/?token=&expire=2020-11-01T22:08:41+00:00&name={{sponsor_name}}&logo=https://static.canva.com/static/images/canva_logo_100x100@2x.png&tier=100",
+							"raw": "http://localhost:1323/api/sponsor/?token=&expire=2020-11-01T22:08:41+00:00&name={{sponsor_name}}&logo=https://static.canva.com/static/images/canva_logo_100x100@2x.png&tier=100",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "1323",
 							"path": [
+								"api",
 								"sponsor",
 								""
 							],
@@ -415,13 +422,14 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:1323/sponsor/?token=&expire=2020-11-01T22:08:41+00:00&name={{sponsor_name}}&logo=https://static.canva.com/static/images/canva_logo_100x100@2x.png&tier=1000",
+							"raw": "http://localhost:1323/api/sponsor/?token=&expire=2020-11-01T22:08:41+00:00&name={{sponsor_name}}&logo=https://static.canva.com/static/images/canva_logo_100x100@2x.png&tier=1000",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "1323",
 							"path": [
+								"api",
 								"sponsor",
 								""
 							],
@@ -471,13 +479,14 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:1323/sponsor/?token=&name=Example Company 1&logo=&tier=&expiry",
+							"raw": "http://localhost:1323/api/sponsor/?token=&name=Example Company 1&logo=&tier=&expiry",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "1323",
 							"path": [
+								"api",
 								"sponsor",
 								""
 							],
@@ -531,13 +540,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:1323/sponsors/?token=null",
+							"raw": "http://localhost:1323/api/sponsors/?token=null",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "1323",
 							"path": [
+								"api",
 								"sponsors",
 								""
 							],
@@ -572,13 +582,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:1323/sponsor/?name={{sponsor_name}}&token=null",
+							"raw": "http://localhost:1323/api/sponsor/?name={{sponsor_name}}&token=null",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "1323",
 							"path": [
+								"api",
 								"sponsor",
 								""
 							],
@@ -618,13 +629,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:1323/sponsor/?token=null&name=Non existent",
+							"raw": "http://localhost:1323/api/sponsor/?token=null&name=Non existent",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "1323",
 							"path": [
+								"api",
 								"sponsor",
 								""
 							],
@@ -664,13 +676,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:1323/sponsor/?token=null&name={{sponsor_name}}",
+							"raw": "http://localhost:1323/api/sponsor/?token=null&name={{sponsor_name}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "1323",
 							"path": [
+								"api",
 								"sponsor",
 								""
 							],
@@ -715,13 +728,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:1323/sponsor/?name={{sponsor_name}}&token=null",
+							"raw": "http://localhost:1323/api/sponsor/?name={{sponsor_name}}&token=null",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "1323",
 							"path": [
+								"api",
 								"sponsor",
 								""
 							],
@@ -743,7 +757,7 @@
 				}
 			],
 			"protocolProfileBehavior": {}
-		}
+		}, 
 		{
 			"name": "Faq",
 			"item": [
