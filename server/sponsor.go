@@ -25,6 +25,7 @@ type Sponsor struct {
 var sponsorColl *mongo.Collection
 
 /* Setup */
+
 // SponsorSetup - Setup the collection to be used for sponsors
 func SponsorSetup(client *mongo.Client) {
 	sponsorColl = client.Database("csesoc").Collection("sponsors")
