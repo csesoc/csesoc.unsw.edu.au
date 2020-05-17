@@ -105,7 +105,7 @@ export default {
   },
   mounted() {
     fetch(
-      '/sponsors/?token=null'
+      '/api/sponsors/?token=null'
     )
       .then(r => r.json())
       .then((responseJson) => {
