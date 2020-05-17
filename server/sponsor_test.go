@@ -1,6 +1,7 @@
 package main
 
 import (
+<<<<<<< HEAD
 	"encoding/json"
 	"net/http"
 	"net/url"
@@ -16,6 +17,13 @@ const getRequest = "http://localhost:1323/api/sponsor/?name="
 
 func TestSponsor(t *testing.T) {
 
+=======
+	"net/http"
+	"testing"
+)
+
+func TestSponsor(t *testing.T) {
+>>>>>>> cfc97c0... Draft testing files.
 	t.Run("Sponsor setup test", func(t *testing.T) {
 		resp, err := http.Get("http://localhost:1323/api/sponsors/")
 		if err != nil {
@@ -23,6 +31,7 @@ func TestSponsor(t *testing.T) {
 		}
 		defer resp.Body.Close()
 
+<<<<<<< HEAD
 		assertStatus(t, resp.StatusCode, http.StatusOK)
 		var sponsors []*Sponsor
 		if err = json.NewDecoder(resp.Body).Decode(&sponsors); err != nil {
@@ -30,12 +39,20 @@ func TestSponsor(t *testing.T) {
 		}
 		if len(sponsors) == 0 {
 			t.Errorf("Sponsors were not populated.")
+=======
+		got := resp.StatusCode
+		want := http.StatusOK
+
+		if got != want {
+			t.Errorf("got status %d want %d", got, want)
+>>>>>>> cfc97c0... Draft testing files.
 		}
 	})
 
 	t.Run("Testing sponsor filtering", func(t *testing.T) {
 		resp, err := http.Get("http://localhost:1323/api/sponsors/?tier=100")
 		if err != nil {
+<<<<<<< HEAD
 			t.Errorf("Could not perform get sponsors request. Check connection.")
 		}
 		defer resp.Body.Close()
@@ -181,3 +198,17 @@ func assertResponseBody(t *testing.T, got, want string) {
 		t.Errorf("Response body is wrong, got %s, want %s", got, want)
 	}
 }
+=======
+			t.Errorf("Could not get perform request.")
+		}
+		defer resp.Body.Close()
+
+		got := resp.StatusCode
+		want := http.StatusOK
+
+		if got != want {
+			t.Errorf("got status %d want %d", got, want)
+		}
+	})
+}
+>>>>>>> cfc97c0... Draft testing files.
