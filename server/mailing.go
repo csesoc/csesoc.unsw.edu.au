@@ -93,9 +93,3 @@ func getPassword() string {
 
 	return string(bytePassword)
 }
-
-func fetchPassword() string {
-	// Token: abf1aa93008e644d12c9cb92804a5f5f29f7f0c2
-
-	return ""
-}
