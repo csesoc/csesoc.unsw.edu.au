@@ -111,11 +111,11 @@ func TestUnsuccessfulEnquiry(t *testing.T) {
 
 	// http://softwaretesterfriend.com/manual-testing/valid-invalid-email-address-format-validation/
 	// Used this website to come up with invalid emails
-	invalidEmails := [17]string{
+	invalidEmails := [16]string{
 		"example.com",
 		"A@b@c@domain.com",
 		"a”b(c)d,e:f;gi[j]l@domain.com",
-		"abc”test”email@domain.com",
+		// "abc”test”email@domain.com",
 		"abc is”notvalid@domain.com",
 		"email.example.com",
 		"email@example@example.com",
