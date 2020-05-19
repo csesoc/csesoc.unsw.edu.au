@@ -115,7 +115,6 @@ func TestUnsuccessfulEnquiry(t *testing.T) {
 		"example.com",
 		"A@b@c@domain.com",
 		"a”b(c)d,e:f;gi[j]l@domain.com",
-		// "abc”test”email@domain.com",
 		"abc is”notvalid@domain.com",
 		"email.example.com",
 		"email@example@example.com",
