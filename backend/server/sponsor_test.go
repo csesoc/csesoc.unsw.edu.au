@@ -16,14 +16,6 @@ const getRequest = "http://localhost:1323/api/sponsor/?name="
 
 func TestSponsor(t *testing.T) {
 
-<<<<<<< HEAD
-=======
-	companyName := "Example"
-	companyLogo := "https://static.canva.com/static/images/canva_logo_100x100@2x.png"
-	companyTier := "100"
-	companyExpiry := "2020-11-01T22:08:41+00:00"
-
->>>>>>> fe07140... Update testing and methods used by test.
 	t.Run("Sponsor setup test", func(t *testing.T) {
 		resp, err := http.Get("http://localhost:1323/api/sponsors/")
 		if err != nil {
@@ -64,7 +56,6 @@ func TestSponsor(t *testing.T) {
 		defer resp.Body.Close()
 
 		assertStatus(t, resp.StatusCode, http.StatusCreated)
-<<<<<<< HEAD
 	})
 
 	t.Run("Get newly created sponsor", func(t *testing.T) {
@@ -103,23 +94,11 @@ func TestSponsor(t *testing.T) {
 
 	t.Run("Check newly removed sponsor", func(t *testing.T) {
 		resp, err := http.Get(getRequest + companyName)
-=======
-		var hResp *H
-		if err = json.NewDecoder(resp.Body).Decode(&hResp); err != nil {
-			t.Errorf("Error parsing json response: %s", err)
-		}
-	})
-
-	getRequest := "http://localhost:1323/api/sponsor/?name=" + companyName
-	t.Run("Get newly created sponsor", func(t *testing.T) {
-		resp, err := http.Get(getRequest)
->>>>>>> fe07140... Update testing and methods used by test.
 		if err != nil {
 			t.Errorf("Could not perform get sponsor request. Check connection.")
 		}
 		defer resp.Body.Close()
 
-<<<<<<< HEAD
 		assertStatus(t, resp.StatusCode, http.StatusNotFound)
 	})
 }
@@ -134,17 +113,6 @@ func TestSponsorError(t *testing.T) {
 		})
 		if err != nil {
 			t.Errorf("Could not perform post sponsor request. Check connection.")
-=======
-		assertStatus(t, resp.StatusCode, http.StatusOK)
-
-		var newSponsor *Sponsor
-		if err = json.NewDecoder(resp.Body).Decode(&newSponsor); err != nil {
-			t.Errorf("Error parsing json response: %s", err)
-		} else {
-			assertResponseBody(t, newSponsor.Name, companyName)
-			assertResponseBody(t, newSponsor.Logo, companyLogo)
-			assertResponseBody(t, strconv.Itoa(newSponsor.Tier), companyTier)
->>>>>>> fe07140... Update testing and methods used by test.
 		}
 		defer resp.Body.Close()
 
@@ -177,7 +145,6 @@ func TestSponsorError(t *testing.T) {
 		assertStatus(t, resp.StatusCode, http.StatusOK)
 	})
 
-<<<<<<< HEAD
 	t.Run("Missing parameters when creating", func(t *testing.T) {
 		resp, err := http.PostForm("http://localhost:1323/api/sponsor/", url.Values{
 			"name": {companyName},
@@ -192,25 +159,6 @@ func TestSponsorError(t *testing.T) {
 
 	t.Run("Get non existent sponsor", func(t *testing.T) {
 		resp, err := http.Get(getRequest + "nonexistent")
-=======
-	t.Run("Delete newly created sponsor", func(t *testing.T) {
-		client := &http.Client{}
-		req, err := http.NewRequest("DELETE", getRequest, nil)
-		if err != nil {
-			t.Errorf("Could not create delete request for sponsor.")
-		}
-		resp, err := client.Do(req)
-		if err != nil {
-			t.Errorf("Could not perform delete sponsor request. Check connection.")
-		}
-		defer resp.Body.Close()
-
-		assertStatus(t, resp.StatusCode, http.StatusOK)
-	})
-
-	t.Run("Check newly removed sponsor", func(t *testing.T) {
-		resp, err := http.Get(getRequest)
->>>>>>> fe07140... Update testing and methods used by test.
 		if err != nil {
 			t.Errorf("Could not perform get sponsor request. Check connection.")
 		}
