@@ -109,7 +109,7 @@ export default {
     )
       .then(r => r.json())
       .then((responseJson) => {
-        this.sponsors = responseJson.sponsors;
+        this.sponsors = responseJson;
       });
   }
 };
