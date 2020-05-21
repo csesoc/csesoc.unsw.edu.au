@@ -1,11 +1,11 @@
 # Run base image from node
 FROM node:latest AS builder
 
-# Set working directory
-WORKDIR /~/app/frontend
-
 # Copy files into container
-COPY . /~/app/frontend
+COPY . /~/app/
+
+# Set working frontend directory
+WORKDIR /~/app/frontend
 
 # Install yarn build dependencies
 RUN yarn
@@ -17,7 +17,7 @@ FROM golang:1.13-buster AS server
 # Copy the files from stage builder into this stage
 COPY --from=builder /~ /~
 
-# Set the working directory
+# Set the working backend directory
 WORKDIR /~/app/backend/server/
 
 # Build dependencies 
