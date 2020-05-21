@@ -2,10 +2,10 @@
 FROM node:latest AS builder
 
 # Set working directory
-WORKDIR /~/app
+WORKDIR /~/app/frontend
 
 # Copy files into container
-COPY . /~/app
+COPY . /~/app/frontend
 
 # Install yarn build dependencies
 RUN yarn
@@ -18,7 +18,7 @@ FROM golang:1.13-buster AS server
 COPY --from=builder /~ /~
 
 # Set the working directory
-WORKDIR /~/app/server/
+WORKDIR /~/app/backend/server/
 
 # Build dependencies 
 RUN go mod download
