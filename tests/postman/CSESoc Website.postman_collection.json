@@ -757,6 +757,23 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		}, 
+		{
+			"name": "Faq",
+			"item": [
+				{
+					"name": "faq successful",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
