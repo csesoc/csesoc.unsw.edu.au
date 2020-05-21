@@ -2,23 +2,23 @@
 FROM node:latest AS builder
 
 # Set working directory
-WORKDIR /~/app
+WORKDIR /api
 
 # Copy files into container
-COPY . /~/app
+# COPY . /root/
 
 # Install yarn build dependencies
-RUN yarn
+RUN yarn install
 RUN yarn build
 
 # Multi stage build to enable code for static files to be served
 FROM golang:1.13-buster AS server
 
 # Copy the files from stage builder into this stage
-COPY --from=builder /~ /~
+# COPY --from=builder /root /root
 
 # Set the working directory
-WORKDIR /~/app/server/
+WORKDIR /api/server/
 
 # Build dependencies 
 RUN go mod download
