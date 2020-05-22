@@ -147,10 +147,7 @@ func serveAPI(e *echo.Echo) {
 	// Routes for enquiries
 	e.POST("/api/enquiry/sponsorship", HandleEnquiry("sponsorship@csesoc.org.au"))
 	e.POST("/api/enquiry/info", HandleEnquiry("info@csesoc.org.au"))
-<<<<<<< HEAD
 	e.POST("/api/enquiry/feedback", FeedbackEnquiry("info@csesoc.org.au"))
-=======
->>>>>>> 4c0da3a... CW-71 Separate docker file functionality.
 
 	// Routes for faq
 	e.GET("/api/faq/", GetFaq())
