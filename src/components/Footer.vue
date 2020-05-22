@@ -107,10 +107,21 @@ export default {
     fetch(
       '/api/sponsors/?token=null'
     )
-      .then(r => r.json())
-      .then((responseJson) => {
-        this.sponsors = responseJson;
-      });
+    .then(r => {
+      if (r.ok) {
+        return r.json()
+      } else {
+        var error = new Error(r.statusText)
+        error.response = r.json()
+        throw error
+      }
+    })
+    .then((responseJson) => {
+      this.sponsors = responseJson;
+    })
+    .catch((error) => {
+      console.error("Error: ", error)
+    });
   }
 };
 </script>
