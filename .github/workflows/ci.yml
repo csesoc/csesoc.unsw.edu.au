@@ -20,4 +20,4 @@ jobs:
         run: docker-compose up -d
       - name: Golang Tests
         run: go test
-        working-directory: ./server
+        working-directory: ./backend/server
