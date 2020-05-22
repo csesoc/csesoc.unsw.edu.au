@@ -79,3 +79,5 @@ typings/
 
 # vue build
 dist/
+
+server/main
