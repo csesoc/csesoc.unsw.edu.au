@@ -65,10 +65,3 @@ func TestFeedbackError(t *testing.T) {
 		assertStatus(t, resp.StatusCode, http.StatusBadRequest)
 	})
 }
-
-func assertStatus(t *testing.T, got, want int) {
-	t.Helper()
-	if got != want {
-		t.Errorf("got status %d, want %d", got, want)
-	}
-}
