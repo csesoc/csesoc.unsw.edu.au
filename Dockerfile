@@ -1,29 +1,34 @@
-# Run base image from node
-FROM node:latest AS builder
+# Base image node to install Vue dependencies
+FROM node:14.2 AS build-stage
 
-# Set working directory
-WORKDIR /~/app
+WORKDIR /app
 
-# Copy files into container
-COPY . /~/app
+# Install dependencies in separate step to cache
+COPY package.json ./
+RUN yarn install
 
-# Install yarn build dependencies
-RUN yarn
+# Build dependencies into dist folder, copy line may change as we restructure
+COPY . .
 RUN yarn build
 
-# Multi stage build to enable code for static files to be served
-FROM golang:1.13-buster AS server
+# Base image changed to go to run Go commands
+FROM golang:1.13-buster as production-stage
 
-# Copy the files from stage builder into this stage
-COPY --from=builder /~ /~
+# Copy the dist folder into the new container
+COPY --from=build-stage /app/dist  /app/dist
+WORKDIR /app/server
 
-# Set the working directory
-WORKDIR /~/app/server/
+# Copy server files 
+COPY ./server /app/server
 
-# Build dependencies 
+# Build go dependencies
 RUN go mod download
 
-# Build and run the server
-RUN go build -o  main .
+# Daemon to run go build automatically when new files are changed on host system
+RUN go get github.com/githubnemo/CompileDaemon
+
+# Expose port for binding
 EXPOSE 1323
-CMD [ "./main" ]
+
+# Run go build and execute the ./main file generated
+ENTRYPOINT CompileDaemon --build="go build -o main ." --command=./main
