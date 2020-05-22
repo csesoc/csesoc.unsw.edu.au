@@ -13,7 +13,7 @@ const invalidEmail = "abcde"
 
 func TestFeedbackSuccessful(t *testing.T) {
 	t.Run("Feedback Successful", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/", url.Values{
+		resp, err := http.PostForm("http://localhost:1323/api/enquiry/feedback", url.Values{
 			"name":  {name},
 			"email": {email},
 			"body":  {body},
@@ -27,7 +27,7 @@ func TestFeedbackSuccessful(t *testing.T) {
 	})
 
 	t.Run("Feedback missing name, missing email", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/", url.Values{
+		resp, err := http.PostForm("http://localhost:1323/api/enquiry/feedback", url.Values{
 			"body": {body},
 		})
 		if err != nil {
@@ -41,7 +41,7 @@ func TestFeedbackSuccessful(t *testing.T) {
 
 func TestFeedbackError(t *testing.T) {
 	t.Run("Feedback missing name, missing email", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/", url.Values{
+		resp, err := http.PostForm("http://localhost:1323/api/enquiry/feedback", url.Values{
 			"email": {invalidEmail},
 			"body":  {body},
 		})
@@ -54,7 +54,7 @@ func TestFeedbackError(t *testing.T) {
 	})
 
 	t.Run("Feedback missing body", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/", url.Values{
+		resp, err := http.PostForm("http://localhost:1323/api/enquiry/feedback", url.Values{
 			"name": {name},
 		})
 		if err != nil {
