@@ -1,0 +1,25 @@
+# Docker compose development version 
+version: "3"
+services:
+    frontend:
+        image: frontend
+        build: ./
+        ports:
+            - '8080:8080'
+        container_name: frontend
+        environment:
+            - CHOKIDAR_USEPOLLING=true
+    backend:
+        image: backend
+        build: ./server
+        ports:
+            - '1323:1323'
+        volumes:
+            - ./server:/app/server
+        container_name: backend
+    mongo:
+        image: mongo:latest
+        restart: always
+        ports:
+            - '27017:27017'
+        container_name: mongo
