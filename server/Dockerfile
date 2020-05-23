@@ -1,16 +1,3 @@
-# # Base image node to install Vue dependencies
-# FROM node:14.2 AS build-stage
-
-# WORKDIR /app
-
-# # Install dependencies in separate step to cache
-# COPY package.json ./
-# RUN yarn install
-
-# # Build dependencies into dist folder, copy line may change as we restructure
-# COPY . .
-# RUN yarn serve
-
 # Base image changed to go to run Go commands
 FROM golang:1.13-buster as production-stage
 
