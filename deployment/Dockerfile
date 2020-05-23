@@ -1,29 +1,12 @@
-# Run base image from node
-FROM node:latest AS builder
+# Base image node to install Vue dependencies
+FROM node:14.2 AS build-stage
 
-# Set working directory
 WORKDIR /app
 
-# Copy files into container
-COPY . /app/
-
-# Install yarn build dependencies
+# Install dependencies in separate step to cache
+COPY package.json ./
 RUN yarn install
-RUN yarn build
 
-# Multi stage build to enable code for static files to be served
-FROM golang:1.13-buster AS server
-
-# Copy the files from stage builder into this stage
-COPY --from=builder /app /app
-
-# Set the working directory
-WORKDIR /app/server/
-
-# Build dependencies 
-RUN go mod download
-
-# Build and run the server
-RUN go build -o  main .
-EXPOSE 1323
-CMD [ "./main" ]
+# Build dependencies into dist folder, copy line may change as we restructure
+COPY . .
+ENTRYPOINT yarn serve
