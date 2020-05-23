@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Building docker containers usind docker-compose
+      - name: Building docker containers using docker-compose
         run: docker-compose up -d
       - name: Golang Tests
         run: go test
