@@ -39,7 +39,7 @@ This will automatically build the images required for the containers, as well as
 docker-compose down
 ```
 
-which kills your containers but keeps your iamges. Be sure to use `docker-compose --help` for any additional help or other options.
+which kills your containers but keeps your images. Be sure to use `docker-compose --help` for any additional help or other options.
 
 If the code has been changed, you need to rebuild your image. Due to the fact that we use a docker-compose.yml, please look at the service name you are looking to rebuild and run:
 
