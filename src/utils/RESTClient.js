@@ -1,15 +1,10 @@
 
 import {
     BASE_API_URL,
-    LOGIN_URL
+    SPONSORS_URL
   } from './constants'
 
 const APICall = (url, headers, convertToJson = true) => {
-    const client = {
-        method: 'GET',
-        headers: getHeaders(),
-        body: JSON.stringify(body)
-    }
     return fetch(url, headers)
             .then(res => convertToJson ? res.json() : res)
             .then((res) => {
@@ -35,8 +30,8 @@ const getClient = (method, body) => {
     return client;
 }
 
-const LoginAPI = () => {
-    const url = BASE_API_URL + LOGIN_URL
+const SponsorsAPI = () => {
+    const url = BASE_API_URL + SPONSORS_URL
     const client = getClient('POST')
     return APICall(url, client)
 }
