@@ -86,5 +86,14 @@ func sendEnquiryBundle(targetEmail string, bundle []Message) {
 }
 
 func joinMessages(bundle []Message) string {
+	var message string = ""
 
+	for _, msg := range bundle {
+		message += "<hr />"
+		message += "<h3>" + "Enquiry from " + msg.Name + " &lt;" + msg.Email + "&gt;" + "</h3>"
+		message += "<p>" + msg.Body + "</p>"
+	}
+	message += "<hr />"
+
+	return message
 }
