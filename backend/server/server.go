@@ -82,7 +82,7 @@ func main() {
 
 func servePages(e *echo.Echo) {
 	// Setup our assetHandler and point it to our static build location
-	assetHandler := http.FileServer(http.Dir("../dist/"))
+	assetHandler := http.FileServer(http.Dir("../../frontend/dist/"))
 
 	// Setup a new echo route to load the build as our base path
 	e.GET("/", echo.WrapHandler(assetHandler))
