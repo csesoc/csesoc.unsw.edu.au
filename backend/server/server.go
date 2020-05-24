@@ -147,8 +147,9 @@ func serveAPI(e *echo.Echo) {
 	// Routes for enquiries
 	e.POST("/api/enquiry/sponsorship", HandleEnquiry("sponsorship@csesoc.org.au"))
 	e.POST("/api/enquiry/info", HandleEnquiry("info@csesoc.org.au"))
-  
-  // Routes for faq
+	e.POST("/api/enquiry/feedback", FeedbackEnquiry("info@csesoc.org.au"))
+
+	// Routes for faq
 	e.GET("/api/faq/", GetFaq())
 }
 
