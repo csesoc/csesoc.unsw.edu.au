@@ -16,8 +16,8 @@ type Message struct {
 }
 
 // Mailjet session variables
-var publicKey string = "MJ_APIKEY_PUBLIC"
-var secretKey string = "MJ_APIKEY_PRIVATE"
+var publicKey string = "8afb96baef07230483a2a5ceca97d55d"
+var secretKey string = "424ad90f25487e6be369a1cbb2a34694"
 var mailjetClient *mailjet.Client
 
 // InitMailClient initialises a session with the Mailjet API and stores it in a global variable
