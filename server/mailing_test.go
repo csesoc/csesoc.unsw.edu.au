@@ -1,27 +1,31 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 )
 
-func TestComposeEmail(t *testing.T) {
+func TestJoinMessages(t *testing.T) {
 	t.Run("Valid input", func(t *testing.T) {
-		message := Message{
+		message1 := Message{
 			Name:  "Sergio",
-			Email: "sergio.mercadoruiz9@gmail.com",
-			Body:  "This is an enquiry",
+			Email: "smr1@gmail.com",
+			Body:  "This is the first enquiry",
 		}
-		targetEmail := "csesoc@csesoc.org.au"
+		message2 := Message{
+			Name:  "Sergio",
+			Email: "smr2@gmail.com",
+			Body:  "This is the second enquiry",
+		}
+		bundle := []Message{message1, message2}
 
-		composedMsg := composeEmail(message, targetEmail)
-		expectedMsg := "Resent-From: " + message.Email + "\r\n" +
-			"Reply-To: " + message.Email + "\r\n" +
-			"From: " + serverEmail + "\r\n" +
-			"To: " + targetEmail + "\r\n" +
-			"Subject: " + fmt.Sprintf("Enquiry from '%s' <%s>", message.Name, message.Email) + "\r\n" +
-			"\r\n" +
-			message.Body
+		composedMsg := joinMessages(bundle)
+		expectedMsg := "<hr />" +
+			"<h3>Enquiry from Sergio &lt;smr1@gmail.com&gt;</h3>" +
+			"<p>This is the first enquiry</p>" +
+			"<hr />" +
+			"<h3>Enquiry from Sergio &lt;smr2@gmail.com&gt;</h3>" +
+			"<p>This is the second enquiry</p>" +
+			"<hr />"
 
 		if composedMsg != expectedMsg {
 			t.Errorf("Output doesn't match expected output")
