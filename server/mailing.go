@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/labstack/echo/v4"
 	"github.com/mailjet/mailjet-apiv3-go"
@@ -16,9 +17,9 @@ type Message struct {
 
 // Message bundles
 var infoBundle []Message
-var infoEmail string
+var infoEmail string = "info@csesoc.org.au"
 var sponsorshipBundle []Message
-var sponsorshipEmail string
+var sponsorshipEmail string = "sponsorship@csesoc.org.au"
 
 // Mailjet session variables
 var publicKey string = "8afb96baef07230483a2a5ceca97d55d"
@@ -28,6 +29,9 @@ var mailjetClient *mailjet.Client
 // InitMailClient initialises a session with the Mailjet API and stores it in a global variable
 func InitMailClient() {
 	mailjetClient = mailjet.NewMailjetClient(publicKey, secretKey)
+
+	// Start mailing timer
+	go mailingTimer()
 }
 
 // HandleEnquiry by forwarding emails to relevant inboxes
@@ -49,13 +53,26 @@ func HandleEnquiry(targetEmail string) echo.HandlerFunc {
 
 		// Add to bundle
 		switch targetEmail {
-		case "sponsorship@csesoc.org.au":
+		case sponsorshipEmail:
 			sponsorshipBundle = append(sponsorshipBundle, message)
-		case "info@csesoc.org.au":
+		case infoEmail:
 			infoBundle = append(infoBundle, message)
 		}
 
 		return c.JSON(http.StatusAccepted, H{})
+	}
+}
+
+// This function is executed once in a subroutine and triggers every 15 minutes
+func mailingTimer() {
+	for {
+		time.Sleep(15 * time.Minute)
+
+		go sendEnquiryBundle(infoEmail, infoBundle)
+		infoBundle = nil
+
+		go sendEnquiryBundle(sponsorshipEmail, sponsorshipBundle)
+		sponsorshipBundle = nil
 	}
 }
 
@@ -81,8 +98,9 @@ func sendEnquiryBundle(targetEmail string, bundle []Message) {
 	messages := mailjet.MessagesV31{Info: payload}
 	_, err := mailjetClient.SendMailV31(&messages)
 	if err != nil {
-		// Dump bundle on txt file
+		// Dump bundle on txt file if it fails to send
 	}
+
 }
 
 func joinMessages(bundle []Message) string {
