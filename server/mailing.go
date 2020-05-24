@@ -77,6 +77,11 @@ func mailingTimer() {
 }
 
 func sendEnquiryBundle(targetEmail string, bundle []Message) {
+
+	if len(bundle) == 0 {
+		return
+	}
+
 	// Format message payload
 	payload := []mailjet.InfoMessagesV31{
 		mailjet.InfoMessagesV31{
