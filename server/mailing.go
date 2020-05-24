@@ -101,7 +101,7 @@ func sendEnquiryBundle(targetEmail string, bundle *[]Message) {
 	_, err := mailjetClient.SendMailV31(&messages)
 	if err == nil {
 		// Only dump the bundle if email was successfully sent
-		infoBundle = nil
+		*bundle = nil
 	}
 }
 
