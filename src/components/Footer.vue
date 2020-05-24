@@ -1,3 +1,4 @@
+import { LoginAPI } from '../utils/RESTClient.js';
 <template>
   <v-footer dark padless id="tiers">
     <v-card id="tiers__sponsors" width="100vw" class="white--text text-center">
@@ -104,10 +105,7 @@ export default {
     }
   },
   mounted() {
-    fetch(
-      '/api/sponsors/?token=null'
-    )
-      .then(r => r.json())
+      LoginAPI()
       .then((responseJson) => {
         this.sponsors = responseJson;
       });
