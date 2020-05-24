@@ -2,13 +2,10 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
-	"net/smtp"
-	"syscall"
 
 	"github.com/labstack/echo/v4"
-	"golang.org/x/crypto/ssh/terminal"
+	"github.com/mailjet/mailjet-apiv3-go"
 )
 
 // Message - struct to contain email message data
@@ -18,17 +15,14 @@ type Message struct {
 	Body  string `validate:"required"`
 }
 
-// SMTP session variables
-var host string
-var auth smtp.Auth
-var serverEmail string
+// Mailjet session variables
+var publicKey string = "MJ_APIKEY_PUBLIC"
+var secretKey string = "MJ_APIKEY_PRIVATE"
+var mailjetClient *mailjet.Client
 
-// InitSMTPClient initialises a session with the Gmail API and stores it in a global variable
-func InitSMTPClient() {
-	serverEmail = "csesoc@csesoc.org.au"
-	password := getPassword()
-	host = "smtp.gmail.com:587"
-	auth = smtp.PlainAuth("", serverEmail, password, "smtp.gmail.com")
+// InitMailClient initialises a session with the Mailjet API and stores it in a global variable
+func InitMailClient() {
+	mailjetClient = mailjet.NewMailjetClient(publicKey, secretKey)
 }
 
 // HandleEnquiry by forwarding emails to relevant inboxes
@@ -48,12 +42,27 @@ func HandleEnquiry(targetEmail string) echo.HandlerFunc {
 			})
 		}
 
-		// Format message and targetEmail
-		to := []string{targetEmail}
-		msg := []byte(composeEmail(message, targetEmail))
+		// Format message payload
+		payload := []mailjet.InfoMessagesV31{
+			mailjet.InfoMessagesV31{
+				From: &mailjet.RecipientV31{
+					Email: "projects.website@csesoc.org.au",
+					Name:  "CSESoc Website",
+				},
+				To: &mailjet.RecipientsV31{
+					mailjet.RecipientV31{
+						Email: targetEmail,
+					},
+				},
+				Subject:  fmt.Sprintf("Enquiry from '%s' <%s>", message.Name, message.Email),
+				TextPart: message.Body,
+			},
+		}
 
-		// Send mail to address
-		if err := smtp.SendMail(host, auth, serverEmail, to, msg); err != nil {
+		// Send query
+		messages := mailjet.MessagesV31{Info: payload}
+		_, err := mailjetClient.SendMailV31(&messages)
+		if err != nil {
 			return c.JSON(http.StatusServiceUnavailable, H{
 				"error": err,
 			})
@@ -61,35 +70,4 @@ func HandleEnquiry(targetEmail string) echo.HandlerFunc {
 
 		return c.JSON(http.StatusOK, H{})
 	}
-}
-
-// Format Message to be of RFC 822-style
-func composeEmail(message Message, targetEmail string) string {
-	// Define header fields
-	header := make(map[string]string)
-	header["Resent-From"] = message.Email
-	header["Reply-To"] = message.Email
-	header["From"] = serverEmail
-	header["To"] = targetEmail
-	header["Subject"] = fmt.Sprintf("Enquiry from '%s' <%s>", message.Name, message.Email)
-
-	// Stringify header
-	headerMsg := ""
-	for key, value := range header {
-		headerMsg += fmt.Sprintf("%s: %s\r\n", key, value)
-	}
-
-	// Return concatenated header and body
-	return headerMsg + "\r\n" + message.Body
-}
-
-func getPassword() string {
-	fmt.Print("Enter Password: ")
-
-	bytePassword, err := terminal.ReadPassword(int(syscall.Stdin))
-	if err != nil {
-		log.Fatal("Could not process password: ", err)
-	}
-
-	return string(bytePassword)
 }

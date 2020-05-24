@@ -68,7 +68,7 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 
 func main() {
 	// Initialse SMTP mailing client
-	InitSMTPClient()
+	InitMailClient()
 
 	// Create new instance of echo
 	e := echo.New()
