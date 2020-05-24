@@ -40,5 +40,3 @@ const LoginAPI = () => {
     const client = getClient('POST')
     return APICall(url, client)
 }
-  
-  
