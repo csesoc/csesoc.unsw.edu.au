@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -14,6 +13,12 @@ type Message struct {
 	Email string `validate:"required,email"`
 	Body  string `validate:"required"`
 }
+
+// Message bundles
+var infoBundle []Message
+var infoEmail string
+var sponsorshipBundle []Message
+var sponsorshipEmail string
 
 // Mailjet session variables
 var publicKey string = "8afb96baef07230483a2a5ceca97d55d"
@@ -42,32 +47,44 @@ func HandleEnquiry(targetEmail string) echo.HandlerFunc {
 			})
 		}
 
-		// Format message payload
-		payload := []mailjet.InfoMessagesV31{
-			mailjet.InfoMessagesV31{
-				From: &mailjet.RecipientV31{
-					Email: "projects.website@csesoc.org.au",
-					Name:  "CSESoc Website",
-				},
-				To: &mailjet.RecipientsV31{
-					mailjet.RecipientV31{
-						Email: targetEmail,
-					},
-				},
-				Subject:  fmt.Sprintf("Enquiry from '%s' <%s>", message.Name, message.Email),
-				TextPart: message.Body,
-			},
+		// Add to bundle
+		switch targetEmail {
+		case "sponsorship@csesoc.org.au":
+			sponsorshipBundle = append(sponsorshipBundle, message)
+		case "info@csesoc.org.au":
+			infoBundle = append(infoBundle, message)
 		}
 
-		// Send query
-		messages := mailjet.MessagesV31{Info: payload}
-		_, err := mailjetClient.SendMailV31(&messages)
-		if err != nil {
-			return c.JSON(http.StatusServiceUnavailable, H{
-				"error": err,
-			})
-		}
-
-		return c.JSON(http.StatusOK, H{})
+		return c.JSON(http.StatusAccepted, H{})
 	}
+}
+
+func sendEnquiryBundle(targetEmail string, bundle []Message) {
+	// Format message payload
+	payload := []mailjet.InfoMessagesV31{
+		mailjet.InfoMessagesV31{
+			From: &mailjet.RecipientV31{
+				Email: "projects.website@csesoc.org.au",
+				Name:  "CSESoc Website",
+			},
+			To: &mailjet.RecipientsV31{
+				mailjet.RecipientV31{
+					Email: targetEmail,
+				},
+			},
+			Subject:  "Website enquiry bundle",
+			HTMLPart: joinMessages(bundle),
+		},
+	}
+
+	// Send query
+	messages := mailjet.MessagesV31{Info: payload}
+	_, err := mailjetClient.SendMailV31(&messages)
+	if err != nil {
+		// Dump bundle on txt file
+	}
+}
+
+func joinMessages(bundle []Message) string {
+
 }
