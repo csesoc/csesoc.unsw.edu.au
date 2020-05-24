@@ -68,17 +68,14 @@ func mailingTimer() {
 	for {
 		time.Sleep(15 * time.Minute)
 
-		go sendEnquiryBundle(infoEmail, infoBundle)
-		infoBundle = nil
-
-		go sendEnquiryBundle(sponsorshipEmail, sponsorshipBundle)
-		sponsorshipBundle = nil
+		go sendEnquiryBundle(infoEmail, &infoBundle)
+		go sendEnquiryBundle(sponsorshipEmail, &sponsorshipBundle)
 	}
 }
 
-func sendEnquiryBundle(targetEmail string, bundle []Message) {
+func sendEnquiryBundle(targetEmail string, bundle *[]Message) {
 
-	if len(bundle) == 0 {
+	if len(*bundle) == 0 {
 		return
 	}
 
@@ -95,17 +92,17 @@ func sendEnquiryBundle(targetEmail string, bundle []Message) {
 				},
 			},
 			Subject:  "Website enquiry bundle",
-			HTMLPart: joinMessages(bundle),
+			HTMLPart: joinMessages(*bundle),
 		},
 	}
 
 	// Send query
 	messages := mailjet.MessagesV31{Info: payload}
 	_, err := mailjetClient.SendMailV31(&messages)
-	if err != nil {
-		// Dump bundle on txt file if it fails to send
+	if err == nil {
+		// Only dump the bundle if email was successfully sent
+		infoBundle = nil
 	}
-
 }
 
 func joinMessages(bundle []Message) string {
