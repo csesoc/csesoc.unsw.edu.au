@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"context"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/dgrijalva/jwt-go"
@@ -81,6 +83,15 @@ func main() {
 	// Start echo instance on 1323 port
 	e.Debug = true
 	e.Logger.Fatal(e.Start(":1323"))
+
+	// Safely stop echo instance
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+		if scanner.Text() == "quit" {
+			e.Close()
+			DispatchEnquiryBundles()
+		}
+	}
 }
 
 func servePages(e *echo.Echo) {

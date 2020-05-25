@@ -63,13 +63,18 @@ func HandleEnquiry(targetEmail string) echo.HandlerFunc {
 	}
 }
 
+// DispatchEnquiryBundles sends the enquiry bundles to their destination emails
+func DispatchEnquiryBundles() {
+	go sendEnquiryBundle(infoEmail, &infoBundle)
+	go sendEnquiryBundle(sponsorshipEmail, &sponsorshipBundle)
+}
+
 // This function is executed once in a subroutine and triggers every 15 minutes
 func mailingTimer() {
 	for {
 		time.Sleep(15 * time.Minute)
 
-		go sendEnquiryBundle(infoEmail, &infoBundle)
-		go sendEnquiryBundle(sponsorshipEmail, &sponsorshipBundle)
+		DispatchEnquiryBundles()
 	}
 }
 
