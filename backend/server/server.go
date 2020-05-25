@@ -93,6 +93,10 @@ func main() {
 			DispatchFeedbackBundle()
 		}
 	}
+
+	// Send bundles in case the echo server crashes
+	defer DispatchEnquiryBundles()
+	defer DispatchFeedbackBundle()
 }
 
 func servePages(e *echo.Echo) {
