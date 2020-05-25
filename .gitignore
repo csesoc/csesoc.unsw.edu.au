@@ -79,3 +79,6 @@ typings/
 
 # vue build
 dist/
+
+# vscode configurations
+**/.vscode/
