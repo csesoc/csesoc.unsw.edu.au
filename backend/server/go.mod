@@ -5,7 +5,7 @@ go 1.13
 require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/go-playground/validator/v10 v10.2.0
-	github.com/google/go-cmp v0.4.0 // indirect
+	github.com/google/go-cmp v0.3.1 // indirect
 	github.com/klauspost/compress v1.10.5 // indirect
 	github.com/labstack/echo/v4 v4.1.16
 	github.com/mailjet/mailjet-apiv3-go v0.0.0-20190724151621-55e56f74078c

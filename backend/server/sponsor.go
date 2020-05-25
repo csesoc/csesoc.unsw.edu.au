@@ -25,6 +25,7 @@ type Sponsor struct {
 var sponsorColl *mongo.Collection
 
 /* Setup */
+
 // SponsorSetup - Setup the collection to be used for sponsors
 func SponsorSetup(client *mongo.Client) {
 	sponsorColl = client.Database("csesoc").Collection("sponsors")
@@ -69,7 +70,7 @@ func NewSponsor() echo.HandlerFunc {
 		tier, err := strconv.Atoi(c.FormValue("tier"))
 		if err != nil {
 			return c.JSON(http.StatusBadRequest, H{
-				"error": err,
+				"error": "Tier has to be a number",
 			})
 		}
 		expiryTime, _ := time.Parse(time.RFC3339, c.FormValue("expiry"))
@@ -83,7 +84,7 @@ func NewSponsor() echo.HandlerFunc {
 		// validate the struct with golang validator package
 		if err := c.Validate(sponsor); err != nil {
 			return c.JSON(http.StatusBadRequest, H{
-				"error": err,
+				"error": "Bad request",
 			})
 		}
 		// token := c.FormValue("token")
@@ -110,9 +111,7 @@ func GetSponsor() echo.HandlerFunc {
 				"response": "No such sponsor.",
 			})
 		}
-		return c.JSON(http.StatusOK, H{
-			"sponsor": result,
-		})
+		return c.JSON(http.StatusOK, result)
 	}
 }
 
@@ -125,13 +124,10 @@ func GetSponsors() echo.HandlerFunc {
 		if err != nil {
 			return c.JSON(http.StatusInternalServerError, H{})
 		}
-		content := H{}
 		if results != nil {
-			content = H{
-				"sponsors": results,
-			}
+			return c.JSON(http.StatusOK, results)
 		}
-		return c.JSON(http.StatusOK, content)
+		return c.JSON(http.StatusOK, H{})
 	}
 }
 

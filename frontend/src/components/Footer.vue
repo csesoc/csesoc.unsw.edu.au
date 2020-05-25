@@ -105,11 +105,11 @@ export default {
   },
   mounted() {
     fetch(
-      '/sponsors/?token=null'
+      '/api/sponsors/?token=null'
     )
       .then(r => r.json())
       .then((responseJson) => {
-        this.sponsors = responseJson.sponsors;
+        this.sponsors = responseJson;
       });
   }
 };

@@ -31,7 +31,7 @@ N.B2 We do not use release branches (we go directly from `dev` to `master` to re
 3. `git checkout -b your-feature/fix-branch-name` (checkouts to a new branch to you to do your work on)
 4. Make one **atomic** change to your files (typically you should contain your changes to one purpose at a time)
 5. `git add -A` (stages all the changes in your working directory for commit). You can also do `git add file1 file2` to stage individual files.
-6. `git commit -m "Your commit message describe your changes"` (commits your changes locally)
+6. `git commit -m "Your commit message describe your changes"` (commits your changes locally). Please use the Jira task/ticket tag that deals with your task to be able to track your progress using Jira.
 7. You can share your changes with remote at any time by doing a `git push`
 8. When you are done do a `git rebase -i origin/dev` (rebases your branch on the latest `dev` branch). The `-i` means you can see the changes.
 9. `git push --force-with-lease` (this is a special push command which allows you to update the remote even if you have diverging histories) It *should* only push changes if it won't overwrite another person's commits BUT only do this is you are certain you won't overwrite anything. There is no easy way to undo this.
