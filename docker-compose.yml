@@ -3,7 +3,7 @@ version: "3"
 services:
     frontend:
         image: frontend
-        build: ./
+        build: ./frontend
         ports:
             - '8080:8080'
         container_name: frontend
@@ -11,11 +11,11 @@ services:
             - CHOKIDAR_USEPOLLING=true
     backend:
         image: backend
-        build: ./server
+        build: ./backend/server
         ports:
             - '1323:1323'
         volumes:
-            - ./server:/app/server
+            - ./backend/server:/app/server
         container_name: backend
     mongo:
         image: mongo:latest

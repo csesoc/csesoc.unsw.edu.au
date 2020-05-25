@@ -2,7 +2,6 @@
 FROM golang:1.13-buster as production-stage
 
 # Copy the dist folder into the new container
-# COPY --from=build-stage /app/dist  /app/dist
 WORKDIR /app/server
 
 # Copy server files 
