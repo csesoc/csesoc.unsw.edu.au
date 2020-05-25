@@ -71,7 +71,7 @@ func TestJoinMessages(t *testing.T) {
 	})
 }
 
-func TestSuccessfulEnquiry(t *testing.T) {
+func TestEnquirySuccessful(t *testing.T) {
 	formCorrectData := url.Values{
 		"name":  {"John Smith"},
 		"email": {"john.smith@company.com.au"},
@@ -85,12 +85,7 @@ func TestSuccessfulEnquiry(t *testing.T) {
 		}
 		defer resp.Body.Close()
 
-		got := resp.StatusCode
-		want := http.StatusAccepted
-
-		if got != want {
-			t.Errorf("got status %d want %d", got, want)
-		}
+		assertStatus(t, resp.StatusCode, http.StatusAccepted)
 	})
 
 	t.Run("Handle successful general enquiry", func(t *testing.T) {
@@ -100,16 +95,11 @@ func TestSuccessfulEnquiry(t *testing.T) {
 		}
 		defer resp.Body.Close()
 
-		got := resp.StatusCode
-		want := http.StatusAccepted
-
-		if got != want {
-			t.Errorf("got status %d want %d", got, want)
-		}
+		assertStatus(t, resp.StatusCode, http.StatusAccepted)
 	})
 }
 
-func TestUnsuccessfulEnquiry(t *testing.T) {
+func TestEnquiryUnsuccessful(t *testing.T) {
 	t.Run("Handle request with missing name", func(t *testing.T) {
 		formIncorrectData := url.Values{
 			"name":  {""},
@@ -123,12 +113,7 @@ func TestUnsuccessfulEnquiry(t *testing.T) {
 		}
 		defer resp.Body.Close()
 
-		got := resp.StatusCode
-		want := http.StatusBadRequest
-
-		if got != want {
-			t.Errorf("got status %d want %d", got, want)
-		}
+		assertStatus(t, resp.StatusCode, http.StatusBadRequest)
 	})
 
 	t.Run("Handle request with missing email", func(t *testing.T) {
@@ -144,12 +129,7 @@ func TestUnsuccessfulEnquiry(t *testing.T) {
 		}
 		defer resp.Body.Close()
 
-		got := resp.StatusCode
-		want := http.StatusBadRequest
-
-		if got != want {
-			t.Errorf("got status %d want %d", got, want)
-		}
+		assertStatus(t, resp.StatusCode, http.StatusBadRequest)
 	})
 
 	t.Run("Handle request with no body", func(t *testing.T) {
@@ -165,12 +145,7 @@ func TestUnsuccessfulEnquiry(t *testing.T) {
 		}
 		defer resp.Body.Close()
 
-		got := resp.StatusCode
-		want := http.StatusBadRequest
-
-		if got != want {
-			t.Errorf("got status %d want %d", got, want)
-		}
+		assertStatus(t, resp.StatusCode, http.StatusBadRequest)
 	})
 
 	// http://softwaretesterfriend.com/manual-testing/valid-invalid-email-address-format-validation/
@@ -208,12 +183,62 @@ func TestUnsuccessfulEnquiry(t *testing.T) {
 			}
 			defer resp.Body.Close()
 
-			got := resp.StatusCode
-			want := http.StatusBadRequest
-
-			if got != want {
-				t.Errorf("got status %d want %d", got, want)
-			}
+			assertStatus(t, resp.StatusCode, http.StatusBadRequest)
 		})
 	}
+}
+
+func TestFeedbackSuccessful(t *testing.T) {
+	t.Run("Feedback Successful", func(t *testing.T) {
+		resp, err := http.PostForm("http://localhost:1323/api/enquiry/feedback", url.Values{
+			"name":  {"John Smith"},
+			"email": {"johnsmith@gmail.com"},
+			"body":  {"feedback message"},
+		})
+		if err != nil {
+			t.Errorf("could not perform POST request")
+		}
+		defer resp.Body.Close()
+
+		assertStatus(t, resp.StatusCode, http.StatusAccepted)
+	})
+
+	t.Run("Feedback missing name, missing email", func(t *testing.T) {
+		resp, err := http.PostForm("http://localhost:1323/api/enquiry/feedback", url.Values{
+			"body": {"feedback message"},
+		})
+		if err != nil {
+			t.Errorf("could not perform POST request")
+		}
+		defer resp.Body.Close()
+
+		assertStatus(t, resp.StatusCode, http.StatusAccepted)
+	})
+}
+
+func TestFeedbackError(t *testing.T) {
+	t.Run("Feedback missing name, missing email", func(t *testing.T) {
+		resp, err := http.PostForm("http://localhost:1323/api/enquiry/feedback", url.Values{
+			"email": {"abcde"},
+			"body":  {"feedback message"},
+		})
+		if err != nil {
+			t.Errorf("could not perform POST request")
+		}
+		defer resp.Body.Close()
+
+		assertStatus(t, resp.StatusCode, http.StatusBadRequest)
+	})
+
+	t.Run("Feedback missing body", func(t *testing.T) {
+		resp, err := http.PostForm("http://localhost:1323/api/enquiry/feedback", url.Values{
+			"name": {"John Smith"},
+		})
+		if err != nil {
+			t.Errorf("could not perform POST request")
+		}
+		defer resp.Body.Close()
+
+		assertStatus(t, resp.StatusCode, http.StatusBadRequest)
+	})
 }
