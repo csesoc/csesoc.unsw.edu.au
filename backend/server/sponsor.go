@@ -44,6 +44,7 @@ func SponsorSetup(client *mongo.Client) {
 		log.Fatal("Could not create index: ", err)
 	}
 
+	// Fetching sponsor list
 	sponsors, err := retriveSponsorsJSON()
 
 	if err != nil {
