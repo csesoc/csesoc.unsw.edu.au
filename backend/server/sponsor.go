@@ -85,9 +85,10 @@ func NewSponsor() echo.HandlerFunc {
 			})
 		}
 		sponsor := Sponsor{
-			Name: c.FormValue("name"),
-			Logo: c.FormValue("logo"),
-			Tier: tier,
+			Name:   c.FormValue("name"),
+			Logo:   c.FormValue("logo"),
+			Tier:   tier,
+			Detail: c.FormValue("detail"),
 		}
 
 		// validate the struct with golang validator package
