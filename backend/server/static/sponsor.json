@@ -1,0 +1,191 @@
+[
+    {
+        "tier": 1000,
+        "name": "ARC UNSW",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/Arc_Clubs_Logo_Green_OUTLINE.png",
+        "url": "http://www.arc.unsw.edu.au/",
+        "detail": "Arc is your student organisation. Our mission is to make your life at Uni more interesting, more fun, more personally rewarding, and ultimately more affordable. We\u2019re here to provide everything you need outside of the classroom."
+    },
+    {
+        "tier": 1000,
+        "name": "CSE UNSW",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/CSE_UNSW_logo_small.jpg",
+        "url": "http://www.cse.unsw.edu.au/",
+        "detail": "CSE is now one of the largest Schools within the University, and one of the largest of its kind in Australia.  The school's Development Office was established in 2001 to promote the development of our students beyond their academic studies. It has always been a great supporter of student societies, which is one of the reasons our students enjoy a complete and fulfilling university life."
+    },
+    {
+        "tier": 1000,
+        "name": "Atlassian",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/Atlassian-horizontal-blue2x-rgb.png",
+        "url": "https://atlassian.com/",
+        "detail": "Software is changing the world, and Atlassian is at the center of it all. With more than 65,000 global customers (including 85 of the Fortune 100) and a highly disruptive business model, we\u2019re advancing the art of team collaboration with products like JIRA, Confluence, BitBucket and HipChat \u2013 and we\u2019re just getting started. Motivated by honest values, an amazing culture, and consistent revenue growth, we\u2019re out to unleash the potential of every team. From Amsterdam and Austin to Sydney and San Francisco, we\u2019re looking for people who are powered by passion and eager to do the best work of their lives in a highly autonomous yet collaborative, no B.S. environment. Find out more at http://atlassian.com."
+    },
+    {
+        "tier": 1000,
+        "name": "Canva",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/canva-circle-logo.png",
+        "url": "https://www.canva.com/",
+        "detail": "Canva is revolutionising design. Voted coolest tech company in Australia 2015, we work every day to make design accessible and easy for everyone. The technical challenges are complex and we promote a high level of autonomy in the way we work, consequently we look to hire the best. You will be surrounded by ex-Google engineers, ex-McKinsyites and other A-teamers. We look to identify and nurture people who are passionate about their craft and are constantly trying to get better at the fundamentals of their craft. Come be part of Australia's fastest growing startup and make a real impact."
+    },
+    {
+        "tier": 1000,
+        "name": "Freelancer",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/freelancer-nbg.png",
+        "url": "https://www.freelancer.com.au/",
+        "detail": "Triple Webby award winning Freelancer.com is the largest freelancing and crowdsourcing marketplace in the world. Freelancer.com connects over 10.4 million independent professionals globally, specialising in nearly 600 fields. Over 5 million projects have been posted to date, in areas as diverse as website development, logo design, marketing, copywriting, astrophysics, aerospace engineering and manufacturing. Freelancer.com is the marketplace where the world gets work done."
+    },
+    {
+        "tier": 1000,
+        "name": "Google ",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/google_1.png",
+        "url": "http://www.google.com.au/about/careers/students/",
+        "detail": "Google is and always will be an engineering company. We hire people with a broad set of technical skills who are ready to tackle some of technology's greatest challenges and make an impact on millions, if not billions, of users. At Google, engineers not only revolutionise search, they routinely work on massive scalability and storage solutions, large-scale applications and entirely new platforms for developers around the world. From AdWords to Chrome, Android to YouTube, Social to Local, Google engineers are changing the world one technological achievement after another. Voted the top Graduate Employer by students in Australia, we're looking for students to do cool things that matter. Join us, visit google.com/careers/students."
+    },
+    {
+        "tier": 1000,
+        "name": "Microsoft",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/MSFT-logo.png",
+        "url": "http://www.microsoft.com/university",
+        "detail": "Microsoft is organized into several major functions and disciplines to deliver exceptional devices and services to billions of people and millions of businesses worldwide. Individual but connected, we work in small teams to focus on a specific function or discipline. Then those teams collaborate with one another to ensure compatibility and communication across our inventions.\n\r\nWhat this means for you is depth and breadth of opportunity. We offer a variety of jobs, spanning our many technologies in offices around the world. Come to Microsoft to meet and learn from interesting and talented people, and to make a real impact on the world."
+    },
+    {
+        "tier": 1000,
+        "name": "IMC Trading",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/0_2.png",
+        "url": "https://www.imc.com/ap/",
+        "detail": "As one of the world\u2019s leading market makers, IMC trades on more than 100 venues around the world and provides liquidity in more than 200,000 securities. Besides our on-screen market making in many asset classes globally, we are also a Designated Market Maker (DMM) on the New York Stock Exchange and our ETF desk in Europe leverages our experience, advanced technology and deep liquidity, to offer competitive pricing directly to qualified counterparties.\r\n \r\nAcross offices in Amsterdam, Chicago and Sydney, global teams of technologists and traders work together to design and develop the software, hardware, advanced networks and algorithms that drive our trading strategies and make us one of the world\u2019s leading liquidity providers. We hire exceptional, insatiably curious problem-solvers and challenge them to anticipate change and continuously innovate in ways that will sustain our success. We recognize, and reward, the best ideas regardless of hierarchy. At IMC, anyone can make an impact and everyone is encouraged to do so."
+    },
+    {
+        "tier": 100,
+        "name": "Amazon",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/amazon.png",
+        "url": "https://aws.amazon.com/",
+        "detail": "Amazon Web Services is a subsidiary of Amazon that provides on-demand cloud computing platforms and APIs to individuals, companies, and governments, on a metered pay-as-you-go basis."
+    },
+    {
+        "tier": 100,
+        "name": "Blackbird Ventures",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/blackbird.png",
+        "url": "http://blackbird.vc/",
+        "detail": "Blackbird Ventures is a venture capital firm that invests in Australians wanting to be the best in the world not the best in Australia. We provide equity capital for all stages from Seed, Series A and later stage."
+    },
+    {
+        "tier": 100,
+        "name": "Citadel",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/Citadel-Logo-Ken-Griffin-Securities.png",
+        "url": "https://www.citadel.com/",
+        "detail": "We analyze global markets with discipline and focus, and employ a range of strategies in an effort to deliver market-leading investment returns to our capital partners. We empower the most talented minds in finance with an unparalleled combination of deep fundamental research, predictive analytics, and leading-edge technology to identify and capture new opportunities. Our world-class global team brings together the art of investing with the science of finance to help our capital partners achieve their financial goals.\r\n\r\nWe drive our mission through a culture of excellence: constantly improving, continuously learning, rewarding results, and winning with integrity."
+    },
+    {
+        "tier": 100,
+        "name": "Cochlear",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/Cochlear_logo_new.png",
+        "url": "https://www.cochlear.com/",
+        "detail": "Cochlear is a global leader in implantable hearing solutions. They have provided more than 550,000 implantable devices, helping people of all ages to lead full and active lives."
+    },
+    {
+        "tier": 100,
+        "name": "Displayr",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/Displayr_Logo.jpg",
+        "url": "https://www.displayr.com/",
+        "detail": "At Displayr, we're working to solve the biggest problem in data science: it is just too hard to do.\r\n\r\nWe're building apps that brings data science, visualization, and reporting to everyone. Our two main products are Displayr, the world's first complete data science tool; and Q, the complete toolkit for market researchers. Our core business is a combination of advanced software engineering and data science, coupled with elegant design. \r\n\r\nWe currently have offices in Sydney, Chicago, and London.\r\n\r\nWe are always keen to speak with potential new staff, and we post our latest vacancies on LinkedIn - check out the Jobs list on this page."
+    },
+    {
+        "tier": 100,
+        "name": "Facebook",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/slack-imgs.png",
+        "url": "http://facebook.com/careers",
+        "detail": "\r\nFacebook was built to help people connect and share, and over the last decade our tools have played a critical part in changing how people around the world communicate with one another. With over a billion people using the service and more than fifty offices around the globe, a career at Facebook offers countless ways to make an impact in a fast growing organization. Want to build new features and improve existing products that more than a Billion people around the world use? Are you interested in working on highly impactful technical challenges to help the world be more open and connected? Want to solve unique, large-scale, highly complex technical problems? Our development cycle is extremely fast, and we've built tools to keep it that way. It's common to write code and have it running live on the site just a few days later. We push code to the site everyday and have small teams that build products that are touched by millions of people around the world. For exploring opportunities with us, visit www.facebook.com/careers.\r\n\r\n"
+    },
+    {
+        "tier": 100,
+        "name": "Jane Street",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/janestreet-nbg.png",
+        "url": "https://www.janestreet.com/",
+        "detail": "Jane Street is a proprietary trading firm that operates around the clock and around the globe. We bring a deep understanding of markets, a scientific approach, and innovative technology to bear on the problem of trading profitably in the world's highly competitive financial markets. \r\n\n\r\nFounded in 2000, Jane Street employs over 500 people in offices in New York, London and Hong Kong. We are always recruiting top students and invite you to learn more about a career at Jane Street. The environment at Jane Street is open, informal, intellectual and fun. You can wear a t-shirt and jeans to the office every day, the kitchen is stocked, and discussions are always lively. Teaching and learning are central activities through classes, mentoring and discussion."
+    },
+    {
+        "tier": 100,
+        "name": "Optiver",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/Optiver-Logo.png",
+        "url": "http://www.optiver.com/sydney/",
+        "detail": "Optiver is an electronic market maker. Put simply that means we trade options and other financial instruments in markets around the world, providing pricing for anyone who wants to trade. It's a unique business, with unique challenges. More than 1,000 Optiverians work to improve the market through ethical market operation. We're a quiet powerhouse of creative problem solving and collaboration. And while building our success for more than 30 years, we've deliberately forged a culture that gives you plenty of opportunity and support to make an impact here. We want the best to help us make it better every day. "
+    },
+    {
+        "tier": 100,
+        "name": "Quantium",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/Quantium-72ppi.png",
+        "url": "https://www.quantium.com/",
+        "detail": "Quantium was founded by like-minded executives from different disciplines across data, science and business. In everyday life, data forms the backbone of every decision we make, every lesson we learn and every direction we choose. Better data, better decisions, better outcomes. But it is so much more than just numbers and technology. It\u2019s what we know, unearthing ideas to solve problems and grasping opportunities that could change the world.\r\n\r\nWe are a global leader in the application of analytics to help our clients solve their most important problems. Using data, we power possibilities for organisations."
+    },
+    {
+        "tier": 100,
+        "name": "SIG Susquehanna",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/sig.png",
+        "url": "https://sig.com/",
+        "detail": "We commit our own capital to trade financial products around the world. Building virtually all of our own trading technology from scratch, we are leaders and innovators in high performance, low latency trading. Our traders, quants, developers, and systems engineers work side-by-side to develop and implement our trading strategies. Each individual brings their unique expertise every day to help us make optimal decisions in the global financial markets."
+    },
+    {
+        "tier": 10,
+        "name": "Deloitte",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/Deloitte_White_-_Annalise_Field.jpg",
+        "url": "https://www2.deloitte.com/au/en.html",
+        "detail": "As one of the largest professional services firms in the world, our services are as diverse as the graduates we hire. From cyber security and tech innovation through to audit and advisory, we\u2019re looking ahead and building industries of the future. \r\n\r\nBut we can\u2019t do that without you \u2013 today\u2019s graduates and tomorrow\u2019s leaders. So, we\u2019re calling on creatives, technologists and trailblazers. Join us and ask yourself: What impact will you make?"
+    },
+    {
+        "tier": 10,
+        "name": "Accenture",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/accenture.png",
+        "url": "http://www.accenture.com/",
+        "detail": "Accenture is a global management consulting, technology services and outsourcing company, with more than 319,000 people serving clients in more than 120 countries. Combining unparalleled experience, comprehensive capabilities across all industries and business functions, and extensive research on the world\u2019s most successful companies, Accenture collaborates with clients to help them become high-performance businesses and governments. There\u2019s no limit to the technical or business solutions Accenture deliver, the clients they work with, or the type of work that they take on. Accenture work with Australia\u2019s most innovative organisations across all sectors, including banking, insurance, healthcare, mining, retailers, communications, media, and governmental agencies."
+    },
+    {
+        "tier": 10,
+        "name": "Palantir",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/palantir-logo-nbg.png",
+        "url": "http://www.palantir.com/",
+        "detail": "Today\u2019s critical institutions don\u2019t just protect public safety or provide vital goods and services\u2014they also deal with astonishing amounts of data. At Palantir, our mission is to help the world\u2019s government agencies, Fortune 500 companies, and nonprofits transform how they understand and use that data.  \n\r\nWe build software that lets organizations integrate and analyze their data so they can solve problems they couldn\u2019t before. For example, we\u2019re helping our customers combat terrorism at home and abroad, investigate and prosecute financial fraud rings, offer more credit to retail banking customers, manufacture products faster and more safely, and fight violent crime in the world\u2019s great cities. And we\u2019re just getting started."
+    },
+    {
+        "tier": 10,
+        "name": "AMP",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/amp_2.png",
+        "url": "https://www.amp.com.au/",
+        "detail": "AMP is a financial services company in Australia and New Zealand providing superannuation and investment products, insurance, financial advice and banking products including home loans and savings accounts."
+    },
+    {
+        "tier": 10,
+        "name": "Akuna Capital",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/Akuna_Capital_logo.png",
+        "url": "https://akunacapital.com/",
+        "detail": "Akuna Capital is a proprietary trading firm specializing in derivatives market-making and sophisticated modeling with a commitment to cutting-edge technology.\r\n\r\nWe are the leading options market-maker to successfully enter the industry in recent years with sustainable growth. By providing more liquidity to the markets through rapid innovation, we have the advantage of youth in remaining nimble and agile in an ever-changing competitive landscape."
+    },
+    {
+        "tier": 10,
+        "name": "Appian",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/appian.jpeg",
+        "url": "https://www.appian.com/",
+        "detail": "Appian Corporation is a cloud computing company currently headquartered in Tysons, Virginia, part of the Dulles Technology Corridor. Appian sells a Platform as a Service for building enterprise software applications. It is a leader in the Low-Code Development, Business process management, and Case Management markets."
+    },
+    {
+        "tier": 10,
+        "name": "Carlton & United Breweries",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/cub.png",
+        "url": "https://cub.com.au/about/",
+        "detail": "CUB brews some of Australia\u2019s most iconic and loved beers, including Victoria Bitter, Carlton Draught, Great Northern, Pure Blonde, Carlton Dry, Melbourne Bitter, Crown Lager, Cascade Premium Light and the Yak Ales. Our stable of brands includes global premium brands such as Corona, Budweiser, Stella Artois, Beck\u2019s, Hoegaarden, Leffe and, our most recent additions, leading craft brands 4 Pines and Pirate Life."
+    },
+    {
+        "tier": 10,
+        "name": "Clayton Utz",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/clayton_utz.png",
+        "url": "https://www.claytonutz.com/",
+        "detail": "As one of Australia's leading law firms, Clayton Utz gives confident, innovative and incisive legal advice."
+    },
+    {
+        "tier": 10,
+        "name": "Advanced Dermatology",
+        "logo": "https://csesoc.unsw.edu.au/static/media/sponsors/Advanced_Dermatology_logo.png",
+        "url": "http://www.advanced-dermatology.com.au/",
+        "detail": "Advanced Dermatology is a global leader in the provision of at home dermatological skin treatments and in-office cosmetic surgery. As a leading Sydney Laser Clinic we offer a range of services from non-surgical liposuction, cellulite treatment and anti-wrinkle injections. Our team of certified clinicians and expert doctors are down to earth, easily approachable and always here to help you no matter how challenging your skin concerns. Advanced Dermatology is at the cutting-edge of skin science and our partnership with the UNSW Computer Science & Engineering Society aims at developing and enhancing computer models for the improvement of anti-ageing skin medicine and genomic testing. Our anti-ageing skincare range is exported to over 60 countries and available through our website."
+    }
+]
