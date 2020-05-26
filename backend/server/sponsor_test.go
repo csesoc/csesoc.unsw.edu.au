@@ -11,7 +11,7 @@ import (
 const companyName = "Example"
 const companyLogo = "https://static.canva.com/static/images/canva_logo_100x100@2x.png"
 const companyTier = "100"
-const companyExpiry = "2020-11-01T22:08:41+00:00"
+const companyDetail = "Example"
 const getRequest = "http://localhost:1323/api/sponsor/?name="
 
 func TestSponsor(t *testing.T) {
@@ -48,7 +48,7 @@ func TestSponsor(t *testing.T) {
 			"name":   {companyName},
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
-			"expiry": {companyExpiry},
+			"detail": {companyDetail},
 		})
 		if err != nil {
 			t.Errorf("Could not perform post sponsor request. Check connection.")
@@ -109,7 +109,7 @@ func TestSponsorError(t *testing.T) {
 			"name":   {companyName},
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
-			"expiry": {companyExpiry},
+			"detail": {companyDetail},
 		})
 		if err != nil {
 			t.Errorf("Could not perform post sponsor request. Check connection.")
@@ -122,7 +122,7 @@ func TestSponsorError(t *testing.T) {
 			"name":   {companyName},
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
-			"expiry": {companyExpiry},
+			"detail": {companyDetail},
 		})
 		if err != nil {
 			t.Errorf("Could not perform post sponsor request. Check connection.")
