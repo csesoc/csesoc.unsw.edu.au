@@ -127,13 +127,19 @@ func feedbackMailingTimer() {
 
 // DispatchEnquiryBundles - public trigger for dispatching enquiries
 func DispatchEnquiryBundles() {
-	sendEnquiryBundle(infoEmail, &infoBundle)
-	sendEnquiryBundle(sponsorshipEmail, &sponsorshipBundle)
+	if len(infoBundle) > 0 {
+		sendEnquiryBundle(infoEmail, &infoBundle)
+	}
+	if len(sponsorshipBundle) > 0 {
+		sendEnquiryBundle(sponsorshipEmail, &sponsorshipBundle)
+	}
 }
 
 // DispatchFeedbackBundle - public trigger for dispatching feedbacks
 func DispatchFeedbackBundle() {
-	sendFeedbackBundle(infoEmail, &feedbackBundle)
+	if len(feedbackBundle) > 0 {
+		sendFeedbackBundle(infoEmail, &feedbackBundle)
+	}
 }
 
 /////////////////
@@ -141,10 +147,6 @@ func DispatchFeedbackBundle() {
 /////////////////
 
 func sendEnquiryBundle(targetEmail string, bundle *[]Enquiry) {
-	if len(*bundle) == 0 {
-		return
-	}
-
 	// Format message payload
 	payload := []mailjet.InfoMessagesV31{
 		mailjet.InfoMessagesV31{
@@ -172,10 +174,6 @@ func sendEnquiryBundle(targetEmail string, bundle *[]Enquiry) {
 }
 
 func sendFeedbackBundle(targetEmail string, bundle *[]Feedback) {
-	if len(*bundle) == 0 {
-		return
-	}
-
 	// Format message payload
 	payload := []mailjet.InfoMessagesV31{
 		mailjet.InfoMessagesV31{
