@@ -1,12 +1,13 @@
 package main
 
 import (
-	"bufio"
 	"context"
 	"log"
 	"net/http"
 	"os"
+	"os/signal"
 	"strconv"
+	"time"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo/v4"
@@ -74,29 +75,44 @@ func main() {
 
 	// Create new instance of echo
 	e := echo.New()
+	e.Debug = true
 	// Validator for structs used
 	e.Validator = &CustomValidator{validator: validator.New()}
 
 	servePages(e)
 	serveAPI(e)
 
-	// Start echo instance on 1323 port
-	e.Debug = true
-	e.Logger.Fatal(e.Start(":1323"))
+	// Bind quit to listen to Interrupt signals
+	quit := make(chan os.Signal)
+	signal.Notify(quit, os.Interrupt)
 
-	// Safely stop echo instance
-	scanner := bufio.NewScanner(os.Stdin)
-	for scanner.Scan() {
-		if scanner.Text() == "quit" {
-			e.Close()
-			DispatchEnquiryBundles()
-			DispatchFeedbackBundle()
+	// Running server on a subroutine enables a gracefully shutdown
+	// Reference: https://echo.labstack.com/cookbook/graceful-shutdown
+	go func() {
+		// Start echo instance on 1323 port
+		if err := e.Start(":1323"); err != nil {
+			e.Logger.Info("Error: shutting down the server")
+
+			// Send interrupt signal to begin shutdown
+			quit <- os.Signal(os.Interrupt)
 		}
-	}
+	}()
 
-	// Send bundles in case the echo server crashes
-	defer DispatchEnquiryBundles()
-	defer DispatchFeedbackBundle()
+	///////////
+	// SHUTDOWN
+	///////////
+
+	// Wait for interrupt signal
+	<-quit
+	// Dispatch bundles on shutdown
+	DispatchEnquiryBundles()
+	DispatchFeedbackBundle()
+	// Gracefully shutdown the server with a timeout of 10 seconds
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	if err := e.Shutdown(ctx); err != nil {
+		e.Logger.Fatal(err)
+	}
 }
 
 func servePages(e *echo.Echo) {
