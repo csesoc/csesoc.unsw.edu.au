@@ -44,20 +44,6 @@ func SponsorSetup(client *mongo.Client) {
 		log.Fatal("Could not create index: ", err)
 	}
 
-	// Fetching sponsor list
-	/*
-		resp, err := http.Get("https://gistcdn.githack.com/esyw/4e35cd5fe73fa024020e67855ca733fb/raw/e85c9ae58a6323a4214ffa4ad89b0a5ebe404e31/sponsors.json")
-		if err != nil {
-			log.Fatal("Could not get sponsor list: ", err)
-		}
-		defer resp.Body.Close()
-
-		var sponsors []Sponsor
-		if err = json.NewDecoder(resp.Body).Decode(&sponsors); err != nil {
-			log.Printf("Could not convert JSON response to Sponsors")
-		}
-	*/
-
 	sponsors, err := retriveSponsorsJSON()
 
 	if err != nil {
