@@ -127,13 +127,13 @@ func feedbackMailingTimer() {
 
 // DispatchEnquiryBundles - public trigger for dispatching enquiries
 func DispatchEnquiryBundles() {
-	go sendEnquiryBundle(infoEmail, &infoBundle)
-	go sendEnquiryBundle(sponsorshipEmail, &sponsorshipBundle)
+	sendEnquiryBundle(infoEmail, &infoBundle)
+	sendEnquiryBundle(sponsorshipEmail, &sponsorshipBundle)
 }
 
 // DispatchFeedbackBundle - public trigger for dispatching feedbacks
 func DispatchFeedbackBundle() {
-	go sendFeedbackBundle(infoEmail, &feedbackBundle)
+	sendFeedbackBundle(infoEmail, &feedbackBundle)
 }
 
 /////////////////
