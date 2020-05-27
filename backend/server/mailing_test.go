@@ -79,7 +79,7 @@ func TestEnquirySuccessful(t *testing.T) {
 	}
 
 	t.Run("Handle successful sponsorship enquiry", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/sponsorship", formCorrectData)
+		resp, err := http.PostForm("http://localhost:1323/api/message/sponsorship", formCorrectData)
 		if err != nil {
 			t.Errorf("Could not perform POST request")
 		}
@@ -89,7 +89,7 @@ func TestEnquirySuccessful(t *testing.T) {
 	})
 
 	t.Run("Handle successful general enquiry", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/info", formCorrectData)
+		resp, err := http.PostForm("http://localhost:1323/api/message/info", formCorrectData)
 		if err != nil {
 			t.Errorf("Could not perform POST request")
 		}
@@ -107,7 +107,7 @@ func TestEnquiryUnsuccessful(t *testing.T) {
 			"body":  {"I'd like to sponsor CSESoc"},
 		}
 
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/sponsorship", formIncorrectData)
+		resp, err := http.PostForm("http://localhost:1323/api/message/sponsorship", formIncorrectData)
 		if err != nil {
 			t.Errorf("Could not perform POST request")
 		}
@@ -123,7 +123,7 @@ func TestEnquiryUnsuccessful(t *testing.T) {
 			"body":  {"I'd like to sponsor CSESoc"},
 		}
 
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/sponsorship", formIncorrectData)
+		resp, err := http.PostForm("http://localhost:1323/api/message/sponsorship", formIncorrectData)
 		if err != nil {
 			t.Errorf("Could not perform POST request")
 		}
@@ -139,7 +139,7 @@ func TestEnquiryUnsuccessful(t *testing.T) {
 			"body":  {""},
 		}
 
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/sponsorship", formIncorrectData)
+		resp, err := http.PostForm("http://localhost:1323/api/message/sponsorship", formIncorrectData)
 		if err != nil {
 			t.Errorf("Could not perform POST request")
 		}
@@ -177,7 +177,7 @@ func TestEnquiryUnsuccessful(t *testing.T) {
 				"body":  {"I'd like to sponsor CSESoc"},
 			}
 
-			resp, err := http.PostForm("http://localhost:1323/api/enquiry/sponsorship", formIncorrectData)
+			resp, err := http.PostForm("http://localhost:1323/api/message/sponsorship", formIncorrectData)
 			if err != nil {
 				t.Errorf("Could not perform POST request")
 			}
@@ -190,7 +190,7 @@ func TestEnquiryUnsuccessful(t *testing.T) {
 
 func TestFeedbackSuccessful(t *testing.T) {
 	t.Run("Feedback Successful", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/feedback", url.Values{
+		resp, err := http.PostForm("http://localhost:1323/api/message/feedback", url.Values{
 			"name":  {"John Smith"},
 			"email": {"johnsmith@gmail.com"},
 			"body":  {"feedback message"},
@@ -204,7 +204,7 @@ func TestFeedbackSuccessful(t *testing.T) {
 	})
 
 	t.Run("Feedback missing name, missing email", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/feedback", url.Values{
+		resp, err := http.PostForm("http://localhost:1323/api/message/feedback", url.Values{
 			"body": {"feedback message"},
 		})
 		if err != nil {
@@ -218,7 +218,7 @@ func TestFeedbackSuccessful(t *testing.T) {
 
 func TestFeedbackError(t *testing.T) {
 	t.Run("Feedback missing name, missing email", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/feedback", url.Values{
+		resp, err := http.PostForm("http://localhost:1323/api/message/feedback", url.Values{
 			"email": {"abcde"},
 			"body":  {"feedback message"},
 		})
@@ -231,7 +231,7 @@ func TestFeedbackError(t *testing.T) {
 	})
 
 	t.Run("Feedback missing body", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/feedback", url.Values{
+		resp, err := http.PostForm("http://localhost:1323/api/message/feedback", url.Values{
 			"name": {"John Smith"},
 		})
 		if err != nil {

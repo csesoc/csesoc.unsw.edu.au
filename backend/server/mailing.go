@@ -8,6 +8,17 @@ import (
 	"github.com/mailjet/mailjet-apiv3-go"
 )
 
+type messageType int
+
+const (
+	// InfoType = 0
+	InfoType messageType = iota
+	// SponsorshipType = 1
+	SponsorshipType
+	// FeedbackType = 2
+	FeedbackType
+)
+
 // Enquiry - struct to contain email enquiry data
 type Enquiry struct {
 	Name  string `validate:"required"`
@@ -47,54 +58,47 @@ func InitMailClient() {
 // HANDLERS
 ///////////
 
-// HandleEnquiry by forwarding emails to relevant inboxes
-func HandleEnquiry(targetEmail string) echo.HandlerFunc {
+// HandleMessage by forwarding emails to relevant inboxes
+func HandleMessage(mt messageType) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		// Extract fields from form
-		enquiry := Enquiry{
-			Name:  c.FormValue("name"),
-			Email: c.FormValue("email"),
-			Body:  c.FormValue("body"),
-		}
+		var enquiry Enquiry
+		var feedback Feedback
 
-		// Validate struct
-		if err := c.Validate(enquiry); err != nil {
-			return c.JSON(http.StatusBadRequest, H{
-				"error": err,
-			})
+		// Extract fields from form
+		if mt == InfoType || mt == SponsorshipType {
+			enquiry = Enquiry{
+				Name:  c.FormValue("name"),
+				Email: c.FormValue("email"),
+				Body:  c.FormValue("body"),
+			}
+			if err := c.Validate(enquiry); err != nil {
+				return c.JSON(http.StatusBadRequest, H{
+					"error": err,
+				})
+			}
+		} else if mt == FeedbackType {
+			feedback = Feedback{
+				Name:  c.FormValue("name"),
+				Email: c.FormValue("email"),
+				Body:  c.FormValue("body"),
+			}
+			// Validate struct
+			if err := c.Validate(feedback); err != nil {
+				return c.JSON(http.StatusBadRequest, H{
+					"error": err,
+				})
+			}
 		}
 
 		// Add to bundle
-		switch targetEmail {
-		case sponsorshipEmail:
-			sponsorshipBundle = append(sponsorshipBundle, enquiry)
-		case infoEmail:
+		switch mt {
+		case InfoType:
 			infoBundle = append(infoBundle, enquiry)
+		case SponsorshipType:
+			sponsorshipBundle = append(sponsorshipBundle, enquiry)
+		case FeedbackType:
+			feedbackBundle = append(feedbackBundle, feedback)
 		}
-
-		return c.JSON(http.StatusAccepted, H{})
-	}
-}
-
-// HandleFeedback - validates feedback input and forwards as an email to the revelant inbox
-func HandleFeedback() echo.HandlerFunc {
-	return func(c echo.Context) error {
-		// Extract fields from form
-		feedback := Feedback{
-			Name:  c.FormValue("name"),
-			Email: c.FormValue("email"),
-			Body:  c.FormValue("body"),
-		}
-
-		// Validate struct
-		if err := c.Validate(feedback); err != nil {
-			return c.JSON(http.StatusBadRequest, H{
-				"error": err,
-			})
-		}
-
-		// Add to bundle
-		feedbackBundle = append(feedbackBundle, feedback)
 
 		return c.JSON(http.StatusAccepted, H{})
 	}
@@ -130,17 +134,26 @@ func mailingTimer() {
 // DispatchEnquiryBundles - public trigger for dispatching enquiries
 func DispatchEnquiryBundles() {
 	if len(infoBundle) > 0 {
-		sendEnquiryBundle(infoEmail, &infoBundle)
+		if sendBundle(infoEmail, "Website info enquiry bundle", joinEnquiries(infoBundle)) {
+			// If sent successfully, clear bundle
+			infoBundle = nil
+		}
 	}
 	if len(sponsorshipBundle) > 0 {
-		sendEnquiryBundle(sponsorshipEmail, &sponsorshipBundle)
+		if sendBundle(sponsorshipEmail, "Website sponsorship enquiry bundle", joinEnquiries(sponsorshipBundle)) {
+			// If sent successfully, clear bundle
+			sponsorshipBundle = nil
+		}
 	}
 }
 
 // DispatchFeedbackBundle - public trigger for dispatching feedbacks
 func DispatchFeedbackBundle() {
 	if len(feedbackBundle) > 0 {
-		sendFeedbackBundle(infoEmail, &feedbackBundle)
+		if sendBundle(infoEmail, "Website feedback bundle", joinFeedbacks(feedbackBundle)) {
+			// If sent successfully, clear bundle
+			feedbackBundle = nil
+		}
 	}
 }
 
@@ -148,7 +161,7 @@ func DispatchFeedbackBundle() {
 // BUNDLE SENDERS
 /////////////////
 
-func sendEnquiryBundle(targetEmail string, bundle *[]Enquiry) {
+func sendBundle(targetEmail string, subject string, body string) bool {
 	// Format message payload
 	payload := []mailjet.InfoMessagesV31{
 		mailjet.InfoMessagesV31{
@@ -161,45 +174,15 @@ func sendEnquiryBundle(targetEmail string, bundle *[]Enquiry) {
 					Email: targetEmail,
 				},
 			},
-			Subject:  "Website enquiry bundle",
-			HTMLPart: joinEnquiries(*bundle),
+			Subject:  subject,
+			HTMLPart: body,
 		},
 	}
 
 	// Send query
 	messages := mailjet.MessagesV31{Info: payload}
 	_, err := mailjetClient.SendMailV31(&messages)
-	if err == nil {
-		// Only dump the bundle if email was successfully sent
-		*bundle = nil
-	}
-}
-
-func sendFeedbackBundle(targetEmail string, bundle *[]Feedback) {
-	// Format message payload
-	payload := []mailjet.InfoMessagesV31{
-		mailjet.InfoMessagesV31{
-			From: &mailjet.RecipientV31{
-				Email: "projects.website@csesoc.org.au",
-				Name:  "CSESoc Website",
-			},
-			To: &mailjet.RecipientsV31{
-				mailjet.RecipientV31{
-					Email: targetEmail,
-				},
-			},
-			Subject:  "Website feedback bundle",
-			HTMLPart: joinFeedbacks(*bundle),
-		},
-	}
-
-	// Send query
-	messages := mailjet.MessagesV31{Info: payload}
-	_, err := mailjetClient.SendMailV31(&messages)
-	if err == nil {
-		// Only dump the bundle if email was successfully sent
-		*bundle = nil
-	}
+	return err == nil
 }
 
 func joinEnquiries(bundle []Enquiry) string {

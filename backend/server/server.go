@@ -179,10 +179,10 @@ func serveAPI(e *echo.Echo) {
 	e.DELETE("/api/sponsor/", DeleteSponsor())
 	e.GET("/api/sponsors/", GetSponsors())
 
-	// Routes for enquiries
-	e.POST("/api/enquiry/sponsorship", HandleEnquiry("sponsorship@csesoc.org.au"))
-	e.POST("/api/enquiry/info", HandleEnquiry("info@csesoc.org.au"))
-	e.POST("/api/enquiry/feedback", HandleFeedback())
+	// Routes for message
+	e.POST("/api/message/info", HandleMessage(InfoType))
+	e.POST("/api/message/sponsorship", HandleMessage(SponsorshipType))
+	e.POST("/api/message/feedback", HandleMessage(FeedbackType))
 
 	// Routes for faq
 	e.GET("/api/faq/", GetFaq())
