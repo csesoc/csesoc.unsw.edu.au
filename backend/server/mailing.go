@@ -40,8 +40,7 @@ func InitMailClient() {
 	mailjetClient = mailjet.NewMailjetClient(publicKey, secretKey)
 
 	// Start mailing timers
-	go enquiryMailingTimer()
-	go feedbackMailingTimer()
+	go mailingTimer()
 }
 
 ///////////
@@ -101,23 +100,26 @@ func HandleFeedback() echo.HandlerFunc {
 	}
 }
 
-/////////
-// TIMERS
-/////////
+////////
+// TIMER
+////////
 
 // This function is executed once in a subroutine and triggers every 15 minutes
-func enquiryMailingTimer() {
-	for {
-		time.Sleep(15 * time.Minute)
-		DispatchEnquiryBundles()
-	}
-}
+func mailingTimer() {
+	const minutesInDay int = 24 * 60
+	const mailingInterval int = 15
 
-// This function is executed once in a subroutine and triggers once every day
-func feedbackMailingTimer() {
+	var intervalCounter int = 0
 	for {
-		time.Sleep(24 * time.Hour)
-		DispatchFeedbackBundle()
+		time.Sleep(time.Duration(mailingInterval) * time.Minute)
+		intervalCounter++
+		DispatchEnquiryBundles()
+
+		// Since feedback triggers every day, a different interval is used
+		if intervalCounter == minutesInDay/mailingInterval {
+			intervalCounter = 0
+			DispatchFeedbackBundle()
+		}
 	}
 }
 
