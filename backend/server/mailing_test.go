@@ -7,7 +7,71 @@ import (
 	"testing"
 )
 
-func TestSuccessfulEnquiry(t *testing.T) {
+func TestJoinMessages(t *testing.T) {
+	t.Run("Join enquiries", func(t *testing.T) {
+		enquiry1 := Enquiry{
+			Name:  "Sergio",
+			Email: "smr1@gmail.com",
+			Body:  "This is the first enquiry",
+		}
+		enquiry2 := Enquiry{
+			Name:  "Sergio",
+			Email: "smr2@gmail.com",
+			Body:  "This is the second enquiry",
+		}
+		bundle := []Enquiry{enquiry1, enquiry2}
+
+		composedMsg := joinEnquiries(bundle)
+		expectedMsg := "<hr />" +
+			"<h3>Enquiry from Sergio &lt;smr1@gmail.com&gt;</h3>" +
+			"<p>This is the first enquiry</p>" +
+			"<hr />" +
+			"<h3>Enquiry from Sergio &lt;smr2@gmail.com&gt;</h3>" +
+			"<p>This is the second enquiry</p>" +
+			"<hr />"
+
+		if composedMsg != expectedMsg {
+			t.Errorf("Output doesn't match expected output")
+		}
+	})
+
+	t.Run("Join feedbacks", func(t *testing.T) {
+		feedback1 := Feedback{
+			Name:  "Sergio",
+			Email: "smr1@gmail.com",
+			Body:  "This is the first feedback",
+		}
+		feedback2 := Feedback{
+			Name:  "Sergio",
+			Email: "",
+			Body:  "This is the second feedback",
+		}
+		feedback3 := Feedback{
+			Name:  "",
+			Email: "smr3@gmail.com",
+			Body:  "This is the third feedback",
+		}
+		bundle := []Feedback{feedback1, feedback2, feedback3}
+
+		composedMsg := joinFeedbacks(bundle)
+		expectedMsg := "<hr />" +
+			"<p>This is the first feedback</p>" +
+			"<i>Feedback from Sergio &lt;smr1@gmail.com&gt;</i>" +
+			"<hr />" +
+			"<p>This is the second feedback</p>" +
+			"<i>Feedback from Sergio</i>" +
+			"<hr />" +
+			"<p>This is the third feedback</p>" +
+			"<i>Feedback from &lt;smr3@gmail.com&gt;</i>" +
+			"<hr />"
+
+		if composedMsg != expectedMsg {
+			t.Errorf("Output doesn't match expected output")
+		}
+	})
+}
+
+func TestEnquirySuccessful(t *testing.T) {
 	formCorrectData := url.Values{
 		"name":  {"John Smith"},
 		"email": {"john.smith@company.com.au"},
@@ -15,37 +79,27 @@ func TestSuccessfulEnquiry(t *testing.T) {
 	}
 
 	t.Run("Handle successful sponsorship enquiry", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/sponsorship", formCorrectData)
+		resp, err := http.PostForm("http://localhost:1323/api/message/sponsorship", formCorrectData)
 		if err != nil {
 			t.Errorf("Could not perform POST request")
 		}
 		defer resp.Body.Close()
 
-		got := resp.StatusCode
-		want := http.StatusOK
-
-		if got != want {
-			t.Errorf("got status %d want %d", got, want)
-		}
+		assertStatus(t, resp.StatusCode, http.StatusAccepted)
 	})
 
 	t.Run("Handle successful general enquiry", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/info", formCorrectData)
+		resp, err := http.PostForm("http://localhost:1323/api/message/info", formCorrectData)
 		if err != nil {
 			t.Errorf("Could not perform POST request")
 		}
 		defer resp.Body.Close()
 
-		got := resp.StatusCode
-		want := http.StatusOK
-
-		if got != want {
-			t.Errorf("got status %d want %d", got, want)
-		}
+		assertStatus(t, resp.StatusCode, http.StatusAccepted)
 	})
 }
 
-func TestUnsuccessfulEnquiry(t *testing.T) {
+func TestEnquiryUnsuccessful(t *testing.T) {
 	t.Run("Handle request with missing name", func(t *testing.T) {
 		formIncorrectData := url.Values{
 			"name":  {""},
@@ -53,18 +107,13 @@ func TestUnsuccessfulEnquiry(t *testing.T) {
 			"body":  {"I'd like to sponsor CSESoc"},
 		}
 
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/sponsorship", formIncorrectData)
+		resp, err := http.PostForm("http://localhost:1323/api/message/sponsorship", formIncorrectData)
 		if err != nil {
 			t.Errorf("Could not perform POST request")
 		}
 		defer resp.Body.Close()
 
-		got := resp.StatusCode
-		want := http.StatusBadRequest
-
-		if got != want {
-			t.Errorf("got status %d want %d", got, want)
-		}
+		assertStatus(t, resp.StatusCode, http.StatusBadRequest)
 	})
 
 	t.Run("Handle request with missing email", func(t *testing.T) {
@@ -74,18 +123,13 @@ func TestUnsuccessfulEnquiry(t *testing.T) {
 			"body":  {"I'd like to sponsor CSESoc"},
 		}
 
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/sponsorship", formIncorrectData)
+		resp, err := http.PostForm("http://localhost:1323/api/message/sponsorship", formIncorrectData)
 		if err != nil {
 			t.Errorf("Could not perform POST request")
 		}
 		defer resp.Body.Close()
 
-		got := resp.StatusCode
-		want := http.StatusBadRequest
-
-		if got != want {
-			t.Errorf("got status %d want %d", got, want)
-		}
+		assertStatus(t, resp.StatusCode, http.StatusBadRequest)
 	})
 
 	t.Run("Handle request with no body", func(t *testing.T) {
@@ -95,18 +139,13 @@ func TestUnsuccessfulEnquiry(t *testing.T) {
 			"body":  {""},
 		}
 
-		resp, err := http.PostForm("http://localhost:1323/api/enquiry/sponsorship", formIncorrectData)
+		resp, err := http.PostForm("http://localhost:1323/api/message/sponsorship", formIncorrectData)
 		if err != nil {
 			t.Errorf("Could not perform POST request")
 		}
 		defer resp.Body.Close()
 
-		got := resp.StatusCode
-		want := http.StatusBadRequest
-
-		if got != want {
-			t.Errorf("got status %d want %d", got, want)
-		}
+		assertStatus(t, resp.StatusCode, http.StatusBadRequest)
 	})
 
 	// http://softwaretesterfriend.com/manual-testing/valid-invalid-email-address-format-validation/
@@ -138,18 +177,68 @@ func TestUnsuccessfulEnquiry(t *testing.T) {
 				"body":  {"I'd like to sponsor CSESoc"},
 			}
 
-			resp, err := http.PostForm("http://localhost:1323/api/enquiry/sponsorship", formIncorrectData)
+			resp, err := http.PostForm("http://localhost:1323/api/message/sponsorship", formIncorrectData)
 			if err != nil {
 				t.Errorf("Could not perform POST request")
 			}
 			defer resp.Body.Close()
 
-			got := resp.StatusCode
-			want := http.StatusBadRequest
-
-			if got != want {
-				t.Errorf("got status %d want %d", got, want)
-			}
+			assertStatus(t, resp.StatusCode, http.StatusBadRequest)
 		})
 	}
+}
+
+func TestFeedbackSuccessful(t *testing.T) {
+	t.Run("Feedback Successful", func(t *testing.T) {
+		resp, err := http.PostForm("http://localhost:1323/api/message/feedback", url.Values{
+			"name":  {"John Smith"},
+			"email": {"johnsmith@gmail.com"},
+			"body":  {"feedback message"},
+		})
+		if err != nil {
+			t.Errorf("could not perform POST request")
+		}
+		defer resp.Body.Close()
+
+		assertStatus(t, resp.StatusCode, http.StatusAccepted)
+	})
+
+	t.Run("Feedback missing name, missing email", func(t *testing.T) {
+		resp, err := http.PostForm("http://localhost:1323/api/message/feedback", url.Values{
+			"body": {"feedback message"},
+		})
+		if err != nil {
+			t.Errorf("could not perform POST request")
+		}
+		defer resp.Body.Close()
+
+		assertStatus(t, resp.StatusCode, http.StatusAccepted)
+	})
+}
+
+func TestFeedbackError(t *testing.T) {
+	t.Run("Feedback missing name, missing email", func(t *testing.T) {
+		resp, err := http.PostForm("http://localhost:1323/api/message/feedback", url.Values{
+			"email": {"abcde"},
+			"body":  {"feedback message"},
+		})
+		if err != nil {
+			t.Errorf("could not perform POST request")
+		}
+		defer resp.Body.Close()
+
+		assertStatus(t, resp.StatusCode, http.StatusBadRequest)
+	})
+
+	t.Run("Feedback missing body", func(t *testing.T) {
+		resp, err := http.PostForm("http://localhost:1323/api/message/feedback", url.Values{
+			"name": {"John Smith"},
+		})
+		if err != nil {
+			t.Errorf("could not perform POST request")
+		}
+		defer resp.Body.Close()
+
+		assertStatus(t, resp.StatusCode, http.StatusBadRequest)
+	})
 }
