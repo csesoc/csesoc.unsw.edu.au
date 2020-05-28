@@ -11,8 +11,8 @@ import (
 type messageType int
 
 const (
-	// InfoType = 0
-	InfoType messageType = iota
+	// GeneralType = 0
+	GeneralType messageType = iota
 	// SponsorshipType = 1
 	SponsorshipType
 	// FeedbackType = 2
@@ -36,8 +36,8 @@ type Feedback struct {
 
 // Message bundles
 var feedbackBundle []Feedback
-var infoBundle []Enquiry
-var infoEmail string = "info@csesoc.org.au"
+var generalBundle []Enquiry
+var generalEmail string = "info@csesoc.org.au"
 var sponsorshipBundle []Enquiry
 var sponsorshipEmail string = "sponsorship@csesoc.org.au"
 
@@ -46,8 +46,8 @@ var publicKey string = "8afb96baef07230483a2a5ceca97d55d"
 var secretKey string = "424ad90f25487e6be369a1cbb2a34694"
 var mailjetClient *mailjet.Client
 
-// InitMailClient initialises a session with the Mailjet API and stores it in a global variable
-func InitMailClient() {
+// MailingSetup initialises a session with the Mailjet API and stores it in a global variable
+func MailingSetup() {
 	mailjetClient = mailjet.NewMailjetClient(publicKey, secretKey)
 
 	// Start mailing timers
@@ -65,7 +65,7 @@ func HandleMessage(mt messageType) echo.HandlerFunc {
 		var feedback Feedback
 
 		// Extract fields from form
-		if mt == InfoType || mt == SponsorshipType {
+		if mt == GeneralType || mt == SponsorshipType {
 			enquiry = Enquiry{
 				Name:  c.FormValue("name"),
 				Email: c.FormValue("email"),
@@ -92,8 +92,8 @@ func HandleMessage(mt messageType) echo.HandlerFunc {
 
 		// Add to bundle
 		switch mt {
-		case InfoType:
-			infoBundle = append(infoBundle, enquiry)
+		case GeneralType:
+			generalBundle = append(generalBundle, enquiry)
 		case SponsorshipType:
 			sponsorshipBundle = append(sponsorshipBundle, enquiry)
 		case FeedbackType:
@@ -133,14 +133,14 @@ func mailingTimer() {
 
 // DispatchEnquiryBundles - public trigger for dispatching enquiries
 func DispatchEnquiryBundles() {
-	if len(infoBundle) > 0 {
-		if sendBundle(infoEmail, "Website info enquiry bundle", joinEnquiries(infoBundle)) {
+	if len(generalBundle) > 0 {
+		if sendEmail(generalEmail, "Website info enquiry bundle", joinEnquiries(generalBundle)) {
 			// If sent successfully, clear bundle
-			infoBundle = nil
+			generalBundle = nil
 		}
 	}
 	if len(sponsorshipBundle) > 0 {
-		if sendBundle(sponsorshipEmail, "Website sponsorship enquiry bundle", joinEnquiries(sponsorshipBundle)) {
+		if sendEmail(sponsorshipEmail, "Website sponsorship enquiry bundle", joinEnquiries(sponsorshipBundle)) {
 			// If sent successfully, clear bundle
 			sponsorshipBundle = nil
 		}
@@ -150,7 +150,7 @@ func DispatchEnquiryBundles() {
 // DispatchFeedbackBundle - public trigger for dispatching feedbacks
 func DispatchFeedbackBundle() {
 	if len(feedbackBundle) > 0 {
-		if sendBundle(infoEmail, "Website feedback bundle", joinFeedbacks(feedbackBundle)) {
+		if sendEmail(generalEmail, "Website feedback bundle", joinFeedbacks(feedbackBundle)) {
 			// If sent successfully, clear bundle
 			feedbackBundle = nil
 		}
@@ -161,7 +161,7 @@ func DispatchFeedbackBundle() {
 // BUNDLE SENDERS
 /////////////////
 
-func sendBundle(targetEmail string, subject string, body string) bool {
+func sendEmail(targetEmail string, subject string, body string) bool {
 	// Format message payload
 	payload := []mailjet.InfoMessagesV31{
 		mailjet.InfoMessagesV31{

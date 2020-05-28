@@ -70,9 +70,6 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 }
 
 func main() {
-	// Initialse SMTP mailing client
-	InitMailClient()
-
 	// Create new instance of echo
 	e := echo.New()
 	e.Debug = true
@@ -81,6 +78,8 @@ func main() {
 
 	servePages(e)
 	serveAPI(e)
+
+	println("Web server is online :)")
 
 	// Bind quit to listen to Interrupt signals
 	quit := make(chan os.Signal)
@@ -116,6 +115,9 @@ func main() {
 }
 
 func servePages(e *echo.Echo) {
+
+	println("Serving pages...")
+
 	// Setup our assetHandler and point it to our static build location
 	assetHandler := http.FileServer(http.Dir("../../frontend/dist/"))
 
@@ -127,65 +129,73 @@ func servePages(e *echo.Echo) {
 	e.GET("/css/*", echo.WrapHandler(assetHandler))
 
 	echo.NotFoundHandler = func(c echo.Context) error {
-		// render your 404 page
+		// TODO: Render your 404 page
 		return c.String(http.StatusNotFound, "not found page")
 	}
 }
 
 func serveAPI(e *echo.Echo) {
-	//Set client options - this line needs to change when moving from local deployment to docker containers
+
+	////////////////
+	// MongoDB Setup
+	////////////////
+
+	println("Initialising MongoDB...")
+
+	// Set client options
 	clientOptions := options.Client().ApplyURI("mongodb://mongo:27017")
-	//Connect to MongoDB
+	// Connect to MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
 		log.Fatal(err)
 	}
-	//Check connection
+	// Check connection
 	err = client.Ping(context.TODO(), nil)
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	///////////////////////
+	// Binding API Handlers
+	///////////////////////
+
 	println("Serving API...")
 
 	// Creating collections
-	postsCollection := client.Database("csesoc").Collection("posts")
-	catCollection := client.Database("csesoc").Collection("categories")
-	SponsorSetup(client)
+	// postsCollection := client.Database("csesoc").Collection("posts")
+	// catCollection := client.Database("csesoc").Collection("categories")
 	// userCollection := client.Database("csesoc").Collection("users")
 
-	// Add more API routes here
-	e.GET("/api/v1/test", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
-
+	// AUTHENTICATION
 	// e.POST("/login/", login(userCollection))
 
-	// Routes for posts
-	e.GET("/api/posts/", getPosts(postsCollection))
-	e.POST("/api/post/", newPosts(postsCollection))
-	e.PUT("/api/post/", updatePosts(postsCollection))
-	e.DELETE("/api/post/", deletePosts(postsCollection))
+	// POSTS
+	// e.GET("/api/v1/posts/", getPosts(postsCollection))
+	// e.POST("/api/v1/post/", newPosts(postsCollection))
+	// e.PUT("/api/v1/post/", updatePosts(postsCollection))
+	// e.DELETE("/api/v1/post/", deletePosts(postsCollection))
 
-	// Routes for categories
-	e.GET("/api/category/:id/", getCats(catCollection))
-	e.POST("/api/category/", newCats(catCollection))
-	e.PATCH("/api/category/", patchCats(catCollection))
-	e.DELETE("/api/category/", deleteCats(catCollection))
+	// CATEGORIES
+	// e.GET("/api/v1/category/:id/", getCats(catCollection))
+	// e.POST("/api/v1/category/", newCats(catCollection))
+	// e.PATCH("/api/v1/category/", patchCats(catCollection))
+	// e.DELETE("/api/v1/category/", deleteCats(catCollection))
 
-	// Routes for sponsors
-	e.GET("/api/sponsor/", GetSponsor())
-	e.POST("/api/sponsor/", NewSponsor())
-	e.DELETE("/api/sponsor/", DeleteSponsor())
-	e.GET("/api/sponsors/", GetSponsors())
+	// SPONSOR
+	SponsorSetup(client)
+	e.GET("/api/v1/sponsor", GetSponsor())
+	e.POST("/api/v1/sponsor", NewSponsor())
+	e.DELETE("/api/v1/sponsor", DeleteSponsor())
+	e.GET("/api/v1/sponsors", GetSponsors())
 
-	// Routes for message
-	e.POST("/api/message/info", HandleMessage(InfoType))
-	e.POST("/api/message/sponsorship", HandleMessage(SponsorshipType))
-	e.POST("/api/message/feedback", HandleMessage(FeedbackType))
+	// MAILING
+	MailingSetup()
+	e.POST("/api/v1/mailing/general", HandleMessage(GeneralType))
+	e.POST("/api/v1/mailing/sponsorship", HandleMessage(SponsorshipType))
+	e.POST("/api/v1/mailing/feedback", HandleMessage(FeedbackType))
 
-	// Routes for faq
-	e.GET("/api/faq/", GetFaq())
+	// FAQ
+	e.GET("/api/v1/faq", GetFaq())
 }
 
 // func login(collection *mongo.Collection) echo.HandlerFunc {
