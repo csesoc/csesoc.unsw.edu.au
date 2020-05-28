@@ -12,12 +12,12 @@ const companyName = "Example"
 const companyLogo = "https://static.canva.com/static/images/canva_logo_100x100@2x.png"
 const companyTier = "100"
 const companyExpiry = "2020-11-01T22:08:41+00:00"
-const getRequest = "http://localhost:1323/api/v1/sponsor/?name="
+const getRequest = "http://localhost:1323/api/v1/sponsor?name="
 
 func TestSponsor(t *testing.T) {
 
 	t.Run("Sponsor setup test", func(t *testing.T) {
-		resp, err := http.Get("http://localhost:1323/api/v1/sponsors/")
+		resp, err := http.Get("http://localhost:1323/api/v1/sponsors")
 		if err != nil {
 			t.Errorf("Could not get perform request.")
 		}
@@ -34,7 +34,7 @@ func TestSponsor(t *testing.T) {
 	})
 
 	t.Run("Testing sponsor filtering", func(t *testing.T) {
-		resp, err := http.Get("http://localhost:1323/api/v1/sponsors/?tier=100")
+		resp, err := http.Get("http://localhost:1323/api/v1/sponsors?tier=100")
 		if err != nil {
 			t.Errorf("Could not perform get sponsors request. Check connection.")
 		}
@@ -44,7 +44,7 @@ func TestSponsor(t *testing.T) {
 	})
 
 	t.Run("New sponsor", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/v1/sponsor/", url.Values{
+		resp, err := http.PostForm("http://localhost:1323/api/v1/sponsor", url.Values{
 			"name":   {companyName},
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
@@ -105,7 +105,7 @@ func TestSponsor(t *testing.T) {
 
 func TestSponsorError(t *testing.T) {
 	t.Run("Duplicate Sponsor sponsor", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/v1/sponsor/", url.Values{
+		resp, err := http.PostForm("http://localhost:1323/api/v1/sponsor", url.Values{
 			"name":   {companyName},
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
@@ -118,7 +118,7 @@ func TestSponsorError(t *testing.T) {
 
 		assertStatus(t, resp.StatusCode, http.StatusCreated)
 
-		resp, err = http.PostForm("http://localhost:1323/api/v1/sponsor/", url.Values{
+		resp, err = http.PostForm("http://localhost:1323/api/v1/sponsor", url.Values{
 			"name":   {companyName},
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
@@ -146,7 +146,7 @@ func TestSponsorError(t *testing.T) {
 	})
 
 	t.Run("Missing parameters when creating", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/v1/sponsor/", url.Values{
+		resp, err := http.PostForm("http://localhost:1323/api/v1/sponsor", url.Values{
 			"name": {companyName},
 		})
 		if err != nil {

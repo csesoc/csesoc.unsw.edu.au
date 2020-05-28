@@ -10,6 +10,7 @@ require (
 	github.com/labstack/echo/v4 v4.1.16
 	github.com/mailjet/mailjet-apiv3-go v0.0.0-20190724151621-55e56f74078c
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/swaggo/echo-swagger v1.0.0
 	github.com/xdg/stringprep v1.0.0 // indirect
 	go.mongodb.org/mongo-driver v1.3.3
 	golang.org/x/crypto v0.0.0-20200510223506-06a226fb4e37 // indirect
