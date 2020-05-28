@@ -11,6 +11,8 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo/v4"
+	"github.com/swaggo/echo-swagger"
+	_ "github.com/swaggo/echo-swagger/example/docs"
 
 	"github.com/go-playground/validator/v10"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -69,6 +71,15 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 	return cv.validator.Struct(i)
 }
 
+// @title CSESoc Website Swagger API
+// @version 1.0
+// @description Swagger API for the CSESoc Website Project.
+// @termsOfService http://swagger.io/terms/
+
+// @contact.name Tommy Truong
+// @contact.email projects.website@csesoc.org.au
+
+// @BasePath /api/v1
 func main() {
 	// Create new instance of echo
 	e := echo.New()
@@ -154,6 +165,13 @@ func serveAPI(e *echo.Echo) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	////////////////
+	// Swagger Setup
+	////////////////
+
+	println("Serving Swagger...")
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
 	///////////////////////
 	// Binding API Handlers
