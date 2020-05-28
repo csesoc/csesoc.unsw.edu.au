@@ -11,35 +11,50 @@ import (
 var jwtSecret = []byte("temp_secret_until_proper_secrets_are_implemented")
 
 var tempUsers = map[string]string{
-	"testUser": "t3stP@ssw0rd",
+	"z5123456": "t3stP@ssw0rd",
 }
 
-// handleAuthRequest handles an authentication request made to the server.
-func handleAuthRequest(c echo.Context) error {
-	username := c.FormValue("username")
-	password := c.FormValue("password")
-
-	// Handle incorrect password/non-existent user.
-	if password != tempUsers[username] {
-		return echo.ErrUnauthorized
-	}
-
-	// Create a token.
-	authToken := jwt.New(jwt.SigningMethodHS256)
-
-	// Set JWT claims.
-	claims := authToken.Claims.(jwt.MapClaims)
-	claims["name"] = username
+// createJwtToken creates a new JWT and returns it as a string.
+func createJwtToken(zID string, admin bool) (string, time.Time, error) {
+	unsignedToken := jwt.New(jwt.SigningMethodHS256)
+	claims := unsignedToken.Claims.(jwt.MapClaims)
+	expTime := time.Now().Add(time.Hour * 72)
+	claims["zID"] = zID
 	claims["admin"] = true
-	claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
+	claims["exp"] = expTime.Unix()
 
-	tok, err := authToken.SignedString(jwtSecret)
-
+	token, err := unsignedToken.SignedString(jwtSecret)
 	if err != nil {
-		return err
+		return "", time.Now(), err
 	}
+	return token, expTime, nil
+}
+
+// tempLogin allows auth functionality to be tested before LDAP is implemented
+func tempLogin(c echo.Context) error {
+	userzID := c.QueryParam("zID")
+	password := c.QueryParam("password")
+	expectedPass, ok := tempUsers[userzID]
+	if !ok || password != expectedPass {
+		return c.String(http.StatusUnauthorized, "Your username or password was incorrect.")
+	}
+
+	// Create a new token.
+	token, expTime, err := createJwtToken(userzID, true)
+	if err != nil {
+		return c.String(http.StatusInternalServerError, "500 Internal Error")
+	}
+
+	// Create a cookie to store the JWT.
+	tokenCookie := new(http.Cookie)
+	tokenCookie.Name = "activeToken"
+	tokenCookie.Value = token
+	tokenCookie.Expires = expTime
+	// tokenCookie.HttpOnly = true
+	c.SetCookie(tokenCookie)
 
 	return c.JSON(http.StatusOK, map[string]string{
-		"token": tok,
+		"message": "Success!",
 	})
+
 }
