@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"strings"
 	"strconv"
 	"testing"
 )
@@ -44,12 +45,22 @@ func TestSponsor(t *testing.T) {
 	})
 
 	t.Run("New sponsor", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/sponsor/", url.Values{
-			"name":   {companyName},
-			"logo":   {companyLogo},
-			"tier":   {companyTier},
-			"detail": {companyDetail},
-		})
+		client := &http.Client{}
+		form := url.Values{}
+		form.Add("name", companyName)
+		form.Add("logo", companyLogo)
+		form.Add("tier", companyTier)
+		form.Add("detail", companyDetail)
+		req, _ := http.NewRequest("POST","http://localhost:1323/api/sponsor/", strings.NewReader(form.Encode()))
+		req.Header.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNTkwOTQxODQ1LCJ6SUQiOiJ6NTEyMzQ1NiJ9.vWjgZMvNRvkUAPMX70LqhAU667kd9866u1U7u9SNjQU")
+		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+		resp, err := client.Do(req)
+		// resp, err := http.PostForm("http://localhost:1323/api/sponsor/", url.Values{
+		// 	"name":   {companyName},
+		// 	"logo":   {companyLogo},
+		// 	"tier":   {companyTier},
+		// 	"detail": {companyDetail},
+		// })
 		if err != nil {
 			t.Errorf("Could not perform post sponsor request. Check connection.")
 		}
@@ -80,6 +91,7 @@ func TestSponsor(t *testing.T) {
 	t.Run("Delete newly created sponsor", func(t *testing.T) {
 		client := &http.Client{}
 		req, err := http.NewRequest("DELETE", getRequest+companyName, nil)
+		req.Header.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNTkwOTQxODQ1LCJ6SUQiOiJ6NTEyMzQ1NiJ9.vWjgZMvNRvkUAPMX70LqhAU667kd9866u1U7u9SNjQU")
 		if err != nil {
 			t.Errorf("Could not create delete request for sponsor.")
 		}
@@ -105,12 +117,17 @@ func TestSponsor(t *testing.T) {
 
 func TestSponsorError(t *testing.T) {
 	t.Run("Duplicate Sponsor sponsor", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/sponsor/", url.Values{
-			"name":   {companyName},
-			"logo":   {companyLogo},
-			"tier":   {companyTier},
-			"detail": {companyDetail},
-		})
+		client := &http.Client{}
+		form := url.Values{}
+		form.Add("name", companyName)
+		form.Add("logo", companyLogo)
+		form.Add("tier", companyTier)
+		form.Add("detail", companyDetail)
+		req, _ := http.NewRequest("POST","http://localhost:1323/api/sponsor/", strings.NewReader(form.Encode()))
+		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+		req.Header.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNTkwOTQxODQ1LCJ6SUQiOiJ6NTEyMzQ1NiJ9.vWjgZMvNRvkUAPMX70LqhAU667kd9866u1U7u9SNjQU")
+		req.PostForm = form
+		resp, err := client.Do(req)
 		if err != nil {
 			t.Errorf("Could not perform post sponsor request. Check connection.")
 		}
@@ -118,12 +135,11 @@ func TestSponsorError(t *testing.T) {
 
 		assertStatus(t, resp.StatusCode, http.StatusCreated)
 
-		resp, err = http.PostForm("http://localhost:1323/api/sponsor/", url.Values{
-			"name":   {companyName},
-			"logo":   {companyLogo},
-			"tier":   {companyTier},
-			"detail": {companyDetail},
-		})
+		req, _ = http.NewRequest("POST","http://localhost:1323/api/sponsor/", strings.NewReader(form.Encode()))
+		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+		req.Header.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNTkwOTQxODQ1LCJ6SUQiOiJ6NTEyMzQ1NiJ9.vWjgZMvNRvkUAPMX70LqhAU667kd9866u1U7u9SNjQU")
+		req.PostForm = form
+		resp, err = client.Do(req)
 		if err != nil {
 			t.Errorf("Could not perform post sponsor request. Check connection.")
 		}
@@ -131,8 +147,8 @@ func TestSponsorError(t *testing.T) {
 
 		assertStatus(t, resp.StatusCode, http.StatusConflict)
 
-		client := &http.Client{}
-		req, err := http.NewRequest("DELETE", getRequest+companyName, nil)
+		req, err = http.NewRequest("DELETE", getRequest+companyName, nil)
+		req.Header.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNTkwOTQxODQ1LCJ6SUQiOiJ6NTEyMzQ1NiJ9.vWjgZMvNRvkUAPMX70LqhAU667kd9866u1U7u9SNjQU")
 		if err != nil {
 			t.Errorf("Could not create delete request for sponsor.")
 		}
@@ -146,9 +162,12 @@ func TestSponsorError(t *testing.T) {
 	})
 
 	t.Run("Missing parameters when creating", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/sponsor/", url.Values{
-			"name": {companyName},
-		})
+		client := &http.Client{}
+		req, _ := http.NewRequest("POST","http://localhost:1323/api/sponsor/", nil)
+		req.Header.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNTkwOTQxODQ1LCJ6SUQiOiJ6NTEyMzQ1NiJ9.vWjgZMvNRvkUAPMX70LqhAU667kd9866u1U7u9SNjQU")
+		form := url.Values{}
+		form.Add("name", companyName)
+		resp, err := client.Do(req)
 		if err != nil {
 			t.Errorf("Could not perform post sponsor request. Check connection.")
 		}
