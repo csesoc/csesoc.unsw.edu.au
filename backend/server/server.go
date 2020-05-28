@@ -124,7 +124,7 @@ func serveAPI(e *echo.Echo) {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 
-	// e.POST("/login/", login(userCollection))
+	e.POST("/api/login", tempLogin)
 
 	// Routes for posts
 	e.GET("/api/posts/", getPosts(postsCollection))
