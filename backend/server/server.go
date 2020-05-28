@@ -199,21 +199,34 @@ func serveAPI(e *echo.Echo) {
 	// e.PATCH("/api/v1/category/", patchCats(catCollection))
 	// e.DELETE("/api/v1/category/", deleteCats(catCollection))
 
-	// SPONSOR
-	SponsorSetup(client)
-	e.GET("/api/v1/sponsor", GetSponsor())
-	e.POST("/api/v1/sponsor", NewSponsor())
-	e.DELETE("/api/v1/sponsor", DeleteSponsor())
-	e.GET("/api/v1/sponsors", GetSponsors())
+	v1 := e.Group("/api/v1")
+	{
+		// SPONSOR
+		SponsorSetup(client)
+		sponsor := v1.Group("/sponsor")
+		{
+			sponsor.GET("", GetSponsor())
+			sponsor.POST("", NewSponsor())
+			sponsor.DELETE("", DeleteSponsor())
+		}
+		// TODO: Refactor this endpoint to match the sponsors group
+		v1.GET("sponsors", GetSponsors())
 
-	// MAILING
-	MailingSetup()
-	e.POST("/api/v1/mailing/general", HandleMessage(GeneralType))
-	e.POST("/api/v1/mailing/sponsorship", HandleMessage(SponsorshipType))
-	e.POST("/api/v1/mailing/feedback", HandleMessage(FeedbackType))
+		// MAILING
+		MailingSetup()
+		mailing := v1.Group("/mailing")
+		{
+			mailing.POST("/general", HandleMessage(GeneralType))
+			mailing.POST("/sponsorship", HandleMessage(SponsorshipType))
+			mailing.POST("/feedback", HandleMessage(FeedbackType))
+		}
 
-	// FAQ
-	e.GET("/api/v1/faq", GetFaq())
+		// FAQ
+		faq := v1.Group("/faq")
+		{
+			faq.GET("", GetFaq())
+		}
+	}
 }
 
 // func login(collection *mongo.Collection) echo.HandlerFunc {
