@@ -11,6 +11,7 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 
 	"github.com/go-playground/validator/v10"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -163,20 +164,20 @@ func serveAPI(e *echo.Echo) {
 
 	// Routes for posts
 	e.GET("/api/posts/", getPosts(postsCollection))
-	e.POST("/api/post/", newPosts(postsCollection))
-	e.PUT("/api/post/", updatePosts(postsCollection))
-	e.DELETE("/api/post/", deletePosts(postsCollection))
+	e.POST("/api/post/", newPosts(postsCollection), middleware.JWT(jwtSecret))
+	e.PUT("/api/post/", updatePosts(postsCollection), middleware.JWT(jwtSecret))
+	e.DELETE("/api/post/", deletePosts(postsCollection), middleware.JWT(jwtSecret))
 
 	// Routes for categories
 	e.GET("/api/category/:id/", getCats(catCollection))
-	e.POST("/api/category/", newCats(catCollection))
-	e.PATCH("/api/category/", patchCats(catCollection))
-	e.DELETE("/api/category/", deleteCats(catCollection))
+	e.POST("/api/category/", newCats(catCollection), middleware.JWT(jwtSecret))
+	e.PATCH("/api/category/", patchCats(catCollection), middleware.JWT(jwtSecret))
+	e.DELETE("/api/category/", deleteCats(catCollection), middleware.JWT(jwtSecret))
 
 	// Routes for sponsors
 	e.GET("/api/sponsor/", GetSponsor())
-	e.POST("/api/sponsor/", NewSponsor())
-	e.DELETE("/api/sponsor/", DeleteSponsor())
+	e.POST("/api/sponsor/", NewSponsor(), middleware.JWT(jwtSecret))
+	e.DELETE("/api/sponsor/", DeleteSponsor(), middleware.JWT(jwtSecret))
 	e.GET("/api/sponsors/", GetSponsors())
 
 	// Routes for message

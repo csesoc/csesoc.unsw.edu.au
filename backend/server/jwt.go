@@ -50,11 +50,12 @@ func tempLogin(c echo.Context) error {
 	tokenCookie.Name = "activeToken"
 	tokenCookie.Value = token
 	tokenCookie.Expires = expTime
-	// tokenCookie.HttpOnly = true
-	c.SetCookie(tokenCookie)
+	tokenCookie.HttpOnly = true
+	// c.SetCookie(tokenCookie)
 
 	return c.JSON(http.StatusOK, map[string]string{
-		"message": "Success!",
+		"message": "Success!!",
+		"token": token,
 	})
 
 }
