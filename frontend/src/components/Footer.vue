@@ -1,4 +1,3 @@
-import { SponsorsAPI } from '../utils/RESTClient.js'
 <template>
   <v-footer dark padless id="tiers">
     <v-card id="tiers__sponsors" width="100vw" class="white--text text-center">
@@ -86,6 +85,7 @@ import { SponsorsAPI } from '../utils/RESTClient.js'
 </style>
 
 <script type="text/javascript">
+import APIClient  from '../utils/APIClient'
 export default {
   name: 'Footer',
   data: () => ({
@@ -105,7 +105,7 @@ export default {
     }
   },
   mounted() {
-      SponsorsAPI()
+      APIClient.sponsorsAPI()
       .then((responseJson) => {
         this.sponsors = responseJson;
       });

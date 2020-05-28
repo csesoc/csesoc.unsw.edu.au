@@ -1,8 +1,8 @@
 
 import {
-    BASE_API_URL,
+    LOCAL_API_URL,
     SPONSORS_URL
-  } from './constants'
+  } from './Constants'
 
 const APICall = (url, headers, convertToJson = true) => {
     return fetch(url, headers)
@@ -30,8 +30,13 @@ const getClient = (method, body) => {
     return client;
 }
 
-const SponsorsAPI = () => {
-    const url = BASE_API_URL + SPONSORS_URL
-    const client = getClient('POST')
+const sponsorsAPI = () => {
+    const url = LOCAL_API_URL + SPONSORS_URL
+    const client = getClient('GET')
     return APICall(url, client)
 }
+
+const APIClient = {
+    sponsorsAPI
+}
+export default APIClient
