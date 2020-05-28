@@ -11,7 +11,7 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo/v4"
-	"github.com/swaggo/echo-swagger"
+	echoSwagger "github.com/swaggo/echo-swagger"
 	_ "github.com/swaggo/echo-swagger/example/docs"
 
 	"github.com/go-playground/validator/v10"
@@ -210,7 +210,7 @@ func serveAPI(e *echo.Echo) {
 			sponsor.DELETE("", DeleteSponsor())
 		}
 		// TODO: Refactor this endpoint to match the sponsors group
-		v1.GET("sponsors", GetSponsors())
+		v1.GET("/sponsors", GetSponsors())
 
 		// MAILING
 		MailingSetup()
