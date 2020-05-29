@@ -12,7 +12,7 @@ const companyName = "Example"
 const companyLogo = "https://static.canva.com/static/images/canva_logo_100x100@2x.png"
 const companyTier = "2"
 const companyDetail = "Example"
-const getRequest = "http://localhost:1323/api/sponsors/"
+const getRequest = "http://localhost:1323/api/v1/sponsors/"
 
 func TestSponsor(t *testing.T) {
 
