@@ -1,25 +1,25 @@
-version: '3'
-services: 
-    api:
-        image: api
-        build: .
-        ports: 
-            - 1323:1323
-        container_name: api
+# Docker compose development version 
+version: "3"
+services:
+    frontend:
+        image: frontend
+        build: ./frontend
+        ports:
+            - '8080:8080'
+        container_name: frontend
+        environment:
+            - CHOKIDAR_USEPOLLING=true
+    backend:
+        image: backend
+        build: ./backend/server
+        ports:
+            - '1323:1323'
+        volumes:
+            - ./backend/server:/app/server
+        container_name: backend
     mongo:
         image: mongo:latest
         restart: always
         ports:
-            - 27017:27017
+            - '27017:27017'
         container_name: mongo
-    mongo-express:
-        image: mongo-express
-        restart: always
-        environment: 
-            - ME_CONFIG_MONGODB_SERVER=mongo
-            - ME_CONFIG_MONGODB_PORT=27017
-        ports:
-            - 8081:8081
-        depends_on: 
-            - mongo
-        container_name: mongo-express
