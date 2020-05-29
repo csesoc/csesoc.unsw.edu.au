@@ -65,86 +65,77 @@ func SponsorSetup(client *mongo.Client) {
 /* Handles */
 
 // NewSponsor - Add a sponsor
-func NewSponsor() echo.HandlerFunc {
-	return func(c echo.Context) error {
-		tier, err := strconv.Atoi(c.FormValue("tier"))
-		if err != nil {
-			return c.JSON(http.StatusBadRequest, H{
-				"error": "Tier has to be a number",
-			})
-		}
-		expiryTime, _ := time.Parse(time.RFC3339, c.FormValue("expiry"))
-		sponsor := Sponsor{
-			Name:   c.FormValue("name"),
-			Logo:   c.FormValue("logo"),
-			Tier:   tier,
-			Expiry: expiryTime.Unix(),
-		}
-
-		// validate the struct with golang validator package
-		if err := c.Validate(sponsor); err != nil {
-			return c.JSON(http.StatusBadRequest, H{
-				"error": "Bad request",
-			})
-		}
-		// token := c.FormValue("token")
-
-		if _, err := sponsorColl.InsertOne(context.TODO(), sponsor); err != nil {
-			return c.JSON(http.StatusConflict, H{})
-		}
-
-		return c.JSON(http.StatusCreated, H{
-			"response": "Created",
+func NewSponsor(c echo.Context) error {
+	tier, err := strconv.Atoi(c.FormValue("tier"))
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, H{
+			"error": "Tier has to be a number",
 		})
 	}
+	expiryTime, _ := time.Parse(time.RFC3339, c.FormValue("expiry"))
+	sponsor := Sponsor{
+		Name:   c.FormValue("name"),
+		Logo:   c.FormValue("logo"),
+		Tier:   tier,
+		Expiry: expiryTime.Unix(),
+	}
 
+	// validate the struct with golang validator package
+	if err := c.Validate(sponsor); err != nil {
+		return c.JSON(http.StatusBadRequest, H{
+			"error": "Bad request",
+		})
+	}
+	// token := c.FormValue("token")
+
+	if _, err := sponsorColl.InsertOne(context.TODO(), sponsor); err != nil {
+		return c.JSON(http.StatusConflict, H{})
+	}
+
+	return c.JSON(http.StatusCreated, H{
+		"response": "Created",
+	})
 }
 
 // GetSponsor - find entry for a specific sponsor.
-func GetSponsor() echo.HandlerFunc {
-	return func(c echo.Context) error {
-		var result Sponsor
-		// token := c.FormValue("token")
-		filter := bson.D{{Key: "name", Value: c.Param("name")}}
-		if err := sponsorColl.FindOne(context.TODO(), filter).Decode(&result); err != nil {
-			return c.JSON(http.StatusNotFound, H{
-				"response": "No such sponsor.",
-			})
-		}
-		return c.JSON(http.StatusOK, result)
+func GetSponsor(c echo.Context) error {
+	var result Sponsor
+	// token := c.FormValue("token")
+	filter := bson.D{{Key: "name", Value: c.Param("name")}}
+	if err := sponsorColl.FindOne(context.TODO(), filter).Decode(&result); err != nil {
+		return c.JSON(http.StatusNotFound, H{
+			"response": "No such sponsor.",
+		})
 	}
+	return c.JSON(http.StatusOK, result)
 }
 
 // GetSponsors - gives a list of sponsors stored.
-func GetSponsors() echo.HandlerFunc {
-	return func(c echo.Context) error {
-		token := c.FormValue("token")
-		tier := c.FormValue("tier")
-		results, err := retrieveSponsors(token, tier)
-		if err != nil {
-			return c.JSON(http.StatusInternalServerError, H{})
-		}
-		if results != nil {
-			return c.JSON(http.StatusOK, results)
-		}
-		return c.JSON(http.StatusOK, H{})
+func GetSponsors(c echo.Context) error {
+	token := c.FormValue("token")
+	tier := c.FormValue("tier")
+	results, err := retrieveSponsors(token, tier)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, H{})
 	}
+	if results != nil {
+		return c.JSON(http.StatusOK, results)
+	}
+	return c.JSON(http.StatusOK, H{})
 }
 
 // DeleteSponsor - Delete a sponsor
-func DeleteSponsor() echo.HandlerFunc {
-	return func(c echo.Context) error {
-		// token := c.FormValue("token")
-		filter := bson.D{{Key: "name", Value: c.Param("name")}}
-		if _, err := sponsorColl.DeleteOne(context.TODO(), filter); err != nil {
-			return c.JSON(http.StatusInternalServerError, H{
-				"error": err,
-			})
-		}
-		return c.JSON(http.StatusOK, H{
-			"response": "Deleted",
+func DeleteSponsor(c echo.Context) error {
+	// token := c.FormValue("token")
+	filter := bson.D{{Key: "name", Value: c.Param("name")}}
+	if _, err := sponsorColl.DeleteOne(context.TODO(), filter); err != nil {
+		return c.JSON(http.StatusInternalServerError, H{
+			"error": err,
 		})
 	}
+	return c.JSON(http.StatusOK, H{
+		"response": "Deleted",
+	})
 }
 
 // retrieveSponsors - Retrieve a sponsor from the database

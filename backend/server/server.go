@@ -205,10 +205,10 @@ func serveAPI(e *echo.Echo) {
 		SponsorSetup(client)
 		sponsors := v1.Group("/sponsors")
 		{
-			sponsors.GET("/:name", GetSponsor())
-			sponsors.POST("", NewSponsor())
-			sponsors.DELETE("/:name", DeleteSponsor())
-			sponsors.GET("", GetSponsors())
+			sponsors.GET("/:name", GetSponsor)
+			sponsors.POST("", NewSponsor)
+			sponsors.DELETE("/:name", DeleteSponsor)
+			sponsors.GET("", GetSponsors)
 		}
 
 		// MAILING
