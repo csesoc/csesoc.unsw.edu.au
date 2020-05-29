@@ -17,6 +17,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// InDevelopment - flag
+var InDevelopment bool = true
+
 type (
 	// H - interface for sending JSON
 	H map[string]interface{}

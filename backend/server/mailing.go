@@ -37,8 +37,10 @@ type Feedback struct {
 // Message bundles
 var feedbackBundle []Feedback
 var infoBundle []Enquiry
-var infoEmail string = "info@csesoc.org.au"
 var sponsorshipBundle []Enquiry
+
+// Email addresses
+var infoEmail string = "info@csesoc.org.au"
 var sponsorshipEmail string = "sponsorship@csesoc.org.au"
 
 // Mailjet session variables
@@ -48,6 +50,11 @@ var mailjetClient *mailjet.Client
 
 // InitMailClient initialises a session with the Mailjet API and stores it in a global variable
 func InitMailClient() {
+	if InDevelopment {
+		infoEmail = "projects.website+info@csesoc.org.au"
+		sponsorshipEmail = "projects.website+sponsorship@csesoc.org.au"
+	}
+
 	mailjetClient = mailjet.NewMailjetClient(publicKey, secretKey)
 
 	// Start mailing timers
