@@ -3,10 +3,13 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
+	"path/filepath"
 	"strconv"
-	"time"
 
 	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson"
@@ -18,8 +21,8 @@ import (
 type Sponsor struct {
 	Name   string `json:"name" validate:"required"`
 	Logo   string `json:"logo" validate:"required,url"`
-	Tier   int    `json:"tier" validate:"required,numeric,eq=10|eq=100|eq=1000"`
-	Expiry int64  `json:"expiry"` // check because if this will be null most of the time then what would this number be?
+	Tier   int    `json:"tier" validate:"required,numeric,eq=0|eq=1|eq=2"`
+	Detail string `json:"detail" validate:"required"`
 }
 
 var sponsorColl *mongo.Collection
@@ -42,15 +45,10 @@ func SponsorSetup(client *mongo.Client) {
 	}
 
 	// Fetching sponsor list
-	resp, err := http.Get("https://gistcdn.githack.com/esyw/4e35cd5fe73fa024020e67855ca733fb/raw/e85c9ae58a6323a4214ffa4ad89b0a5ebe404e31/sponsors.json")
-	if err != nil {
-		log.Fatal("Could not get sponsor list: ", err)
-	}
-	defer resp.Body.Close()
+	sponsors, err := retriveSponsorsJSON()
 
-	var sponsors []Sponsor
-	if err = json.NewDecoder(resp.Body).Decode(&sponsors); err != nil {
-		log.Printf("Could not convert JSON response to Sponsors")
+	if err != nil {
+		log.Fatal("Could not retrive sponsors from JSON")
 	}
 
 	for _, sponsor := range sponsors {
@@ -72,12 +70,11 @@ func NewSponsor(c echo.Context) error {
 			"error": "Tier has to be a number",
 		})
 	}
-	expiryTime, _ := time.Parse(time.RFC3339, c.FormValue("expiry"))
 	sponsor := Sponsor{
 		Name:   c.FormValue("name"),
 		Logo:   c.FormValue("logo"),
 		Tier:   tier,
-		Expiry: expiryTime.Unix(),
+		Detail: c.FormValue("detail"),
 	}
 
 	// validate the struct with golang validator package
@@ -160,4 +157,22 @@ func retrieveSponsors(token string, tierString string) ([]*Sponsor, error) {
 		}
 	}
 	return results, err
+}
+
+// helper function
+
+func retriveSponsorsJSON() ([]Sponsor, error) {
+	abspath, _ := filepath.Abs("static/sponsor.json")
+	jsonFile, err := os.Open(abspath)
+
+	if err != nil {
+		return nil, fmt.Errorf("Cound not open file faq.json: %v", err)
+	}
+
+	byteValue, _ := ioutil.ReadAll(jsonFile)
+	var sponsors []Sponsor
+	json.Unmarshal(byteValue, &sponsors)
+
+	defer jsonFile.Close()
+	return sponsors, nil
 }

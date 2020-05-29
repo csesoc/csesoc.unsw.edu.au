@@ -85,6 +85,7 @@
 </style>
 
 <script type="text/javascript">
+import APIClient  from '../utils/APIClient'
 export default {
   name: 'Footer',
   data: () => ({
@@ -94,20 +95,17 @@ export default {
   computed: {
     // functions to determine sizing category of sponsor based on their value
     tierOne() {
-      return this.sponsors.filter(x => x.tier >= 1000);
+      return this.sponsors.filter(x => x.tier == 2);
     },
     tierTwo() {
-      return this.sponsors.filter(x => x.tier >= 100 && x.tier < 1000);
+      return this.sponsors.filter(x => x.tier == 1);
     },
     tierThree() {
-      return this.sponsors.filter(x => x.tier >= 10 && x.tier < 100);
+      return this.sponsors.filter(x => x.tier == 0);
     }
   },
   mounted() {
-    fetch(
-      '/api/sponsors/?token=null'
-    )
-      .then(r => r.json())
+      APIClient.sponsorsAPI()
       .then((responseJson) => {
         this.sponsors = responseJson;
       });
