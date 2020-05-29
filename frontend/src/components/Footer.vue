@@ -85,6 +85,7 @@
 </style>
 
 <script type="text/javascript">
+import APIClient  from '../utils/APIClient'
 export default {
   name: 'Footer',
   data: () => ({
@@ -104,10 +105,7 @@ export default {
     }
   },
   mounted() {
-    fetch(
-      '/api/sponsors/?token=null'
-    )
-      .then(r => r.json())
+      APIClient.sponsorsAPI()
       .then((responseJson) => {
         this.sponsors = responseJson;
       });
