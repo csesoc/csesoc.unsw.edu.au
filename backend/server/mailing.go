@@ -37,7 +37,7 @@ type Feedback struct {
 // Message bundles
 var feedbackBundle []Feedback
 var generalBundle []Enquiry
-var generalEmail string = "info@csesoc.org.au"
+var infoEmail string = "info@csesoc.org.au"
 var sponsorshipBundle []Enquiry
 var sponsorshipEmail string = "sponsorship@csesoc.org.au"
 
@@ -134,7 +134,7 @@ func mailingTimer() {
 // DispatchEnquiryBundles - public trigger for dispatching enquiries
 func DispatchEnquiryBundles() {
 	if len(generalBundle) > 0 {
-		if sendEmail(generalEmail, "Website info enquiry bundle", joinEnquiries(generalBundle)) {
+		if sendEmail(infoEmail, "Website info enquiry bundle", joinEnquiries(generalBundle)) {
 			// If sent successfully, clear bundle
 			generalBundle = nil
 		}
@@ -150,16 +150,12 @@ func DispatchEnquiryBundles() {
 // DispatchFeedbackBundle - public trigger for dispatching feedbacks
 func DispatchFeedbackBundle() {
 	if len(feedbackBundle) > 0 {
-		if sendEmail(generalEmail, "Website feedback bundle", joinFeedbacks(feedbackBundle)) {
+		if sendEmail(infoEmail, "Website feedback bundle", joinFeedbacks(feedbackBundle)) {
 			// If sent successfully, clear bundle
 			feedbackBundle = nil
 		}
 	}
 }
-
-/////////////////
-// BUNDLE SENDERS
-/////////////////
 
 func sendEmail(targetEmail string, subject string, body string) bool {
 	// Format message payload
@@ -184,6 +180,10 @@ func sendEmail(targetEmail string, subject string, body string) bool {
 	_, err := mailjetClient.SendMailV31(&messages)
 	return err == nil
 }
+
+/////////////////
+// BUNDLE PARSERS
+/////////////////
 
 func joinEnquiries(bundle []Enquiry) string {
 	var message string = ""

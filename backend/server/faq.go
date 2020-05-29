@@ -18,20 +18,18 @@ type Faq struct {
 }
 
 // GetFaq - Returns all faq questions and answers pairs
-func GetFaq() echo.HandlerFunc {
-	return func(c echo.Context) error {
-		result, err := retriveFaqJSON()
+func GetFaq(c echo.Context) error {
+	result, err := retriveFaqJSON()
 
-		if err != nil {
-			return c.JSON(http.StatusServiceUnavailable, H{
-				"error": err,
-			})
-		}
-
-		return c.JSON(http.StatusOK, H{
-			"faq": result,
+	if err != nil {
+		return c.JSON(http.StatusServiceUnavailable, H{
+			"error": err,
 		})
 	}
+
+	return c.JSON(http.StatusOK, H{
+		"faq": result,
+	})
 }
 
 // retriveFaqJSON - returns a list of questions and answers from a json file in /static

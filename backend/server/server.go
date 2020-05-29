@@ -223,7 +223,7 @@ func serveAPI(e *echo.Echo) {
 		// FAQ
 		faq := v1.Group("/faq")
 		{
-			faq.GET("", GetFaq())
+			faq.GET("", GetFaq)
 		}
 	}
 }
