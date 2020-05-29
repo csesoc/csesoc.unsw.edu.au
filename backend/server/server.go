@@ -201,16 +201,15 @@ func serveAPI(e *echo.Echo) {
 
 	v1 := e.Group("/api/v1")
 	{
-		// SPONSOR
+		// SPONSORS
 		SponsorSetup(client)
-		sponsor := v1.Group("/sponsor")
+		sponsors := v1.Group("/sponsors")
 		{
-			sponsor.GET("", GetSponsor())
-			sponsor.POST("", NewSponsor())
-			sponsor.DELETE("", DeleteSponsor())
+			sponsors.GET("/:name", GetSponsor())
+			sponsors.POST("", NewSponsor())
+			sponsors.DELETE("/:name", DeleteSponsor())
+			sponsors.GET("", GetSponsors())
 		}
-		// TODO: Refactor this endpoint to match the sponsors group
-		v1.GET("/sponsors", GetSponsors())
 
 		// MAILING
 		MailingSetup()

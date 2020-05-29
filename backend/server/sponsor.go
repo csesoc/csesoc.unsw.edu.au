@@ -105,7 +105,7 @@ func GetSponsor() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var result Sponsor
 		// token := c.FormValue("token")
-		filter := bson.D{{Key: "name", Value: c.FormValue("name")}}
+		filter := bson.D{{Key: "name", Value: c.Param("name")}}
 		if err := sponsorColl.FindOne(context.TODO(), filter).Decode(&result); err != nil {
 			return c.JSON(http.StatusNotFound, H{
 				"response": "No such sponsor.",
@@ -135,7 +135,7 @@ func GetSponsors() echo.HandlerFunc {
 func DeleteSponsor() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		// token := c.FormValue("token")
-		filter := bson.D{{Key: "name", Value: c.FormValue("name")}}
+		filter := bson.D{{Key: "name", Value: c.Param("name")}}
 		if _, err := sponsorColl.DeleteOne(context.TODO(), filter); err != nil {
 			return c.JSON(http.StatusInternalServerError, H{
 				"error": err,

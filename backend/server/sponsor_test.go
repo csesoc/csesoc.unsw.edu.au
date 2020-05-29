@@ -12,7 +12,7 @@ const companyName = "Example"
 const companyLogo = "https://static.canva.com/static/images/canva_logo_100x100@2x.png"
 const companyTier = "100"
 const companyExpiry = "2020-11-01T22:08:41+00:00"
-const getRequest = "http://localhost:1323/api/v1/sponsor?name="
+const getRequest = "http://localhost:1323/api/v1/sponsors/"
 
 func TestSponsor(t *testing.T) {
 
@@ -44,7 +44,7 @@ func TestSponsor(t *testing.T) {
 	})
 
 	t.Run("New sponsor", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/v1/sponsor", url.Values{
+		resp, err := http.PostForm("http://localhost:1323/api/v1/sponsors", url.Values{
 			"name":   {companyName},
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
@@ -105,7 +105,7 @@ func TestSponsor(t *testing.T) {
 
 func TestSponsorError(t *testing.T) {
 	t.Run("Duplicate Sponsor sponsor", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/v1/sponsor", url.Values{
+		resp, err := http.PostForm("http://localhost:1323/api/v1/sponsors", url.Values{
 			"name":   {companyName},
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
@@ -118,7 +118,7 @@ func TestSponsorError(t *testing.T) {
 
 		assertStatus(t, resp.StatusCode, http.StatusCreated)
 
-		resp, err = http.PostForm("http://localhost:1323/api/v1/sponsor", url.Values{
+		resp, err = http.PostForm("http://localhost:1323/api/v1/sponsors", url.Values{
 			"name":   {companyName},
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
@@ -146,7 +146,7 @@ func TestSponsorError(t *testing.T) {
 	})
 
 	t.Run("Missing parameters when creating", func(t *testing.T) {
-		resp, err := http.PostForm("http://localhost:1323/api/v1/sponsor", url.Values{
+		resp, err := http.PostForm("http://localhost:1323/api/v1/sponsors", url.Values{
 			"name": {companyName},
 		})
 		if err != nil {
