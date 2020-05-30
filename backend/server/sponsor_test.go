@@ -46,11 +46,12 @@ func TestSponsor(t *testing.T) {
 
 	t.Run("New sponsor", func(t *testing.T) {
 		client := &http.Client{}
-		form := url.Values{}
-		form.Add("name", companyName)
-		form.Add("logo", companyLogo)
-		form.Add("tier", companyTier)
-		form.Add("detail", companyDetail)
+		form := url.Values {
+			"name":   {companyName},
+			"logo":   {companyLogo},
+			"tier":   {companyTier},
+			"detail": {companyDetail},
+		}
 		req, _ := http.NewRequest("POST","http://localhost:1323/api/sponsor/", strings.NewReader(form.Encode()))
 		req.Header.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNTkzMTI5NjAwLCJ6SUQiOiJ6NTEyMzQ1NiJ9.jYC2qlpzAKIMPFywQ6pWIV1qat_h7OrorJ-zQM5jDpg")
 		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
@@ -118,11 +119,12 @@ func TestSponsor(t *testing.T) {
 func TestSponsorError(t *testing.T) {
 	t.Run("Duplicate Sponsor sponsor", func(t *testing.T) {
 		client := &http.Client{}
-		form := url.Values{}
-		form.Add("name", companyName)
-		form.Add("logo", companyLogo)
-		form.Add("tier", companyTier)
-		form.Add("detail", companyDetail)
+		form := url.Values {
+			"name":   {companyName},
+			"logo":   {companyLogo},
+			"tier":   {companyTier},
+			"detail": {companyDetail},
+		}
 		req, _ := http.NewRequest("POST","http://localhost:1323/api/sponsor/", strings.NewReader(form.Encode()))
 		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 		req.Header.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNTkzMTI5NjAwLCJ6SUQiOiJ6NTEyMzQ1NiJ9.jYC2qlpzAKIMPFywQ6pWIV1qat_h7OrorJ-zQM5jDpg")
@@ -165,8 +167,11 @@ func TestSponsorError(t *testing.T) {
 		client := &http.Client{}
 		req, _ := http.NewRequest("POST","http://localhost:1323/api/sponsor/", nil)
 		req.Header.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNTkzMTI5NjAwLCJ6SUQiOiJ6NTEyMzQ1NiJ9.jYC2qlpzAKIMPFywQ6pWIV1qat_h7OrorJ-zQM5jDpg")
-		form := url.Values{}
-		form.Add("name", companyName)
+		form := url.Values {
+			"name":   {companyName},
+			"logo":   {companyLogo},
+		}
+		req.PostForm = form
 		resp, err := client.Do(req)
 		if err != nil {
 			t.Errorf("Could not perform post sponsor request. Check connection.")
