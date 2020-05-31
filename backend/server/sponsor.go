@@ -71,9 +71,12 @@ func SponsorSetup(client *mongo.Client) {
 // @Param logo formData string true "Logo URL"
 // @Param tier formData integer true "Valid tier" mininum(0) maxinum(2)
 // @Param detail formData string true "Detail"
-// @Success 201 "Sponsor added"
-// @Failure 400 "Invalid form"
-// @Failure 409 "Sponsor already exists on database"
+// @Success 201 "Created"
+// @Header 201 {string} response "Sponsor added"
+// @Failure 400 "Bad request"
+// @Header 400 {string} error "Invalid form"
+// @Failure 409 "Conflict"
+// @Header 409 {string} error "Sponsor already exists on database"
 // @Router /sponsors [post]
 func NewSponsor(c echo.Context) error {
 	tier, err := strconv.Atoi(c.FormValue("tier"))
@@ -103,7 +106,9 @@ func NewSponsor(c echo.Context) error {
 		})
 	}
 
-	return c.JSON(http.StatusCreated, H{})
+	return c.JSON(http.StatusCreated, H{
+		"response": "Sponsor added",
+	})
 }
 
 // GetSponsor godoc
@@ -111,7 +116,8 @@ func NewSponsor(c echo.Context) error {
 // @Tags sponsors
 // @Param name path string true "Sponsor name"
 // @Success 200 {object} Sponsor
-// @Failure 404 "No such sponsor"
+// @Failure 404 "Not found"
+// @Header 404 {string} error "No such sponsor"
 // @Router /sponsors/{name} [get]
 func GetSponsor(c echo.Context) error {
 	var result Sponsor
@@ -130,7 +136,8 @@ func GetSponsor(c echo.Context) error {
 // @Tags sponsors
 // @Param tier query integer false "Valid sponsor tier, 0-2 inclusive" mininum(0) maxinum(2)
 // @Success 200 {array} Sponsor
-// @Failure 500 "Unable to retrieve sponsors from database"
+// @Failure 500 "Internal server error"
+// @Header 500 {string} error "Unable to retrieve sponsors from database"
 // @Router /sponsors [get]
 func GetSponsors(c echo.Context) error {
 	// token := c.FormValue("token")
@@ -148,8 +155,10 @@ func GetSponsors(c echo.Context) error {
 // @Summary Delete a sponsor
 // @Tags sponsors
 // @Param name path string true "Sponsor name"
-// @Success 204 "Sponsor deleted"
-// @Failure 500 "Unable to delete sponsor from database"
+// @Success 204 "No content"
+// @Header 204 {string} response "Sponsor deleted"
+// @Failure 500 "Internal server error"
+// @Header 500 {string} error "Unable to delete sponsor from database"
 // @Router /sponsors/{name} [delete]
 func DeleteSponsor(c echo.Context) error {
 	// token := c.FormValue("token")
@@ -159,8 +168,14 @@ func DeleteSponsor(c echo.Context) error {
 			"error": "Unable to delete sponsor from database",
 		})
 	}
-	return c.JSON(http.StatusNoContent, H{})
+	return c.JSON(http.StatusNoContent, H{
+		"response": "Sponsor deleted",
+	})
 }
+
+//////////
+// HELPERS
+//////////
 
 // retrieveSponsors - Retrieve a sponsor from the database
 func retrieveSponsors(tierString string) ([]*Sponsor, error) {
@@ -185,8 +200,6 @@ func retrieveSponsors(tierString string) ([]*Sponsor, error) {
 	}
 	return results, err
 }
-
-// helper function
 
 func retriveSponsorsJSON() ([]Sponsor, error) {
 	abspath, _ := filepath.Abs("static/sponsor.json")

@@ -60,8 +60,10 @@ func MailingSetup() {
 // @Param name formData string true "Name"
 // @Param email formData string true "Email"
 // @Param body formData string true "Message body"
-// @Success 202 "Enquiry added to dispatch bundle"
-// @Failure 400 "Invalid form"
+// @Success 202 "Accepted"
+// @Header 202 {string} response "Enquiry added to dispatch bundle"
+// @Failure 400 "Bad request"
+// @Header 400 {string} error "Invalid form"
 // @Router /mailing/general [post]
 func HandleGeneralMessage(c echo.Context) error {
 	enquiry := Enquiry{
@@ -80,7 +82,9 @@ func HandleGeneralMessage(c echo.Context) error {
 	// Add to bundle
 	generalBundle = append(generalBundle, enquiry)
 
-	return c.JSON(http.StatusAccepted, H{})
+	return c.JSON(http.StatusAccepted, H{
+		"response": "Enquiry added to dispatch bundle",
+	})
 }
 
 // HandleSponsorshipMessage godoc
@@ -89,8 +93,10 @@ func HandleGeneralMessage(c echo.Context) error {
 // @Param name formData string true "Name"
 // @Param email formData string true "Email"
 // @Param body formData string true "Message body"
-// @Success 202 "Enquiry added to dispatch bundle"
-// @Failure 400 "Invalid form"
+// @Success 202 "Accepted"
+// @Header 202 {string} response "Enquiry added to dispatch bundle"
+// @Failure 400 "Bad request"
+// @Header 400 {string} error "Invalid form"
 // @Router /mailing/sponsorship [post]
 func HandleSponsorshipMessage(c echo.Context) error {
 	enquiry := Enquiry{
@@ -109,7 +115,9 @@ func HandleSponsorshipMessage(c echo.Context) error {
 	// Add to bundle
 	sponsorshipBundle = append(sponsorshipBundle, enquiry)
 
-	return c.JSON(http.StatusAccepted, H{})
+	return c.JSON(http.StatusAccepted, H{
+		"response": "Enquiry added to dispatch bundle",
+	})
 }
 
 // HandleFeedbackMessage godoc
@@ -118,8 +126,10 @@ func HandleSponsorshipMessage(c echo.Context) error {
 // @Param name formData string false "Name"
 // @Param email formData string false "Email"
 // @Param body formData string true "Message body"
-// @Success 202 "Feedback added to dispatch bundle"
-// @Failure 400 "Invalid form"
+// @Success 202 "Accepted"
+// @Header 202 {string} response "Feedback added to dispatch bundle"
+// @Failure 400 "Bad request"
+// @Header 400 {string} error "Invalid form"
 // @Router /mailing/feedback [post]
 func HandleFeedbackMessage(c echo.Context) error {
 	feedback := Feedback{
@@ -138,7 +148,9 @@ func HandleFeedbackMessage(c echo.Context) error {
 	// Add to bundle
 	feedbackBundle = append(feedbackBundle, feedback)
 
-	return c.JSON(http.StatusAccepted, H{})
+	return c.JSON(http.StatusAccepted, H{
+		"response": "Feedback added to dispatch bundle",
+	})
 }
 
 ////////
