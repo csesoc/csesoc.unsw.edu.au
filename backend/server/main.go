@@ -9,10 +9,11 @@ import (
 	"strconv"
 	"time"
 
+	_ "csesoc.unsw.edu.au/m/v2/docs"
+
 	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo/v4"
 	echoSwagger "github.com/swaggo/echo-swagger"
-	_ "github.com/swaggo/echo-swagger/example/docs"
 
 	"github.com/go-playground/validator/v10"
 	"go.mongodb.org/mongo-driver/mongo"

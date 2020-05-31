@@ -10,6 +10,10 @@ WORKDIR /app/server
 # Build go dependencies
 RUN go mod download
 
+# Generate swag documentation
+RUN go get github.com/swaggo/swag/cmd/swag
+RUN swag init
+
 # Daemon to run go build automatically when new files are changed on host system
 RUN go get github.com/githubnemo/CompileDaemon
 
