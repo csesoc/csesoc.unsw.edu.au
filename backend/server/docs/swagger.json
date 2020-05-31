@@ -1,0 +1,48 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Swagger API for the CSESoc Website Project.",
+        "title": "CSESoc Website Swagger API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "Tommy Truong",
+            "email": "projects.website@csesoc.org.au"
+        },
+        "license": {},
+        "version": "1.0"
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/sponsors/{name}": {
+            "get": {
+                "tags": [
+                    "sponsors"
+                ],
+                "summary": "Find entry for a specific sponsor",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Sponsor name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "body"
+                        }
+                    },
+                    "404": {
+                        "description": "No such sponsor",
+                        "schema": {
+                            "type": "header"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

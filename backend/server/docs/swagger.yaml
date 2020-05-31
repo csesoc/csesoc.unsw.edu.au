@@ -1,0 +1,32 @@
+basePath: /api/v1
+info:
+  contact:
+    email: projects.website@csesoc.org.au
+    name: Tommy Truong
+  description: Swagger API for the CSESoc Website Project.
+  license: {}
+  termsOfService: http://swagger.io/terms/
+  title: CSESoc Website Swagger API
+  version: "1.0"
+paths:
+  /sponsors/{name}:
+    get:
+      parameters:
+      - description: Sponsor name
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: body
+        "404":
+          description: No such sponsor
+          schema:
+            type: header
+      summary: Find entry for a specific sponsor
+      tags:
+      - sponsors
+swagger: "2.0"
