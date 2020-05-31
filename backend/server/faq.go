@@ -17,9 +17,15 @@ type Faq struct {
 	Answer   string `json:"answer"`
 }
 
-// GetFaq - Returns all faq questions and answers pairs
+// GetFaq godoc
+// @Summary Return all faq questions and answers pairs
+// @Tags faq
+// @Success 200 {array} Faq
+// @Failure 503 "Service unavailable"
+// @Header 503 {string} error "Unable to retrieve FAQs"
+// @Router /faq [get]
 func GetFaq(c echo.Context) error {
-	result, err := retriveFaqJSON()
+	results, err := retriveFaqJSON()
 
 	if err != nil {
 		return c.JSON(http.StatusServiceUnavailable, H{
@@ -27,7 +33,7 @@ func GetFaq(c echo.Context) error {
 		})
 	}
 
-	return c.JSON(http.StatusOK, result)
+	return c.JSON(http.StatusOK, results)
 }
 
 // retriveFaqJSON - returns a list of questions and answers from a json file in /static
