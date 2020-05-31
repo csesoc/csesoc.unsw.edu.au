@@ -13,6 +13,87 @@
     },
     "basePath": "/api/v1",
     "paths": {
+        "/sponsors": {
+            "get": {
+                "tags": [
+                    "sponsors"
+                ],
+                "summary": "Get a list of sponsors stored",
+                "parameters": [
+                    {
+                        "maximum": 2,
+                        "minimum": 0,
+                        "type": "integer",
+                        "description": "Valid sponsor tier",
+                        "name": "name",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/main.Sponsor"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error acessing the database"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "sponsors"
+                ],
+                "summary": "Add a new sponsor",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Name",
+                        "name": "name",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Logo URL",
+                        "name": "logo",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "maximum": 2,
+                        "minimum": 0,
+                        "type": "integer",
+                        "description": "Valid tier",
+                        "name": "tier",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Detail",
+                        "name": "detail",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Sponsor added"
+                    },
+                    "400": {
+                        "description": "Error acessing the database"
+                    },
+                    "409": {
+                        "description": "Sponsor already exists on database"
+                    }
+                }
+            }
+        },
         "/sponsors/{name}": {
             "get": {
                 "tags": [
@@ -32,15 +113,60 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "body"
+                            "$ref": "#/definitions/main.Sponsor"
                         }
                     },
                     "404": {
-                        "description": "No such sponsor",
-                        "schema": {
-                            "type": "header"
-                        }
+                        "description": "No such sponsor"
                     }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "sponsors"
+                ],
+                "summary": "Delete a sponsor",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Sponsor name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sponsor deleted"
+                    },
+                    "500": {
+                        "description": "Error acessing the database"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.Sponsor": {
+            "type": "object",
+            "required": [
+                "detail",
+                "logo",
+                "name",
+                "tier"
+            ],
+            "properties": {
+                "detail": {
+                    "type": "string"
+                },
+                "logo": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "tier": {
+                    "type": "integer"
                 }
             }
         }

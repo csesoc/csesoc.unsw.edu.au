@@ -1,4 +1,21 @@
 basePath: /api/v1
+definitions:
+  main.Sponsor:
+    properties:
+      detail:
+        type: string
+      logo:
+        type: string
+      name:
+        type: string
+      tier:
+        type: integer
+    required:
+    - detail
+    - logo
+    - name
+    - tier
+    type: object
 info:
   contact:
     email: projects.website@csesoc.org.au
@@ -9,7 +26,77 @@ info:
   title: CSESoc Website Swagger API
   version: "1.0"
 paths:
+  /sponsors:
+    get:
+      parameters:
+      - description: Valid sponsor tier
+        in: query
+        maximum: 2
+        minimum: 0
+        name: name
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Sponsor'
+            type: array
+        "500":
+          description: Error acessing the database
+      summary: Get a list of sponsors stored
+      tags:
+      - sponsors
+    post:
+      parameters:
+      - description: Name
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: Logo URL
+        in: formData
+        name: logo
+        required: true
+        type: string
+      - description: Valid tier
+        in: formData
+        maximum: 2
+        minimum: 0
+        name: tier
+        required: true
+        type: integer
+      - description: Detail
+        in: formData
+        name: detail
+        required: true
+        type: string
+      responses:
+        "201":
+          description: Sponsor added
+        "400":
+          description: Error acessing the database
+        "409":
+          description: Sponsor already exists on database
+      summary: Add a new sponsor
+      tags:
+      - sponsors
   /sponsors/{name}:
+    delete:
+      parameters:
+      - description: Sponsor name
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Sponsor deleted
+        "500":
+          description: Error acessing the database
+      summary: Delete a sponsor
+      tags:
+      - sponsors
     get:
       parameters:
       - description: Sponsor name
@@ -21,11 +108,9 @@ paths:
         "200":
           description: OK
           schema:
-            type: body
+            $ref: '#/definitions/main.Sponsor'
         "404":
           description: No such sponsor
-          schema:
-            type: header
       summary: Find entry for a specific sponsor
       tags:
       - sponsors

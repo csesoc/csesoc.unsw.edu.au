@@ -89,7 +89,7 @@ func TestSponsor(t *testing.T) {
 		}
 		defer resp.Body.Close()
 
-		assertStatus(t, resp.StatusCode, http.StatusOK)
+		assertStatus(t, resp.StatusCode, http.StatusNoContent)
 	})
 
 	t.Run("Check newly removed sponsor", func(t *testing.T) {
@@ -142,7 +142,7 @@ func TestSponsorError(t *testing.T) {
 		}
 		defer resp.Body.Close()
 
-		assertStatus(t, resp.StatusCode, http.StatusOK)
+		assertStatus(t, resp.StatusCode, http.StatusNoContent)
 	})
 
 	t.Run("Missing parameters when creating", func(t *testing.T) {

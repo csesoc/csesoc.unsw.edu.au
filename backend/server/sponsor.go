@@ -65,6 +65,16 @@ func SponsorSetup(client *mongo.Client) {
 ///////////
 
 // NewSponsor godoc
+// @Summary Add a new sponsor
+// @Tags sponsors
+// @Param name formData string true "Name"
+// @Param logo formData string true "Logo URL"
+// @Param tier formData integer true "Valid tier" mininum(0) maxinum(2)
+// @Param detail formData string true "Detail"
+// @Success 201 "Sponsor added"
+// @Failure 400 "Error acessing the database"
+// @Failure 409 "Sponsor already exists on database"
+// @Router /sponsors [post]
 func NewSponsor(c echo.Context) error {
 	tier, err := strconv.Atoi(c.FormValue("tier"))
 	if err != nil {
@@ -93,18 +103,15 @@ func NewSponsor(c echo.Context) error {
 		})
 	}
 
-	return c.JSON(http.StatusCreated, H{
-		"response": "Created",
-	})
+	return c.JSON(http.StatusCreated, H{})
 }
 
 // GetSponsor godoc
 // @Summary Find entry for a specific sponsor
 // @Tags sponsors
 // @Param name path string true "Sponsor name"
-// @Success 201 body Sponsor
-// @Failure 400 header string "Bad request"
-// @Failure 409 header string "Database conflict"
+// @Success 200 {object} Sponsor
+// @Failure 404 "No such sponsor"
 // @Router /sponsors/{name} [get]
 func GetSponsor(c echo.Context) error {
 	var result Sponsor
@@ -118,21 +125,30 @@ func GetSponsor(c echo.Context) error {
 	return c.JSON(http.StatusOK, result)
 }
 
-// GetSponsors - gives a list of sponsors stored.
+// GetSponsors godoc
+// @Summary Get a list of sponsors stored
+// @Tags sponsors
+// @Param tier query integer false "Valid sponsor tier, 0-2 inclusive" mininum(0) maxinum(2)
+// @Success 200 {array} Sponsor
+// @Failure 500 "Error acessing the database"
+// @Router /sponsors [get]
 func GetSponsors(c echo.Context) error {
-	token := c.FormValue("token")
-	tier := c.FormValue("tier")
-	results, err := retrieveSponsors(token, tier)
+	// token := c.FormValue("token")
+	tier := c.QueryParam("tier")
+	results, err := retrieveSponsors(tier)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, H{})
 	}
-	if results != nil {
-		return c.JSON(http.StatusOK, results)
-	}
-	return c.JSON(http.StatusOK, H{})
+	return c.JSON(http.StatusOK, results)
 }
 
-// DeleteSponsor - Delete a sponsor
+// DeleteSponsor godoc
+// @Summary Delete a sponsor
+// @Tags sponsors
+// @Param name path string true "Sponsor name"
+// @Success 204 "Sponsor deleted"
+// @Failure 500 "Error acessing the database"
+// @Router /sponsors/{name} [delete]
 func DeleteSponsor(c echo.Context) error {
 	// token := c.FormValue("token")
 	filter := bson.D{{Key: "name", Value: c.Param("name")}}
@@ -141,13 +157,11 @@ func DeleteSponsor(c echo.Context) error {
 			"error": err,
 		})
 	}
-	return c.JSON(http.StatusOK, H{
-		"response": "Deleted",
-	})
+	return c.JSON(http.StatusNoContent, H{})
 }
 
 // retrieveSponsors - Retrieve a sponsor from the database
-func retrieveSponsors(token string, tierString string) ([]*Sponsor, error) {
+func retrieveSponsors(tierString string) ([]*Sponsor, error) {
 	var results []*Sponsor
 
 	filter := bson.D{{}}

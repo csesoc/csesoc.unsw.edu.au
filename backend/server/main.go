@@ -77,10 +77,10 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 
 // @title CSESoc Website Swagger API
 // @version 1.0
-// @description Swagger API for the CSESoc Website Project.
+// @description Swagger API for the CSESoc Website project.
 // @termsOfService http://swagger.io/terms/
 
-// @contact.name Tommy Truong
+// @contact.name Project Lead
 // @contact.email projects.website@csesoc.org.au
 
 // @BasePath /api/v1
