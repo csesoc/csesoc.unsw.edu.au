@@ -119,8 +119,10 @@ func main() {
 	// Wait for interrupt signal
 	<-quit
 	// Dispatch bundles on shutdown
-	DispatchEnquiryBundles()
-	DispatchFeedbackBundle()
+	if !InDevelopment {
+		DispatchEnquiryBundles()
+		DispatchFeedbackBundle()
+	}
 	// Gracefully shutdown the server with a timeout of 10 seconds
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
