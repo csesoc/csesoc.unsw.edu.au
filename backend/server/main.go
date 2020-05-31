@@ -85,6 +85,10 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 // @contact.email projects.website@csesoc.org.au
 
 // @BasePath /api/v1
+
+// @securityDefinitions.bearerAuth BearerAuthKey
+// @in header
+// @name Authorization
 func main() {
 	// Create new instance of echo
 	e := echo.New()

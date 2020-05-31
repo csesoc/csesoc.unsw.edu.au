@@ -67,6 +67,8 @@ func SponsorSetup(client *mongo.Client) {
 // NewSponsor godoc
 // @Summary Add a new sponsor
 // @Tags sponsors
+// @accept Content-Type application/x-www-form-urlencoded
+// @Param Authorization header string true "Bearer <token>"
 // @Param name formData string true "Name"
 // @Param logo formData string true "Logo URL"
 // @Param tier formData integer true "Valid tier" mininum(0) maxinum(2)
@@ -78,6 +80,7 @@ func SponsorSetup(client *mongo.Client) {
 // @Failure 409 "Conflict"
 // @Header 409 {string} error "Sponsor already exists on database"
 // @Router /sponsors [post]
+// @Security BearerAuthKey
 func NewSponsor(c echo.Context) error {
 	tier, err := strconv.Atoi(c.FormValue("tier"))
 	if err != nil {
@@ -92,13 +95,12 @@ func NewSponsor(c echo.Context) error {
 		Detail: c.FormValue("detail"),
 	}
 
-	// validate the struct with golang validator package
+	// Validate the struct with golang validator package
 	if err := c.Validate(sponsor); err != nil {
 		return c.JSON(http.StatusBadRequest, H{
 			"error": "Invalid form",
 		})
 	}
-	// token := c.FormValue("token")
 
 	if _, err := sponsorColl.InsertOne(context.TODO(), sponsor); err != nil {
 		return c.JSON(http.StatusConflict, H{
@@ -121,7 +123,6 @@ func NewSponsor(c echo.Context) error {
 // @Router /sponsors/{name} [get]
 func GetSponsor(c echo.Context) error {
 	var result Sponsor
-	// token := c.FormValue("token")
 	filter := bson.D{{Key: "name", Value: c.Param("name")}}
 	if err := sponsorColl.FindOne(context.TODO(), filter).Decode(&result); err != nil {
 		return c.JSON(http.StatusNotFound, H{
@@ -140,7 +141,6 @@ func GetSponsor(c echo.Context) error {
 // @Header 500 {string} error "Unable to retrieve sponsors from database"
 // @Router /sponsors [get]
 func GetSponsors(c echo.Context) error {
-	// token := c.FormValue("token")
 	tier := c.QueryParam("tier")
 	results, err := retrieveSponsors(tier)
 	if err != nil {
@@ -154,14 +154,15 @@ func GetSponsors(c echo.Context) error {
 // DeleteSponsor godoc
 // @Summary Delete a sponsor
 // @Tags sponsors
+// @Param Authorization header string true "Bearer <token>"
 // @Param name path string true "Sponsor name"
 // @Success 204 "No content"
 // @Header 204 {string} response "Sponsor deleted"
 // @Failure 500 "Internal server error"
 // @Header 500 {string} error "Unable to delete sponsor from database"
 // @Router /sponsors/{name} [delete]
+// @Security BearerAuthKey
 func DeleteSponsor(c echo.Context) error {
-	// token := c.FormValue("token")
 	filter := bson.D{{Key: "name", Value: c.Param("name")}}
 	if _, err := sponsorColl.DeleteOne(context.TODO(), filter); err != nil {
 		return c.JSON(http.StatusInternalServerError, H{
