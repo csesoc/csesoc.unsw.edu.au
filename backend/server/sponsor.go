@@ -60,9 +60,11 @@ func SponsorSetup(client *mongo.Client) {
 
 }
 
-/* Handles */
+///////////
+// HANDLERS
+///////////
 
-// NewSponsor - Add a sponsor
+// NewSponsor godoc
 func NewSponsor(c echo.Context) error {
 	tier, err := strconv.Atoi(c.FormValue("tier"))
 	if err != nil {
@@ -86,7 +88,9 @@ func NewSponsor(c echo.Context) error {
 	// token := c.FormValue("token")
 
 	if _, err := sponsorColl.InsertOne(context.TODO(), sponsor); err != nil {
-		return c.JSON(http.StatusConflict, H{})
+		return c.JSON(http.StatusConflict, H{
+			"error": "Database conflict",
+		})
 	}
 
 	return c.JSON(http.StatusCreated, H{
@@ -94,14 +98,21 @@ func NewSponsor(c echo.Context) error {
 	})
 }
 
-// GetSponsor - find entry for a specific sponsor.
+// GetSponsor godoc
+// @Summary Find entry for a specific sponsor
+// @Tags sponsors
+// @Param name path string true "Sponsor name"
+// @Success 201 body Sponsor
+// @Failure 400 header string "Bad request"
+// @Failure 409 header string "Database conflict"
+// @Router /sponsors/{name} [get]
 func GetSponsor(c echo.Context) error {
 	var result Sponsor
 	// token := c.FormValue("token")
 	filter := bson.D{{Key: "name", Value: c.Param("name")}}
 	if err := sponsorColl.FindOne(context.TODO(), filter).Decode(&result); err != nil {
 		return c.JSON(http.StatusNotFound, H{
-			"response": "No such sponsor.",
+			"response": "No such sponsor",
 		})
 	}
 	return c.JSON(http.StatusOK, result)
