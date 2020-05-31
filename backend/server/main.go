@@ -13,6 +13,7 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
 
 	"github.com/go-playground/validator/v10"
@@ -191,19 +192,19 @@ func serveAPI(e *echo.Echo) {
 	// userCollection := client.Database("csesoc").Collection("users")
 
 	// AUTHENTICATION
-	// e.POST("/login/", login(userCollection))
+	e.POST("/login", TempLogin)
 
 	// POSTS
-	// e.GET("/api/v1/posts/", getPosts(postsCollection))
-	// e.POST("/api/v1/post/", newPosts(postsCollection))
-	// e.PUT("/api/v1/post/", updatePosts(postsCollection))
-	// e.DELETE("/api/v1/post/", deletePosts(postsCollection))
+	// e.GET("/api/posts/", getPosts(postsCollection))
+	// e.POST("/api/post/", newPosts(postsCollection), middleware.JWT(jwtSecret))
+	// e.PUT("/api/post/", updatePosts(postsCollection), middleware.JWT(jwtSecret))
+	// e.DELETE("/api/post/", deletePosts(postsCollection), middleware.JWT(jwtSecret))
 
 	// CATEGORIES
-	// e.GET("/api/v1/category/:id/", getCats(catCollection))
-	// e.POST("/api/v1/category/", newCats(catCollection))
-	// e.PATCH("/api/v1/category/", patchCats(catCollection))
-	// e.DELETE("/api/v1/category/", deleteCats(catCollection))
+	// e.GET("/api/category/:id/", getCats(catCollection))
+	// e.POST("/api/category/", newCats(catCollection), middleware.JWT(jwtSecret))
+	// e.PATCH("/api/category/", patchCats(catCollection), middleware.JWT(jwtSecret))
+	// e.DELETE("/api/category/", deleteCats(catCollection), middleware.JWT(jwtSecret))
 
 	v1 := e.Group("/api/v1")
 	{
@@ -212,8 +213,8 @@ func serveAPI(e *echo.Echo) {
 		sponsors := v1.Group("/sponsors")
 		{
 			sponsors.GET("/:name", GetSponsor)
-			sponsors.POST("", NewSponsor)
-			sponsors.DELETE("/:name", DeleteSponsor)
+			sponsors.POST("", NewSponsor, middleware.JWT(jwtSecret))
+			sponsors.DELETE("/:name", DeleteSponsor, middleware.JWT(jwtSecret))
 			sponsors.GET("", GetSponsors)
 		}
 
