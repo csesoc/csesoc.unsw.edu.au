@@ -73,7 +73,7 @@ func HandleGeneralMessage(c echo.Context) error {
 	// Validate struct
 	if err := c.Validate(enquiry); err != nil {
 		return c.JSON(http.StatusBadRequest, H{
-			"error": err,
+			"error": "Invalid form",
 		})
 	}
 
@@ -102,7 +102,7 @@ func HandleSponsorshipMessage(c echo.Context) error {
 	// Validate struct
 	if err := c.Validate(enquiry); err != nil {
 		return c.JSON(http.StatusBadRequest, H{
-			"error": err,
+			"error": "Invalid form",
 		})
 	}
 
@@ -131,7 +131,7 @@ func HandleFeedbackMessage(c echo.Context) error {
 	// Validate struct
 	if err := c.Validate(feedback); err != nil {
 		return c.JSON(http.StatusBadRequest, H{
-			"error": err,
+			"error": "Invalid form",
 		})
 	}
 

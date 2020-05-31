@@ -92,14 +92,14 @@ func NewSponsor(c echo.Context) error {
 	// validate the struct with golang validator package
 	if err := c.Validate(sponsor); err != nil {
 		return c.JSON(http.StatusBadRequest, H{
-			"error": "Bad request",
+			"error": "Invalid form",
 		})
 	}
 	// token := c.FormValue("token")
 
 	if _, err := sponsorColl.InsertOne(context.TODO(), sponsor); err != nil {
 		return c.JSON(http.StatusConflict, H{
-			"error": "Database conflict",
+			"error": "Sponsor already exists on database",
 		})
 	}
 
@@ -119,7 +119,7 @@ func GetSponsor(c echo.Context) error {
 	filter := bson.D{{Key: "name", Value: c.Param("name")}}
 	if err := sponsorColl.FindOne(context.TODO(), filter).Decode(&result); err != nil {
 		return c.JSON(http.StatusNotFound, H{
-			"response": "No such sponsor",
+			"error": "No such sponsor",
 		})
 	}
 	return c.JSON(http.StatusOK, result)
@@ -130,14 +130,16 @@ func GetSponsor(c echo.Context) error {
 // @Tags sponsors
 // @Param tier query integer false "Valid sponsor tier, 0-2 inclusive" mininum(0) maxinum(2)
 // @Success 200 {array} Sponsor
-// @Failure 500 "Error acessing the database"
+// @Failure 500 "Unable to retrieve sponsors from database"
 // @Router /sponsors [get]
 func GetSponsors(c echo.Context) error {
 	// token := c.FormValue("token")
 	tier := c.QueryParam("tier")
 	results, err := retrieveSponsors(tier)
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, H{})
+		return c.JSON(http.StatusInternalServerError, H{
+			"error": "Unable to retrieve sponsors from database",
+		})
 	}
 	return c.JSON(http.StatusOK, results)
 }
@@ -147,14 +149,14 @@ func GetSponsors(c echo.Context) error {
 // @Tags sponsors
 // @Param name path string true "Sponsor name"
 // @Success 204 "Sponsor deleted"
-// @Failure 500 "Error acessing the database"
+// @Failure 500 "Unable to delete sponsor from database"
 // @Router /sponsors/{name} [delete]
 func DeleteSponsor(c echo.Context) error {
 	// token := c.FormValue("token")
 	filter := bson.D{{Key: "name", Value: c.Param("name")}}
 	if _, err := sponsorColl.DeleteOne(context.TODO(), filter); err != nil {
 		return c.JSON(http.StatusInternalServerError, H{
-			"error": err,
+			"error": "Unable to delete sponsor from database",
 		})
 	}
 	return c.JSON(http.StatusNoContent, H{})

@@ -23,13 +23,11 @@ func GetFaq(c echo.Context) error {
 
 	if err != nil {
 		return c.JSON(http.StatusServiceUnavailable, H{
-			"error": err,
+			"error": "Unable to retrieve FAQs",
 		})
 	}
 
-	return c.JSON(http.StatusOK, H{
-		"faq": result,
-	})
+	return c.JSON(http.StatusOK, result)
 }
 
 // retriveFaqJSON - returns a list of questions and answers from a json file in /static
