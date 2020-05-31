@@ -8,17 +8,6 @@ import (
 	"github.com/mailjet/mailjet-apiv3-go"
 )
 
-type messageType int
-
-const (
-	// GeneralType = 0
-	GeneralType messageType = iota
-	// SponsorshipType = 1
-	SponsorshipType
-	// FeedbackType = 2
-	FeedbackType
-)
-
 // Enquiry - struct to contain email enquiry data
 type Enquiry struct {
 	Name  string `validate:"required"`
@@ -65,50 +54,91 @@ func MailingSetup() {
 // HANDLERS
 ///////////
 
-// HandleMessage by forwarding emails to relevant inboxes
-func HandleMessage(mt messageType) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		var enquiry Enquiry
-		var feedback Feedback
-
-		// Extract fields from form
-		if mt == GeneralType || mt == SponsorshipType {
-			enquiry = Enquiry{
-				Name:  c.FormValue("name"),
-				Email: c.FormValue("email"),
-				Body:  c.FormValue("body"),
-			}
-			if err := c.Validate(enquiry); err != nil {
-				return c.JSON(http.StatusBadRequest, H{
-					"error": err,
-				})
-			}
-		} else if mt == FeedbackType {
-			feedback = Feedback{
-				Name:  c.FormValue("name"),
-				Email: c.FormValue("email"),
-				Body:  c.FormValue("body"),
-			}
-			// Validate struct
-			if err := c.Validate(feedback); err != nil {
-				return c.JSON(http.StatusBadRequest, H{
-					"error": err,
-				})
-			}
-		}
-
-		// Add to bundle
-		switch mt {
-		case GeneralType:
-			generalBundle = append(generalBundle, enquiry)
-		case SponsorshipType:
-			sponsorshipBundle = append(sponsorshipBundle, enquiry)
-		case FeedbackType:
-			feedbackBundle = append(feedbackBundle, feedback)
-		}
-
-		return c.JSON(http.StatusAccepted, H{})
+// HandleGeneralMessage godoc
+// @Summary Handle a general enquiry by adding it to a dispatch bundle
+// @Tags mailing
+// @Param name formData string true "Name"
+// @Param email formData string true "Email"
+// @Param body formData string true "Message body"
+// @Success 202 "Enquiry added to dispatch bundle"
+// @Failure 400 "Invalid form"
+// @Router /mailing/general [post]
+func HandleGeneralMessage(c echo.Context) error {
+	enquiry := Enquiry{
+		Name:  c.FormValue("name"),
+		Email: c.FormValue("email"),
+		Body:  c.FormValue("body"),
 	}
+
+	// Validate struct
+	if err := c.Validate(enquiry); err != nil {
+		return c.JSON(http.StatusBadRequest, H{
+			"error": err,
+		})
+	}
+
+	// Add to bundle
+	generalBundle = append(generalBundle, enquiry)
+
+	return c.JSON(http.StatusAccepted, H{})
+}
+
+// HandleSponsorshipMessage godoc
+// @Summary Handle a sponsorship enquiry by adding it to a dispatch bundle
+// @Tags mailing
+// @Param name formData string true "Name"
+// @Param email formData string true "Email"
+// @Param body formData string true "Message body"
+// @Success 202 "Enquiry added to dispatch bundle"
+// @Failure 400 "Invalid form"
+// @Router /mailing/sponsorship [post]
+func HandleSponsorshipMessage(c echo.Context) error {
+	enquiry := Enquiry{
+		Name:  c.FormValue("name"),
+		Email: c.FormValue("email"),
+		Body:  c.FormValue("body"),
+	}
+
+	// Validate struct
+	if err := c.Validate(enquiry); err != nil {
+		return c.JSON(http.StatusBadRequest, H{
+			"error": err,
+		})
+	}
+
+	// Add to bundle
+	sponsorshipBundle = append(sponsorshipBundle, enquiry)
+
+	return c.JSON(http.StatusAccepted, H{})
+}
+
+// HandleFeedbackMessage godoc
+// @Summary Handle a feedback by adding it to a dispatch bundle
+// @Tags mailing
+// @Param name formData string false "Name"
+// @Param email formData string false "Email"
+// @Param body formData string true "Message body"
+// @Success 202 "Feedback added to dispatch bundle"
+// @Failure 400 "Invalid form"
+// @Router /mailing/feedback [post]
+func HandleFeedbackMessage(c echo.Context) error {
+	feedback := Feedback{
+		Name:  c.FormValue("name"),
+		Email: c.FormValue("email"),
+		Body:  c.FormValue("body"),
+	}
+
+	// Validate struct
+	if err := c.Validate(feedback); err != nil {
+		return c.JSON(http.StatusBadRequest, H{
+			"error": err,
+		})
+	}
+
+	// Add to bundle
+	feedbackBundle = append(feedbackBundle, feedback)
+
+	return c.JSON(http.StatusAccepted, H{})
 }
 
 ////////

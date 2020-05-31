@@ -219,9 +219,9 @@ func serveAPI(e *echo.Echo) {
 		MailingSetup()
 		mailing := v1.Group("/mailing")
 		{
-			mailing.POST("/general", HandleMessage(GeneralType))
-			mailing.POST("/sponsorship", HandleMessage(SponsorshipType))
-			mailing.POST("/feedback", HandleMessage(FeedbackType))
+			mailing.POST("/general", HandleGeneralMessage)
+			mailing.POST("/sponsorship", HandleSponsorshipMessage)
+			mailing.POST("/feedback", HandleFeedbackMessage)
 		}
 
 		// FAQ
