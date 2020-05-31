@@ -2,10 +2,10 @@
 FROM golang:1.13-buster as production-stage
 
 # Copy server files 
-COPY ./ /~/app/server
+COPY ./ /app/server
 
 # Set working server directory
-WORKDIR /~/app/server
+WORKDIR /app/server
 
 # Build go dependencies
 RUN go mod download
