@@ -72,7 +72,7 @@ func SponsorSetup(client *mongo.Client) {
 // @Param tier formData integer true "Valid tier" mininum(0) maxinum(2)
 // @Param detail formData string true "Detail"
 // @Success 201 "Sponsor added"
-// @Failure 400 "Error acessing the database"
+// @Failure 400 "Invalid form"
 // @Failure 409 "Sponsor already exists on database"
 // @Router /sponsors [post]
 func NewSponsor(c echo.Context) error {
