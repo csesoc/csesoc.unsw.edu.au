@@ -41,7 +41,7 @@ docker-compose down
 
 which kills your containers but keeps your iamges. Be sure to use `docker-compose --help` for any additional help or other options.
 
-If the code has been changed, you need not rebuild using `docker-compose up -d --build` for backend or mongo but as of this moment and vue file changes will need to run the command.
+If the code has been changed, rebuild using `docker-compose up -d --build` if you have made changes to the frontend files. For backend or mongo containers they are reloaded live and any changed made on your system will be automatically refelected in the container and recompiled accoridngly.
 
 To access the website, the static files will be served on `0.0.0.0:8080` (`[::]:8080`) while the backend APIs are served on `0.0.0.0:1323` (`[::]:1323`). Make sure when you are making calls from the frontend to the backend in development stage, you use the suffix of the api call and not call with the domain e.g
 
@@ -63,7 +63,7 @@ The project uses Github Actions for continuous integration and automated testing
 To validate structs, we are utilising a feature of the echo web framework that allows us to couple a validator package to validate structs that contain user inputs from requests. The package is golang's [package validator](https://pkg.go.dev/gopkg.in/go-playground/validator.v9?tab=doc#pkg-index). Everytime validation needs to occur for inserting into a database please use `echo-context.Validator(&struct)` to validate and handle any errors accordingly.
 
 ### Unit and Integration Testing
-These tests are written in golang's standard testing package and are written in the same package as the file that they are testing. To have these test run, please ensure docker is running and your containers for development are running. Then to run the actual test, go to the directory that contains the go files and run `go test`. This will run all test in child directories. 
+These tests are written in golang's standard testing package and are written in the same package as the file that they are testing. The tests are named `*_test.go` and the testing package has to be imported. For more information please read the Golang documentation for the [package testing](https://golang.org/pkg/testing/). To have these test run, please ensure docker is running and your containers for development are running. Then to run the actual test, go to the directory that contains the go files and run `go test`. This will run all test in child directories. 
 
 It is imperative that you test frequently to spot bugs and errors early on. Do not rely on Github Actions when you conduct a PR to check because it is used as an integration tool so that it is a final check before changes are merged onto dev.
 
