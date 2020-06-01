@@ -1,6 +1,5 @@
 
 import {
-    LOCAL_API_URL,
     SPONSORS_URL
   } from './Constants'
 
@@ -31,7 +30,7 @@ const getClient = (method, body) => {
 }
 
 const sponsorsAPI = () => {
-    const url = LOCAL_API_URL + SPONSORS_URL
+    const url = SPONSORS_URL
     const client = getClient('GET')
     return APICall(url, client)
 }
