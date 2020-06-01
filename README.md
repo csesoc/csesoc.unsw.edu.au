@@ -15,7 +15,7 @@ For Mac users, proceed to https://docs.docker.com/docker-for-mac/install/ and fo
 For Windows users, proceed to https://docs.docker.com/docker-for-windows/install/ and follow the instructions there. Be aware that if you have a Windows Home account with a Windows Subsystem for Linux, then additional steps need to be taken before downloading Docker, of which you can find here https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4.
 
 Once Docker has been downloaded, check by running the command in your terminal:
-```
+``` script
 docker --version
 ```
 
@@ -29,44 +29,48 @@ With the repo cloned, proceed to checkout to the dev branch, `git checkout dev`.
 
 From the root folder of the dev branch, run the following command in your terminal.
 
-```
-docker-compose up -d  
+``` script
+docker-compose up -d --build
 ```
 
-This will automatically build the images required for the containers, as well as the containers for the first time. After this images will not need to be built again until changes have been made to the repo files. The '-d' is to start the container in the background and leave them running. Once you are finished with local deployment, run:
+This will automatically build the images required for the containers, as well as the containers for the first time. After this images will not need to be built again until changes have been made to the repo files. The '-d' is to start the container in the background and leave them running. There will be three containers that start up `frontend`, `backend` and `mongo`. Once you are finished with local deployment, run:
 
-```
+``` script
 docker-compose down
 ```
 
 which kills your containers but keeps your iamges. Be sure to use `docker-compose --help` for any additional help or other options.
 
-If the code has been changed, you need to rebuild your image. Due to the fact that we use a docker-compose.yml, please look at the service name you are looking to rebuild and run:
+If the frontend code has been changed, rebuild using `docker-compose up -d --build`. For backend or mongo containers they are reloaded live and any changes made on your system will be automatically refelected in the container and recompiled accordingly.
 
+To access the website, the static files will be served on `0.0.0.0:8080` (`[::]:8080`) while the backend APIs are served on `0.0.0.0:1323` (`[::]:1323`). Make sure when you are making calls from the frontend to the backend in development stage, you use the suffix of the api call and not call with the domain e.g
+
+``` javascript
+/api/v1/sponsors
 ```
-docker-compose build your-services-name
+
+as opposed to
+
+``` javascript
+https://localhost:1323/api/v1/sponsors
 ```
-
-And then proceed with previous steps to get start local deployment.
-
-The server will start on `0.0.0.0:1323` (`[::]:1323`) which serves both the frontend and API simultaneously.
 
 ## Running the tests
 
-The project uses Github Actions for continuous integration and automated testing.
+The project uses Github Actions for continuous integration and automated testing. Testing will always be written at the beginning of each sprint and run every time a push is detected on your feat/fix/hotfix branch or a merge/push to dev.
 
 ### Input Validation
-To validate test, we are utilising a feature of the echo web framework that allows us to couple a validator package to validate structs that contain user inputs from requests. The package is golang's [package validator](https://pkg.go.dev/gopkg.in/go-playground/validator.v9?tab=doc#pkg-index). Everytime validation needs to occur for inserting into a database please use `echo-context.Validator(&struct)` to validate and handle any errors accordingly.
+To validate structs, we are utilising a feature of the echo web framework that allows us to couple a validator package to validate structs that contain user inputs from requests. The package is golang's [package validator](https://pkg.go.dev/gopkg.in/go-playground/validator.v9?tab=doc#pkg-index). Everytime validation needs to occur for inserting into a database please use `echo-context.Validator(&struct)` to validate and handle any errors accordingly.
 
-### Postman
-API testing is performed using the platform Postman. To run standalone tests, please check the [Postman website](https://www.postman.com/). Please make sure you have newman downloaded, using `npm install -g newman`.
+### Unit and Integration Testing
+These tests are written in golang's standard testing package and are written in the same package as the file that they are testing. The tests are named `*_test.go` and the testing package has to be imported. For more information please read the Golang documentation for the [package testing](https://golang.org/pkg/testing/). To have these test run, please ensure docker is running and your containers for development are running. Then to run the actual test, go to the directory that contains the go files and run `go test`. This will run all test in child directories. 
 
-1. Before coding of the feature occurs, API testing must be done to ensure that integration is as smooth as possible.
-2. After you have written the tests and applied it to your code, export the Postman collection (a collection of related test) and place it in tests/postman in the collective postman file. 
-3. Open a pull request. This will automatically run previous test in the `dev` branch so that your code integrates and does not (hopefully) break existing code.
-4. Fix any errors that do occur and once done then merge. Your new api tests should now be run every time there is a PR into dev.
+It is imperative that you test frequently to spot bugs and errors early on. Do not rely on Github Actions when you conduct a PR to check because it is used as an integration tool so that it is a final check before changes are merged onto dev.
 
-As of this moment, a fix is taking place to get the github actions to run newman.
+### Github Actions
+Github Actions is the CI tool that we are using because of the relative ease of use and the ability to make changes as a developer to the CI workflow as needed. The script to run Github Actions is in the `.github` directory and is named `ci.yml`.
+
+At the current moment it builds the docker images, runs the containers and performs the `go test` directive on those containers. Github actions will have increased functionality as we move away from working with Go backend files and look at testing other aspects of our website.
 
 ## Deployment
 
