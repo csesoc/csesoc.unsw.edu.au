@@ -41,7 +41,7 @@ docker-compose down
 
 which kills your containers but keeps your iamges. Be sure to use `docker-compose --help` for any additional help or other options.
 
-If the code has been changed, rebuild using `docker-compose up -d --build` if you have made changes to the frontend files. For backend or mongo containers they are reloaded live and any changed made on your system will be automatically refelected in the container and recompiled accoridngly.
+If the frontend code has been changed, rebuild using `docker-compose up -d --build`. For backend or mongo containers they are reloaded live and any changes made on your system will be automatically refelected in the container and recompiled accordingly.
 
 To access the website, the static files will be served on `0.0.0.0:8080` (`[::]:8080`) while the backend APIs are served on `0.0.0.0:1323` (`[::]:1323`). Make sure when you are making calls from the frontend to the backend in development stage, you use the suffix of the api call and not call with the domain e.g
 
