@@ -1,11 +1,11 @@
 # Base image changed to go to run Go commands
 FROM golang:1.13-buster as production-stage
 
-# Copy server files 
-COPY ./ /app/server
-
 # Set working server directory
 WORKDIR /app/server
+
+# Copy server files 
+COPY ./ /app/server
 
 # Build go dependencies
 RUN go mod download
