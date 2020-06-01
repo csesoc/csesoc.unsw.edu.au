@@ -15,7 +15,7 @@ For Mac users, proceed to https://docs.docker.com/docker-for-mac/install/ and fo
 For Windows users, proceed to https://docs.docker.com/docker-for-windows/install/ and follow the instructions there. Be aware that if you have a Windows Home account with a Windows Subsystem for Linux, then additional steps need to be taken before downloading Docker, of which you can find here https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4.
 
 Once Docker has been downloaded, check by running the command in your terminal:
-```
+``` script
 docker --version
 ```
 
@@ -29,27 +29,31 @@ With the repo cloned, proceed to checkout to the dev branch, `git checkout dev`.
 
 From the root folder of the dev branch, run the following command in your terminal.
 
-```
-docker-compose up -d  
+``` script
+docker-compose up -d --build
 ```
 
-This will automatically build the images required for the containers, as well as the containers for the first time. After this images will not need to be built again until changes have been made to the repo files. The '-d' is to start the container in the background and leave them running. Once you are finished with local deployment, run:
+This will automatically build the images required for the containers, as well as the containers for the first time. After this images will not need to be built again until changes have been made to the repo files. The '-d' is to start the container in the background and leave them running. There will be three containers that start up `frontend`, `backend` and `mongo`. Once you are finished with local deployment, run:
 
-```
+``` script
 docker-compose down
 ```
 
 which kills your containers but keeps your iamges. Be sure to use `docker-compose --help` for any additional help or other options.
 
-If the code has been changed, you need to rebuild your image. Due to the fact that we use a docker-compose.yml, please look at the service name you are looking to rebuild and run:
+If the code has been changed, you need not rebuild using `docker-compose up -d --build` for backend or mongo but as of this moment and vue file changes will need to run the command.
 
+To access the website, the static files will be served on `0.0.0.0:8080` (`[::]:8080`) while the backend APIs are served on `0.0.0.0:1323` (`[::]:1323`). Make sure when you are making calls from the frontend to the backend in development stage, you use the suffix of the api call and not call with the domain e.g
+
+``` javascript
+/api/v1/sponsors
 ```
-docker-compose build your-services-name
+
+as opposed to
+
+``` javascript
+https://localhost:1323/api/v1/sponsors
 ```
-
-And then proceed with previous steps to get start local deployment.
-
-The server will start on `0.0.0.0:1323` (`[::]:1323`) which serves both the frontend and API simultaneously.
 
 ## Running the tests
 
