@@ -8,6 +8,14 @@ import (
 	"github.com/mailjet/mailjet-apiv3-go"
 )
 
+type messageType int
+
+const (
+	generalType     messageType = iota // 0
+	sponsorshipType                    // 1
+	feedbackType                       // 2
+)
+
 // Enquiry - struct to contain email enquiry data
 type Enquiry struct {
 	Name  string `validate:"required"`
@@ -54,6 +62,50 @@ func MailingSetup() {
 // HANDLERS
 ///////////
 
+// handleMessage by forwarding emails to relevant inboxes
+func handleMessage(c echo.Context, mt messageType) error {
+	var enquiry Enquiry
+	var feedback Feedback
+
+	// Extract fields from form
+	if mt == generalType || mt == sponsorshipType {
+		enquiry = Enquiry{
+			Name:  c.FormValue("name"),
+			Email: c.FormValue("email"),
+			Body:  c.FormValue("body"),
+		}
+		if err := c.Validate(enquiry); err != nil {
+			return c.JSON(http.StatusBadRequest, H{
+				"error": err,
+			})
+		}
+	} else if mt == feedbackType {
+		feedback = Feedback{
+			Name:  c.FormValue("name"),
+			Email: c.FormValue("email"),
+			Body:  c.FormValue("body"),
+		}
+		// Validate struct
+		if err := c.Validate(feedback); err != nil {
+			return c.JSON(http.StatusBadRequest, H{
+				"error": err,
+			})
+		}
+	}
+
+	// Add to bundle
+	switch mt {
+	case generalType:
+		generalBundle = append(generalBundle, enquiry)
+	case sponsorshipType:
+		sponsorshipBundle = append(sponsorshipBundle, enquiry)
+	case feedbackType:
+		feedbackBundle = append(feedbackBundle, feedback)
+	}
+
+	return c.JSON(http.StatusAccepted, H{})
+}
+
 // HandleGeneralMessage godoc
 // @Summary Handle a general enquiry by adding it to a dispatch bundle
 // @Tags mailing
@@ -66,25 +118,7 @@ func MailingSetup() {
 // @Header 400 {string} error "Invalid form"
 // @Router /mailing/general [post]
 func HandleGeneralMessage(c echo.Context) error {
-	enquiry := Enquiry{
-		Name:  c.FormValue("name"),
-		Email: c.FormValue("email"),
-		Body:  c.FormValue("body"),
-	}
-
-	// Validate struct
-	if err := c.Validate(enquiry); err != nil {
-		return c.JSON(http.StatusBadRequest, H{
-			"error": "Invalid form",
-		})
-	}
-
-	// Add to bundle
-	generalBundle = append(generalBundle, enquiry)
-
-	return c.JSON(http.StatusAccepted, H{
-		"response": "Enquiry added to dispatch bundle",
-	})
+	return handleMessage(c, generalType)
 }
 
 // HandleSponsorshipMessage godoc
@@ -99,25 +133,7 @@ func HandleGeneralMessage(c echo.Context) error {
 // @Header 400 {string} error "Invalid form"
 // @Router /mailing/sponsorship [post]
 func HandleSponsorshipMessage(c echo.Context) error {
-	enquiry := Enquiry{
-		Name:  c.FormValue("name"),
-		Email: c.FormValue("email"),
-		Body:  c.FormValue("body"),
-	}
-
-	// Validate struct
-	if err := c.Validate(enquiry); err != nil {
-		return c.JSON(http.StatusBadRequest, H{
-			"error": "Invalid form",
-		})
-	}
-
-	// Add to bundle
-	sponsorshipBundle = append(sponsorshipBundle, enquiry)
-
-	return c.JSON(http.StatusAccepted, H{
-		"response": "Enquiry added to dispatch bundle",
-	})
+	return handleMessage(c, sponsorshipType)
 }
 
 // HandleFeedbackMessage godoc
@@ -132,25 +148,7 @@ func HandleSponsorshipMessage(c echo.Context) error {
 // @Header 400 {string} error "Invalid form"
 // @Router /mailing/feedback [post]
 func HandleFeedbackMessage(c echo.Context) error {
-	feedback := Feedback{
-		Name:  c.FormValue("name"),
-		Email: c.FormValue("email"),
-		Body:  c.FormValue("body"),
-	}
-
-	// Validate struct
-	if err := c.Validate(feedback); err != nil {
-		return c.JSON(http.StatusBadRequest, H{
-			"error": "Invalid form",
-		})
-	}
-
-	// Add to bundle
-	feedbackBundle = append(feedbackBundle, feedback)
-
-	return c.JSON(http.StatusAccepted, H{
-		"response": "Feedback added to dispatch bundle",
-	})
+	return handleMessage(c, feedbackType)
 }
 
 ////////
