@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
-	"strings"
 	"strconv"
+	"strings"
 	"testing"
 )
 
@@ -13,12 +13,12 @@ const companyName = "Example"
 const companyLogo = "https://static.canva.com/static/images/canva_logo_100x100@2x.png"
 const companyTier = "2"
 const companyDetail = "Example"
-const getRequest = "http://localhost:1323/api/sponsor/?name="
+const getRequest = "http://localhost:1323/api/v1/sponsors/"
 
 func TestSponsor(t *testing.T) {
 
 	t.Run("Sponsor setup test", func(t *testing.T) {
-		resp, err := http.Get("http://localhost:1323/api/sponsors/")
+		resp, err := http.Get("http://localhost:1323/api/v1/sponsors")
 		if err != nil {
 			t.Errorf("Could not get perform request.")
 		}
@@ -35,7 +35,7 @@ func TestSponsor(t *testing.T) {
 	})
 
 	t.Run("Testing sponsor filtering", func(t *testing.T) {
-		resp, err := http.Get("http://localhost:1323/api/sponsors/?tier=2")
+		resp, err := http.Get("http://localhost:1323/api/v1/sponsors?tier=2")
 		if err != nil {
 			t.Errorf("Could not perform get sponsors request. Check connection.")
 		}
@@ -46,17 +46,17 @@ func TestSponsor(t *testing.T) {
 
 	t.Run("New sponsor", func(t *testing.T) {
 		client := &http.Client{}
-		form := url.Values {
+		form := url.Values{
 			"name":   {companyName},
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
 			"detail": {companyDetail},
 		}
-		req, _ := http.NewRequest("POST","http://localhost:1323/api/sponsor/", strings.NewReader(form.Encode()))
+		req, _ := http.NewRequest("POST", "http://localhost:1323/api/v1/sponsors", strings.NewReader(form.Encode()))
 		req.Header.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNTkzMTI5NjAwLCJ6SUQiOiJ6NTEyMzQ1NiJ9.jYC2qlpzAKIMPFywQ6pWIV1qat_h7OrorJ-zQM5jDpg")
 		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 		resp, err := client.Do(req)
-		// resp, err := http.PostForm("http://localhost:1323/api/sponsor/", url.Values{
+		// resp, err := http.PostForm("http://localhost:1323/api/v1/sponsors", url.Values{
 		// 	"name":   {companyName},
 		// 	"logo":   {companyLogo},
 		// 	"tier":   {companyTier},
@@ -102,7 +102,7 @@ func TestSponsor(t *testing.T) {
 		}
 		defer resp.Body.Close()
 
-		assertStatus(t, resp.StatusCode, http.StatusOK)
+		assertStatus(t, resp.StatusCode, http.StatusNoContent)
 	})
 
 	t.Run("Check newly removed sponsor", func(t *testing.T) {
@@ -119,13 +119,13 @@ func TestSponsor(t *testing.T) {
 func TestSponsorError(t *testing.T) {
 	t.Run("Duplicate Sponsor sponsor", func(t *testing.T) {
 		client := &http.Client{}
-		form := url.Values {
+		form := url.Values{
 			"name":   {companyName},
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
 			"detail": {companyDetail},
 		}
-		req, _ := http.NewRequest("POST","http://localhost:1323/api/sponsor/", strings.NewReader(form.Encode()))
+		req, _ := http.NewRequest("POST", "http://localhost:1323/api/v1/sponsors", strings.NewReader(form.Encode()))
 		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 		req.Header.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNTkzMTI5NjAwLCJ6SUQiOiJ6NTEyMzQ1NiJ9.jYC2qlpzAKIMPFywQ6pWIV1qat_h7OrorJ-zQM5jDpg")
 		req.PostForm = form
@@ -137,7 +137,7 @@ func TestSponsorError(t *testing.T) {
 
 		assertStatus(t, resp.StatusCode, http.StatusCreated)
 
-		req, _ = http.NewRequest("POST","http://localhost:1323/api/sponsor/", strings.NewReader(form.Encode()))
+		req, _ = http.NewRequest("POST", "http://localhost:1323/api/v1/sponsors", strings.NewReader(form.Encode()))
 		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 		req.Header.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNTkzMTI5NjAwLCJ6SUQiOiJ6NTEyMzQ1NiJ9.jYC2qlpzAKIMPFywQ6pWIV1qat_h7OrorJ-zQM5jDpg")
 		req.PostForm = form
@@ -160,16 +160,16 @@ func TestSponsorError(t *testing.T) {
 		}
 		defer resp.Body.Close()
 
-		assertStatus(t, resp.StatusCode, http.StatusOK)
+		assertStatus(t, resp.StatusCode, http.StatusNoContent)
 	})
 
 	t.Run("Missing parameters when creating", func(t *testing.T) {
 		client := &http.Client{}
-		req, _ := http.NewRequest("POST","http://localhost:1323/api/sponsor/", nil)
+		req, _ := http.NewRequest("POST", "http://localhost:1323/api/v1/sponsors", nil)
 		req.Header.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNTkzMTI5NjAwLCJ6SUQiOiJ6NTEyMzQ1NiJ9.jYC2qlpzAKIMPFywQ6pWIV1qat_h7OrorJ-zQM5jDpg")
-		form := url.Values {
-			"name":   {companyName},
-			"logo":   {companyLogo},
+		form := url.Values{
+			"name": {companyName},
+			"logo": {companyLogo},
 		}
 		req.PostForm = form
 		resp, err := client.Do(req)

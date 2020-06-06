@@ -30,8 +30,8 @@ func createJwtToken(zID string, admin bool) (string, time.Time, error) {
 	return token, expTime, nil
 }
 
-// tempLogin allows auth functionality to be tested before LDAP is implemented
-func tempLogin(c echo.Context) error {
+// TempLogin allows auth functionality to be tested before LDAP is implemented
+func TempLogin(c echo.Context) error {
 	userzID := c.QueryParam("zID")
 	password := c.QueryParam("password")
 	expectedPass, ok := tempUsers[userzID]
@@ -55,7 +55,7 @@ func tempLogin(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, map[string]string{
 		"message": "Success!!",
-		"token": token,
+		"token":   token,
 	})
 
 }

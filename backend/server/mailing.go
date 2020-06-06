@@ -11,12 +11,9 @@ import (
 type messageType int
 
 const (
-	// InfoType = 0
-	InfoType messageType = iota
-	// SponsorshipType = 1
-	SponsorshipType
-	// FeedbackType = 2
-	FeedbackType
+	generalType     messageType = iota // 0
+	sponsorshipType                    // 1
+	feedbackType                       // 2
 )
 
 // Enquiry - struct to contain email enquiry data
@@ -35,9 +32,9 @@ type Feedback struct {
 }
 
 // Message bundles
-var feedbackBundle []Feedback
-var infoBundle []Enquiry
+var generalBundle []Enquiry
 var sponsorshipBundle []Enquiry
+var feedbackBundle []Feedback
 
 // Email addresses
 var infoEmail string = "info@csesoc.org.au"
@@ -48,8 +45,8 @@ var publicKey string = "8afb96baef07230483a2a5ceca97d55d"
 var secretKey string = "424ad90f25487e6be369a1cbb2a34694"
 var mailjetClient *mailjet.Client
 
-// InitMailClient initialises a session with the Mailjet API and stores it in a global variable
-func InitMailClient() {
+// MailingSetup initialises a session with the Mailjet API and stores it in a global variable
+func MailingSetup() {
 	if InDevelopment {
 		infoEmail = "projects.website+info@csesoc.org.au"
 		sponsorshipEmail = "projects.website+sponsorship@csesoc.org.au"
@@ -65,50 +62,93 @@ func InitMailClient() {
 // HANDLERS
 ///////////
 
-// HandleMessage by forwarding emails to relevant inboxes
-func HandleMessage(mt messageType) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		var enquiry Enquiry
-		var feedback Feedback
+// handleMessage by forwarding emails to relevant inboxes
+func handleMessage(c echo.Context, mt messageType) error {
+	var enquiry Enquiry
+	var feedback Feedback
 
-		// Extract fields from form
-		if mt == InfoType || mt == SponsorshipType {
-			enquiry = Enquiry{
-				Name:  c.FormValue("name"),
-				Email: c.FormValue("email"),
-				Body:  c.FormValue("body"),
-			}
-			if err := c.Validate(enquiry); err != nil {
-				return c.JSON(http.StatusBadRequest, H{
-					"error": err,
-				})
-			}
-		} else if mt == FeedbackType {
-			feedback = Feedback{
-				Name:  c.FormValue("name"),
-				Email: c.FormValue("email"),
-				Body:  c.FormValue("body"),
-			}
-			// Validate struct
-			if err := c.Validate(feedback); err != nil {
-				return c.JSON(http.StatusBadRequest, H{
-					"error": err,
-				})
-			}
+	// Extract fields from form
+	if mt == generalType || mt == sponsorshipType {
+		enquiry = Enquiry{
+			Name:  c.FormValue("name"),
+			Email: c.FormValue("email"),
+			Body:  c.FormValue("body"),
 		}
-
-		// Add to bundle
-		switch mt {
-		case InfoType:
-			infoBundle = append(infoBundle, enquiry)
-		case SponsorshipType:
-			sponsorshipBundle = append(sponsorshipBundle, enquiry)
-		case FeedbackType:
-			feedbackBundle = append(feedbackBundle, feedback)
+		if err := c.Validate(enquiry); err != nil {
+			return c.JSON(http.StatusBadRequest, H{
+				"error": err,
+			})
 		}
-
-		return c.JSON(http.StatusAccepted, H{})
+	} else if mt == feedbackType {
+		feedback = Feedback{
+			Name:  c.FormValue("name"),
+			Email: c.FormValue("email"),
+			Body:  c.FormValue("body"),
+		}
+		// Validate struct
+		if err := c.Validate(feedback); err != nil {
+			return c.JSON(http.StatusBadRequest, H{
+				"error": err,
+			})
+		}
 	}
+
+	// Add to bundle
+	switch mt {
+	case generalType:
+		generalBundle = append(generalBundle, enquiry)
+	case sponsorshipType:
+		sponsorshipBundle = append(sponsorshipBundle, enquiry)
+	case feedbackType:
+		feedbackBundle = append(feedbackBundle, feedback)
+	}
+
+	return c.JSON(http.StatusAccepted, H{})
+}
+
+// HandleGeneralMessage godoc
+// @Summary Handle a general enquiry by adding it to a dispatch bundle
+// @Tags mailing
+// @Param name formData string true "Name"
+// @Param email formData string true "Email"
+// @Param body formData string true "Message body"
+// @Success 202 "Accepted"
+// @Header 202 {string} response "Enquiry added to dispatch bundle"
+// @Failure 400 "Bad request"
+// @Header 400 {string} error "Invalid form"
+// @Router /mailing/general [post]
+func HandleGeneralMessage(c echo.Context) error {
+	return handleMessage(c, generalType)
+}
+
+// HandleSponsorshipMessage godoc
+// @Summary Handle a sponsorship enquiry by adding it to a dispatch bundle
+// @Tags mailing
+// @Param name formData string true "Name"
+// @Param email formData string true "Email"
+// @Param body formData string true "Message body"
+// @Success 202 "Accepted"
+// @Header 202 {string} response "Enquiry added to dispatch bundle"
+// @Failure 400 "Bad request"
+// @Header 400 {string} error "Invalid form"
+// @Router /mailing/sponsorship [post]
+func HandleSponsorshipMessage(c echo.Context) error {
+	return handleMessage(c, sponsorshipType)
+}
+
+// HandleFeedbackMessage godoc
+// @Summary Handle a feedback by adding it to a dispatch bundle
+// @Tags mailing
+// @Param name formData string false "Name"
+// @Param email formData string false "Email"
+// @Param body formData string true "Message body"
+// @Success 202 "Accepted"
+// @Header 202 {string} response "Feedback added to dispatch bundle"
+// @Failure 400 "Bad request"
+// @Header 400 {string} error "Invalid form"
+// @Router /mailing/feedback [post]
+func HandleFeedbackMessage(c echo.Context) error {
+	return handleMessage(c, feedbackType)
 }
 
 ////////
@@ -140,14 +180,14 @@ func mailingTimer() {
 
 // DispatchEnquiryBundles - public trigger for dispatching enquiries
 func DispatchEnquiryBundles() {
-	if len(infoBundle) > 0 {
-		if sendBundle(infoEmail, "Website info enquiry bundle", joinEnquiries(infoBundle)) {
+	if len(generalBundle) > 0 {
+		if sendEmail(infoEmail, "Website info enquiry bundle", joinEnquiries(generalBundle)) {
 			// If sent successfully, clear bundle
-			infoBundle = nil
+			generalBundle = nil
 		}
 	}
 	if len(sponsorshipBundle) > 0 {
-		if sendBundle(sponsorshipEmail, "Website sponsorship enquiry bundle", joinEnquiries(sponsorshipBundle)) {
+		if sendEmail(sponsorshipEmail, "Website sponsorship enquiry bundle", joinEnquiries(sponsorshipBundle)) {
 			// If sent successfully, clear bundle
 			sponsorshipBundle = nil
 		}
@@ -157,18 +197,14 @@ func DispatchEnquiryBundles() {
 // DispatchFeedbackBundle - public trigger for dispatching feedbacks
 func DispatchFeedbackBundle() {
 	if len(feedbackBundle) > 0 {
-		if sendBundle(infoEmail, "Website feedback bundle", joinFeedbacks(feedbackBundle)) {
+		if sendEmail(infoEmail, "Website feedback bundle", joinFeedbacks(feedbackBundle)) {
 			// If sent successfully, clear bundle
 			feedbackBundle = nil
 		}
 	}
 }
 
-/////////////////
-// BUNDLE SENDERS
-/////////////////
-
-func sendBundle(targetEmail string, subject string, body string) bool {
+func sendEmail(targetEmail string, subject string, body string) bool {
 	// Format message payload
 	payload := []mailjet.InfoMessagesV31{
 		mailjet.InfoMessagesV31{
@@ -191,6 +227,10 @@ func sendBundle(targetEmail string, subject string, body string) bool {
 	_, err := mailjetClient.SendMailV31(&messages)
 	return err == nil
 }
+
+/////////////////
+// BUNDLE PARSERS
+/////////////////
 
 func joinEnquiries(bundle []Enquiry) string {
 	var message string = ""

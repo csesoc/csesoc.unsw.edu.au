@@ -60,92 +60,126 @@ func SponsorSetup(client *mongo.Client) {
 
 }
 
-/* Handles */
+///////////
+// HANDLERS
+///////////
 
-// NewSponsor - Add a sponsor
-func NewSponsor() echo.HandlerFunc {
-	return func(c echo.Context) error {
-		tier, err := strconv.Atoi(c.FormValue("tier"))
-		if err != nil {
-			return c.JSON(http.StatusBadRequest, H{
-				"error": "Tier has to be a number",
-			})
-		}
-		sponsor := Sponsor{
-			Name:   c.FormValue("name"),
-			Logo:   c.FormValue("logo"),
-			Tier:   tier,
-			Detail: c.FormValue("detail"),
-		}
+// NewSponsor godoc
+// @Summary Add a new sponsor
+// @Tags sponsors
+// @accept Content-Type application/x-www-form-urlencoded
+// @Param Authorization header string true "Bearer <token>"
+// @Param name formData string true "Name"
+// @Param logo formData string true "Logo URL"
+// @Param tier formData integer true "Valid tier" mininum(0) maxinum(2)
+// @Param detail formData string true "Detail"
+// @Success 201 "Created"
+// @Header 201 {string} response "Sponsor added"
+// @Failure 400 "Bad request"
+// @Header 400 {string} error "Invalid form"
+// @Failure 409 "Conflict"
+// @Header 409 {string} error "Sponsor already exists on database"
+// @Router /sponsors [post]
+// @Security BearerAuthKey
+func NewSponsor(c echo.Context) error {
+	tier, err := strconv.Atoi(c.FormValue("tier"))
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, H{
+			"error": "Tier has to be a number",
+		})
+	}
+	sponsor := Sponsor{
+		Name:   c.FormValue("name"),
+		Logo:   c.FormValue("logo"),
+		Tier:   tier,
+		Detail: c.FormValue("detail"),
+	}
 
-		// validate the struct with golang validator package
-		if err := c.Validate(sponsor); err != nil {
-			return c.JSON(http.StatusBadRequest, H{
-				"error": "Bad request",
-			})
-		}
-		// token := c.FormValue("token")
-
-		if _, err := sponsorColl.InsertOne(context.TODO(), sponsor); err != nil {
-			return c.JSON(http.StatusConflict, H{})
-		}
-
-		return c.JSON(http.StatusCreated, H{
-			"response": "Created",
+	// Validate the struct with golang validator package
+	if err := c.Validate(sponsor); err != nil {
+		return c.JSON(http.StatusBadRequest, H{
+			"error": "Invalid form",
 		})
 	}
 
-}
-
-// GetSponsor - find entry for a specific sponsor.
-func GetSponsor() echo.HandlerFunc {
-	return func(c echo.Context) error {
-		var result Sponsor
-		// token := c.FormValue("token")
-		filter := bson.D{{Key: "name", Value: c.FormValue("name")}}
-		if err := sponsorColl.FindOne(context.TODO(), filter).Decode(&result); err != nil {
-			return c.JSON(http.StatusNotFound, H{
-				"response": "No such sponsor.",
-			})
-		}
-		return c.JSON(http.StatusOK, result)
-	}
-}
-
-// GetSponsors - gives a list of sponsors stored.
-func GetSponsors() echo.HandlerFunc {
-	return func(c echo.Context) error {
-		token := c.FormValue("token")
-		tier := c.FormValue("tier")
-		results, err := retrieveSponsors(token, tier)
-		if err != nil {
-			return c.JSON(http.StatusInternalServerError, H{})
-		}
-		if results != nil {
-			return c.JSON(http.StatusOK, results)
-		}
-		return c.JSON(http.StatusOK, H{})
-	}
-}
-
-// DeleteSponsor - Delete a sponsor
-func DeleteSponsor() echo.HandlerFunc {
-	return func(c echo.Context) error {
-		// token := c.FormValue("token")
-		filter := bson.D{{Key: "name", Value: c.FormValue("name")}}
-		if _, err := sponsorColl.DeleteOne(context.TODO(), filter); err != nil {
-			return c.JSON(http.StatusInternalServerError, H{
-				"error": err,
-			})
-		}
-		return c.JSON(http.StatusOK, H{
-			"response": "Deleted",
+	if _, err := sponsorColl.InsertOne(context.TODO(), sponsor); err != nil {
+		return c.JSON(http.StatusConflict, H{
+			"error": "Sponsor already exists on database",
 		})
 	}
+
+	return c.JSON(http.StatusCreated, H{
+		"response": "Sponsor added",
+	})
 }
+
+// GetSponsor godoc
+// @Summary Find entry for a specific sponsor
+// @Tags sponsors
+// @Param name path string true "Sponsor name"
+// @Success 200 {object} Sponsor
+// @Failure 404 "Not found"
+// @Header 404 {string} error "No such sponsor"
+// @Router /sponsors/{name} [get]
+func GetSponsor(c echo.Context) error {
+	var result Sponsor
+	filter := bson.D{{Key: "name", Value: c.Param("name")}}
+	if err := sponsorColl.FindOne(context.TODO(), filter).Decode(&result); err != nil {
+		return c.JSON(http.StatusNotFound, H{
+			"error": "No such sponsor",
+		})
+	}
+	return c.JSON(http.StatusOK, result)
+}
+
+// GetSponsors godoc
+// @Summary Get a list of sponsors stored
+// @Tags sponsors
+// @Param tier query integer false "Valid sponsor tier, 0-2 inclusive" mininum(0) maxinum(2)
+// @Success 200 {array} Sponsor
+// @Failure 500 "Internal server error"
+// @Header 500 {string} error "Unable to retrieve sponsors from database"
+// @Router /sponsors [get]
+func GetSponsors(c echo.Context) error {
+	tier := c.QueryParam("tier")
+	results, err := retrieveSponsors(tier)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, H{
+			"error": "Unable to retrieve sponsors from database",
+		})
+	}
+	return c.JSON(http.StatusOK, results)
+}
+
+// DeleteSponsor godoc
+// @Summary Delete a sponsor
+// @Tags sponsors
+// @Param Authorization header string true "Bearer <token>"
+// @Param name path string true "Sponsor name"
+// @Success 204 "No content"
+// @Header 204 {string} response "Sponsor deleted"
+// @Failure 500 "Internal server error"
+// @Header 500 {string} error "Unable to delete sponsor from database"
+// @Router /sponsors/{name} [delete]
+// @Security BearerAuthKey
+func DeleteSponsor(c echo.Context) error {
+	filter := bson.D{{Key: "name", Value: c.Param("name")}}
+	if _, err := sponsorColl.DeleteOne(context.TODO(), filter); err != nil {
+		return c.JSON(http.StatusInternalServerError, H{
+			"error": "Unable to delete sponsor from database",
+		})
+	}
+	return c.JSON(http.StatusNoContent, H{
+		"response": "Sponsor deleted",
+	})
+}
+
+//////////
+// HELPERS
+//////////
 
 // retrieveSponsors - Retrieve a sponsor from the database
-func retrieveSponsors(token string, tierString string) ([]*Sponsor, error) {
+func retrieveSponsors(tierString string) ([]*Sponsor, error) {
 	var results []*Sponsor
 
 	filter := bson.D{{}}
@@ -167,8 +201,6 @@ func retrieveSponsors(token string, tierString string) ([]*Sponsor, error) {
 	}
 	return results, err
 }
-
-// helper function
 
 func retriveSponsorsJSON() ([]Sponsor, error) {
 	abspath, _ := filepath.Abs("static/sponsor.json")

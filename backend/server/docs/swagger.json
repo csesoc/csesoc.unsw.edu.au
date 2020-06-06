@@ -1,0 +1,437 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Swagger API for the CSESoc Website project.",
+        "title": "CSESoc Website Swagger API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "Project Lead",
+            "email": "projects.website@csesoc.org.au"
+        },
+        "license": {},
+        "version": "1.0"
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/faq": {
+            "get": {
+                "tags": [
+                    "faq"
+                ],
+                "summary": "Return all faq questions and answers pairs",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/main.Faq"
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service unavailable",
+                        "headers": {
+                            "error": {
+                                "type": "string",
+                                "description": "Unable to retrieve FAQs"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mailing/feedback": {
+            "post": {
+                "tags": [
+                    "mailing"
+                ],
+                "summary": "Handle a feedback by adding it to a dispatch bundle",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Name",
+                        "name": "name",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Email",
+                        "name": "email",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Message body",
+                        "name": "body",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "headers": {
+                            "response": {
+                                "type": "string",
+                                "description": "Feedback added to dispatch bundle"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "headers": {
+                            "error": {
+                                "type": "string",
+                                "description": "Invalid form"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mailing/general": {
+            "post": {
+                "tags": [
+                    "mailing"
+                ],
+                "summary": "Handle a general enquiry by adding it to a dispatch bundle",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Name",
+                        "name": "name",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Email",
+                        "name": "email",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Message body",
+                        "name": "body",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "headers": {
+                            "response": {
+                                "type": "string",
+                                "description": "Enquiry added to dispatch bundle"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "headers": {
+                            "error": {
+                                "type": "string",
+                                "description": "Invalid form"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mailing/sponsorship": {
+            "post": {
+                "tags": [
+                    "mailing"
+                ],
+                "summary": "Handle a sponsorship enquiry by adding it to a dispatch bundle",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Name",
+                        "name": "name",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Email",
+                        "name": "email",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Message body",
+                        "name": "body",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "headers": {
+                            "response": {
+                                "type": "string",
+                                "description": "Enquiry added to dispatch bundle"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "headers": {
+                            "error": {
+                                "type": "string",
+                                "description": "Invalid form"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sponsors": {
+            "get": {
+                "tags": [
+                    "sponsors"
+                ],
+                "summary": "Get a list of sponsors stored",
+                "parameters": [
+                    {
+                        "maximum": 2,
+                        "minimum": 0,
+                        "type": "integer",
+                        "description": "Valid sponsor tier, 0-2 inclusive",
+                        "name": "tier",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/main.Sponsor"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "headers": {
+                            "error": {
+                                "type": "string",
+                                "description": "Unable to retrieve sponsors from database"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuthKey": []
+                    }
+                ],
+                "tags": [
+                    "sponsors"
+                ],
+                "summary": "Add a new sponsor",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "application/x-www-form-urlencoded",
+                        "name": "Content-Type",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Name",
+                        "name": "name",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Logo URL",
+                        "name": "logo",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "maximum": 2,
+                        "minimum": 0,
+                        "type": "integer",
+                        "description": "Valid tier",
+                        "name": "tier",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Detail",
+                        "name": "detail",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "headers": {
+                            "response": {
+                                "type": "string",
+                                "description": "Sponsor added"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "headers": {
+                            "error": {
+                                "type": "string",
+                                "description": "Invalid form"
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "headers": {
+                            "error": {
+                                "type": "string",
+                                "description": "Sponsor already exists on database"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sponsors/{name}": {
+            "get": {
+                "tags": [
+                    "sponsors"
+                ],
+                "summary": "Find entry for a specific sponsor",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Sponsor name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Sponsor"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "headers": {
+                            "error": {
+                                "type": "string",
+                                "description": "No such sponsor"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuthKey": []
+                    }
+                ],
+                "tags": [
+                    "sponsors"
+                ],
+                "summary": "Delete a sponsor",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sponsor name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content",
+                        "headers": {
+                            "response": {
+                                "type": "string",
+                                "description": "Sponsor deleted"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "headers": {
+                            "error": {
+                                "type": "string",
+                                "description": "Unable to delete sponsor from database"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.Faq": {
+            "type": "object",
+            "properties": {
+                "answer": {
+                    "type": "string"
+                },
+                "question": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.Sponsor": {
+            "type": "object",
+            "required": [
+                "detail",
+                "logo",
+                "name",
+                "tier"
+            ],
+            "properties": {
+                "detail": {
+                    "type": "string"
+                },
+                "logo": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "tier": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
