@@ -84,7 +84,8 @@ At the current moment it builds the docker images, runs the containers and perfo
 
 * [Vue + Vuetify](https://vuejs.org/) - The web framework used
 * [MongoDB](https://www.mongodb.com/) - Database
-* [Golang](https://golang.org/) - Used to write the API and Server backend. To view "[api docs](https://gawdn.com/api-docs)" (link may eventually break in the future).
+* [Golang](https://golang.org/) - Used to write the API and server backend.
+* [Swagger](https://swagger.io/) - API documentation framework
 
 ## System Architecture
 
