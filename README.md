@@ -55,6 +55,10 @@ as opposed to
 https://localhost:1323/api/v1/sponsors
 ```
 
+## API Documentation
+
+The API documentation is handled by [Swagger](https://swagger.io/) and can be found by navigating to `0.0.0.0:1323/swagger/index.html` (`[::]:1323/swagger/index.html`). Notice that it's also in the port that serves the APIs themselves. Swagger was adopted as we looked at employing a 'docs-as-code' approach to allow developers to quickly and efficiently write documentation ad-hoc, as well as having a permanent space for future teams to read up on API while working with it. Lastly, Swagger is intuitive and provides an interactive way to contact the APIs.
+
 ## Running the tests
 
 The project uses Github Actions for continuous integration and automated testing. Testing will always be written at the beginning of each sprint and run every time a push is detected on your feat/fix/hotfix branch or a merge/push to dev.
@@ -80,7 +84,8 @@ At the current moment it builds the docker images, runs the containers and perfo
 
 * [Vue + Vuetify](https://vuejs.org/) - The web framework used
 * [MongoDB](https://www.mongodb.com/) - Database
-* [Golang](https://golang.org/) - Used to write the API and Server backend. To view "[api docs](https://gawdn.com/api-docs)" (link may eventually break in the future).
+* [Golang](https://golang.org/) - Used to write the API and server backend.
+* [Swagger](https://swagger.io/) - API documentation framework
 
 ## System Architecture
 

@@ -7,8 +7,9 @@ services:
         ports:
             - '8080:8080'
         container_name: frontend
-        environment:
-            - CHOKIDAR_USEPOLLING=true
+        volumes:
+            - /app/node_modules
+            - ./frontend:/app
     backend:
         image: backend
         build: ./backend/server
