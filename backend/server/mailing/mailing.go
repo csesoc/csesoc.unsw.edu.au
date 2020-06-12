@@ -1,15 +1,20 @@
-package main
+package mailing
 
 import (
 	"net/http"
 	"time"
 
+	. "csesoc.unsw.edu.au/m/v2/server"
 	"github.com/labstack/echo/v4"
 	"github.com/mailjet/mailjet-apiv3-go"
 )
 
-type messageType int
+var INFO_EMAIL = "info@csesoc.org.au" 
+var SPONSORSHIP_EMAIL = "sponsorship@csesoc.org.au"
+const PUBLIC_KEY = "8afb96baef07230483a2a5ceca97d55d"
+const SECRET_KEY = "424ad90f25487e6be369a1cbb2a34694"
 
+type messageType int
 const (
 	generalType     messageType = iota // 0
 	sponsorshipType                    // 1
@@ -36,23 +41,16 @@ var generalBundle []Enquiry
 var sponsorshipBundle []Enquiry
 var feedbackBundle []Feedback
 
-// Email addresses
-var infoEmail string = "info@csesoc.org.au"
-var sponsorshipEmail string = "sponsorship@csesoc.org.au"
-
-// Mailjet session variables
-var publicKey string = "8afb96baef07230483a2a5ceca97d55d"
-var secretKey string = "424ad90f25487e6be369a1cbb2a34694"
 var mailjetClient *mailjet.Client
 
 // MailingSetup initialises a session with the Mailjet API and stores it in a global variable
 func MailingSetup() {
-	if InDevelopment {
-		infoEmail = "projects.website+info@csesoc.org.au"
-		sponsorshipEmail = "projects.website+sponsorship@csesoc.org.au"
+	if DEVELOPMENT {
+		INFO_EMAIL = "projects.website+info@csesoc.org.au"
+		SPONSORSHIP_EMAIL = "projects.website+sponsorship@csesoc.org.au"
 	}
 
-	mailjetClient = mailjet.NewMailjetClient(publicKey, secretKey)
+	mailjetClient = mailjet.NewMailjetClient(PUBLIC_KEY, SECRET_KEY)
 
 	// Start mailing timers
 	go mailingTimer()
@@ -181,13 +179,13 @@ func mailingTimer() {
 // DispatchEnquiryBundles - public trigger for dispatching enquiries
 func DispatchEnquiryBundles() {
 	if len(generalBundle) > 0 {
-		if sendEmail(infoEmail, "Website info enquiry bundle", joinEnquiries(generalBundle)) {
+		if sendEmail(INFO_EMAIL, "Website info enquiry bundle", joinEnquiries(generalBundle)) {
 			// If sent successfully, clear bundle
 			generalBundle = nil
 		}
 	}
 	if len(sponsorshipBundle) > 0 {
-		if sendEmail(sponsorshipEmail, "Website sponsorship enquiry bundle", joinEnquiries(sponsorshipBundle)) {
+		if sendEmail(SPONSORSHIP_EMAIL, "Website sponsorship enquiry bundle", joinEnquiries(sponsorshipBundle)) {
 			// If sent successfully, clear bundle
 			sponsorshipBundle = nil
 		}
@@ -197,7 +195,7 @@ func DispatchEnquiryBundles() {
 // DispatchFeedbackBundle - public trigger for dispatching feedbacks
 func DispatchFeedbackBundle() {
 	if len(feedbackBundle) > 0 {
-		if sendEmail(infoEmail, "Website feedback bundle", joinFeedbacks(feedbackBundle)) {
+		if sendEmail(INFO_EMAIL, "Website feedback bundle", joinFeedbacks(feedbackBundle)) {
 			// If sent successfully, clear bundle
 			feedbackBundle = nil
 		}

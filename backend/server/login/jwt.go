@@ -1,14 +1,14 @@
-package main
+package login
 
 import (
 	"net/http"
 	"time"
 
+	. "csesoc.unsw.edu.au/m/v2/server"
+
 	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo/v4"
 )
-
-var jwtSecret = []byte("temp_secret_until_proper_secrets_are_implemented")
 
 var tempUsers = map[string]string{
 	"z5123456": "t3stP@ssw0rd",
@@ -23,7 +23,7 @@ func createJwtToken(zID string, admin bool) (string, time.Time, error) {
 	claims["admin"] = true
 	claims["exp"] = expTime.Unix()
 
-	token, err := unsignedToken.SignedString(jwtSecret)
+	token, err := unsignedToken.SignedString(JWT_SECRET)
 	if err != nil {
 		return "", time.Now(), err
 	}

@@ -1,4 +1,4 @@
-package main
+package sponsor
 
 import (
 	"context"
@@ -10,6 +10,8 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
+	
+	. "csesoc.unsw.edu.au/m/v2/server"
 
 	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson"
@@ -46,18 +48,15 @@ func SponsorSetup(client *mongo.Client) {
 
 	// Fetching sponsor list
 	sponsors, err := retriveSponsorsJSON()
-
 	if err != nil {
 		log.Fatal("Could not retrive sponsors from JSON")
 	}
 
 	for _, sponsor := range sponsors {
-		log.Println(sponsor)
 		if _, err := sponsorColl.InsertOne(context.TODO(), sponsor); err != nil {
 			log.Printf("Could not insert sponsor " + sponsor.Name + " " + err.Error())
 		}
 	}
-
 }
 
 ///////////

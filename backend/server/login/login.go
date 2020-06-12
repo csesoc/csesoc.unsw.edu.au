@@ -1,4 +1,4 @@
-package main
+package login
 
 import (
 	"context"
@@ -10,6 +10,23 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"gopkg.in/ldap.v2"
+)
+
+type (
+	// User - struct to contain user data
+	User struct {
+		UserID    string //sha256 the zid
+		UserToken string
+		Role      string
+	}
+
+	// Claims - struct to store jwt data
+	Claims struct {
+		HashedZID   [32]byte
+		FirstName   string
+		Permissions string
+		jwt.StandardClaims
+	}
 )
 
 var jwtKey = []byte("secret_text")
