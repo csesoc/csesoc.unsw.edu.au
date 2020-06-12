@@ -1,7 +1,7 @@
 package utility
 
 const DEVELOPMENT bool = true
-const BASE_URL = "http://192.168.99.100:1323/"
+const BASE_URL = "http://localhost:1323/"
 const SPONSOR_URL = "api/v1/sponsors"
 const MAILING_URL = "api/v1/mailing"
 const FAQ_URL = "api/v1/faq"
