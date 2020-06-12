@@ -1,14 +1,95 @@
-package main
+package post
 
 import (
 	"context"
 	"log"
 	"time"
+	"net/http"
+	"strconv"
 
+	. "csesoc.unsw.edu.au/m/v2/server"
+
+	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
+
+// Post - struct to contain post data
+type Post struct {
+	PostID           int
+	PostTitle        string
+	PostSubtitle     string
+	PostType         string
+	PostCategory     int
+	CreatedOn        int64
+	LastEditedOn     int64
+	PostContent      string
+	PostLinkGithub   string
+	PostLinkFacebook string
+	ShowInMenu       bool
+}
+
+
+func getPosts(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		id := c.QueryParam("id")
+		count, _ := strconv.Atoi(c.QueryParam("nPosts"))
+		category := c.QueryParam("category")
+		if id == "" {
+			posts := GetAllPosts(collection, count, category)
+			return c.JSON(http.StatusOK, H{
+				"post": posts,
+			})
+		}
+
+		idInt, _ := strconv.Atoi(id)
+		result := GetPosts(collection, idInt, category)
+		return c.JSON(http.StatusOK, H{
+			"post": result,
+		})
+	}
+}
+
+func newPosts(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.FormValue("id"))
+		category, _ := strconv.Atoi(c.FormValue("category"))
+		showInMenu, _ := strconv.ParseBool(c.FormValue("showInMenu"))
+		title := c.FormValue("title")
+		subtitle := c.FormValue("subtitle")
+		postType := c.FormValue("type")
+		content := c.FormValue("content")
+		github := c.FormValue("linkGithub")
+		fb := c.FormValue("linkFacebook")
+		NewPosts(collection, id, category, showInMenu, title, subtitle, postType, content, github, fb)
+		return c.JSON(http.StatusOK, H{})
+	}
+}
+
+func updatePosts(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.FormValue("id"))
+		category, _ := strconv.Atoi(c.FormValue("category"))
+		showInMenu, _ := strconv.ParseBool(c.FormValue("showInMenu"))
+		title := c.FormValue("title")
+		subtitle := c.FormValue("subtitle")
+		postType := c.FormValue("type")
+		content := c.FormValue("content")
+		github := c.FormValue("linkGithub")
+		fb := c.FormValue("linkFacebook")
+		UpdatePosts(collection, id, category, showInMenu, title, subtitle, postType, content, github, fb)
+		return c.JSON(http.StatusOK, H{})
+	}
+}
+
+func deletePosts(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		id, _ := strconv.Atoi(c.FormValue("id"))
+		DeletePosts(collection, id)
+		return c.JSON(http.StatusOK, H{})
+	}
+}
 
 // GetPosts - Retrieve a post from the database
 func GetPosts(collection *mongo.Collection, id int, category string) Post {

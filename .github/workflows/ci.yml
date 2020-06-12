@@ -19,5 +19,5 @@ jobs:
       - name: Building docker containers using docker-compose
         run: docker-compose up -d
       - name: Golang Tests
-        run: go test
+        run: go test ./...
         working-directory: ./backend/server

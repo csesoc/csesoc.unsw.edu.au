@@ -1,18 +1,20 @@
-package main
+package faq
 
 import (
 	"net/http"
 	"testing"
+	. "csesoc.unsw.edu.au/m/v2/server"
 )
 
 func TestFaq(t *testing.T) {
 	t.Run("Correct status test", func(t *testing.T) {
-		resp, err := http.Get("http://localhost:1323/api/v1/faq")
+		resp, err := http.Get(BASE_URL + FAQ_URL)
 		if err != nil {
 			t.Errorf("Could not get perform request.")
+			return;
 		}
 		defer resp.Body.Close()
 
-		assertStatus(t, resp.StatusCode, http.StatusOK)
+		AssertStatus(t, resp.StatusCode, http.StatusOK)
 	})
 }

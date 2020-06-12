@@ -1,4 +1,4 @@
-package main
+package faq
 
 import (
 	"encoding/json"
@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+
+	. "csesoc.unsw.edu.au/m/v2/server"
 
 	"github.com/labstack/echo/v4"
 )

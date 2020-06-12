@@ -12,11 +12,11 @@ services:
             - ./frontend:/app
     backend:
         image: backend
-        build: ./backend/server
+        build: ./backend
         ports:
             - '1323:1323'
         volumes:
-            - ./backend/server:/app/server
+            - ./backend:/app/server
         container_name: backend
     mongo:
         image: mongo:latest

@@ -1,12 +1,65 @@
-package main
+package category
 
 import (
 	"context"
+	"net/http"
+	"strconv"
 	"log"
 
+	. "csesoc.unsw.edu.au/m/v2/server"
+
+	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
+
+// Category - struct to contain category data
+type Category struct {
+	CategoryID   int
+	CategoryName string
+	Index        int
+}
+
+func getCats(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		token := c.FormValue("token")
+		id, _ := strconv.Atoi(c.QueryParam("id"))
+		result := GetCats(collection, id, token)
+		
+		return c.JSON(http.StatusAccepted, result)
+	}
+}
+
+func newCats(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		token := c.FormValue("token")
+		catID, _ := strconv.Atoi(c.FormValue("id"))
+		index, _ := strconv.Atoi(c.FormValue("index"))
+		name := c.FormValue("name")
+		NewCats(collection, catID, index, name, token)
+		return c.JSON(http.StatusOK, H{})
+	}
+}
+
+func patchCats(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		token := c.FormValue("token")
+		catID, _ := strconv.Atoi(c.FormValue("id"))
+		name := c.FormValue("name")
+		index, _ := strconv.Atoi(c.FormValue("index"))
+		PatchCats(collection, catID, name, index, token)
+		return c.JSON(http.StatusOK, H{})
+	}
+}
+
+func deleteCats(collection *mongo.Collection) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		token := c.FormValue("token")
+		id, _ := strconv.Atoi(c.FormValue("id"))
+		DeleteCats(collection, id, token)
+		return c.JSON(http.StatusOK, H{})
+	}
+}
 
 // GetCats - Retrieve a category from the database
 func GetCats(collection *mongo.Collection, id int, token string) Category {
