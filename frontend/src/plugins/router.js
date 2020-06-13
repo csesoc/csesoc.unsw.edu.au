@@ -51,5 +51,10 @@ export default new Router({
       name: 'resources',
       component: () => import('../views/Resources.vue'),
     },
+    {
+      path: '/joining',
+      name: 'joining',
+      component: () => import('../views/Joining.vue'),
+    },
   ],
 });
