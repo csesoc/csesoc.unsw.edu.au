@@ -56,5 +56,10 @@ export default new Router({
       name: 'joining',
       component: () => import('../views/Joining.vue'),
     },
+    {
+      path: '/engage',
+      name: 'engage',
+      component: () => import('../views/Engage.vue'),
+    },
   ],
 });
