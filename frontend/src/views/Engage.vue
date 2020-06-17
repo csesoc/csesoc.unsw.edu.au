@@ -5,6 +5,11 @@
       src="https://images.unsplash.com/photo-1592251170558-01228a0a06f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=80"
     ></v-parallax>
 
+    <!-- Social media links -->
+    <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
+      <HeaderTitle title="Social links"></HeaderTitle>
+    </v-container>
+
     <!-- FAQ -->
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <HeaderTitle title="FAQ"></HeaderTitle>
