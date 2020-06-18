@@ -80,7 +80,7 @@
       <v-tab>Enquiry</v-tab>
       <v-tab-item>
         <v-card flat tile>
-          <EnquiryForm></EnquiryForm>
+          <EnquiryForm type="general"></EnquiryForm>
         </v-card>
       </v-tab-item>
 
