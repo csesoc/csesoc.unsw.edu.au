@@ -8,6 +8,7 @@
     <!-- Social media links -->
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <HeaderTitle title="Social links"></HeaderTitle>
+      <NavGrid :items="socialLinks"></NavGrid>
     </v-container>
 
     <!-- FAQ -->
@@ -66,8 +67,6 @@
       </v-expansion-panels>
     </v-container>
 
-
-
     <!-- Forms -->
     <v-tabs
       class="elevation-2"
@@ -97,15 +96,72 @@
 </template>
 
 <script>
+import NavGrid from '@/components/NavGrid';
 import HeaderTitle from '@/components/HeaderTitle';
 import EnquiryForm from '@/components/EnquiryForm';
 import FeedbackForm from '@/components/FeedbackForm';
 
 export default {
   data: () => ({
-
+    socialLinks: [
+      {
+        "id": 0,
+        "title": "Facebook",
+        "link": "https://www.facebook.com/csesoc/",
+        "src": ""
+      },
+      {
+        "id": 1,
+        "title": "Slack",
+        "link": "https://csesoc-community.slack.com/",
+        "src": ""
+      },
+      {
+        "id": 2,
+        "title": "Discord",
+        "link": "",
+        "src": ""
+      },
+      {
+        "id": 3,
+        "title": "Instagram",
+        "link": "https://www.instagram.com/csesoc_unsw/",
+        "src": ""
+      },
+      {
+        "id": 4,
+        "title": "LinkedIn",
+        "link": "https://www.linkedin.com/company/csesoc/",
+        "src": ""
+      },
+      {
+        "id": 5,
+        "title": "GitHub",
+        "link": "https://github.com/csesoc",
+        "src": ""
+      },
+      {
+        "id": 6,
+        "title": "YouTube",
+        "link": "https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg",
+        "src": ""
+      },
+      {
+        "id": 7,
+        "title": "TikTok",
+        "link": "",
+        "src": ""
+      },
+      {
+        "id": 8,
+        "title": "SpArc",
+        "link": "https://www.arc.unsw.edu.au/",
+        "src": ""
+      }
+    ]
   }),
   components: {
+    NavGrid,
     HeaderTitle,
     EnquiryForm,
     FeedbackForm
