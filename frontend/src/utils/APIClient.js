@@ -1,4 +1,3 @@
-
 import {
     SPONSORS_URL
   } from './Constants'
@@ -35,7 +34,22 @@ const sponsorsAPI = () => {
     return APICall(url, client)
 }
 
+const mailingAPI = (url, name, email, body) => {
+    let formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('body', body);
+
+    const options = {
+        method: 'POST',
+        body: formData
+    }
+
+    return APICall(url, options, false)
+}
+
 const APIClient = {
-    sponsorsAPI
+    sponsorsAPI,
+    mailingAPI
 }
 export default APIClient
