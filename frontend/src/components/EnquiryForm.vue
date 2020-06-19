@@ -50,10 +50,10 @@ import {MAILING_URL} from '../utils/Constants'
 
 export default {
   name: 'EnquiryForm',
+  props: ['type'],
   data: () => ({
     valid: true,
     messageSent: false,
-    props: ['type'],
     name: '',
     nameRules: [
       v => !!v || 'Name is required',
@@ -71,8 +71,7 @@ export default {
 
   methods: {
     send() {
-      // TODO: get the type prop value
-      APIClient.mailingAPI(MAILING_URL['general'], this.name, this.email, this.body)
+      APIClient.mailingAPI(MAILING_URL[this.type], this.name, this.email, this.body)
       .then((res) => {
         switch (res.status) {
           case 202:
