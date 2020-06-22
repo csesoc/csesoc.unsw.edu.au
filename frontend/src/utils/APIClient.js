@@ -48,8 +48,26 @@ const mailingAPI = (url, name, email, body) => {
     return APICall(url, options, false)
 }
 
+const fetchSocials = () => {
+    const url = SOCIAL_URL
+    const options = {
+        method: 'GET',
+    }
+    return APICall(url, options)
+}
+
+const fetchFaqs = () => {
+    const url = FAQ_URL
+    const options = {
+        method: 'GET',
+    }
+    return APICall(url, options)
+}
+
 const APIClient = {
     sponsorsAPI,
-    mailingAPI
+    mailingAPI,
+    fetchSocials,
+    fetchFaqs
 }
 export default APIClient
