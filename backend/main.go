@@ -8,14 +8,15 @@ import (
 	"os/signal"
 	"time"
 
-	//Doing a local import
+	// Doing a local import
 	//. "csesoc.unsw.edu.au/m/v2/server/category"
+	//. "csesoc.unsw.edu.au/m/v2/server/post"
+	. "csesoc.unsw.edu.au/m/v2/server"
 	. "csesoc.unsw.edu.au/m/v2/server/faq"
 	. "csesoc.unsw.edu.au/m/v2/server/login"
 	. "csesoc.unsw.edu.au/m/v2/server/mailing"
-	//. "csesoc.unsw.edu.au/m/v2/server/post"
+	. "csesoc.unsw.edu.au/m/v2/server/social"
 	. "csesoc.unsw.edu.au/m/v2/server/sponsor"
-	. "csesoc.unsw.edu.au/m/v2/server"
 
 	_ "csesoc.unsw.edu.au/m/v2/docs"
 
@@ -200,6 +201,12 @@ func serveAPI(e *echo.Echo) {
 		faq := v1.Group("/faq")
 		{
 			faq.GET("", GetFaq)
+		}
+
+		// SOCIAL
+		social := v1.Group("/social")
+		{
+			social.GET("", GetSocial)
 		}
 	}
 }

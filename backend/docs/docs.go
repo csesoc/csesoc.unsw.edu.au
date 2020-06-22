@@ -41,7 +41,7 @@ var doc = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/main.Faq"
+                                "$ref": "#/definitions/faq.Faq"
                             }
                         }
                     },
@@ -208,6 +208,34 @@ var doc = `{
                 }
             }
         },
+        "/social": {
+            "get": {
+                "tags": [
+                    "social"
+                ],
+                "summary": "Return all social media links",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/social.Social"
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service unavailable",
+                        "headers": {
+                            "error": {
+                                "type": "string",
+                                "description": "Unable to retrieve social media links"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/sponsors": {
             "get": {
                 "tags": [
@@ -230,7 +258,7 @@ var doc = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/main.Sponsor"
+                                "$ref": "#/definitions/sponsor.Sponsor"
                             }
                         }
                     },
@@ -251,6 +279,9 @@ var doc = `{
                         "BearerAuthKey": []
                     }
                 ],
+                "consumes": [
+                    "Content-Type application/x-www-form-urlencoded"
+                ],
                 "tags": [
                     "sponsors"
                 ],
@@ -258,15 +289,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Bearer token",
+                        "description": "Bearer \u003ctoken\u003e",
                         "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "application/x-www-form-urlencoded",
-                        "name": "Content-Type",
                         "in": "header",
                         "required": true
                     },
@@ -351,7 +375,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Sponsor"
+                            "$ref": "#/definitions/sponsor.Sponsor"
                         }
                     },
                     "404": {
@@ -378,7 +402,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Bearer token",
+                        "description": "Bearer \u003ctoken\u003e",
                         "name": "Authorization",
                         "in": "header",
                         "required": true
@@ -415,7 +439,7 @@ var doc = `{
         }
     },
     "definitions": {
-        "main.Faq": {
+        "faq.Faq": {
             "type": "object",
             "properties": {
                 "answer": {
@@ -426,7 +450,24 @@ var doc = `{
                 }
             }
         },
-        "main.Sponsor": {
+        "social.Social": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "link": {
+                    "type": "string"
+                },
+                "src": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "sponsor.Sponsor": {
             "type": "object",
             "required": [
                 "detail",

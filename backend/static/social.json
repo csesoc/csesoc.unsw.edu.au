@@ -1,0 +1,56 @@
+[
+    {
+        "id": 0,
+        "title": "Facebook",
+        "link": "https://www.facebook.com/csesoc/",
+        "src": ""
+    },
+    {
+        "id": 1,
+        "title": "Slack",
+        "link": "https://csesoc-community.slack.com/",
+        "src": ""
+    },
+    {
+        "id": 2,
+        "title": "Discord",
+        "link": "",
+        "src": ""
+    },
+    {
+        "id": 3,
+        "title": "Instagram",
+        "link": "https://www.instagram.com/csesoc_unsw/",
+        "src": ""
+    },
+    {
+        "id": 4,
+        "title": "LinkedIn",
+        "link": "https://www.linkedin.com/company/csesoc/",
+        "src": ""
+    },
+    {
+        "id": 5,
+        "title": "GitHub",
+        "link": "https://github.com/csesoc",
+        "src": ""
+    },
+    {
+        "id": 6,
+        "title": "YouTube",
+        "link": "https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg",
+        "src": ""
+    },
+    {
+        "id": 7,
+        "title": "TikTok",
+        "link": "",
+        "src": ""
+    },
+    {
+        "id": 8,
+        "title": "SpArc",
+        "link": "https://www.arc.unsw.edu.au/",
+        "src": ""
+    }
+]
