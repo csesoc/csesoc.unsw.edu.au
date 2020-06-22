@@ -1,13 +1,24 @@
 basePath: /api/v1
 definitions:
-  main.Faq:
+  faq.Faq:
     properties:
       answer:
         type: string
       question:
         type: string
     type: object
-  main.Sponsor:
+  social.Social:
+    properties:
+      id:
+        type: integer
+      link:
+        type: string
+      src:
+        type: string
+      title:
+        type: string
+    type: object
+  sponsor.Sponsor:
     properties:
       detail:
         type: string
@@ -40,7 +51,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/main.Faq'
+              $ref: '#/definitions/faq.Faq'
             type: array
         "503":
           description: Service unavailable
@@ -151,6 +162,24 @@ paths:
       summary: Handle a sponsorship enquiry by adding it to a dispatch bundle
       tags:
       - mailing
+  /social:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/social.Social'
+            type: array
+        "503":
+          description: Service unavailable
+          headers:
+            error:
+              description: Unable to retrieve social media links
+              type: string
+      summary: Return all social media links
+      tags:
+      - social
   /sponsors:
     get:
       parameters:
@@ -165,7 +194,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/main.Sponsor'
+              $ref: '#/definitions/sponsor.Sponsor'
             type: array
         "500":
           description: Internal server error
@@ -177,15 +206,12 @@ paths:
       tags:
       - sponsors
     post:
+      consumes:
+      - Content-Type application/x-www-form-urlencoded
       parameters:
-      - description: Bearer token
+      - description: Bearer <token>
         in: header
         name: Authorization
-        required: true
-        type: string
-      - description: application/x-www-form-urlencoded
-        in: header
-        name: Content-Type
         required: true
         type: string
       - description: Name
@@ -237,7 +263,7 @@ paths:
   /sponsors/{name}:
     delete:
       parameters:
-      - description: Bearer token
+      - description: Bearer <token>
         in: header
         name: Authorization
         required: true
@@ -276,7 +302,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.Sponsor'
+            $ref: '#/definitions/sponsor.Sponsor'
         "404":
           description: Not found
           headers:
