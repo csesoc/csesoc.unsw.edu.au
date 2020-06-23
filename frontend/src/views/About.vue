@@ -10,6 +10,8 @@
         Computer Science, Software Engineering, Bioinformatics and Computer Engineering.
         We are here to fulfil the needs of computing students and also promote computing in all
         its forms through weekly social and technical events throughout the year.
+      </p>
+      <p>
         We are a society for the students, by the students. As a CSE student, here's how we can help you:
         We organise and run weekly events, including Trivia, Movie, Poker, and Boardgame Nights, LAN Parties,
         Workshops, Code Jams, Tech Talks, and our famous Free Weekly BBQ.
@@ -23,8 +25,90 @@
         We're as passionate about computing as you are; we provide technical events to teach you new skills,
         as well as a fortnightly magazine to keep you updated on what's new and interesting within the university,
         school and industry.
+      </p>
+      <p>
         Most of all, we're here to help you settle in and have a great time at UNSW!
       </p>
+    </v-container>
+
+    <!-- Executives & Directors -->
+    <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
+      <HeaderTitle title="Executives_&_Directors"></HeaderTitle>
+      <p>
+        The Executives and Directors are responsible for organising the society to make sure that things get done. Execs 
+        are elected annually by CSE students at the end of the preceding year and Directors are selected by Execs.
+      </p>
+      <p>
+        The CSESoc Executive and Director team for 2020 is:
+      </p>
+
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr><th colspan="2">
+            <h3>Executives</h3>
+          </th><th colspan="2">
+            <h3>Directors</h3>
+          </th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th width="20%">Co-Presidents</th>
+            <td width="30%">Shane Kadish<br>Tammy Zhong</td>
+            <th width="20%">Careers</th>
+            <td>Evangeline Endacott<br>Low Khye Ean<br>Nicholas Duller<br>Yan Zhai</td>
+          </tr>
+          <tr>
+            <th>Secretary</th>
+            <td>Sam Push</td>
+            <th>CompClub</th>
+            <td>Livia Wijayanti<br>Timothy Ryan</td>
+          </tr>
+          <tr>
+            <th>Treasurer</th>
+            <td>Teresa Feng</td>
+            <th>Creative</th>
+            <td>Elizabeth Zhong<br>Jia Min Guo</td>
+          </tr>
+          <tr>
+            <th>Arc Delegate</th>
+            <td>Jeremy Chiu</td>
+            <th>Marketing</th>
+            <td>Isaac Joshi<br>Jessica Feng</td>
+          </tr>
+          <tr>
+            <th>Grievance Officer</th>
+            <td>Tom Kunc</td>
+            <th>Media</th>
+            <td>Aditi Chandra<br>Clarence Shijun Feng</td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td>&nbsp;</td>
+            <th>Socials</th>
+            <td>Frances Lee<br>Van-Roy Trinh</td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td>&nbsp;</td>
+            <th>Software Projects</th>
+            <td>Gordon Zhong<br>Leesa Kristina Dang</td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td>&nbsp;</td>
+            <th>Student Network</th>
+            <td>Sachin Krishnamoorthy<br>Shrey Somaiya</td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td>&nbsp;</td>
+            <th>Workshops</th>
+            <td>Michael Gribben</td>
+          </tr>
+        </tbody>
+      </table>
+
+
     </v-container>
 
     <!-- Subcommittees -->
@@ -169,4 +253,12 @@ export default {
 </script>
 
 <style scoped>
+td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+th {
+  padding-right: 10px;
+}
 </style>
