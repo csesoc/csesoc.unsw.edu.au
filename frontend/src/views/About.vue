@@ -233,9 +233,6 @@
         </v-expansion-panel>
       </v-expansion-panels>
     </v-container>
-
-
-
   </v-app>
 </template>
 
@@ -243,9 +240,6 @@
 import HeaderTitle from '@/components/HeaderTitle';
 
 export default {
-  data: () => ({
-
-  }),
   components: {
     HeaderTitle
   },
