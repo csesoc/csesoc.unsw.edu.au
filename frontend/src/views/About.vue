@@ -107,8 +107,6 @@
           </tr>
         </tbody>
       </table>
-
-
     </v-container>
 
     <!-- Subcommittees -->
