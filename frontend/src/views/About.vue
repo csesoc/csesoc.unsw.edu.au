@@ -132,15 +132,11 @@
             <br /><br />
             The careers team aims to imbue our members with the skills, experience, and connections needed to forge a 
             successful career in the technology industry. We organise and host events throughout semester designed to 
-            achieve this goal - such as sponsor talks and workshops, networking nights, resume and interview workshops, 
-            hackathons, and so on. We also help manage sponsor relations, as sponsors play a key role in everything we do. 
-            This year, we're also planning on launching a number of exciting professional development initiatives, which, 
-            combined with our events, look to form a strong platform in maximising opportunities for all of our 
-            constituents.
-            <br /><br />
-            If that sounds like an amazing and meaningful role to play, then watch out for the next CSESoc recruitment drive - we're looking for passionate and dedicated people to get involved in the Careers team!
-            <br /><br />
-            Contact Email: careers@csesoc.org.au
+            achieve this goal - such as tech talks and workshops, networking nights, resume and interview workshops, 
+            hackathons, coding competitions and so on. We also help manage sponsor relations, as sponsors play a key role 
+            in everything we do. This subcommittee helps its members develop both personally and professionally as they 
+            correspond with our points of contact the worlds biggest tech companies: Google, Microsoft, Amazon, Facebook, 
+            Atlassian, Canva, etc.
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
@@ -152,26 +148,53 @@
             schools as well as biannual programs at UNSW known as the Summer and Winter Schools.
             <br /><br />
             If you are a teacher or educator who is interested in contacting us, please email us at compclub@csesoc.org.au.
-            If you are a high school student, have a look at our Winter Workshops.
+            If you are a high school student, keep an eye out for our Winter Workshops.
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
           <v-expansion-panel-header class="title py-3">Creative</v-expansion-panel-header>
           <v-expansion-panel-content>
-            
+            The Creative Team is responsible for expressing our creative freedoms whilst
+            integrating what we create fully with CSESoc branding and vision. We believe in
+            combining the logical and analytical side of CSE with creativity and artistic
+            expression. Not only this, we provide an avenue for subcom to learn something
+            new, come up with creative CSE projects and develop your creative minds.
+            <br /><br />
+            The Events Team works with other portfolios to deliver event-based design
+            demands such as banners on a request basis, focused on developing a professional
+            relationship with not only CSESoc, but more importantly our sponsored
+            companies!
+            <br /><br />
+            The Video Team handles the development of videos and editing for
+            publishing/advertising. This year we want to explore new territories of motion
+            graphics and animations to develop videos such as animated video banners,
+            informational videos and promotional videos for events.
+            <br /><br />
+            The Merchandise Team is responsible for coming up with innovative ideas for our
+            upcoming merchandise - such as stickers, hoodies and team shirts.
+            <br /><br />
+            The wildcard is an all-rounder role which covers all aspects of creative expression.
+            This includes, but not limited to, organising subcom upskilling workshops,
+            intersociety design related collaboration, general creative design and logo design.
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
           <v-expansion-panel-header class="title py-3">Marketing</v-expansion-panel-header>
           <v-expansion-panel-content>
-            CSESoc's Marketing team is all about promoting the countless sponsored career events and the amazing social 
-            events that happen throughout uni life. The marketing team allows you to help market CSESoc to students and 
-            our sponsors. From designing merchandise, to creating a Facebook event for one of our fantastic social events, 
-            tech talks or workshops, to taking photos and videos to capture these moments in an everlasting medium. Come 
-            along, join in - all levels of experience welcome! To get involved with Marketing, lookout for the next 
-            recruitment drive.
+            The Marketing team is responsible for the effective promotion and marketing of
+            CSESoc and its events. CSESoc is a premier society at UNSW so we aim to ensure
+            that our image is continually strengthened while delivering valuable events and
+            opportunities to CSE students.
             <br /><br />
-            Contact Email: marketing@csesoc.org.au
+            The Social Media team will be in charge of the creation and promotion of events
+            and opportunities provided by the CSESoc society, sometimes including content
+            creation. We also look at reviewing current and creating new strategies to
+            maximise our reach. We also collaborate with other portfolios to ensure maximum
+            exposure and success of events.
+            <br /><br />
+            The Photography/Video Team is a great place for those who are creatively inclined,
+            the role will include taking photos and videos at social events, creating and
+            managing media, and creating promotional content.
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
@@ -186,47 +209,57 @@
         <v-expansion-panel>
           <v-expansion-panel-header class="title py-3">Socials</v-expansion-panel-header>
           <v-expansion-panel-content>
-            CSESoc's Social team is in charge of making university life unforgettable, fun and to forge a strong community 
-            within the society. We are responsible for the weekly barbeques, the classic Cardboard Night and Trivia 
-            Nights, as well as the renown CSESoc Cruise! We are looking for YOU to help provide new ideas and improve on 
-            our events. If you are keen on expanding your personal bubble and are looking to develop your skills, whilst 
-            making a difference to student life of CSESoc members, then look no further.
+            The Socials Team plans, organises and executes all of CSESoc’s social events -
+            including the weekly BBQs, pub crawl, ice skating, cardboard night, and lots more.
+            In planning these events, we do our best to not only create opportunities for
+            students across all years to form friendships, but to also create spaces where
+            these bonds can continue to cultivate throughout their entire university careers.
+            The best part about being part of this team is how rewarding it feels to watch as
+            everything comes together and as everyone enjoys themselves within an
+            environment that we created! In addition, you will also be joining a family of about
+            50 people, and we will be going on trips and doing bonding activities together.
+            Being part of the Socials Team is also a good way to develop leadership, teamwork
+            and communication skills, and is something employers love to see on a resume.
             <br /><br />
-            Contact Email: socials@csesoc.org.au
+            This year, we hope to expand our reach by engaging with our members more,
+            doing our best to instigate friendships between strangers, and collaborating with
+            our societies (and potentially other universities). We are looking for people from
+            all years who are committed, passionate and excited about meeting new people
+            and fostering these bonds!
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
-          <v-expansion-panel-header class="title py-3">Software Projects</v-expansion-panel-header>
+          <v-expansion-panel-header class="title py-3">Projects</v-expansion-panel-header>
           <v-expansion-panel-content>
-            CSESoc is a society for computing students, so it's only fair we do some computing. The CSESoc Projects team 
-            works on projects like the society's website, and other student led initiatives. We also work with the 
-            Workshop team to run workshops, to build skills that can be applied in ours' as well as projects.
-            We want to see the Projects team grow, and give members the skills their project ideas to reality, both inside 
-            and outside the society.
+            CSESoc is a society for computing students, so it's only fair we do some computing. 
+            The Projects Team is a place to create student-led projects with the goal of building
+            transferable technical and soft skills so our members can thrive in university, work and
+            anything else you want to do.
+            <br /><br />
+            These projects are normally built for university students, which means when these
+            projects are completed, they will be used by yourself and your peers! It is a great way to
+            get involved in CSESoc while branching out and trying a technology or language that you
+            are interested in.
             <br /><br />
             We encourage everyone to join the Projects team, regardless of experience level. Even if you don't feel like 
             you can contribute technically, we want you for your ideas and your enthusiasm. Projects can be a great chance 
             to learn some of the gaps in your knowledge that lectures might have left out, and to offer your first taste 
             of designing and building things for the real world.
-            <br /><br />
-            Contact Email: software.projects@csesoc.org.au
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
           <v-expansion-panel-header class="title py-3">Student Network</v-expansion-panel-header>
           <v-expansion-panel-content>
-            
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-        <v-expansion-panel>
-          <v-expansion-panel-header class="title py-3">Workshops</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            The Workshops team organises student-run educational events throughout the year to help CSE students (and 
-            anyone else, really) make use of both new, and widely used technologies. Additionally, Workshops promotes the 
-            use of Linux through installfests by helping students set up and solve problems with Linux. This enables CSE 
-            students to go above and beyond their degree, and we want your help! Either as someone with a lot of 
-            experience to spread knowledge, or someone with a little experience to translate from 1337speak to n00bspeak, 
-            or someone with no experience to provide a roadmap of what CSE students want to know.
+            The Stunet Team works as part of the Socials portfolio to better the student experience!
+            We aim to help incoming CSE students to integrate into life in CSE at UNSW,
+            facilitate students connecting with each other, combat the feeling of "imposters
+            syndrome" felt by new CSE students, elevate well-being of CSE students in general.
+            We run workshops, mentoring programs, study sessions, and help facilitate CSE
+            Events.
+            <br /><br />
+            Stunet works closely and Socials - and our role is quite diverse! Additionally, this year
+            we are hoping to expand our program by improving cohesion and increase
+            interaction between the year levels and undergraduate-postgraduate.
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
