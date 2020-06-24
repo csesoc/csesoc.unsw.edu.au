@@ -92,6 +92,7 @@ func NewSponsor(c echo.Context) error {
 		Logo:   c.FormValue("logo"),
 		Tier:   tier,
 		Detail: c.FormValue("detail"),
+		Url:	c.FormValue("url"),
 	}
 
 	// Validate the struct with golang validator package
