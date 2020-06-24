@@ -264,6 +264,31 @@
         </v-expansion-panel>
       </v-expansion-panels>
     </v-container>
+
+    <!-- History -->
+    <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
+      <HeaderTitle title="History"></HeaderTitle>
+      <p>
+        CSESoc was formed in October 2006 from the old CompSoc and SESoc societies. CompSoc helped represent the interest 
+        of students studying Computer Engineering, Computer Science and postgraduate courses, while SESoc was the 
+        representative body for Software Engineering students. Both societies provided technical and social support to 
+        their members. In the best interest of everyone, the societies merged to provide a better experience to all CSE 
+        students.
+      </p>
+      <p>
+        CSESoc now represents students enrolled in Computer Science, Computer Engineering, Software Engineering, 
+        Bioinformatics Engineering, or a post‐graduate program administered by CSE (research or coursework).
+      </p>
+      <p>
+        Even today CSESoc continues to be an integral part of the student experience. Many students make the most of their 
+        time at university by joining a working group in first year to get a taste of the society. If you are enthusiastic 
+        and interested you can nominate yourself or be nominated for a position in the Exec at the end of the year.
+      </p>
+      <p>
+        Being part of a society is a great way to meet new people and gain extra skills that employers look for in the 
+        industry.
+      </p>
+    </v-container>
   </v-app>
 </template>
 
