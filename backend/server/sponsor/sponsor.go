@@ -25,6 +25,7 @@ type Sponsor struct {
 	Logo   string `json:"logo" validate:"required,url"`
 	Tier   int    `json:"tier" validate:"required,numeric,eq=0|eq=1|eq=2"`
 	Detail string `json:"detail" validate:"required"`
+	Url    string `json:"url" validate:"required,url"`
 }
 
 var sponsorColl *mongo.Collection
