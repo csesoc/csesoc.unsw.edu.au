@@ -43,42 +43,18 @@
       </p>
 
       <v-row no-gutters>
-        <v-col md="1"></v-col>
-
-        <v-col md="4">
-          <table class="table table-bordered table-striped">
+        <v-col v-for="(tierValue, tierName) in this.execsDirects['2020']" :key="tierName" md="4" style="margin: 0px 50px">
+          <table>
             <thead>
               <tr><th colspan="2">
-                <h3>Executives</h3>
+                <h3>{{tierName}}</h3>
               </th></tr>
             </thead>
             <tbody>
-              <tr v-for="(exec, key) in this.execsDirects['2020']['Executives']" :key="key">
-                <th width="20%">{{key}}</th>
+              <tr v-for="(roleValue, roleName) in tierValue" :key="roleName">
+                <th width="20%">{{roleName}}</th>
                 <td width="30%">
-                  <tr v-for="name in exec" :key="name">
-                    {{name}}
-                  </tr>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </v-col>
-
-        <v-col md="1"></v-col>
-
-        <v-col md="4">
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr><th colspan="2">
-                <h3>Directors</h3>
-              </th></tr>
-            </thead>
-            <tbody>
-              <tr v-for="(direc, key) in this.execsDirects['2020']['Directors']" :key="key">
-                <th width="20%">{{key}}</th>
-                <td width="30%">
-                  <tr v-for="name in direc" :key="name">
+                  <tr v-for="name in roleValue" :key="name">
                     {{name}}
                   </tr>
                 </td>
