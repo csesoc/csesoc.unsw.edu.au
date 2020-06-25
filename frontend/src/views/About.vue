@@ -262,6 +262,14 @@
             interaction between the year levels and undergraduate-postgraduate.
           </v-expansion-panel-content>
         </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header class="title py-3">Workshops</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            The Workshops team organises student-run educational events throughout the year to help CSE students (and anyone else, 
+            really) make use of both new, and widely used technologies. Additionally, Workshops promotes the use of Linux through 
+            installfests by helping students set up and solve problems with Linux.
+          </v-expansion-panel-content>
+        </v-expansion-panel>
       </v-expansion-panels>
     </v-container>
 
