@@ -42,71 +42,51 @@
         The CSESoc Executive and Director team for 2020 is:
       </p>
 
-      <table class="table table-bordered table-striped">
-        <thead>
-          <tr><th colspan="2">
-            <h3>Executives</h3>
-          </th><th colspan="2">
-            <h3>Directors</h3>
-          </th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th width="20%">Co-Presidents</th>
-            <td width="30%">Shane Kadish<br>Tammy Zhong</td>
-            <th width="20%">Careers</th>
-            <td>Evangeline Endacott<br>Low Khye Ean<br>Nicholas Duller<br>Yan Zhai</td>
-          </tr>
-          <tr>
-            <th>Secretary</th>
-            <td>Sam Push</td>
-            <th>CompClub</th>
-            <td>Livia Wijayanti<br>Timothy Ryan</td>
-          </tr>
-          <tr>
-            <th>Treasurer</th>
-            <td>Teresa Feng</td>
-            <th>Creative</th>
-            <td>Elizabeth Zhong<br>Jia Min Guo</td>
-          </tr>
-          <tr>
-            <th>Arc Delegate</th>
-            <td>Jeremy Chiu</td>
-            <th>Marketing</th>
-            <td>Isaac Joshi<br>Jessica Feng</td>
-          </tr>
-          <tr>
-            <th>Grievance Officer</th>
-            <td>Tom Kunc</td>
-            <th>Media</th>
-            <td>Aditi Chandra<br>Clarence Shijun Feng</td>
-          </tr>
-          <tr>
-            <th>&nbsp;</th>
-            <td>&nbsp;</td>
-            <th>Socials</th>
-            <td>Frances Lee<br>Van-Roy Trinh</td>
-          </tr>
-          <tr>
-            <th>&nbsp;</th>
-            <td>&nbsp;</td>
-            <th>Software Projects</th>
-            <td>Gordon Zhong<br>Leesa Kristina Dang</td>
-          </tr>
-          <tr>
-            <th>&nbsp;</th>
-            <td>&nbsp;</td>
-            <th>Student Network</th>
-            <td>Sachin Krishnamoorthy<br>Shrey Somaiya</td>
-          </tr>
-          <tr>
-            <th>&nbsp;</th>
-            <td>&nbsp;</td>
-            <th>Workshops</th>
-            <td>Michael Gribben</td>
-          </tr>
-        </tbody>
-      </table>
+      <v-row no-gutters>
+        <v-col md="1"></v-col>
+
+        <v-col md="4">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr><th colspan="2">
+                <h3>Executives</h3>
+              </th></tr>
+            </thead>
+            <tbody>
+              <tr v-for="(exec, key) in this.execsDirects['2020']['Executives']" :key="key">
+                <th width="20%">{{key}}</th>
+                <td width="30%">
+                  <tr v-for="name in exec" :key="name">
+                    {{name}}
+                  </tr>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </v-col>
+
+        <v-col md="1"></v-col>
+
+        <v-col md="4">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr><th colspan="2">
+                <h3>Directors</h3>
+              </th></tr>
+            </thead>
+            <tbody>
+              <tr v-for="(direc, key) in this.execsDirects['2020']['Directors']" :key="key">
+                <th width="20%">{{key}}</th>
+                <td width="30%">
+                  <tr v-for="name in direc" :key="name">
+                    {{name}}
+                  </tr>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </v-col>
+      </v-row>
     </v-container>
 
     <!-- Subcommittees -->
@@ -304,9 +284,12 @@
 import HeaderTitle from '@/components/HeaderTitle';
 
 export default {
+  data: () => ({
+    execsDirects: require('@/assets/execs_directs.json')
+  }),
   components: {
     HeaderTitle
-  },
+  }
 };
 </script>
 
