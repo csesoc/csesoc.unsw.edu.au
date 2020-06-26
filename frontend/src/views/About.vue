@@ -39,30 +39,43 @@
         are elected annually by CSE students at the end of the preceding year and Directors are selected by Execs.
       </p>
       <p>
-        The CSESoc Executive and Director team for 2020 is:
+        The CSESoc Executive and Director teams for the current and past years are:
       </p>
 
-      <v-row no-gutters>
-        <v-col v-for="(tierValue, tierName) in this.execsDirects['2020']" :key="tierName" md="4" style="margin: 0px 50px">
-          <table>
-            <thead>
-              <tr><th colspan="2">
-                <h3>{{tierName}}</h3>
-              </th></tr>
-            </thead>
-            <tbody>
-              <tr v-for="(roleValue, roleName) in tierValue" :key="roleName">
-                <th width="20%">{{roleName}}</th>
-                <td width="30%">
-                  <tr v-for="name in roleValue" :key="name">
-                    {{name}}
-                  </tr>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </v-col>
-      </v-row>
+      <v-tabs class="elevation-2" vertical dark>
+        <v-tabs-slider></v-tabs-slider>
+
+        <v-tab v-for="team in this.execsDirects" :key="team.year">
+          {{team.year}}
+        </v-tab>
+        <v-tab-item v-for="team in this.execsDirects" :key="team.year">
+          <v-card flat tile>
+          
+            <v-row no-gutters>
+              <v-col v-for="(tierValue, tierName) in team.data" :key="tierName" md="4" style="margin: 0px 50px">
+                <table>
+                  <thead>
+                    <tr><th colspan="2">
+                      <h3>{{tierName}}</h3>
+                    </th></tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(roleValue, roleName) in tierValue" :key="roleName">
+                      <th>{{roleName}}</th>
+                      <td>
+                        <tr v-for="name in roleValue" :key="name">
+                          {{name}}
+                        </tr>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </v-col>
+            </v-row>
+
+          </v-card>
+        </v-tab-item>
+      </v-tabs>
     </v-container>
 
     <!-- Subcommittees -->
