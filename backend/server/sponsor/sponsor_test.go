@@ -14,7 +14,7 @@ const companyName = "Example"
 const companyLogo = "https://static.canva.com/static/images/canva_logo_100x100@2x.png"
 const companyTier = "2"
 const companyDetail = "Example"
-const companyUrl = "www.google.com"
+const companyUrl = "https://www.google.com"
 const sponsorRequestUrl =  BASE_URL + SPONSOR_URL;
 
 func TestSponsor(t *testing.T) {
@@ -127,6 +127,7 @@ func TestSponsorError(t *testing.T) {
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
 			"detail": {companyDetail},
+			"url": 	  {companyUrl},
 		}
 		req, _ := http.NewRequest("POST", sponsorRequestUrl, strings.NewReader(form.Encode()))
 		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
