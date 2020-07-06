@@ -70,7 +70,7 @@ func SponsorSetup(client *mongo.Client) {
 // @accept Content-Type application/x-www-form-urlencoded
 // @Param Authorization header string true "Bearer <token>"
 // @Param name formData string true "Name"
-// @Param logo formData string true "Logo URL"
+// @Param logo formData string true "Logo in base64"
 // @Param tier formData integer true "Valid tier" mininum(0) maxinum(2)
 // @Param detail formData string true "Detail"
 // @Success 201 "Created"
