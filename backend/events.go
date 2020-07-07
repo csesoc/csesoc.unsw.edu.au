@@ -3,7 +3,9 @@ package main
 import (
 	"time"
 	"fmt"
+	"bytes"
 	"encoding/json"
+	"sort"
 	// "os"
 	// "log"
 	"path/filepath"
@@ -18,18 +20,19 @@ import (
 // However, should FB provide an error, we capture it.
 type FbResponse struct {
 	Data  []FbRespEvent `json:"data"`
-	Cover FbCover `json:"cover"`
-	Error FbRespError `json:"error"` 
+	Cover FbRespCover   `json:"cover"`
+	Error FbRespError   `json:"error"` 
 }
 
 // Unmarshal event specifics
 type FbRespEvent struct {
-	Description string `json:"description"`
-	Name string `json:"name"`
-	Start string `json:"start_time"`
-	End string `json:"end_time"`
-	Id string `json:"id"`
-	Place FbRespPlace `json:"place"`
+	Description string        `json:"description"`
+	Name        string        `json:"name"`
+	Start       string        `json:"start_time"`
+	End         string        `json:"end_time"`
+	EventTimes  []FbRespTimes `json:"event_times"`
+	Id          string        `json:"id"`
+	Place       FbRespPlace   `json:"place"`
 }
 
 // Event location can come with added information, so we only take the name
@@ -37,29 +40,35 @@ type FbRespPlace struct {
 	Name string `json:"name"`
 }
 
+// Deal with recurring events
+type FbRespTimes struct {
+	Start string `json:"start_time"`
+	End   string `json:"end_time"`
+}
+
 // Unmarshall any error response
 type FbRespError struct {
-	ErrorType int `json:"type"`
-	Message string `json:"message"`
+	ErrorType int    `json:"type"`
+	Message   string `json:"message"`
 }
 
 // Get a cover image
-type FbCover struct {
+type FbRespCover struct {
 	CoverUri string `json:"source"`
 }
 
 type MarshalledEvents struct {
-	LastUpdate int64 `json:"updated"`
-	Events []Event `json:"events"`
+	LastUpdate int64   `json:"updated"`
+	Events     []Event `json:"events"`
 }
 
 type Event struct {
-	Name string `json:"name"`
+	Name        string `json:"name"`
 	Description string `json:"description"`
-	Start int64 `json:"start_time"`
-	End int64 `json:"end_time"`
-	Id string `json:"fb_event_id"`
-	CoverUrl string `json:"fb_cover_img"`
+	Start       int64  `json:"start_time"`
+	End         int64  `json:"end_time"`
+	Id          string `json:"fb_event_id"`
+	CoverUrl    string `json:"fb_cover_img"`
 }
 
 func callInterval(d time.Duration, f func()) {
@@ -144,37 +153,71 @@ func getEvents() {
 		var processedEvents []Event
 
 		for _, element := range result.Data {
-			cover, err := fetchCoverImage(element.Id)
-			if err != nil {
-				// do something
-			}
-			start, err := iso8601.ParseString(element.Start)
-			if err != nil {
-				// do something
-			}
-			end, err := iso8601.ParseString(element.End) 
-			if err != nil {
-				// do something
-			}
-			
-			processedEvents = append(processedEvents, Event {
-				Name: element.Name,
-				Description: element.Description,
-				Start: start.Unix(),
-				End: end.Unix(),
-				Id: element.Id,
-				CoverUrl: cover,
-			})
+			if len(element.EventTimes) != 0 {
+				for _, occurrence := range element.EventTimes {
+					cover, err := fetchCoverImage(element.Id)
+					if err != nil {
+						// do something
+					}
+					start, err := iso8601.ParseString(occurrence.Start)
+					if err != nil {
+						// do something
+					}
+					end, err := iso8601.ParseString(occurrence.End) 
+					if err != nil {
+						// do something
+					}
+					
+					processedEvents = append(processedEvents, Event {
+						Name: element.Name,
+						Description: element.Description,
+						Start: start.Unix(),
+						End: end.Unix(),
+						Id: element.Id,
+						CoverUrl: cover,
+					})
+				}
+			} else {
+				cover, err := fetchCoverImage(element.Id)
+				if err != nil {
+					// do something
+				}
+				start, err := iso8601.ParseString(element.Start)
+				if err != nil {
+					// do something
+				}
+				end, err := iso8601.ParseString(element.End) 
+				if err != nil {
+					// do something
+				}
+				
+				processedEvents = append(processedEvents, Event {
+					Name: element.Name,
+					Description: element.Description,
+					Start: start.Unix(),
+					End: end.Unix(),
+					Id: element.Id,
+					CoverUrl: cover,
+				})
+			}			
 		}
 
+		// Sort by starting dates:
+		sort.Slice(processedEvents, func(i, j int) bool {
+			return processedEvents[i].Start < processedEvents[j].Start
+		 })
 
-		contents, _ := json.Marshal(MarshalledEvents {
-										LastUpdate: time.Now().Unix(),
-										Events: processedEvents,
-									})
+		buf := bytes.NewBuffer([]byte{})
+		// Avoids escaping ampersands:
+		jsonEncoder := json.NewEncoder(buf)
+		jsonEncoder.SetEscapeHTML(false)
+		jsonEncoder.Encode(MarshalledEvents {
+			LastUpdate: time.Now().Unix(),
+			Events: processedEvents,
+		})
 		fp, _ := filepath.Abs("static/events.json")
 		// chmod a+rwx,u-x,g-wx,o-wx
-		err = ioutil.WriteFile(fp, contents, 0644)
+		err = ioutil.WriteFile(fp, buf.Bytes(), 0644)
 
 		if err != nil {
 			// error handling
