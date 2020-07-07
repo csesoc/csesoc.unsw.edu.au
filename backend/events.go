@@ -71,9 +71,9 @@ type Event struct {
 	CoverUrl    string `json:"fb_cover_img"`
 }
 
-func callInterval(d time.Duration, f func()) {
+func fetchEventInterval(d time.Duration) {
 	for range time.Tick(d) {
-		f()
+		saveEvents()
 	}
 }
 
@@ -142,7 +142,7 @@ func fetchCoverImage(id string) (string, error) {
 		return result.Cover.CoverUri, nil
 }
 
-func getEvents() {
+func saveEvents() {
 		var result FbResponse
 		err := fetchEvents(&result)
 		if err != nil {
