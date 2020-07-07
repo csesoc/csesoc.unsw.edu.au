@@ -209,5 +209,11 @@ func serveAPI(e *echo.Echo) {
 		{
 			social.GET("", GetSocial)
 		}
+
+		// Events
+		events := v1.Group("/events")
+		{
+			events.GET("", GetEvents)
+		}
 	}
 }

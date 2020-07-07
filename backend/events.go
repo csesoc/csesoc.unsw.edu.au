@@ -13,6 +13,7 @@ import (
 	"net/http"
 	. "csesoc.unsw.edu.au/m/v2/server"
 	"github.com/relvacode/iso8601"
+	"github.com/labstack/echo/v4"
 )
 
 
@@ -228,5 +229,9 @@ func saveEvents() {
 		if err != nil {
 			// error handling
 		}				
+}
 
+func GetEvents(c echo.Context) error {
+	fp, _ := filepath.Abs("static/events.json")
+	return c.File(fp)
 }
