@@ -11,6 +11,7 @@ require (
 	github.com/labstack/echo/v4 v4.1.16
 	github.com/mailjet/mailjet-apiv3-go v0.0.0-20190724151621-55e56f74078c
 	github.com/mailru/easyjson v0.7.1 // indirect
+	github.com/relvacode/iso8601 v1.1.0
 	github.com/swaggo/echo-swagger v1.0.0
 	github.com/swaggo/swag v1.6.7
 	go.mongodb.org/mongo-driver v1.3.3
