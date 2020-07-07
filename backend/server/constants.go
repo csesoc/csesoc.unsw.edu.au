@@ -12,6 +12,6 @@ const AUTH_TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1
 // Constants for accessing FB API
 const FB_API_PATH = "https://graph.facebook.com/v7.0"
 const FB_EVENT_PATH = "/110742340691435/events"
-const FB_TOKEN = "EAAllxWUTDEABAHJDqpCepgkw3m5BDHWReP8QCseKZBiCeqycR2FDJQ50qZAIxZBAIglbKvGpDIp2Gj6crc2hWZCJ6CvZBkqfBbrGu642W4hyWcxJ3spaqJBQfsvlbK3eCEXvPYGivPidgwwjWIQzXbJZAZCdZAOwjXrhmil3ZC7QJ5WBnlHPVe1qX"
+const FB_TOKEN = ""
 const FB_FETCH_INTERVAL = 120
 var JWT_SECRET = []byte("temp_secret_until_proper_secrets_are_implemented")

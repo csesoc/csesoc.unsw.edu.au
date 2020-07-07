@@ -64,8 +64,9 @@ func main() {
 
 	servePages(e)
 	serveAPI(e)
-	eventFetchTimer()
 	println("Web server is online :)")
+	
+	go eventFetchTimer()
 
 	// Bind quit to listen to Interrupt signals
 	quit := make(chan os.Signal)
