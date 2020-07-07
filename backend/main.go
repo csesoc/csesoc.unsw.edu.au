@@ -64,7 +64,7 @@ func main() {
 
 	servePages(e)
 	serveAPI(e)
-	fetchEventInterval(time.Second * FB_FETCH_INTERVAL)
+	eventFetchTimer()
 	println("Web server is online :)")
 
 	// Bind quit to listen to Interrupt signals

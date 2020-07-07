@@ -16,7 +16,7 @@ import (
 )
 
 
-// FB response expects data (array of events), and paging, which we ignore
+// FB response expects data (array of events), and paging, which we ignore.
 // However, should FB provide an error, we capture it.
 type FbResponse struct {
 	Data  []FbRespEvent `json:"data"`
@@ -24,7 +24,7 @@ type FbResponse struct {
 	Error FbRespError   `json:"error"` 
 }
 
-// Unmarshal event specifics
+// Unmarshal event specifics.
 type FbRespEvent struct {
 	Description string        `json:"description"`
 	Name        string        `json:"name"`
@@ -35,33 +35,35 @@ type FbRespEvent struct {
 	Place       FbRespPlace   `json:"place"`
 }
 
-// Event location can come with added information, so we only take the name
+// Event location can come with added information, so we only take the name.
 type FbRespPlace struct {
 	Name string `json:"name"`
 }
 
-// Deal with recurring events
+// Deal with recurring events.
 type FbRespTimes struct {
 	Start string `json:"start_time"`
 	End   string `json:"end_time"`
 }
 
-// Unmarshall any error response
+// Unmarshal any error response.
 type FbRespError struct {
 	ErrorType int    `json:"type"`
 	Message   string `json:"message"`
 }
 
-// Get a cover image
+// Unmarshal the URI of the cover image.
 type FbRespCover struct {
 	CoverUri string `json:"source"`
 }
 
+// Packs up events with the last update time to be marshalled.
 type MarshalledEvents struct {
 	LastUpdate int64   `json:"updated"`
 	Events     []Event `json:"events"`
 }
 
+// Stores an individual event with all the info we want.
 type Event struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
@@ -71,12 +73,14 @@ type Event struct {
 	CoverUrl    string `json:"fb_cover_img"`
 }
 
-func fetchEventInterval(d time.Duration) {
-	for range time.Tick(d) {
+// Sets up a ticker to fetch events at an interval.
+func eventFetchTimer() {
+	for range time.Tick(time.Duration(FB_FETCH_INTERVAL * time.Second)) {
 		saveEvents()
 	}
 }
 
+// Fetch events from FB
 func fetchEvents(response *FbResponse) (error) {
 	// Make a request to FB
 	resp, err := http.Get(
@@ -109,6 +113,7 @@ func fetchEvents(response *FbResponse) (error) {
 	return nil
 }
 
+// Fetch the cover image for an event from Facebook.
 func fetchCoverImage(id string) (string, error) {
 		resp, err := http.Get(
 			fmt.Sprintf(
@@ -142,6 +147,7 @@ func fetchCoverImage(id string) (string, error) {
 		return result.Cover.CoverUri, nil
 }
 
+// Process the facebook event information before saving it to a new file.
 func saveEvents() {
 		var result FbResponse
 		err := fetchEvents(&result)
@@ -216,7 +222,7 @@ func saveEvents() {
 			Events: processedEvents,
 		})
 		fp, _ := filepath.Abs("static/events.json")
-		// chmod a+rwx,u-x,g-wx,o-wx
+		// 644 = chmod a+rwx,u-x,g-wx,o-wx
 		err = ioutil.WriteFile(fp, buf.Bytes(), 0644)
 
 		if err != nil {
