@@ -17,6 +17,7 @@ import (
 	. "csesoc.unsw.edu.au/m/v2/server/mailing"
 	. "csesoc.unsw.edu.au/m/v2/server/social"
 	. "csesoc.unsw.edu.au/m/v2/server/sponsor"
+	// events "csesoc.unsw.edu.au/m/v2/server/events"
 
 	_ "csesoc.unsw.edu.au/m/v2/docs"
 
@@ -63,7 +64,7 @@ func main() {
 
 	servePages(e)
 	serveAPI(e)
-
+	callInterval(time.Second * 30, getEvents)
 	println("Web server is online :)")
 
 	// Bind quit to listen to Interrupt signals
