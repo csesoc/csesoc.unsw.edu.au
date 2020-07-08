@@ -9,12 +9,13 @@ import (
 	"github.com/mailjet/mailjet-apiv3-go"
 )
 
-var INFO_EMAIL = "info@csesoc.org.au" 
+var INFO_EMAIL = "info@csesoc.org.au"
 var SPONSORSHIP_EMAIL = "sponsorship@csesoc.org.au"
+
 const PUBLIC_KEY = "8afb96baef07230483a2a5ceca97d55d"
-const SECRET_KEY = "424ad90f25487e6be369a1cbb2a34694"
 
 type messageType int
+
 const (
 	generalType     messageType = iota // 0
 	sponsorshipType                    // 1
@@ -50,7 +51,10 @@ func MailingSetup() {
 		SPONSORSHIP_EMAIL = "projects.website+sponsorship@csesoc.org.au"
 	}
 
-	mailjetClient = mailjet.NewMailjetClient(PUBLIC_KEY, SECRET_KEY)
+	// Get docker secret: mailjet_token
+	var token = ReadSecret("mailjet_token")
+
+	mailjetClient = mailjet.NewMailjetClient(PUBLIC_KEY, token)
 
 	// Start mailing timers
 	go mailingTimer()
