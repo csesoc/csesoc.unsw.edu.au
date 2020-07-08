@@ -71,6 +71,7 @@ type Event struct {
 	Start       int64  `json:"start_time"`
 	End         int64  `json:"end_time"`
 	Id          string `json:"fb_event_id"`
+	Place       string `json:"place"`
 	CoverUrl    string `json:"fb_cover_img"`
 }
 
@@ -204,6 +205,7 @@ func saveEvents() {
 				Start:       start.Unix(),
 				End:         end.Unix(),
 				Id:          element.Id,
+				Place:       element.Place.Name,
 				CoverUrl:    cover,
 			})
 		}
