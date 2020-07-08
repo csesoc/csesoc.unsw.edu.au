@@ -1,5 +1,5 @@
 # Docker compose development version 
-version: "3"
+version: "3.6"
 services:
     frontend:
         image: frontend
@@ -18,9 +18,15 @@ services:
         volumes:
             - ./backend:/app/server
         container_name: backend
+        secrets:
+            - mailjet_token
     mongo:
         image: mongo:latest
         restart: always
         ports:
             - '27017:27017'
         container_name: mongo
+
+secrets:
+    mailjet_token:
+        file: ./tokens/mailjet.txt
