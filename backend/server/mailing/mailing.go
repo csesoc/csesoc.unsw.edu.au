@@ -1,7 +1,6 @@
 package mailing
 
 import (
-	"fmt"
 	"net/http"
 	"os"
 	"time"
@@ -55,7 +54,6 @@ func MailingSetup() {
 
 	// Get Docker env variable: MAILJET_TOKEN
 	var token = os.Getenv("MAILJET_TOKEN")
-	fmt.Println(token)
 
 	mailjetClient = mailjet.NewMailjetClient(PUBLIC_KEY, token)
 
