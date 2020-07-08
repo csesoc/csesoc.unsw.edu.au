@@ -16,10 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Dump Mailjet token into a file
+      - name: Dump Mailjet token into the .env file
         env:
           MAILJET_TOKEN: ${{ secrets.MAILJET_TOKEN }}
-        run: mkdir tokens && touch tokens/mailjet.txt && echo $MAILJET_TOKEN > tokens/mailjet.txt
+        run: echo "MAILJET_TOKEN=$MAILJET_TOKEN" > .env
       - name: Building docker containers using docker-compose
         run: docker-compose up -d
       - name: Golang Tests
