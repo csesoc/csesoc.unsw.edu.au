@@ -1,5 +1,5 @@
 # Docker compose development version 
-version: "3.6"
+version: "3"
 services:
     frontend:
         image: frontend
