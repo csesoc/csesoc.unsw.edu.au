@@ -24,10 +24,10 @@
     </header>
 
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
+      <HeaderTitle :title="'upcoming events'" />
       <v-row>
-        <v-col sm="12" md="6" lg="4">
-          <HeaderTitle :title="'events'" />
-          <div
+          <EventGrid :events="eventItems" v-if="time < 60 * 1440 * 60000"></EventGrid>
+          <!-- <div
             class="fb-page"
             data-href="https://www.facebook.com/csesoc"
             data-tabs="events"
@@ -39,19 +39,21 @@
             <blockquote cite="https://www.facebook.com/csesoc" class="fb-xfbml-parse-ignore">
               <a href="https://www.facebook.com/csesoc">Loading...</a>
             </blockquote>
-          </div>
-        </v-col>
-        <v-spacer v-if="$vuetify.breakpoint.mdAndUp"></v-spacer>
-        <v-col sm="12" md="5" lg="8">
+          </div> -->
+        <!-- <v-col sm="12" md="5" lg="8">
           <HeaderTitle :title="'latest'" />
           <ListComponent :items="announceItems" />
-        </v-col>
+        </v-col> -->
+      </v-row>
+      <v-row>
+        <v-spacer></v-spacer>
+        <a href = "https://www.facebook.com/csesoc/events" class="fb-event-link">See more events on our Facebook page! ⭝</a>
       </v-row>
     </v-container>
 
     <Slider :items="mediaItems" :title="'media'" class="my-10" />
 
-    <v-container class="ml-md-8">
+    <v-container>
       <HeaderTitle :title="'resources'" />
       <NavGrid :items="resourcesItems"></NavGrid>
     </v-container>
@@ -63,6 +65,8 @@ import NavGrid from '@/components/NavGrid';
 import ListComponent from '@/components/ListComponent';
 import Slider from '@/components/Slider';
 import HeaderTitle from '@/components/HeaderTitle';
+import EventGrid from '@/components/EventGrid';
+import APIClient  from '../utils/APIClient';
 
 export default {
   data: () => ({
@@ -76,14 +80,17 @@ export default {
     mediaApiUri:
       'https://gist.githack.com/gawdn/a590d5be689e3ffbee15c213928e3b4b/raw/bed82e02b6a4d01196a4390e1a8b12ccf5b377fa/media0a.json',
     mediaItems: [],
-    items: []
+    items: [],
+    eventItems: [],
+    time: new Date().getTime()
   }),
 
   components: {
     NavGrid,
     ListComponent,
     Slider,
-    HeaderTitle
+    HeaderTitle,
+    EventGrid
   },
 
   mounted() {
@@ -98,7 +105,11 @@ export default {
       .then((responseJson) => {
         this.resourcesItems = responseJson;
       });
-
+    APIClient.eventsAPI()
+      .then((responseJson) => {
+        this.eventItems = responseJson.events.slice(0,3);
+        this.time -= responseJson.updated * 1000;
+      });
     fetch(this.announceApiUri)
       .then(r => r.json())
       .then((responseJson) => {
@@ -149,7 +160,13 @@ export default {
 }
 #showcase .button:hover {
   transition: 0.4s;
-  background: rgb(32, 62, 207);
+  background: rgb(54, 119, 243);
   color: #fff;
+}
+
+.fb-event-link {
+  text-decoration: none;
+  font-weight: bold;
+  color: rgb(54, 119, 243);
 }
 </style>
