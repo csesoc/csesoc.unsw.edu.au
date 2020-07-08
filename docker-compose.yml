@@ -18,15 +18,11 @@ services:
         volumes:
             - ./backend:/app/server
         container_name: backend
-        secrets:
-            - mailjet_token
+        environment: 
+            - MAILJET_TOKEN=${MAILJET_TOKEN}
     mongo:
         image: mongo:latest
         restart: always
         ports:
             - '27017:27017'
         container_name: mongo
-
-secrets:
-    mailjet_token:
-        file: ./tokens/mailjet.txt

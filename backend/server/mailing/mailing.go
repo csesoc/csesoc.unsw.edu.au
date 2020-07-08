@@ -1,7 +1,9 @@
 package mailing
 
 import (
+	"fmt"
 	"net/http"
+	"os"
 	"time"
 
 	. "csesoc.unsw.edu.au/m/v2/server"
@@ -51,8 +53,9 @@ func MailingSetup() {
 		SPONSORSHIP_EMAIL = "projects.website+sponsorship@csesoc.org.au"
 	}
 
-	// Get docker secret: mailjet_token
-	var token = ReadSecret("mailjet_token")
+	// Get Docker env variable: MAILJET_TOKEN
+	var token = os.Getenv("MAILJET_TOKEN")
+	fmt.Println(token)
 
 	mailjetClient = mailjet.NewMailjetClient(PUBLIC_KEY, token)
 
