@@ -66,7 +66,8 @@ func main() {
 	serveAPI(e)
 	println("Web server is online :)")
 
-	go EventFetchTimer()
+	// Disable the fetch timer until we get access to the actual CSESoc page
+	// go EventFetchTimer()
 
 	// Bind quit to listen to Interrupt signals
 	quit := make(chan os.Signal)

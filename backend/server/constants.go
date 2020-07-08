@@ -15,6 +15,6 @@ var JWT_SECRET = []byte("temp_secret_until_proper_secrets_are_implemented")
 
 // Constants for accessing FB API
 const FB_API_PATH = "https://graph.facebook.com/v7.0"
-const FB_EVENT_PATH = "/110742340691435/events"
+const FB_EVENT_PATH = "/csesoc/events"
 const FB_TOKEN = ""
 const FB_FETCH_INTERVAL = 120
