@@ -18,6 +18,8 @@ services:
         volumes:
             - ./backend:/app/server
         container_name: backend
+        environment: 
+            - MAILJET_TOKEN=${MAILJET_TOKEN}
     mongo:
         image: mongo:latest
         restart: always
