@@ -1,5 +1,5 @@
 import {
-    SPONSORS_URL, EVENT_URL as EVENTS_URL
+    SPONSORS_URL, EVENTS_URL
   } from './Constants'
 
 const APICall = (url, headers, convertToJson = true) => {

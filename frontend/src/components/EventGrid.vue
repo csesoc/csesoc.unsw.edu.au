@@ -80,7 +80,7 @@ export default {
       var start = new Date(unix1 * 1000);
       var end = new Date(unix2 * 1000);
       if (unix2 == undefined) {
-        // eg. Thurs 1 Jan 12 PM to 1:30 PM
+        // eg. Thurs 1 Jan 12 PM
         return "{0} {1} {2} at {3}{4} {5}".format(
           days[start.getDay()], 
           start.getDate(),
