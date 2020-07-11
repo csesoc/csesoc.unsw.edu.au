@@ -77,9 +77,8 @@ type Event struct {
 
 // Sets up a ticker to fetch events at an interval.
 func EventFetchTimer() {
-	for range time.Tick(time.Duration(FB_FETCH_INTERVAL * time.Second)) {
-		saveEvents()
-	}
+	saveEvents()
+	time.Sleep(time.Duration(FB_FETCH_INTERVAL * time.Second))
 }
 
 // Fetch events from FB
@@ -232,8 +231,19 @@ func saveEvents() {
 		// error handling
 	}
 }
-
+// GetEvents godoc
+// @Summary Get a list of upcoming events
+// @Tags events
+// @Success 200 {array} Event
+// @Failure 500 "Internal server error"
+// @Header 500 {string} error "Unable to retrieve events from file"
+// @Router /events [get]
 func GetEvents(c echo.Context) error {
-	fp, _ := filepath.Abs("static/events.json")
+	fp, err := filepath.Abs("static/events.json")
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, H{
+			"error": "Unable to retrieve events",
+		})
+	}
 	return c.File(fp)
 }
