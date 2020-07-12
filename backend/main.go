@@ -12,6 +12,7 @@ import (
 	//. "csesoc.unsw.edu.au/m/v2/server/category"
 	//. "csesoc.unsw.edu.au/m/v2/server/post"
 	. "csesoc.unsw.edu.au/m/v2/server"
+	. "csesoc.unsw.edu.au/m/v2/server/events"
 	. "csesoc.unsw.edu.au/m/v2/server/faq"
 	. "csesoc.unsw.edu.au/m/v2/server/login"
 	. "csesoc.unsw.edu.au/m/v2/server/mailing"
@@ -63,8 +64,10 @@ func main() {
 
 	servePages(e)
 	serveAPI(e)
-
 	println("Web server is online :)")
+
+	// Disable the fetch timer until we get access to the actual CSESoc page
+	// go EventFetchTimer()
 
 	// Bind quit to listen to Interrupt signals
 	quit := make(chan os.Signal)
@@ -207,6 +210,12 @@ func serveAPI(e *echo.Echo) {
 		social := v1.Group("/social")
 		{
 			social.GET("", GetSocial)
+		}
+
+		// EVENTS
+		events := v1.Group("/events")
+		{
+			events.GET("", GetEvents)
 		}
 	}
 }

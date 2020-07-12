@@ -1,5 +1,5 @@
 import {
-    SPONSORS_URL
+    SPONSORS_URL, EVENTS_URL
   } from './Constants'
 
 const APICall = (url, headers, convertToJson = true) => {
@@ -30,6 +30,12 @@ const getClient = (method, body) => {
 
 const sponsorsAPI = () => {
     const url = SPONSORS_URL
+    const client = getClient('GET')
+    return APICall(url, client)
+}
+
+const eventsAPI = () => {
+    const url = EVENTS_URL
     const client = getClient('GET')
     return APICall(url, client)
 }
@@ -67,6 +73,7 @@ const fetchFaqs = () => {
 const APIClient = {
     sponsorsAPI,
     mailingAPI,
+    eventsAPI,
     fetchSocials,
     fetchFaqs
 }
