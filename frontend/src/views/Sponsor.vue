@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- make header a seperate component! -->
     <header id="showcase">
       <v-img max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
     </header>
@@ -8,7 +7,7 @@
       <h1 class="border text-h1 font-weight-bold" style="padding:25px;">Sponsors</h1>
       <h2 class="text-h4">Principal <br> Sponsors</h2>
       <v-container class="border" fluid>
-          <div v-for="(sponsor, index) in tierOne" :key="sponsor.id" :style="marginStyle(index)">
+          <div v-for="(sponsor, index) in tierOne" :key="sponsor.id" :style="marginStyle(index, largeLogoFilter)">
               <div class="logo-margin">
                 <img class="large-logo" :src="sponsor.logo" v-on:click="onClickModal(sponsor)"/>
               </div>
@@ -18,7 +17,7 @@
       <div style="clear:both;"></div>
       <h2 class="text-h4">Major <br> Sponsors</h2>
       <v-container class="border" fluid>
-          <div v-for="(sponsor, index) in tierTwo" :key="sponsor.id" :style="marginStyle(index)">
+          <div v-for="(sponsor, index) in tierTwo" :key="sponsor.id" :style="marginStyle(index, midLogoFilter)">
               <div class="logo-margin">
                 <img class="mid-logo" :src="sponsor.logo" v-on:click="onClickModal(sponsor)"/>
               </div>
@@ -28,7 +27,7 @@
       <div style="clear:both;"></div>
       <h2 class="text-h4">Affiliate <br> Sponsors</h2>
       <v-container class="border" fluid>
-          <div v-for="(sponsor, index) in tierThree" :key="sponsor.id" :style="marginStyle(index)">
+          <div v-for="(sponsor, index) in tierThree" :key="sponsor.id" :style="marginStyle(index, smallLogoFilter)">
               <div class="logo-margin">
                   <img class="small-logo" :src="sponsor.logo" v-on:click="onClickModal(sponsor)"/>
               </div>
@@ -94,11 +93,11 @@ export default {
       });
   },
   methods: {
-    marginStyle: function(index) {
+    marginStyle: function(index, limit) {
       var style = {};
       
-      var limit = parseInt((index) / 3);
-      if (limit % 2 == 0) {
+      var row = parseInt((index) / limit);
+      if (row % 2 == 0) {
         style["margin-left"] = "10%";
       } else {
         style["margin-left"] = "15%";
