@@ -105,7 +105,7 @@ export default {
     }
   },
   mounted() {
-      APIClient.sponsorsAPI()
+      APIClient.fetchSponsors()
       .then((responseJson) => {
         this.sponsors = responseJson;
       });
