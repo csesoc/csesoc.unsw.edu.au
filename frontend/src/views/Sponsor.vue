@@ -101,21 +101,6 @@ export default {
     onClickModal: function (sponsor) {
       this.currentSponsor = sponsor;
       this.dialog = true;
-    },
-    onClickSend: function () {
-      APIClient.mailingAPI(MAILING_URL['sponsorship'], this.newCompanyName, this.newEmail, this.newMessage)
-      .then((res) => {
-        switch (res.status) {
-          case 202:
-            console.log("Message sent: " + res);
-            break;
-          case 400:
-            console.error("Invalid form: " + res);
-            break;
-          default:
-            console.error("Failed to send message: " + res);
-        }
-      });
     }
   }
 };
