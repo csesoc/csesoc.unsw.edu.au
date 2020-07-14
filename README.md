@@ -21,6 +21,24 @@ docker --version
 
 Once that's done, clone the repo. `git clone https://github.com/csesoc/csesoc.unsw.edu.au`
 
+### Setting up environment variables
+
+All tokens are being treated as environment variables and are purposely left out of the GitHub repository. The easiest way is to inject these secrets into the container as environment variables which also simplifies (and by extension improves the security of) the CI/CD process. This is just as secure as using Docker Secrets since in both cases the secrets are plain-text in the container.
+
+To have full functionality, and access content fetched using the tokens/secrets, contact the website project lead to get them sent directly to you, hopefully via secure mediums.
+
+Docker expects a file named `.env` in the root directory of the project containing environment variables in the following format:
+```
+{variable_name}={variable_value}
+```
+Here is a valid `.env` file:
+```
+ENV_VAR1=0123456789
+ENV_VAR2=super_secure_secret
+```
+
+These environment variables are only reacheable during the building process of the Docker containers, not in the container themselves (by default). To pass them into their relevant container the `docker-compose.yml` file specifies the required env variables under the *environment* field for each service.
+
 ### Installing
 
 *Please check back regularly as deployment steps may change at any point within these early stages of development. Thank you for your patience.*
