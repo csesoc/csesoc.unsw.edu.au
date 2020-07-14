@@ -21,6 +21,24 @@ docker --version
 
 Once that's done, clone the repo. `git clone https://github.com/csesoc/csesoc.unsw.edu.au`
 
+### Setting up environment variables
+
+All tokens are being treated as environment variables and are purposely left out of the GitHub repository. The easiest way is to inject these secrets into the container as environment variables.
+
+Contact the website project lead to get the tokens sent directly to you via secure mediums.
+
+Docker expects a file named `.env` in the root directory of the project containing environment variables in the following format:
+```
+{variable_name}={variable_value}
+```
+Here is a valid `.env` file:
+```
+ENV_VAR1=0123456789
+ENV_VAR2=super_secure_secret
+```
+
+These environment variables are only reacheable during the building process of the Docker containers, not in the container themselves (by default). To pass them into their relevant container the `docker-compose.yml` file specifies the required env variables under the *environment* field for each service.
+
 ### Installing
 
 *Please check back regularly as deployment steps may change at any point within these early stages of development. Thank you for your patience.*
@@ -79,6 +97,12 @@ At the current moment it builds the docker images, runs the containers and perfo
 ## Deployment
 
 [Gordon Zhong](https://github.com/gawdn) has written up deployment steps on CSESOC servers which can be viewed here: [How to deploy a project on Wheatley](https://compclub.atlassian.net/wiki/spaces/Projects/pages/733118519/How+to+deploy+a+project+on+Wheatley)
+
+## Security
+
+Tokens and API keys should never be commited to a git repository. To overcome this we are using environment variables that are shared among developers through secure mediums. These environment variables are injected into the relevant containers when they are initialized. 
+
+To simplify things we are using environment variables instead of Docker Secrets. The reasoning behind this is because Rancher stores our production secrets internally as Kubernetes Secrets (and just like Docker Secrets are also encrypted at rest). The easiest way is to inject these secrets into the container is as environment variables which also simplifies (and by extension improves the security of) the CI/CD process. This is just as secure as using Docker Secrets since in both cases the secrets are plain-text in the container.
 
 ## Built With
 
