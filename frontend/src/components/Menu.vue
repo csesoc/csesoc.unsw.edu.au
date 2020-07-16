@@ -1,12 +1,12 @@
 <template>
   <div class="dimmed">
     <div class="vertical-menu" >
-      <a @click.stop="showMenu = !showMenu" href="/#/about">About</a>
-      <a href="#">Shop</a>
-      <a href="#">Events</a>
-      <a href="#">CSE Resources</a>
-      <a href="/#/engage">Engage</a>
-      <a href="#">Sponsors</a>
+      <a @click.stop="hide" href="/#/about">About</a>
+      <a @click.stop="hide" href="#">Shop</a>
+      <a @click.stop="hide" href="#">Events</a>
+      <a @click.stop="hide" href="#">CSE Resources</a>
+      <a @click.stop="hide" href="/#/engage">Engage</a>
+      <a @click.stop="hide" href="#">Sponsors</a>
     </div>
   </div>
 </template>
@@ -17,6 +17,12 @@ export default {
     return {
       
     };
+  },
+  methods: {
+    hide(event) {
+      // Relaying status to parent
+      this.$emit('shown', false)
+    }
   }
 };
 </script>

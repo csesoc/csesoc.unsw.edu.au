@@ -18,7 +18,7 @@
         </v-app-bar>
 
         <main>
-          <Menu v-if="showMenu" />
+          <Menu v-if="showMenu" @shown="onMenuCollapse" />
           <RouterView style="overflow-x: hidden" />
         </main>
         
@@ -42,6 +42,11 @@ export default {
     Footer,
     Menu,
     LoginForm
+  },
+  methods: {
+    onMenuCollapse(val) {
+      this.showMenu = val;
+    }
   }
 };
 </script>
