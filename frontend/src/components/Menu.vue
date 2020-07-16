@@ -1,11 +1,11 @@
 <template>
   <div class="dimmed">
-    <div class="vertical-menu">
-      <a href="#">About</a>
+    <div class="vertical-menu" >
+      <a @click.stop="showMenu = !showMenu" href="/#/about">About</a>
       <a href="#">Shop</a>
       <a href="#">Events</a>
       <a href="#">CSE Resources</a>
-      <a href="#">Engage</a>
+      <a href="/#/engage">Engage</a>
       <a href="#">Sponsors</a>
     </div>
   </div>
