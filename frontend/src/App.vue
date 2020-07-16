@@ -42,11 +42,6 @@ export default {
     Footer,
     Menu,
     LoginForm
-  },
-  watch: {
-    // showMenu: (val) => {
-    //   document.documentElement.style.overflow = (val) ? 'hidden' : 'auto';
-    // }
   }
 };
 </script>
