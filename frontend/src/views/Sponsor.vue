@@ -9,7 +9,7 @@
       <v-container class="border" fluid>
           <div v-for="(sponsor, index) in tierOne" :key="sponsor.id" :style="marginStyle(index, largeLogoFilter)">
               <div class="logo-margin">
-                <img class="large-logo" :src="sponsor.logo" v-on:click="onClickModal(sponsor)"/>
+                <img class="large-logo" :src="`data:image/png;base64,${sponsor.logo}`" v-on:click="onClickModal(sponsor)"/>
               </div>
               <div v-if="(index + 1) % largeLogoFilter === 0 || index === tierOne.length - 1" style="clear:both;"></div>
           </div>
@@ -19,7 +19,7 @@
       <v-container class="border" fluid>
           <div v-for="(sponsor, index) in tierTwo" :key="sponsor.id" :style="marginStyle(index, midLogoFilter)">
               <div class="logo-margin">
-                <img class="mid-logo" :src="sponsor.logo" v-on:click="onClickModal(sponsor)"/>
+                <img class="mid-logo" :src="`data:image/png;base64,${sponsor.logo}`" v-on:click="onClickModal(sponsor)"/>
               </div>
               <div v-if="(index + 1) % midLogoFilter === 0 || index === tierTwo.length - 1" style="clear:both;"></div>
           </div>
@@ -29,14 +29,14 @@
       <v-container class="border" fluid>
           <div v-for="(sponsor, index) in tierThree" :key="sponsor.id" :style="marginStyle(index, smallLogoFilter)">
               <div class="logo-margin">
-                  <img class="small-logo" :src="sponsor.logo" v-on:click="onClickModal(sponsor)"/>
+                  <img class="small-logo" :src="`data:image/png;base64,${sponsor.logo}`" v-on:click="onClickModal(sponsor)"/>
               </div>
               <div v-if="(index + 1) % smallLogoFilter === 0 || index === tierThree.length - 1" style="clear:both;"></div>
           </div>
       </v-container>
       <div style="clear:both;"></div>
     </v-container>
-    <SponsorModal v-bind:dialog="dialog" v-bind:title="currentSponsor.name" v-bind:body="currentSponsor.detail"> </SponsorModal>
+    <SponsorModal v-model="dialog" v-bind:title="currentSponsor.name" v-bind:body="currentSponsor.detail"> </SponsorModal>
     
     <h1 class="text-center text-h1 font-weight-bold">Become a <br> Sponsor</h1>
     <v-container fluid style="margin-left:15%">
@@ -169,7 +169,7 @@ h2 {
 }
 
 .input-label {
-  padding:20px;
+  padding-top:20px;
   float:left;
 }
 

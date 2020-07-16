@@ -1,6 +1,6 @@
 <template>
     <v-dialog
-        v-model="vDialog"
+        v-model="show"
         max-width="500"
         >
       <v-card>
@@ -15,17 +15,21 @@
 <script>
   export default {
     props: {
-        title: String,
-        body: String,
-        dialog: Boolean
+      title: String,
+      body: String,
+      value: Boolean
     },
     computed: {
-      vDialog: function() {
-        return this.dialog;
+      show: {
+        get () {
+          return this.value
+        },
+        set (value) {
+          this.$emit('input', value)
+        }
       }
     }
   }
 </script>
-
 <style scoped>
 </style>
