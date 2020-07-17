@@ -16,10 +16,18 @@ describe('Preview.vue', () => {
     wrapper = mount(Preview, {
       localVue,
       vuetify
-    })
-  })
+    });
+  });
 
-  it('should work', () => {
+  it('should load resources as components', () => {
     
+  });
+
+  it('should allow for on hover that changes the preview', () => {
+
+  });
+
+  it('should preview the hovered over resource', () => {
+
   })
 })
