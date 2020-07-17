@@ -6,23 +6,13 @@
 
 <template>
   <v-footer dark padless id="tiers">
-    <v-card id="tiers-sponsors" width="100vw" class="white-text text-center">
-      <v-card-text class="white-text">
-        <section class="tiers-grid">
-          <a v-for="sponsor in tierOne" class="tiers-box" :href="sponsor.url" :key="sponsor.id">
-            <img :src="`data:image/png;base64,${sponsor.logo}`" style=" max-width:300px;max-height:105px;" />
-          </a>
-        </section>
-        <section class="tiers-grid">
-          <a v-for="sponsor in tierTwo" class="tiers-box" :href="sponsor.url" :key="sponsor.id">
-            <img :src="`data:image/png;base64,${sponsor.logo}`" style="max-width:200px;max-height:75px" />
-          </a>
-        </section>
-        <section class="tiers-grid">
-          <a v-for="sponsor in tierThree" class="tiers-box" :href="sponsor.url" :key="sponsor.id">
-            <img :src="`data:image/png;base64,${sponsor.logo}`" style="max-width:100px;max-height:50px" />
-          </a>
-        </section>
+    <v-card id="tiers__sponsors" width="100vw" class="white--text text-center">
+      <v-card-text class="white--text">
+        <v-container class="fill-height" fluid style="max-height: 200px; max-width:300px">
+          <v-img src="@/assets/csesocwhiteblue.png" />
+          <br />B03 CSE Building K17, UNSW
+          <br />
+        </v-container>
       </v-card-text>
 
       <h2>CONTACT US</h2>
@@ -32,8 +22,7 @@
         <a href="https://www.facebook.com/groups/csesoc">Facebook Group</a>
         |
         <a href="https://www.linkedin.com/company/csesoc/about/">LinkedIn</a>
-        <br />B03 CSE Building K17, UNSW
-        <br />
+
         <a id="tiers__link" href="mailto:csesoc@csesoc.org.au">csesoc@csesoc.org.au</a>
       </v-card-text>
 
