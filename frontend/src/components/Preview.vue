@@ -20,19 +20,19 @@ export default {
     items: [
       {
         title: 'First Year Guide.',
-        subtitle: 'This is a guide for students looking for guidance.'
+        description: 'This is a guide for students looking for guidance.'
       },
       {
         title: 'Jobs Board.',
-        subtitle: 'A place where CSESOC students can look for relevant job opportunities.'
+        description: 'A place where CSESOC students can look for relevant job opportunities.'
       },
       {
         title: 'Media\'s Website',
-        subtitle: 'A cornucopia of articles, videos and podcasts to satisfy your desire.'
+        description: 'A cornucopia of articles, videos and podcasts to satisfy your desire.'
       },
       {
         title: 'Notangles.',
-        subtitle: 'CSESOC\'s very own Bojangles'
+        description: 'CSESOC\'s very own Bojangles'
       },
     ],
   }),
