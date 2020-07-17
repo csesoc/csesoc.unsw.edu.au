@@ -57,6 +57,11 @@
       <HeaderTitle :title="'resources'" />
       <NavGrid :items="resourcesItems"></NavGrid>
     </v-container>
+
+    <v-container>
+      <HeaderTitle :title="'resources'" />
+      <Preview />
+    </v-container>
   </div>
 </template>
 
@@ -66,7 +71,8 @@ import ListComponent from '@/components/ListComponent';
 import Slider from '@/components/Slider';
 import HeaderTitle from '@/components/HeaderTitle';
 import EventGrid from '@/components/EventGrid';
-import APIClient  from '../utils/APIClient';
+import Preview from '@/components/Preview';
+import APIClient from '../utils/APIClient';
 
 export default {
   data: () => ({
@@ -90,7 +96,8 @@ export default {
     ListComponent,
     Slider,
     HeaderTitle,
-    EventGrid
+    EventGrid,
+    Preview,
   },
 
   mounted() {
