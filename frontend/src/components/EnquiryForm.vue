@@ -26,7 +26,6 @@ export default {
   props: ['type'],
   data: () => ({
     valid: true,
-    messageSent: false,
     name: '',
     nameRules: [
       v => !!v || 'Name is required',
@@ -48,7 +47,6 @@ export default {
       .then((res) => {
         switch (res.status) {
           case 202:
-            this.messageSent = true;
             this.body = "";
             this.email = "";
             this.name = "";
