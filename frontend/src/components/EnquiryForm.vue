@@ -1,44 +1,17 @@
 <template>
   <v-row justify="space-around">
     <v-col class="form-box">
-      <h2 v-if="this.messageSent">
-        Message sent!
-      </h2>
-
       <v-form
-        v-else
         ref="form"
         v-model="valid"
       >
-        <v-text-field
-          v-model="name"
-          :rules="nameRules"
-          label="Name"
-          required
-        ></v-text-field>
-
-        <v-text-field
-          v-model="email"
-          :rules="emailRules"
-          label="E-mail"
-          required
-        ></v-text-field>
-
-        <v-textarea
-          v-model="body"
-          :rules="bodyRules"
-          label="Message"
-          required
-        ></v-textarea>
-
-        <v-btn
-          :disabled="!valid"
-          color="blue accent-4"
-          class="mr-4"
-          @click="send"
-        >
-          Send
-        </v-btn>
+        <label class="text-body-1 input-label">{{ this.type == "sponsorship" ? "Company Name" : "Name" }}</label>
+        <v-text-field class="input" placeholder="Name" :rules="nameRules" v-model="name"></v-text-field>
+        <label class="text-body-1 input-label"> Email </label>
+        <v-text-field class="input" placeholder="John.smith@gmail.com" :rules="emailRules" v-model="email"></v-text-field>
+        <label class="text-body-1 input-label"> Message </label>
+        <v-textarea class="input" placeholder="Body" :rules="bodyRules" v-model="body"></v-textarea>
+        <v-btn text style="margin-left:60%" :disabled="!valid" @click="send">Send</v-btn>
       </v-form>
     </v-col>
   </v-row>
@@ -76,10 +49,14 @@ export default {
         switch (res.status) {
           case 202:
             this.messageSent = true;
+            this.body = "";
+            this.email = "";
+            this.name = "";
             console.log("Message sent: " + res);
             break;
           case 400:
             console.error("Invalid form: " + res);
+            console.log(res);
             break;
           default:
             console.error("Failed to send message: " + res);
@@ -94,5 +71,15 @@ export default {
 .form-box {
   padding-left: 10%;
   padding-right: 10%;
+}
+
+.input {
+  margin-left:15%;
+  width:50%;
+}
+
+.input-label {
+  padding-top:20px;
+  float:left;
 }
 </style>

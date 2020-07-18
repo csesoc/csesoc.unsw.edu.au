@@ -40,21 +40,18 @@
     
     <h1 class="text-center text-h1 font-weight-bold">Become a <br> Sponsor</h1>
     <v-container fluid style="margin-left:15%">
-      <label class="text-body-1 input-label"> Company Name </label>
-      <v-text-field class="input" placeholder="Company Name" v-bind:value="newCompanyName" v-model="newCompanyName"></v-text-field>
-      <label class="text-body-1 input-label" style="margin-right:150px;"> Email </label>
-      <v-text-field class="input" placeholder="John.smith@gmail.com" v-bind:value="newCompanyName" v-model="newEmail"></v-text-field>
-      <label class="text-body-1 input-label" style="margin-right:150px;"> Message </label>
-      <v-textarea class="input" placeholder="Body" v-bind:value="newCompanyName" v-model="newMessage"></v-textarea>
-      <v-btn text style="margin-left:62%" @click="onClickSend()">Send</v-btn>
+        <v-card flat tile>
+          <EnquiryForm type="sponsorship"></EnquiryForm>
+        </v-card>
     </v-container>
   </div>
 </template>
   
 <script type="text/javascript">
-import APIClient  from '../utils/APIClient'
-import SponsorModal from '@/components/SponsorModal'
-import {MAILING_URL} from '../utils/Constants'
+import APIClient  from '../utils/APIClient';
+import SponsorModal from '@/components/SponsorModal';
+import EnquiryForm from '@/components/EnquiryForm';
+import {MAILING_URL} from '../utils/Constants';
 import Vue from 'vue'
 
 export default {
@@ -72,7 +69,8 @@ export default {
     smallLogoFilter: 5
   }),
   components: {
-    SponsorModal
+    SponsorModal,
+    EnquiryForm
   },
   computed: {
     // functions to determine sizing category of sponsor based on their value
@@ -161,16 +159,6 @@ h2 {
 #showcase img {
   max-height: 30vh;
   max-width: 30%;
-}
-
-.input {
-  margin-left:15%;
-  width:50%;
-}
-
-.input-label {
-  padding-top:20px;
-  float:left;
 }
 
 .border {
