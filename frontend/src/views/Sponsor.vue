@@ -39,11 +39,9 @@
     <SponsorModal v-model="dialog" v-bind:title="currentSponsor.name" v-bind:body="currentSponsor.detail"> </SponsorModal>
     
     <h1 class="text-center text-h1 font-weight-bold">Become a <br> Sponsor</h1>
-    <v-container fluid style="margin-left:15%">
-        <v-card flat tile>
-          <EnquiryForm type="sponsorship"></EnquiryForm>
-        </v-card>
-    </v-container>
+    <v-card flat tile style="margin-left:15%">
+      <EnquiryForm type="sponsorship"></EnquiryForm>
+    </v-card>
   </div>
 </template>
   
@@ -59,9 +57,6 @@ export default {
     currentSponsor: {},
     sponsors: [],
     dialog: false,
-    newCompanyName: "",
-    newEmail: "",
-    newMessage: "",
 
     //Constants
     largeLogoFilter: 3,
@@ -112,9 +107,6 @@ export default {
       .then((res) => {
         switch (res.status) {
           case 202:
-            this.newCompanyName = "";
-            this.newEmail = "";
-            this.newMessage = "";
             console.log("Message sent: " + res);
             break;
           case 400:
