@@ -10,7 +10,7 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
-	
+
 	. "csesoc.unsw.edu.au/m/v2/server"
 
 	"github.com/labstack/echo/v4"
@@ -22,7 +22,7 @@ import (
 // Sponsor - struct to contain sponsor data
 type Sponsor struct {
 	Name   string `json:"name" validate:"required"`
-	Logo   string `json:"logo" validate:"required,url"`
+	Logo   string `json:"logo" validate:"required"`
 	Tier   int    `json:"tier" validate:"required,numeric,eq=0|eq=1|eq=2"`
 	Detail string `json:"detail" validate:"required"`
 	Url    string `json:"url" validate:"required,url"`
@@ -93,7 +93,7 @@ func NewSponsor(c echo.Context) error {
 		Logo:   c.FormValue("logo"),
 		Tier:   tier,
 		Detail: c.FormValue("detail"),
-		Url:	c.FormValue("url"),
+		Url:    c.FormValue("url"),
 	}
 
 	// Validate the struct with golang validator package
