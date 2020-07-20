@@ -29,8 +29,10 @@
 
 <script>
 export default {
+  name: 'Preview',
+  props: ['items'],
   data: () => ({
-    preview: "@/assets/csesocgreyblue.png",
+    preview: '@/assets/csesocgreyblue.png',
     items: [
       {
         title: 'First Year Guide.',

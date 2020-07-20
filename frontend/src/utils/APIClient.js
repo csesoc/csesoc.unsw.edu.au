@@ -1,5 +1,5 @@
 import {
-    SPONSORS_URL, EVENTS_URL
+    SPONSORS_URL, EVENTS_URL, PREVIEW_URL
   } from './Constants'
 
 const APICall = (url, headers, convertToJson = true) => {
@@ -70,11 +70,18 @@ const fetchFaqs = () => {
     return APICall(url, options)
 }
 
+const previewAPI = () => {
+    const url = PREVIEW_URL
+    const client = getClient('GET')
+    return APICall(url, client)
+}
+
 const APIClient = {
     sponsorsAPI,
     mailingAPI,
     eventsAPI,
     fetchSocials,
-    fetchFaqs
+    fetchFaqs,
+    previewAPI,
 }
 export default APIClient

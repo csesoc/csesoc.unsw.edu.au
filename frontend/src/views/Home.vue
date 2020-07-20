@@ -60,7 +60,7 @@
 
     <v-container>
       <HeaderTitle :title="'resources'" />
-      <Preview />
+      <Preview :items="resourcesItems" />
     </v-container>
   </div>
 </template>
@@ -77,8 +77,6 @@ import APIClient from '../utils/APIClient';
 export default {
   data: () => ({
     drawer: false,
-    resourcesApiUrl:
-      'https://gist.githack.com/gawdn/6fb68af4e994dd72e50fb360d299cbb6/raw/6fa351ba05f90ce0906c4c7accdf8c712f28f60d/resources0b.json',
     resourcesItems: [],
     announceApiUri:
       'https://gist.githack.com/gawdn/79b9df83f2fd267a3287d13b9badce48/raw/7bfb85a4cb799712229bed5ea02234e773eb42d4/populated_list.json',
@@ -107,8 +105,7 @@ export default {
         this.mediaItems = responseJson;
       });
 
-    fetch(this.resourcesApiUrl)
-      .then(r => r.json())
+    APIClient.previewAPI()
       .then((responseJson) => {
         this.resourcesItems = responseJson;
       });
