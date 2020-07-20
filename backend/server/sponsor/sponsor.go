@@ -10,7 +10,7 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
-	
+
 	. "csesoc.unsw.edu.au/m/v2/server"
 
 	"github.com/labstack/echo/v4"
@@ -93,7 +93,7 @@ func NewSponsor(c echo.Context) error {
 		Logo:   c.FormValue("logo"),
 		Tier:   tier,
 		Detail: c.FormValue("detail"),
-		Url:	c.FormValue("url"),
+		Url:    c.FormValue("url"),
 	}
 
 	// Validate the struct with golang validator package
@@ -208,7 +208,7 @@ func retriveSponsorsJSON() ([]Sponsor, error) {
 	jsonFile, err := os.Open(abspath)
 
 	if err != nil {
-		return nil, fmt.Errorf("Cound not open file faq.json: %v", err)
+		return nil, fmt.Errorf("Cound not open file sponsor.json: %v", err)
 	}
 
 	byteValue, _ := ioutil.ReadAll(jsonFile)
