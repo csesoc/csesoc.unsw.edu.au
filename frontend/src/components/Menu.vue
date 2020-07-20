@@ -42,7 +42,7 @@ export default {
 }
 
 .vertical-menu {
-  width: 500px; /* Set a width if you like */
+  width: 700px; /* Set a width if you like */
   margin: auto;
   padding-top: 200px;
 }
@@ -61,6 +61,6 @@ export default {
 .vertical-menu a:hover {
   color: white;
   font-weight: bolder;
-  transform: scale(2);
+  font-size: 90px;
 }
 </style>
