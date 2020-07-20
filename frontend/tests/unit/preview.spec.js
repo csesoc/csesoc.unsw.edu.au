@@ -27,6 +27,7 @@ describe('Preview.vue', () => {
     // see if it exists and resources are being fetched
     expect(titleArray.length).toEqual(4);
     expect(subtitleArray.length).toEqual(4);
+    // make sure there is content
     // see if every list item has an action
   });
 
