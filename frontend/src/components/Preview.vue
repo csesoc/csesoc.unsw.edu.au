@@ -33,24 +33,6 @@ export default {
   props: ['items'],
   data: () => ({
     preview: '@/assets/csesocgreyblue.png',
-    items: [
-      {
-        title: 'First Year Guide.',
-        description: 'This is a guide for students looking for guidance.'
-      },
-      {
-        title: 'Jobs Board.',
-        description: 'A place where CSESOC students can look for relevant job opportunities.'
-      },
-      {
-        title: 'Media\'s Website',
-        description: 'A cornucopia of articles, videos and podcasts to satisfy your desire.'
-      },
-      {
-        title: 'Notangles.',
-        description: 'CSESOC\'s very own Bojangles'
-      },
-    ],
   }),
 };
 </script>
