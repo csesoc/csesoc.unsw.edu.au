@@ -159,25 +159,8 @@ func serveAPI(e *echo.Echo) {
 
 	println("Serving API...")
 
-	// Creating collections
-	// postsCollection := client.Database("csesoc").Collection("posts")
-	// catCollection := client.Database("csesoc").Collection("categories")
-	// userCollection := client.Database("csesoc").Collection("users")
-
 	// AUTHENTICATION
 	e.POST("/login", TempLogin)
-
-	// POSTS
-	// e.GET("/api/posts/", getPosts(postsCollection))
-	// e.POST("/api/post/", newPosts(postsCollection), middleware.JWT(JWT_SECRET))
-	// e.PUT("/api/post/", updatePosts(postsCollection), middleware.JWT(JWT_SECRET))
-	// e.DELETE("/api/post/", deletePosts(postsCollection), middleware.JWT(JWT_SECRET))
-
-	// CATEGORIES
-	// e.GET("/api/category/:id/", getCats(catCollection))
-	// e.POST("/api/category/", newCats(catCollection), middleware.JWT(JWT_SECRET))
-	// e.PATCH("/api/category/", patchCats(catCollection), middleware.JWT(JWT_SECRET))
-	// e.DELETE("/api/category/", deleteCats(catCollection), middleware.JWT(JWT_SECRET))
 
 	v1 := e.Group("/api/v1")
 	{
