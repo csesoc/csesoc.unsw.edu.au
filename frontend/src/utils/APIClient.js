@@ -1,5 +1,5 @@
 import {
-    SPONSORS_URL, EVENTS_URL
+    SPONSORS_URL, EVENTS_URL, SOCIAL_URL, FAQ_URL
   } from './Constants'
 
 const APICall = (url, headers, convertToJson = true) => {
@@ -41,10 +41,10 @@ const eventsAPI = () => {
 }
 
 const mailingAPI = (url, name, email, body) => {
-    let formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('body', body);
+    let formData = new FormData()
+    formData.append('name', name)
+    formData.append('email', email)
+    formData.append('body', body)
 
     const options = {
         method: 'POST',
@@ -54,13 +54,13 @@ const mailingAPI = (url, name, email, body) => {
     return APICall(url, options, false)
 }
 
-const fetchSocials = () => {
+const socialsAPI = () => {
     const url = SOCIAL_URL
     const client = getClient('GET')
     return APICall(url, client)
 }
 
-const fetchFaqs = () => {
+const faqsAPI = () => {
     const url = FAQ_URL
     const client = getClient('GET')
     return APICall(url, client)
@@ -70,7 +70,7 @@ const APIClient = {
     sponsorsAPI,
     mailingAPI,
     eventsAPI,
-    fetchSocials,
-    fetchFaqs
+    socialsAPI,
+    faqsAPI
 }
 export default APIClient

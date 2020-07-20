@@ -92,7 +92,7 @@ import HeaderTitle from '@/components/HeaderTitle';
 import EnquiryForm from '@/components/EnquiryForm';
 import FeedbackForm from '@/components/FeedbackForm';
 
-import {SOCIAL_URL, FAQ_URL} from '@/utils/Constants'
+import APIClient  from '../utils/APIClient'
 
 export default {
   data: () => ({
@@ -107,17 +107,15 @@ export default {
   },
 
   mounted() {
-    fetch(SOCIAL_URL)
-      .then(r => r.json())
-      .then((responseJson) => {
-        this.socialLinks = responseJson;
-      });
-    
-    fetch(FAQ_URL)
-      .then(r => r.json())
-      .then((responseJson) => {
-        this.faqLinks = responseJson;
-      });
+    APIClient.socialsAPI()
+    .then((responseJson) => {
+      this.socialLinks = responseJson;
+    });
+
+    APIClient.faqsAPI()
+    .then((responseJson) => {
+      this.faqLinks = responseJson;
+    });
   }
 };
 </script>
