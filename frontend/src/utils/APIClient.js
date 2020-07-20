@@ -56,18 +56,14 @@ const mailingAPI = (url, name, email, body) => {
 
 const fetchSocials = () => {
     const url = SOCIAL_URL
-    const options = {
-        method: 'GET',
-    }
-    return APICall(url, options)
+    const client = getClient('GET')
+    return APICall(url, client)
 }
 
 const fetchFaqs = () => {
     const url = FAQ_URL
-    const options = {
-        method: 'GET',
-    }
-    return APICall(url, options)
+    const client = getClient('GET')
+    return APICall(url, client)
 }
 
 const APIClient = {
