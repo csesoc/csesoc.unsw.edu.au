@@ -31,8 +31,8 @@ type Resource struct {
 // SETUP
 ///////////
 
-// Setup - Set up the resources collection
-func Setup(client *mongo.Client) {
+// ResourcesSetup - Set up the resources collection
+func ResourcesSetup(client *mongo.Client) {
 	resourceColl = client.Database("csesoc").Collection("resources")
 
 	// Creating unique index for resource title

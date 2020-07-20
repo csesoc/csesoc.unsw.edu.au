@@ -16,6 +16,7 @@ import (
 	. "csesoc.unsw.edu.au/m/v2/server/faq"
 	. "csesoc.unsw.edu.au/m/v2/server/login"
 	. "csesoc.unsw.edu.au/m/v2/server/mailing"
+	. "csesoc.unsw.edu.au/m/v2/server/resources"
 	. "csesoc.unsw.edu.au/m/v2/server/social"
 	. "csesoc.unsw.edu.au/m/v2/server/sponsor"
 
@@ -202,6 +203,7 @@ func serveAPI(e *echo.Echo) {
 		}
 
 		// RESOURCES
+		ResourcesSetup(client)
 		resources := v1.Group("/resources")
 		{
 			resources.GET("/preview", GetPreview)
