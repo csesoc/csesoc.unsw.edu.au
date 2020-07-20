@@ -1,6 +1,6 @@
 <template>
-  <div class="dimmed">
-    <div @click.stop="hide" class="vertical-container">
+  <div @click.stop="hide" class="dimmed">
+    <div class="vertical-container">
       <a href="/#/about">About</a>
       <a href="#">Shop</a>
       <a href="#">Events</a>
@@ -39,7 +39,7 @@ export default {
   right: 0;
   background: rgba(0, 0, 0, 0.9);
   font-family: "Quicksand", sans-serif;
-  padding-top: 64px; /* Block out nav bar */
+  margin-top: 64px; /* Block out nav bar */
 }
 
 .vertical-container {
@@ -47,6 +47,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 700px;
+  margin: auto;
 }
 
 .vertical-container a {
