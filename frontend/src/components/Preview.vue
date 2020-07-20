@@ -14,7 +14,7 @@
         <v-container class="preview-container">
           <v-list two-line>
             <template v-for="(item, index) in items">
-              <v-list-item class="resource-list" @mouseover="preview = item.src" :key="item.title">
+              <v-list-item class="resource-list" :href="item.link" @mouseover="preview = item.src" :key="item.title">
                 <v-list-item-content>
                   <div class="text-h4" v-text="item.title" />
                   <div class="text-subtitle-1" v-text="item.description" />

@@ -24,6 +24,7 @@ var resourceColl *mongo.Collection
 type Resource struct {
 	Title       string `json:"title" validate:"required"`
 	Description string `json:"description" validate:"required"`
+	Link        string `json:"link" validate:"required,url"`
 	Source      string `json:"src" validate:"required"`
 }
 
