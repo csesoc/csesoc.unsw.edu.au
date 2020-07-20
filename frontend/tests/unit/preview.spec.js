@@ -22,20 +22,20 @@ describe('Preview.vue', () => {
   });
 
   it('should load resources as components', () => {
-    const titleArray = wrapper.findAll('.v-list-item__title');
-    const subtitleArray = wrapper.findAll('.v-list-item__subtitle');
-    // see if it exists and resources are being fetched
-    expect(titleArray.length).toEqual(4);
-    expect(subtitleArray.length).toEqual(4);
-    // make sure there is content
-    // see if every list item has an action
+    const itemArray = wrapper.findAll('.v-list-item');
+    //see if the resources have been fetched
+    expect(itemArray.length).toEqual(4);
+    
   });
 
   it('should allow for on hover that changes the preview', () => {
-
+    const itemArray = wrapper.findAll(".v-list-item");
+    itemArray.trigger('mouseover')
+    
+    //
   });
 
-  it('should preview the hovered over resource', () => {
+  it('should have links to resource', () => {
 
   });
 });
