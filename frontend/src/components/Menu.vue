@@ -48,16 +48,19 @@ export default {
 }
 
 .vertical-menu a {
-  color: #1976D2;
+  color: white;
   display: block; /* Make the links appear below each other */
-  padding: 12px; /* Add some padding */
+  padding: 20px; /* Add some padding */
   text-decoration: none; /* Remove underline from links */
   text-align: center;
-  font-size: 35px;
-  font-weight: bold;
+  font-size: 45px;
+  font-weight: normal;
+  transition: all .2s ease-in-out;
 }
 
 .vertical-menu a:hover {
   color: white;
+  font-weight: bolder;
+  transform: scale(2);
 }
 </style>
