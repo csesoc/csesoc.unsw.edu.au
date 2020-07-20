@@ -200,5 +200,11 @@ func serveAPI(e *echo.Echo) {
 		{
 			events.GET("", GetEvents)
 		}
+
+		// RESOURCES
+		resources := v1.Group("/resources")
+		{
+			resources.GET("/preview", GetPreview)
+		}
 	}
 }
