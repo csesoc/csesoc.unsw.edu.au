@@ -19,7 +19,7 @@
                 <v-list-item-subtitle v-html="item.description"></v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
-            <v-divider :key="index" />
+            <v-divider v-if="index != items.length-1" :key="index" />
           </template>
         </v-list>
       </v-col>
