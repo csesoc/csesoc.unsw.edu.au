@@ -1,7 +1,7 @@
 <template>
   <v-app id="main-app">
     <!-- Navigation bar/app bar goes here -->
-    <v-content>
+    <v-main>
       <div>
         <Sidebar :drawer="drawer" />
         <v-app-bar app dark width="100vw">
@@ -19,7 +19,7 @@
         <router-view style="overflow-x: hidden"></router-view>
         <Footer />
       </div>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
