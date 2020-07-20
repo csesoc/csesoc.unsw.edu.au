@@ -10,6 +10,8 @@ services:
         volumes:
             - /app/node_modules
             - ./frontend:/app
+        environment: 
+            - CHOKIDAR_USEPOLLING=true
     backend:
         image: backend
         build: ./backend
