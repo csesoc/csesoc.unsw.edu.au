@@ -55,18 +55,12 @@
 
     <v-container>
       <HeaderTitle :title="'resources'" />
-      <NavGrid :items="resourcesItems"></NavGrid>
-    </v-container>
-
-    <v-container>
-      <HeaderTitle :title="'resources'" />
-      <Preview :items="resourcesItems" />
+      <Preview />
     </v-container>
   </div>
 </template>
 
 <script>
-import NavGrid from '@/components/NavGrid';
 import ListComponent from '@/components/ListComponent';
 import Slider from '@/components/Slider';
 import HeaderTitle from '@/components/HeaderTitle';
@@ -77,7 +71,6 @@ import APIClient from '../utils/APIClient';
 export default {
   data: () => ({
     drawer: false,
-    resourcesItems: [],
     announceApiUri:
       'https://gist.githack.com/gawdn/79b9df83f2fd267a3287d13b9badce48/raw/7bfb85a4cb799712229bed5ea02234e773eb42d4/populated_list.json',
     announceItems: [],
@@ -90,7 +83,6 @@ export default {
   }),
 
   components: {
-    NavGrid,
     ListComponent,
     Slider,
     HeaderTitle,
@@ -105,10 +97,6 @@ export default {
         this.mediaItems = responseJson;
       });
 
-    APIClient.previewAPI()
-      .then((responseJson) => {
-        this.resourcesItems = responseJson;
-      });
     APIClient.eventsAPI()
       .then((responseJson) => {
         this.eventItems = responseJson.events.slice(0,3);
