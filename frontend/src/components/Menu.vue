@@ -1,6 +1,6 @@
 <template>
   <div class="dimmed">
-    <div class="vertical-menu" >
+    <div class="vertical-container">
       <a @click.stop="hide" href="/#/about">About</a>
       <a @click.stop="hide" href="#">Shop</a>
       <a @click.stop="hide" href="#">Events</a>
@@ -39,28 +39,29 @@ export default {
   right: 0;
   background: rgba(0, 0, 0, 0.9);
   font-family: "Quicksand", sans-serif;
+  padding-top: 64px; /* Block out nav bar */
 }
 
-.vertical-menu {
-  width: 700px; /* Set a width if you like */
-  margin: auto;
-  padding-top: 200px;
+.vertical-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.vertical-menu a {
+.vertical-container a {
   color: white;
-  display: block; /* Make the links appear below each other */
-  padding: 20px; /* Add some padding */
+  padding: 2vh; /* Add some padding */
   text-decoration: none; /* Remove underline from links */
   text-align: center;
-  font-size: 45px;
+  font-size: 4vh;
   font-weight: normal;
   transition: all .2s ease-in-out;
 }
 
-.vertical-menu a:hover {
+.vertical-container a:hover {
   color: white;
   font-weight: bolder;
-  font-size: 90px;
+  font-size: 8vh;
 }
 </style>
