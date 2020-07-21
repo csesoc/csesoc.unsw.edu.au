@@ -5,19 +5,19 @@
         <label>About</label>
       </RouterLink>
       <RouterLink to="/" class="link">
-        <label>Shop</label>
-      </RouterLink>
-      <RouterLink to="/" class="link">
         <label>Events</label>
       </RouterLink>
       <RouterLink to="/" class="link">
         <label>CSE Resources</label>
       </RouterLink>
-      <RouterLink to="/engage" class="link">
-        <label>Engage</label>
-      </RouterLink>
       <RouterLink to="/" class="link">
         <label>Sponsors</label>
+      </RouterLink>
+      <RouterLink to="/" class="link">
+        <label>Shop</label>
+      </RouterLink>
+      <RouterLink to="/engage" class="link">
+        <label>Engage</label>
       </RouterLink>
     </div>
   </div>
