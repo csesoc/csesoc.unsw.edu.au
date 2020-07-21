@@ -10,7 +10,7 @@
       <RouterLink to="/" class="link">
         <label>CSE Resources</label>
       </RouterLink>
-      <RouterLink to="/" class="link">
+      <RouterLink to="/sponsors" class="link">
         <label>Sponsors</label>
       </RouterLink>
       <RouterLink to="/" class="link">
@@ -41,7 +41,7 @@ export default {
 
 <style>
 .dimmed {
-  z-index: 20;
+  z-index: 2;
   display: block;
   position: fixed;
   height: 100%;
