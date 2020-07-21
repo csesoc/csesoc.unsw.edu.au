@@ -17,6 +17,7 @@
     props: {
       title: String,
       body: String,
+      //Value here is the prop that is made from v-model
       value: Boolean
     },
     computed: {

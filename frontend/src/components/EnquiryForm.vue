@@ -47,9 +47,7 @@ export default {
       .then((res) => {
         switch (res.status) {
           case 202:
-            this.body = "";
-            this.email = "";
-            this.name = "";
+            this.$refs.form.reset();
             console.log("Message sent: " + res);
             break;
           case 400:
