@@ -168,17 +168,17 @@ h2 {
 }
 
 .large-logo {
-  max-width:250px;
+  max-width:225px;
   max-height:205px;
 }
 
 .mid-logo {
-  max-width:200px;
+  max-width:175px;
   max-height:205px;
 }
 
 .small-logo {
-  max-width:150px;
+  max-width:125px;
   max-height:205px;
 }
 </style>
