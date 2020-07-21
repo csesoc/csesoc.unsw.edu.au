@@ -1,5 +1,5 @@
 <template>
-  <div @click.stop="hide" class="dimmed">
+  <div @click.stop="hide" class="dimmed no-scroll">
     <div class="vertical-container">
       <a href="/#/about">About</a>
       <a href="#">Shop</a>
@@ -29,7 +29,7 @@ export default {
 
 <style>
 .dimmed {
-  z-index: 2;
+  z-index: 20;
   display: block;
   position: fixed;
   height: 100%;
@@ -37,9 +37,15 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 1);
   font-family: "Quicksand", sans-serif;
   margin-top: 64px; /* Block out nav bar */
+}
+
+.no-scroll {
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
 }
 
 .vertical-container {
