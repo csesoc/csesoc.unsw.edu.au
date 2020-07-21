@@ -45,6 +45,16 @@ export default {
     onMenuCollapse(val) {
       this.showMenu = val;
     }
+  },
+  watch: {
+    showMenu: (val) => {
+      if (val) {
+        // Disable scrolling
+        document.body.classList.add('no-scroll');
+      } else {
+        document.body.classList.remove('no-scroll');
+      }
+    }
   }
 };
 </script>
@@ -68,4 +78,7 @@ body {
   height: 100vh;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
 </style>
