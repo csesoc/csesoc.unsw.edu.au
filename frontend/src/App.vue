@@ -1,15 +1,14 @@
 <template>
   <v-app id="main-app">
-    <!-- Navigation bar/app bar goes here -->
-    <v-content>
-      <div>
+    <v-content >
+        <!-- Navigation bar/app bar goes here -->
         <v-app-bar app dark width="100vw">
           <!-- Logo -->
-          <router-link to="/">
+          <RouterLink to="/" v-on:click.native="showMenu = false">
             <v-container class="fill-height" style="max-height: 64px; max-width:100px">
               <v-img src="@/assets/csesocwhiteblue.png" />
             </v-container>
-          </router-link>
+          </RouterLink>
 
           <div class="flex-grow-1"></div>
 
@@ -23,7 +22,6 @@
         </main>
         
         <Footer />
-      </div>
     </v-content>
   </v-app>
 </template>
@@ -69,4 +67,5 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
 </style>
