@@ -1,12 +1,24 @@
 <template>
   <div @click.stop="hide" class="dimmed no-scroll">
     <div class="vertical-container">
-      <a href="/#/about">About</a>
-      <a href="#">Shop</a>
-      <a href="#">Events</a>
-      <a href="#">CSE Resources</a>
-      <a href="/#/engage">Engage</a>
-      <a href="#">Sponsors</a>
+      <RouterLink to="/about" class="link">
+        <label>About</label>
+      </RouterLink>
+      <RouterLink to="/" class="link">
+        <label>Shop</label>
+      </RouterLink>
+      <RouterLink to="/" class="link">
+        <label>Events</label>
+      </RouterLink>
+      <RouterLink to="/" class="link">
+        <label>CSE Resources</label>
+      </RouterLink>
+      <RouterLink to="/engage" class="link">
+        <label>Engage</label>
+      </RouterLink>
+      <RouterLink to="/" class="link">
+        <label>Sponsors</label>
+      </RouterLink>
     </div>
   </div>
 </template>
@@ -57,19 +69,24 @@ export default {
   margin: auto;
 }
 
-.vertical-container a {
-  color: white;
-  padding: 2vh; /* Add some padding */
+.vertical-container .link {
   text-decoration: none; /* Remove underline from links */
   text-align: center;
+  color: white;
+  padding: 2vh; /* Add some padding */
+  cursor: pointer; /* To simulate a link */
   font-size: 4vh;
   font-weight: normal;
   transition: all .2s ease-in-out;
 }
 
-.vertical-container a:hover {
+.vertical-container .link:hover {
   color: white;
   font-weight: bolder;
   font-size: 8vh;
+}
+
+label {
+  cursor: pointer; /* To simulate a link */
 }
 </style>
