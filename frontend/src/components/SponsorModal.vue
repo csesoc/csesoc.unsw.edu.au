@@ -17,10 +17,7 @@
     props: {
       title: String,
       body: String,
-<<<<<<< HEAD
       //Value here is the prop that is made from v-model
-=======
->>>>>>> 9610311... fixed modal
       value: Boolean
     },
     computed: {
