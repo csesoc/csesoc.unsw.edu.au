@@ -53,8 +53,11 @@ func SponsorSetup(client *mongo.Client) {
 		log.Fatal("Could not retrive sponsors from JSON")
 	}
 
+	optUpsert := options.Update().SetUpsert(true)
 	for _, sponsor := range sponsors {
-		if _, err := sponsorColl.InsertOne(context.TODO(), sponsor); err != nil {
+		filter := bson.M{"name": sponsor.Name}
+		update := bson.M{"$set": sponsor}
+		if _, err := sponsorColl.UpdateOne(context.TODO(), filter, update, optUpsert); err != nil {
 			log.Printf("Could not insert sponsor " + sponsor.Name + " " + err.Error())
 		}
 	}

@@ -3,17 +3,17 @@
     <v-card id="tiers__sponsors" width="100vw" class="white--text text-center">
       <v-card-text class="white--text">
         <section class="tiers__grid">
-          <a v-for="sponsor in tierOne" class="tiers__box" :href="sponsor.link" :key="sponsor.id">
+          <a v-for="sponsor in tierOne" class="tiers__box" :href="sponsor.url" :key="sponsor.id">
             <img :src="`data:image/png;base64,${sponsor.logo}`" style=" max-width:300px;max-height:105px;" />
           </a>
         </section>
         <section class="tiers__grid">
-          <a v-for="sponsor in tierTwo" class="tiers__box" :href="sponsor.link" :key="sponsor.id">
+          <a v-for="sponsor in tierTwo" class="tiers__box" :href="sponsor.url" :key="sponsor.id">
             <img :src="`data:image/png;base64,${sponsor.logo}`" style="max-width:200px;max-height:75px" />
           </a>
         </section>
         <section class="tiers__grid">
-          <a v-for="sponsor in tierThree" class="tiers__box" :href="sponsor.link" :key="sponsor.id">
+          <a v-for="sponsor in tierThree" class="tiers__box" :href="sponsor.url" :key="sponsor.id">
             <img :src="`data:image/png;base64,${sponsor.logo}`" style="max-width:100px;max-height:50px" />
           </a>
         </section>
@@ -105,7 +105,7 @@ export default {
     }
   },
   mounted() {
-      APIClient.sponsorsAPI()
+      APIClient.fetchSponsors()
       .then((responseJson) => {
         this.sponsors = responseJson;
       });

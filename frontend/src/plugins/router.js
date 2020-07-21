@@ -61,6 +61,11 @@ export default new Router({
       name: 'engage',
       component: () => import('../views/Engage.vue'),
     },
+    {
+      path: '/sponsors',
+      name: 'sponsors',
+      component: () => import('../views/Sponsor.vue'),
+    }
   ],
   scrollBehavior (to, from, savedPosition) {
     // Scroll to top for all route navigations
