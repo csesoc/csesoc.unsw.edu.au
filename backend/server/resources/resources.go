@@ -67,7 +67,6 @@ func ResourcesSetup(client *mongo.Client) {
 // GetPreview godoc
 // @Summary Get a list of resources stored
 // @Tags resources
-// @Param tier query integer false "Valid sponsor tier, 0-2 inclusive" mininum(0) maxinum(2)
 // @Success 200 {array} Resource
 // @Failure 500 "Internal server error"
 // @Header 500 {string} error "Unable to retrieve resources from database"
