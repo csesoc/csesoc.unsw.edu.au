@@ -23,6 +23,14 @@
       </v-btn>
     </header>
 
+    <!-- CSESocs Mission -->
+    <v-container id="mission">
+      <HeaderTitle :title="'csesocs mission'" />
+      <p>
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temp or invidunt ut labore et dolore "
+      </p>
+    </v-container>
+
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <HeaderTitle :title="'upcoming events'" />
       <v-row>
@@ -162,6 +170,19 @@ export default {
   transition: 0.4s;
   background: rgb(54, 119, 243);
   color: #fff;
+}
+
+#mission {
+  height: 70vh;
+  width: 100vw;
+  padding: 8vh 30px 10px 30px
+}
+
+#mission p {
+  font-size: 40px;
+  align-items: center;
+  text-align: center;
+  padding: 5vh 11vw;
 }
 
 .fb-event-link {
