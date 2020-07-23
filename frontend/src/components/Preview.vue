@@ -45,7 +45,7 @@ export default {
     preview: "",
   }),
   mounted() {
-    APIClient.previewAPI()
+    APIClient.resourcesAPI('/preview')
       .then((responseJson) => {
         this.items = responseJson;
         this.preview = responseJson[0].src
