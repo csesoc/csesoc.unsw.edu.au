@@ -173,9 +173,7 @@ export default {
 }
 
 #mission {
-  height: 70vh;
-  width: 100vw;
-  padding: 8vh 30px 10px 30px
+  padding: 8vh 30px 8vh 30px
 }
 
 #mission p {
