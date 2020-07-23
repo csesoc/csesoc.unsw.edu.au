@@ -3,6 +3,8 @@
   <div id="home">
     <!-- make header a seperate component! -->
     <header id="showcase">
+      
+      <!-- CSESoc Image Logo (to replace h1 below)
       <v-img
         v-if="$vuetify.breakpoint.mdAndUp"
         max-width="35vw"
@@ -11,16 +13,19 @@
         src="@/assets/csesocwhiteblue.png"
       />
       <v-img v-else max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
+      -->
+      
+      <h1>
+        CSESoc, Lorem ipsum dolor sit amet, consetetur
+      </h1>
+
+      <!--change this to scroll to Join Us section when created-->
       <a
-        href="https://www.arc.unsw.edu.au/clubs"
+        @click="scrollto('content-start')"
         target="_blank"
         v-ripple
         class="button"
-      >Join on spArc</a>
-      <br />
-      <v-btn text icon color="white" @click="scrollto('content-start')">
-        <v-icon>mdi-chevron-down</v-icon>
-      </v-btn>
+      >Join Us</a>
     </header>
 
     <!-- CSESocs Mission -->
@@ -136,7 +141,7 @@ export default {
 
 <style scoped>
 #showcase {
-  align-items: center;
+  align-items: left;
   background-blend-mode: darken;
   background-image: url("../assets/black_lozenge_@2X.png");
   background-position: center;
@@ -146,8 +151,15 @@ export default {
   height: 100vh;
   width: 100vw;
   justify-content: center;
-  padding: 0 20px;
-  text-align: center;
+  padding: 7% ;
+  text-align: left;
+}
+#showcase h1 {
+  color: #fff;
+  font-size: 80px;
+  width: 80%;
+  font-weight: bolder;
+  line-height: 95px;
 }
 #showcase img {
   max-height: 30vh;
@@ -157,12 +169,14 @@ export default {
   font-size: 20px;
 }
 #showcase .button {
+  text-align: center;
   background: rgb(54, 119, 243);
-  border-radius: 10px;
+  border-radius: 0px;
   color: #fff;
-  font-size: 18px;
-  margin-top: 20px;
-  padding: 10px 20px;
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 45px;
+  padding: 15px 20px;
   text-decoration: none;
   width: 250px;
 }
@@ -173,7 +187,7 @@ export default {
 }
 
 #mission {
-  padding: 8vh 30px 8vh 30px
+  padding: 5% 0
 }
 
 #mission p {
