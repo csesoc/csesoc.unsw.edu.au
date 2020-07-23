@@ -109,7 +109,7 @@ export default {
         {
           title: 'For Sponsors',
           icon: 'mdi-city',
-          route: '/',
+          route: '/sponsors',
           children: []
         },
         {

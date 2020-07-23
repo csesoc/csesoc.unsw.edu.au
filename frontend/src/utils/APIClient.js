@@ -28,7 +28,7 @@ const getClient = (method, body) => {
     return client;
 }
 
-const sponsorsAPI = () => {
+const fetchSponsors = () => {
     const url = SPONSORS_URL
     const client = getClient('GET')
     return APICall(url, client)
@@ -73,7 +73,7 @@ const resourcesAPI = (param) => {
 }
 
 const APIClient = {
-    sponsorsAPI,
+    fetchSponsors,
     mailingAPI,
     eventsAPI,
     socialsAPI,
