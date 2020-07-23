@@ -55,7 +55,7 @@
 
     <v-container>
       <HeaderTitle :title="'resources'" />
-      <Preview />
+      <Preview :items="resourceItems"/>
     </v-container>
   </div>
 </template>
@@ -71,6 +71,7 @@ import APIClient from '../utils/APIClient';
 export default {
   data: () => ({
     drawer: false,
+    resourceItems: [],
     announceApiUri:
       'https://gist.githack.com/gawdn/79b9df83f2fd267a3287d13b9badce48/raw/7bfb85a4cb799712229bed5ea02234e773eb42d4/populated_list.json',
     announceItems: [],
@@ -95,6 +96,15 @@ export default {
       .then(r => r.json())
       .then((responseJson) => {
         this.mediaItems = responseJson;
+      });
+
+    APIClient.resourcesAPI('/preview')
+      .then((responseJson) => {
+        this.resourceItems = responseJson;
+      })
+      .catch((error) => {
+        // fix this
+        console.log(error)
       });
 
     APIClient.eventsAPI()
