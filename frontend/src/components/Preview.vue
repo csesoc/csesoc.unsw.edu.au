@@ -15,7 +15,13 @@
         <v-container class='preview-container'>
           <v-list two-line>
             <template v-for="(item, index) in items">
-              <v-list-item v-if="item.link !== ''" class='resource-list' :href="item.link" @mouseover="preview = item.src" :key="item.title">
+              <v-list-item 
+              v-if="item.link !== ''" 
+              class='resource-list' 
+              :href="item.link" 
+              target="_blank" 
+              @mouseover="preview = item.src" 
+              :key="item.title">
                 <v-list-item-content>
                   <div v-if="item.title !== ''" class='text-h4' v-text="item.title" />
                   <div v-if="item.description !== ''" class='text-subtitle-1' v-text="item.description" />
