@@ -2,10 +2,10 @@
   <div class="is-container">
     <div class="is-element" :style="settings">
       <div class="is-section">
-        {{ this.$slots.default }}
+        <slot></slot>
       </div>
       <div class="is-section">
-        {{ this.$slots.default }}
+        <slot></slot>
       </div>
     </div>
   </div>
@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     // Props are converted to CSS animation settings
-    settings: () => {
+    settings() {
       return {
         'animation-delay': this.delay,
         'animation-direction': this.direction,
@@ -57,6 +57,7 @@ export default {
 .is-container {
   width: 100%;
   overflow: hidden;
+  padding: 15px;
 }
 
 .is-element {

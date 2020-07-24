@@ -1,4 +1,3 @@
-
 <template>
   <div id="home">
     <!-- make header a seperate component! -->
@@ -51,7 +50,26 @@
       </v-row>
     </v-container>
 
-    <Slider :items="mediaItems" :title="'media'" class="my-10" />
+    <div class="blue-cutout">
+      <InfiniteSlideshow duration="20s">
+        <img height="250px" src="@/assets/banner-1.jpg" style="padding-left: 20px; padding-right: 20px;">
+        <img height="250px" src="@/assets/banner-2.jpg" style="padding-left: 20px; padding-right: 20px;">
+        <img height="250px" src="@/assets/banner-3.jpg" style="padding-left: 20px; padding-right: 20px;">
+        <img height="250px" src="@/assets/banner-4.jpg" style="padding-left: 20px; padding-right: 20px;">
+      </InfiniteSlideshow>
+      <InfiniteSlideshow duration="20s" direction="reverse">
+        <img height="250px" src="@/assets/banner-1.jpg" style="padding-left: 20px; padding-right: 20px;">
+        <img height="250px" src="@/assets/banner-2.jpg" style="padding-left: 20px; padding-right: 20px;">
+        <img height="250px" src="@/assets/banner-3.jpg" style="padding-left: 20px; padding-right: 20px;">
+        <img height="250px" src="@/assets/banner-4.jpg" style="padding-left: 20px; padding-right: 20px;">
+      </InfiniteSlideshow>
+      <InfiniteSlideshow duration="20s">
+        <img height="250px" src="@/assets/banner-1.jpg" style="padding-left: 20px; padding-right: 20px;">
+        <img height="250px" src="@/assets/banner-2.jpg" style="padding-left: 20px; padding-right: 20px;">
+        <img height="250px" src="@/assets/banner-3.jpg" style="padding-left: 20px; padding-right: 20px;">
+        <img height="250px" src="@/assets/banner-4.jpg" style="padding-left: 20px; padding-right: 20px;">
+      </InfiniteSlideshow>
+    </div>
 
     <v-container>
       <HeaderTitle :title="'resources'" />
@@ -66,6 +84,7 @@ import ListComponent from '@/components/ListComponent';
 import Slider from '@/components/Slider';
 import HeaderTitle from '@/components/HeaderTitle';
 import EventGrid from '@/components/EventGrid';
+import InfiniteSlideshow from '@/components/InfiniteSlideshow';
 import APIClient  from '../utils/APIClient';
 
 export default {
@@ -90,7 +109,8 @@ export default {
     ListComponent,
     Slider,
     HeaderTitle,
-    EventGrid
+    EventGrid,
+    InfiniteSlideshow
   },
 
   mounted() {
@@ -168,5 +188,17 @@ export default {
   text-decoration: none;
   font-weight: bold;
   color: rgb(54, 119, 243);
+}
+
+.blue-cutout {
+  background: rgb(18, 76, 219);
+  background: linear-gradient(
+    125deg,
+    rgba(18, 76, 219, 1) 0%,
+    rgba(50, 112, 255, 1) 50%,
+    rgba(30, 104, 255, 1) 100%
+  );
+  margin: 50px 0px;
+  padding: 30px 0px;
 }
 </style>
