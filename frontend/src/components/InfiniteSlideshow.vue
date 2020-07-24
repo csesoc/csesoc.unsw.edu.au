@@ -14,7 +14,7 @@
 <script>
 // Credits to github.com/biigpongsatorn/vue-infinite-slide-bar
 export default {
-  name: 'InfiniteSlider',
+  name: 'InfiniteSlideshow',
   props: {
     delay: {
       type: String,
