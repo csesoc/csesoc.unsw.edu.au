@@ -23,3 +23,11 @@ jobs:
       - name: Golang Tests
         run: go test ./...
         working-directory: ./backend/server
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Vue Testing
+      - run: yarn run test:unit
+        working-directory: ./frontend
