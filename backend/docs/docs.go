@@ -29,6 +29,34 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/events": {
+            "get": {
+                "tags": [
+                    "events"
+                ],
+                "summary": "Get a list of upcoming events",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/events.Event"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "headers": {
+                            "error": {
+                                "type": "string",
+                                "description": "Unable to retrieve events from file"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/faq": {
             "get": {
                 "tags": [
@@ -208,6 +236,34 @@ var doc = `{
                 }
             }
         },
+        "/responses/preview": {
+            "get": {
+                "tags": [
+                    "resources"
+                ],
+                "summary": "Get a list of resources stored",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/resources.Resource"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "headers": {
+                            "error": {
+                                "type": "string",
+                                "description": "Unable to retrieve resources from database"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/social": {
             "get": {
                 "tags": [
@@ -303,7 +359,7 @@ var doc = `{
                     },
                     {
                         "type": "string",
-                        "description": "Logo URL",
+                        "description": "Logo in base64",
                         "name": "logo",
                         "in": "formData",
                         "required": true
@@ -439,6 +495,32 @@ var doc = `{
         }
     },
     "definitions": {
+        "events.Event": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "end_time": {
+                    "type": "integer"
+                },
+                "fb_cover_img": {
+                    "type": "string"
+                },
+                "fb_event_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "place": {
+                    "type": "string"
+                },
+                "start_time": {
+                    "type": "integer"
+                }
+            }
+        },
         "faq.Faq": {
             "type": "object",
             "properties": {
@@ -446,6 +528,29 @@ var doc = `{
                     "type": "string"
                 },
                 "question": {
+                    "type": "string"
+                }
+            }
+        },
+        "resources.Resource": {
+            "type": "object",
+            "required": [
+                "description",
+                "link",
+                "src",
+                "title"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string"
+                },
+                "src": {
+                    "type": "string"
+                },
+                "title": {
                     "type": "string"
                 }
             }
@@ -473,7 +578,8 @@ var doc = `{
                 "detail",
                 "logo",
                 "name",
-                "tier"
+                "tier",
+                "url"
             ],
             "properties": {
                 "detail": {
@@ -487,6 +593,9 @@ var doc = `{
                 },
                 "tier": {
                     "type": "integer"
+                },
+                "url": {
+                    "type": "string"
                 }
             }
         }

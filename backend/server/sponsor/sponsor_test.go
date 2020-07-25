@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 	"testing"
+
 	. "csesoc.unsw.edu.au/m/v2/server"
 )
 
@@ -15,14 +16,14 @@ const companyLogo = "https://static.canva.com/static/images/canva_logo_100x100@2
 const companyTier = "2"
 const companyDetail = "Example"
 const companyUrl = "https://www.google.com"
-const sponsorRequestUrl =  BASE_URL + SPONSOR_URL;
+const sponsorRequestUrl = BASE_URL + SPONSOR_URL
 
 func TestSponsor(t *testing.T) {
 	t.Run("Sponsor setup test", func(t *testing.T) {
 		resp, err := http.Get(sponsorRequestUrl)
 		if err != nil {
-			t.Errorf("Could not get perform request.")
-			return;
+			t.Errorf("Could not perform GET request.")
+			return
 		}
 		defer resp.Body.Close()
 
@@ -40,7 +41,7 @@ func TestSponsor(t *testing.T) {
 		resp, err := http.Get(sponsorRequestUrl + "?tier=2")
 		if err != nil {
 			t.Errorf("Could not perform get sponsors request. Check connection.")
-			return;
+			return
 		}
 		defer resp.Body.Close()
 
@@ -54,7 +55,7 @@ func TestSponsor(t *testing.T) {
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
 			"detail": {companyDetail},
-			"url": 	  {companyUrl},
+			"url":    {companyUrl},
 		}
 		req, _ := http.NewRequest("POST", sponsorRequestUrl, strings.NewReader(form.Encode()))
 		req.Header.Add("Authorization", AUTH_TOKEN)
@@ -62,7 +63,7 @@ func TestSponsor(t *testing.T) {
 		resp, err := client.Do(req)
 		if err != nil {
 			t.Errorf("Could not perform post sponsor request. Check connection.")
-			return;
+			return
 		}
 		defer resp.Body.Close()
 
@@ -73,7 +74,7 @@ func TestSponsor(t *testing.T) {
 		resp, err := http.Get(sponsorRequestUrl + "/" + companyName)
 		if err != nil {
 			t.Errorf("Could not perform get sponsor request. Check connection.")
-			return;
+			return
 		}
 		defer resp.Body.Close()
 
@@ -91,16 +92,16 @@ func TestSponsor(t *testing.T) {
 
 	t.Run("Delete newly created sponsor", func(t *testing.T) {
 		client := &http.Client{}
-		req, err := http.NewRequest("DELETE", sponsorRequestUrl + "/" + companyName, nil)
+		req, err := http.NewRequest("DELETE", sponsorRequestUrl+"/"+companyName, nil)
 		req.Header.Add("Authorization", AUTH_TOKEN)
 		if err != nil {
 			t.Errorf("Could not create delete request for sponsor.")
-			return;
+			return
 		}
 		resp, err := client.Do(req)
 		if err != nil {
 			t.Errorf("Could not perform delete sponsor request. Check connection.")
-			return;
+			return
 		}
 		defer resp.Body.Close()
 
@@ -111,7 +112,7 @@ func TestSponsor(t *testing.T) {
 		resp, err := http.Get(sponsorRequestUrl + "/" + companyName)
 		if err != nil {
 			t.Errorf("Could not perform get sponsor request. Check connection.")
-			return;
+			return
 		}
 		defer resp.Body.Close()
 
@@ -127,7 +128,7 @@ func TestSponsorError(t *testing.T) {
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
 			"detail": {companyDetail},
-			"url": 	  {companyUrl},
+			"url":    {companyUrl},
 		}
 		req, _ := http.NewRequest("POST", sponsorRequestUrl, strings.NewReader(form.Encode()))
 		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
@@ -136,7 +137,7 @@ func TestSponsorError(t *testing.T) {
 		resp, err := client.Do(req)
 		if err != nil {
 			t.Errorf("Could not perform post sponsor request. Check connection.")
-			return;
+			return
 		}
 		defer resp.Body.Close()
 
@@ -149,22 +150,22 @@ func TestSponsorError(t *testing.T) {
 		resp, err = client.Do(req)
 		if err != nil {
 			t.Errorf("Could not perform post sponsor request. Check connection.")
-			return;
+			return
 		}
 		defer resp.Body.Close()
 
 		AssertStatus(t, resp.StatusCode, http.StatusConflict)
 
-		req, err = http.NewRequest("DELETE", sponsorRequestUrl + "/" + companyName, nil)
+		req, err = http.NewRequest("DELETE", sponsorRequestUrl+"/"+companyName, nil)
 		req.Header.Add("Authorization", AUTH_TOKEN)
 		if err != nil {
 			t.Errorf("Could not create delete request for sponsor.")
-			return;
+			return
 		}
 		resp, err = client.Do(req)
 		if err != nil {
 			t.Errorf("Could not perform delete sponsor request. Check connection.")
-			return;
+			return
 		}
 		defer resp.Body.Close()
 
@@ -183,7 +184,7 @@ func TestSponsorError(t *testing.T) {
 		resp, err := client.Do(req)
 		if err != nil {
 			t.Errorf("Could not perform post sponsor request. Check connection.")
-			return;
+			return
 		}
 		defer resp.Body.Close()
 
@@ -194,7 +195,7 @@ func TestSponsorError(t *testing.T) {
 		resp, err := http.Get(sponsorRequestUrl + "nonexistent")
 		if err != nil {
 			t.Errorf("Could not perform get sponsor request. Check connection.")
-			return;
+			return
 		}
 		defer resp.Body.Close()
 
