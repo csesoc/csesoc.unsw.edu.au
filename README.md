@@ -95,6 +95,14 @@ To validate structs, we are utilising a feature of the echo web framework that a
 
 These tests are written in Golang's standard testing package and are written in the same package as the file that they are testing. The tests are named `*_test.go` and the testing package has to be imported. For more information please read the Golang documentation for the [package testing](https://golang.org/pkg/testing/). To have these test run, please ensure docker is running and your containers for development are running. Then to run the actual test, go to the backend directory and run `go test ./...`. This will run all test in child directories.
 
+### Frontend Unit Testing
+
+While frontend unit testing of components is usually never thought of by developers still at university, it is something our teams (past and present) have given thought to. In the trial stages of frontend testing, we have adopted the use of [Vue Test Utils](https://vue-test-utils.vuejs.org/) which of writing, is still in beta development. It is Vue's official unit testing utility library.
+
+Testing for frontend components (for this project, those files that are in the components section), will be written in the `frontend/tests/unit` directory. When testing, we use Jest as our testing framework which has integration with Vue Test Utils.
+
+While there is no requirement to use Vue Test Utils, it is encouraged for contributors especially during our trialing phase, to think about ways and tools to test the frontend. More tools will be used in the coming weeks as the team shifts focus back to backend code and pros and cons weighed.
+
 ### Github Actions
 
 Github Actions is the CI tool that we are using because of the relative ease of use and the ability to make changes as a developer to the CI workflow as needed. The script to run Github Actions is in the `.github` directory and is named `ci.yml`.
