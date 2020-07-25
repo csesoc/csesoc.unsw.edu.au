@@ -211,7 +211,7 @@ func retriveSponsorsJSON() ([]Sponsor, error) {
 	jsonFile, err := os.Open(abspath)
 
 	if err != nil {
-		return nil, fmt.Errorf("Cound not open file faq.json: %v", err)
+		return nil, fmt.Errorf("Cound not open file sponsor.json: %v", err)
 	}
 
 	byteValue, _ := ioutil.ReadAll(jsonFile)

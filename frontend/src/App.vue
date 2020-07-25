@@ -1,6 +1,6 @@
 <template>
   <v-app id="main-app">
-    <v-content >
+    <v-main >
         <!-- Navigation bar/app bar goes here -->
         <v-app-bar app dark width="100vw">
           <!-- Logo -->
@@ -22,7 +22,7 @@
         </main>
         
         <Footer />
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
