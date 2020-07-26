@@ -3,8 +3,8 @@
   <div id="home">
     <!-- make header a seperate component! -->
     <header id="showcase">
-      
       <!-- CSESoc Image Logo (to replace h1 below)
+
       <v-img
         v-if="$vuetify.breakpoint.mdAndUp"
         max-width="35vw"
@@ -70,6 +70,39 @@
       <HeaderTitle :title="'resources'" />
       <Preview :items="resourceItems"/>
     </v-container>
+
+    <!-- Join Us Section -->
+    <v-container>
+      <h1>
+        Join Us
+      </h1>
+      <h3>
+        Find our stall at O-week, or just turn up an event and get to know us!
+      </h3>
+      <h2>
+        Join our community online
+      </h2>
+    </v-container>
+
+    <!-- Support CSESoc -->
+    <v-container id=sponsor>
+      <HeaderTitle :title="'support csesoc'" />
+      <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
+        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est      
+        </p>
+        <a
+        @click="scrollto('content-start')"
+          style="float:right"
+          target="_blank"
+          v-ripple
+          class="button">
+          Sponsor Us
+        </a>
+    </v-container>
+    
+
   </div>
 </template>
 
@@ -188,15 +221,36 @@ export default {
   color: #fff;
 }
 
-#mission {
-  padding: 5% 0
-}
+
 
 #mission p {
   font-size: 40px;
   align-items: center;
   text-align: center;
   padding: 5vh 11vw;
+}
+
+#sponsor {
+  align-items: right;
+  padding-bottom: 150px;
+}
+
+#sponsor p {
+  font-size: 30px;
+  padding: 0 0 25px 0;
+}
+
+
+#sponsor .button {
+  text-align: center;
+  background: rgb(54, 119, 243);
+  border-radius: 0px;
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 15px 20px;
+  text-decoration: none;
+  width: 250px;
 }
 
 .fb-event-link {
