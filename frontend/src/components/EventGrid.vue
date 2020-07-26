@@ -86,22 +86,22 @@ export default {
           start.getDate(),
           months[start.getMonth()],
           (start.getHours() > 12) ? start.getHours() - 12 : start.getHours(),
-          (start.getMinutes() == 0) ? "" : ":" + (start.getMinutes() < 10 ? "0" : "") + start.getMinutes(),
+          (start.getMinutes() === 0) ? "" : ":" + (start.getMinutes() < 10 ? "0" : "") + start.getMinutes(),
           (start.getHours() >= 12) ? "PM" : "AM"
         );
       }
       // if the date is the same, we just need to display start and end times of the event
-      else if (start.getDate() == end.getDate() && start.getMonth() == end.getMonth()) {
+      else if (start.getDate() === end.getDate() && start.getMonth() === end.getMonth()) {
         // eg. Thurs 1 Jan 12 PM to 1:30 PM
         return "{0} {1} {2} at {3}{4} {5} - {6}{7} {8}".format(
           days[start.getDay()], 
           start.getDate(),
           months[start.getMonth()],
           (start.getHours() > 12) ? start.getHours() - 12 : start.getHours(),
-          (start.getMinutes() == 0) ? "" : ":" + (start.getMinutes() < 10 ? "0" : "") + start.getMinutes(),
+          (start.getMinutes() === 0) ? "" : ":" + (start.getMinutes() < 10 ? "0" : "") + start.getMinutes(),
           (start.getHours() >= 12) ? "PM" : "AM",
           (end.getHours() > 12) ? end.getHours() - 12 : end.getHours(),
-          (end.getMinutes() == 0) ? "" : ":" + (end.getMinutes() < 10 ? "0" : "") + end.getMinutes(),
+          (end.getMinutes() === 0) ? "" : ":" + (end.getMinutes() < 10 ? "0" : "") + end.getMinutes(),
           (end.getHours() >= 12) ? "PM" : "AM"
         );
       } 
@@ -112,13 +112,13 @@ export default {
         start.getDate(),
         months[start.getMonth()],
         (start.getHours() > 12) ? start.getHours() - 12 : start.getHours(),
-        (start.getMinutes() == 0) ? "" : ":" + (start.getMinutes() < 10 ? "0" : "") + start.getMinutes(),
+        (start.getMinutes() === 0) ? "" : ":" + (start.getMinutes() < 10 ? "0" : "") + start.getMinutes(),
         (start.getHours() >= 12) ? "PM" : "AM",
         days[end.getDay()], 
         end.getDate(),
         months[end.getMonth()],
         (end.getHours() > 12) ? end.getHours() - 12 : end.getHours(),
-        (end.getMinutes() == 0) ? "" : ":" + (end.getMinutes() < 10 ? "0" : "") + end.getMinutes(),
+        (end.getMinutes() === 0) ? "" : ":" + (end.getMinutes() < 10 ? "0" : "") + end.getMinutes(),
         (end.getHours() >= 12) ? "PM" : "AM"
       );
     }
