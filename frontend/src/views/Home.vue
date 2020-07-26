@@ -92,14 +92,15 @@
         invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
         et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est      
         </p>
-        <a
-        @click="scrollto('content-start')"
-          style="float:right"
-          target="_blank"
-          v-ripple
-          class="button">
-          Sponsor Us
-        </a>
+        <RouterLink to="/sponsors" class="link">
+          <a
+            style="float:right"
+            target="_blank"
+            v-ripple
+            class="button">
+            Sponsor Us
+          </a>
+        </RouterLink>
     </v-container>
     
 
