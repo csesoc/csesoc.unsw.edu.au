@@ -7,6 +7,7 @@ const MAILING_URL = "api/v1/mailing"
 const SOCIAL_URL = "api/v1/social"
 const EVENTS_URL = "api/v1/events"
 const FAQ_URL = "api/v1/faq"
+const RESOURCES_URL = "api/v1/resources"
 
 // JWT used for testing
 const AUTH_TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNTk4Mzg5MDg2LCJ6SUQiOiJ6NTEyMzQ1NiJ9.a8869YcfgBZCQcWUFuomF4Fqx9nJzT-rWpP2yRVsBWg"

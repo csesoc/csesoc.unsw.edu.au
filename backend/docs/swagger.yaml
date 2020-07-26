@@ -1,11 +1,44 @@
 basePath: /api/v1
 definitions:
+  events.Event:
+    properties:
+      description:
+        type: string
+      end_time:
+        type: integer
+      fb_cover_img:
+        type: string
+      fb_event_id:
+        type: string
+      name:
+        type: string
+      place:
+        type: string
+      start_time:
+        type: integer
+    type: object
   faq.Faq:
     properties:
       answer:
         type: string
       question:
         type: string
+    type: object
+  resources.Resource:
+    properties:
+      description:
+        type: string
+      link:
+        type: string
+      src:
+        type: string
+      title:
+        type: string
+    required:
+    - description
+    - link
+    - src
+    - title
     type: object
   social.Social:
     properties:
@@ -28,11 +61,14 @@ definitions:
         type: string
       tier:
         type: integer
+      url:
+        type: string
     required:
     - detail
     - logo
     - name
     - tier
+    - url
     type: object
 info:
   contact:
@@ -44,6 +80,24 @@ info:
   title: CSESoc Website Swagger API
   version: "1.0"
 paths:
+  /events:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/events.Event'
+            type: array
+        "500":
+          description: Internal server error
+          headers:
+            error:
+              description: Unable to retrieve events from file
+              type: string
+      summary: Get a list of upcoming events
+      tags:
+      - events
   /faq:
     get:
       responses:
@@ -162,6 +216,24 @@ paths:
       summary: Handle a sponsorship enquiry by adding it to a dispatch bundle
       tags:
       - mailing
+  /responses/preview:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/resources.Resource'
+            type: array
+        "500":
+          description: Internal server error
+          headers:
+            error:
+              description: Unable to retrieve resources from database
+              type: string
+      summary: Get a list of resources stored
+      tags:
+      - resources
   /social:
     get:
       responses:
@@ -219,7 +291,7 @@ paths:
         name: name
         required: true
         type: string
-      - description: Logo URL
+      - description: Logo in base64
         in: formData
         name: logo
         required: true
