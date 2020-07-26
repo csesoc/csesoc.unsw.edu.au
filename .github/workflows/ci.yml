@@ -12,14 +12,14 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  test:
+  backend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Building docker containers using docker-compose
         env:
           MAILJET_TOKEN: ${{ secrets.MAILJET_TOKEN }}
-        run: docker-compose up -d
+        run: docker-compose up -d --build backend mongo
       - name: Golang Tests
         run: go test ./...
         working-directory: ./backend/server
