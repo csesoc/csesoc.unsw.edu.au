@@ -10,9 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 Docker needs to be installed on your system because local deployment uses containerisation to standardise deployments across machines. For further information please read [Docker docs](https://docs.docker.com/).
 
-For Mac users, proceed to [Docker for Mac](https://docs.docker.com/docker-for-mac/install/) and follow the instructions there. From here on, all terminal commands are written for MacOS and a zsh terminal. Make changes as necessary.
-
-For Windows users, proceed to [Docker for Windows](https://docs.docker.com/docker-for-windows/install/) and follow the instructions there. Be aware that if you have a Windows Home account with a Windows Subsystem for Linux, then additional steps need to be taken before downloading [Docker](https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4).
+For Mac users, proceed to [Docker for Mac](https://docs.docker.com/docker-for-mac/install/) and follow the instructions there. From here on, all terminal commands are written for MacOS and a zsh terminal. Make changes as necessary. For Windows users, proceed to [Docker for Windows](https://docs.docker.com/docker-for-windows/install/) and follow the instructions there.
 
 Once Docker has been downloaded, check by running the command in your terminal:
 
@@ -139,7 +137,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## Authors
 
 * **Tommy Truong** - *Initial work for README.md file* - [glebme](https://github.com/glebme)
-* **Sergio Mercado Ruiz** - *Security and Setting up environment variables* - [sergiomercado19](https://github.com/sergiomercado19)
+* **Sergio Mercado Ruiz** - *Setting up environment variables, API Documentation and Security sections.* - [sergiomercado19](https://github.com/sergiomercado19)
 
 ## License
 
