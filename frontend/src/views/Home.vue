@@ -51,19 +51,19 @@
     </v-container>
 
     <div class="blue-cutout">
-      <InfiniteSlideshow duration="20s">
+      <InfiniteSlideshow duration="32s" direction="reverse">
         <img height="250px" src="@/assets/banner-1.jpg" style="padding-left: 20px; padding-right: 20px;">
         <img height="250px" src="@/assets/banner-2.jpg" style="padding-left: 20px; padding-right: 20px;">
         <img height="250px" src="@/assets/banner-3.jpg" style="padding-left: 20px; padding-right: 20px;">
         <img height="250px" src="@/assets/banner-4.jpg" style="padding-left: 20px; padding-right: 20px;">
       </InfiniteSlideshow>
-      <InfiniteSlideshow duration="20s" direction="reverse">
+      <InfiniteSlideshow duration="35s" direction="reverse">
         <img height="250px" src="@/assets/banner-1.jpg" style="padding-left: 20px; padding-right: 20px;">
         <img height="250px" src="@/assets/banner-2.jpg" style="padding-left: 20px; padding-right: 20px;">
         <img height="250px" src="@/assets/banner-3.jpg" style="padding-left: 20px; padding-right: 20px;">
         <img height="250px" src="@/assets/banner-4.jpg" style="padding-left: 20px; padding-right: 20px;">
       </InfiniteSlideshow>
-      <InfiniteSlideshow duration="20s">
+      <InfiniteSlideshow duration="30s" direction="reverse">
         <img height="250px" src="@/assets/banner-1.jpg" style="padding-left: 20px; padding-right: 20px;">
         <img height="250px" src="@/assets/banner-2.jpg" style="padding-left: 20px; padding-right: 20px;">
         <img height="250px" src="@/assets/banner-3.jpg" style="padding-left: 20px; padding-right: 20px;">
