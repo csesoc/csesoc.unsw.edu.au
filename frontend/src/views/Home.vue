@@ -2,6 +2,8 @@
   <div id="home">
     <!-- make header a seperate component! -->
     <header id="showcase">
+      <!-- CSESoc Image Logo (to replace h1 below)
+
       <v-img
         v-if="$vuetify.breakpoint.mdAndUp"
         max-width="35vw"
@@ -10,17 +12,28 @@
         src="@/assets/csesocwhiteblue.png"
       />
       <v-img v-else max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
+      -->
+      
+      <h1>
+        CSESoc, Lorem ipsum dolor sit amet, consetetur
+      </h1>
+
+      <!--change this to scroll to Join Us section when created-->
       <a
-        href="https://www.arc.unsw.edu.au/clubs"
+        @click="scrollto('content-start')"
         target="_blank"
         v-ripple
         class="button"
-      >Join on spArc</a>
-      <br />
-      <v-btn text icon color="white" @click="scrollto('content-start')">
-        <v-icon>mdi-chevron-down</v-icon>
-      </v-btn>
+      >Join Us</a>
     </header>
+
+    <!-- CSESocs Mission -->
+    <v-container id="mission">
+      <HeaderTitle :title="'csesocs mission'" />
+      <p>
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temp or invidunt ut labore et dolore "
+      </p>
+    </v-container>
 
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <HeaderTitle :title="'upcoming events'" />
@@ -75,6 +88,40 @@
       <HeaderTitle :title="'resources'" />
       <Preview :items="resourceItems"/>
     </v-container>
+
+    <!-- Join Us Section -->
+    <v-container>
+      <h1>
+        Join Us
+      </h1>
+      <h3>
+        Find our stall at O-week, or just turn up an event and get to know us!
+      </h3>
+      <h2>
+        Join our community online
+      </h2>
+    </v-container>
+
+    <!-- Support CSESoc -->
+    <v-container id=sponsor>
+      <HeaderTitle :title="'support csesoc'" />
+      <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
+        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est      
+        </p>
+        <RouterLink to="/sponsors" class="link">
+          <a
+            style="float:right"
+            target="_blank"
+            v-ripple
+            class="button">
+            Sponsor Us
+          </a>
+        </RouterLink>
+    </v-container>
+    
+
   </div>
 </template>
 
@@ -150,7 +197,7 @@ export default {
 
 <style scoped>
 #showcase {
-  align-items: center;
+  align-items: left;
   background-blend-mode: darken;
   background-image: url("../assets/black_lozenge_@2X.png");
   background-position: center;
@@ -160,8 +207,15 @@ export default {
   height: 100vh;
   width: 100vw;
   justify-content: center;
-  padding: 0 20px;
-  text-align: center;
+  padding: 7% ;
+  text-align: left;
+}
+#showcase h1 {
+  color: #fff;
+  font-size: 80px;
+  width: 80%;
+  font-weight: bolder;
+  line-height: 95px;
 }
 #showcase img {
   max-height: 30vh;
@@ -171,12 +225,14 @@ export default {
   font-size: 20px;
 }
 #showcase .button {
+  text-align: center;
   background: rgb(54, 119, 243);
-  border-radius: 10px;
+  border-radius: 0px;
   color: #fff;
-  font-size: 18px;
-  margin-top: 20px;
-  padding: 10px 20px;
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 45px;
+  padding: 15px 20px;
   text-decoration: none;
   width: 250px;
 }
@@ -184,6 +240,38 @@ export default {
   transition: 0.4s;
   background: rgb(54, 119, 243);
   color: #fff;
+}
+
+
+
+#mission p {
+  font-size: 40px;
+  align-items: center;
+  text-align: center;
+  padding: 5vh 11vw;
+}
+
+#sponsor {
+  align-items: right;
+  padding-bottom: 150px;
+}
+
+#sponsor p {
+  font-size: 30px;
+  padding: 0 0 25px 0;
+}
+
+
+#sponsor .button {
+  text-align: center;
+  background: rgb(54, 119, 243);
+  border-radius: 0px;
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 15px 20px;
+  text-decoration: none;
+  width: 250px;
 }
 
 .fb-event-link {

@@ -4,7 +4,7 @@
 
 <style scoped>
 h1 {
-  font-size: 2rem;
+  font-size: 60px;
   font-weight: bold;
   margin-bottom: 1.3rem;
   text-transform: lowercase;
