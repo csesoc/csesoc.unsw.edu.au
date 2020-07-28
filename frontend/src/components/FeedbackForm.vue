@@ -56,7 +56,6 @@ export default {
       v => !!v || 'Message is required',
     ],
   }),
-
   methods: {
     send() {
       APIClient.mailingAPI(MAILING_URL['feedback'], this.name, this.email, this.body)

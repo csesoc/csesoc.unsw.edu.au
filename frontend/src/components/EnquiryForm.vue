@@ -40,7 +40,6 @@ export default {
       v => !!v || 'Message is required',
     ],
   }),
-
   methods: {
     send() {
       APIClient.mailingAPI(MAILING_URL[this.type], this.name, this.email, this.body)

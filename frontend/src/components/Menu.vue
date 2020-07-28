@@ -25,11 +25,7 @@
 
 <script>
 export default {
-  data() {
-    return {
-      
-    };
-  },
+  name: 'Menu',
   methods: {
     hide(event) {
       // Relaying status to parent

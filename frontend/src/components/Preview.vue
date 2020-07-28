@@ -50,33 +50,37 @@ export default {
   data: () => ({
     preview: '',
   }),
-  props: ['items'],
+  props: ['items']
 };
 </script>
 
 <style scoped>
-  .preview-container {
-    max-width: 600px;
-    max-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  .preview-img {
-    max-width: 400px;
-    max-height: 400px;
-    width: auto;
-    height: auto;
-  }
-  .resource-list:hover {
-    transition-delay: 1s;
-  }
-  .button-container {
-    height: 100%;
-    width: 100%;
-  }
-  button{
-    float: right;
-  }
+.preview-container {
+  max-width: 600px;
+  max-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.preview-img {
+  max-width: 400px;
+  max-height: 400px;
+  width: auto;
+  height: auto;
+}
+
+.resource-list:hover {
+  transition-delay: 1s;
+}
+
+.button-container {
+  height: 100%;
+  width: 100%;
+}
+
+button{
+  float: right;
+}
 </style>
