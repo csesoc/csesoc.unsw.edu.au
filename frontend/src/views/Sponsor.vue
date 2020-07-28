@@ -50,7 +50,6 @@ import APIClient  from '../utils/APIClient';
 import SponsorModal from '@/components/SponsorModal';
 import EnquiryForm from '@/components/EnquiryForm';
 import {MAILING_URL} from '../utils/Constants';
-import Vue from 'vue'
 
 export default {
   data: () => ({
