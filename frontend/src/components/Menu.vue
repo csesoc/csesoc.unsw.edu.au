@@ -4,18 +4,18 @@
       <RouterLink to="/about" class="link">
         <label>About</label>
       </RouterLink>
-      <RouterLink to="/" class="link">
+      <!-- <RouterLink to="/" class="link">
         <label>Events</label>
-      </RouterLink>
-      <RouterLink to="/" class="link">
+      </RouterLink> -->
+      <!-- <RouterLink to="/" class="link">
         <label>CSE Resources</label>
-      </RouterLink>
+      </RouterLink> -->
       <RouterLink to="/sponsors" class="link">
         <label>Sponsors</label>
       </RouterLink>
-      <RouterLink to="/" class="link">
+      <!-- <RouterLink to="/" class="link">
         <label>Shop</label>
-      </RouterLink>
+      </RouterLink> -->
       <RouterLink to="/engage" class="link">
         <label>Engage</label>
       </RouterLink>
