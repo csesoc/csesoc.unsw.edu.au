@@ -122,7 +122,6 @@
 </template>
 
 <script>
-import Slider from '@/components/Slider';
 import HeaderTitle from '@/components/HeaderTitle';
 import EventGrid from '@/components/EventGrid';
 import InfiniteSlideshow from '@/components/InfiniteSlideshow';
@@ -145,7 +144,6 @@ export default {
   }),
 
   components: {
-    Slider,
     HeaderTitle,
     EventGrid,
     InfiniteSlideshow,
