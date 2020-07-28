@@ -52,10 +52,6 @@
               <a href="https://www.facebook.com/csesoc">Loading...</a>
             </blockquote>
           </div> -->
-        <!-- <v-col sm="12" md="5" lg="8">
-          <HeaderTitle :title="'latest'" />
-          <ListComponent :items="announceItems" />
-        </v-col> -->
       </v-row>
       <v-row>
         <v-spacer></v-spacer>
@@ -126,7 +122,6 @@
 </template>
 
 <script>
-import ListComponent from '@/components/ListComponent';
 import Slider from '@/components/Slider';
 import HeaderTitle from '@/components/HeaderTitle';
 import EventGrid from '@/components/EventGrid';
@@ -150,7 +145,6 @@ export default {
   }),
 
   components: {
-    ListComponent,
     Slider,
     HeaderTitle,
     EventGrid,
