@@ -52,10 +52,6 @@
               <a href="https://www.facebook.com/csesoc">Loading...</a>
             </blockquote>
           </div> -->
-        <!-- <v-col sm="12" md="5" lg="8">
-          <HeaderTitle :title="'latest'" />
-          <ListComponent :items="announceItems" />
-        </v-col> -->
       </v-row>
       <v-row>
         <v-spacer></v-spacer>
@@ -126,8 +122,6 @@
 </template>
 
 <script>
-import ListComponent from '@/components/ListComponent';
-import Slider from '@/components/Slider';
 import HeaderTitle from '@/components/HeaderTitle';
 import EventGrid from '@/components/EventGrid';
 import InfiniteSlideshow from '@/components/InfiniteSlideshow';
@@ -148,16 +142,12 @@ export default {
     eventItems: [],
     time: new Date().getTime()
   }),
-
   components: {
-    ListComponent,
-    Slider,
     HeaderTitle,
     EventGrid,
     InfiniteSlideshow,
     Preview
   },
-
   mounted() {
     fetch(this.mediaApiUri)
       .then(r => r.json())
@@ -210,6 +200,7 @@ export default {
   padding: 7% ;
   text-align: left;
 }
+
 #showcase h1 {
   color: #fff;
   font-size: 80px;
@@ -217,13 +208,16 @@ export default {
   font-weight: bolder;
   line-height: 95px;
 }
+
 #showcase img {
   max-height: 30vh;
   max-width: 30%;
 }
+
 #showcase p {
   font-size: 20px;
 }
+
 #showcase .button {
   text-align: center;
   background: rgb(54, 119, 243);
@@ -236,13 +230,12 @@ export default {
   text-decoration: none;
   width: 250px;
 }
+
 #showcase .button:hover {
   transition: 0.4s;
   background: rgb(54, 119, 243);
   color: #fff;
 }
-
-
 
 #mission p {
   font-size: 40px;
@@ -260,7 +253,6 @@ export default {
   font-size: 30px;
   padding: 0 0 25px 0;
 }
-
 
 #sponsor .button {
   text-align: center;

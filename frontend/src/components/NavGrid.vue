@@ -5,7 +5,7 @@
         <v-card class="ma-3 grid__square" :href="item.link ? item.link : '#0'" target="_blank">
           <v-img
             :src="item.src"
-            class="grid__img"
+            class="grid-img"
             gradient="to bottom, rgba(255,255,255,0.1) 0%, rgba(41,41,41,0.6) 50%, rgba(24,24,24,0.8) 100%"
           >
             <v-card-title
@@ -19,10 +19,18 @@
   </v-container>
 </template>
 
+<script type="text/javascript">
+export default {
+  name: 'NavGrid',
+  // Must be passed from parent object
+  // items have title, image url (src), and link
+  props: ['items']
+};
+</script>
 
 <style scoped>
-.grid_square,
-.grid__img {
+.grid-square,
+.grid-img {
   height: 28vh;
   background: rgb(8, 72, 255);
   background: linear-gradient(
@@ -33,12 +41,3 @@
   );
 }
 </style>
-
-<script type="text/javascript">
-export default {
-  name: 'NavGrid',
-  // Must be passed from parent object
-  // items have title, image url (src), and link
-  props: ['items']
-};
-</script>

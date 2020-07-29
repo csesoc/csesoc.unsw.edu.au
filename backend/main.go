@@ -9,8 +9,6 @@ import (
 	"time"
 
 	// Doing a local import
-	//. "csesoc.unsw.edu.au/m/v2/server/category"
-	//. "csesoc.unsw.edu.au/m/v2/server/post"
 	. "csesoc.unsw.edu.au/m/v2/server"
 	. "csesoc.unsw.edu.au/m/v2/server/events"
 	. "csesoc.unsw.edu.au/m/v2/server/faq"

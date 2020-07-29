@@ -1,8 +1,5 @@
 <template>
-    <v-dialog
-        v-model="show"
-        max-width="500"
-        >
+    <v-dialog v-model="show" max-width="500">
       <v-card>
         <v-card-title class="headline">{{title}}</v-card-title>
         <v-card-text>
@@ -13,24 +10,25 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      title: String,
-      body: String,
-      //Value here is the prop that is made from v-model
-      value: Boolean
-    },
-    computed: {
-      show: {
-        get () {
-          return this.value
-        },
-        set (value) {
-          this.$emit('input', value)
-        }
+export default {
+  props: {
+    title: String,
+    body: String,
+    // Value here is the prop that is made from v-model
+    value: Boolean
+  },
+  computed: {
+    show: {
+      get () {
+        return this.value
+      },
+      set (value) {
+        this.$emit('input', value)
       }
     }
   }
+}
 </script>
+
 <style scoped>
 </style>

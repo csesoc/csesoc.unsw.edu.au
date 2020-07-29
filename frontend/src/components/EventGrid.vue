@@ -4,25 +4,25 @@
     <div v-if="events.length == 0">Stay tuned to our Facebook page for upcoming events!</div>
     <v-row class="justify-center">
       <v-col sm="8" md="6" lg="6" xl="4" v-for="event in events" :key="event.id">
-        <v-card style = "position: relative" class="ma-1 grid__square event__card" height="100%"  target="_blank">
+        <v-card style = "position: relative" class="ma-1 grid__square card" height="100%"  target="_blank">
           <v-img
             :src="event.fb_cover_img"
-            class="grid__img"
+            class="grid-img"
             height = "150px"
             gradient="to bottom, rgba(255,255,255,0.1) 0%, rgba(41,41,41,0.6) 50%, rgba(24,24,24,0.8) 100%"
           >
           </v-img>
           <v-card-text height="100%">
-            <div class="event__name" v-text="event.name"/>
+            <div class="name" v-text="event.name"/>
             <!-- <div class="event__place" v-if="event.place != undefined" v-text="'@ '+event.place"/> -->
-            <!-- <div class="event__description" v-text="event.description"/> -->
+            <!-- <div class="description" v-text="event.description"/> -->
           </v-card-text>
-          <div class="event__date">
-            <div class="event__day" v-text ="new Date(event.start_time*1000).getDate()"></div>
-            <div class="event__month" v-text="getMonthString(event.start_time)"></div>
+          <div class="date">
+            <div class="day" v-text ="new Date(event.start_time*1000).getDate()"></div>
+            <div class="month" v-text="getMonthString(event.start_time)"></div>
           </div>
           <v-card-actions>
-            <a :href="'https://facebook.com/'+ event.fb_event_id"><div class="event__link">Learn more ▶</div></a>
+            <a :href="'https://facebook.com/'+ event.fb_event_id"><div class="link">Learn more ▶</div></a>
           </v-card-actions>
           
         </v-card>
@@ -30,83 +30,6 @@
     </v-row>
   </v-container>
 </template>
-
-
-<style scoped>
-.grid_square,
-.grid__img {
-  height: 28vh;
-  background: rgb(8, 72, 255);
-  background: linear-gradient(
-    120deg,
-    rgba(8, 72, 255, 1) 0%,
-    rgba(0, 98, 214, 1) 50%,
-    rgba(65, 115, 255, 1) 100%
-  );
-}
-/* .event__description {
-  color: black !important;
-  font-size: 1.1em;
-}
-.event__place {
-  color: black !important;
-  font-size: 1.1em;
-} */
-a {
-  text-decoration: none;
-}
-.event__card {
-  padding-bottom: 20px;
-  min-height: 295px;
-  overflow: hidden;
-}
-
-.event__link {
-  color: rgb(54, 119, 243) !important;
-  font-size: 1.2em;
-  position: absolute;
-  bottom: 20px;
-  right: 15px;
-  width: 100%;
-  text-align: right;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.event__link:hover {
-  color: rgb(97, 157, 246) !important;
-}
-
-.event__name {
-  color: #111;
-  width: 75%;
-  font-size: 2em;
-  font-weight: bold;
-  line-height: 1.2;
-}
-
-.event__date {
-  color: rgb(197, 197, 197);
-  position: absolute;
-  right: -5px;
-  bottom: 45px;
-  width: 100%;
-  text-align: right;
-}
-
-.event__month {
-  color: rgb(202, 202, 202);
-  font-weight: bold;
-  line-height: 0.2;
-  font-size: 55px;
-}
-
-.event__day {
-  font-size: 65px;
-}
-
-
-</style>
 
 <script type="text/javascript">
 export default {
@@ -185,3 +108,81 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.grid-square,
+.grid-img {
+  height: 28vh;
+  background: rgb(8, 72, 255);
+  background: linear-gradient(
+    120deg,
+    rgba(8, 72, 255, 1) 0%,
+    rgba(0, 98, 214, 1) 50%,
+    rgba(65, 115, 255, 1) 100%
+  );
+}
+
+/* .description {
+  color: black !important;
+  font-size: 1.1em;
+} */
+
+/* .place {
+  color: black !important;
+  font-size: 1.1em;
+} */
+
+a {
+  text-decoration: none;
+}
+
+.card {
+  padding-bottom: 20px;
+  min-height: 295px;
+  overflow: hidden;
+}
+
+.link {
+  color: rgb(54, 119, 243) !important;
+  font-size: 1.2em;
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
+  width: 100%;
+  text-align: right;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.link:hover {
+  color: rgb(97, 157, 246) !important;
+}
+
+.name {
+  color: #111;
+  width: 75%;
+  font-size: 2em;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.date {
+  color: rgb(197, 197, 197);
+  position: absolute;
+  right: -5px;
+  bottom: 45px;
+  width: 100%;
+  text-align: right;
+}
+
+.month {
+  color: rgb(202, 202, 202);
+  font-weight: bold;
+  line-height: 0.2;
+  font-size: 55px;
+}
+
+.day {
+  font-size: 65px;
+}
+</style>

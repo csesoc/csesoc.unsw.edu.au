@@ -29,7 +29,6 @@
 <script>
 import Footer from '@/components/Footer';
 import Menu from '@/components/Menu.vue';
-import LoginForm from '@/components/LoginForm';
 
 export default {
   name: 'App',
@@ -39,7 +38,6 @@ export default {
   components: {
     Footer,
     Menu,
-    LoginForm
   },
   methods: {
     onMenuCollapse(val) {
