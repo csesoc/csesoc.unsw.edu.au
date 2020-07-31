@@ -47,7 +47,7 @@ func ResourcesSetup(client *mongo.Client) {
 	// Fetching resource list
 	resources, err := readResourceJSON()
 	if err != nil {
-		log.Fatal("Could not retrive resources from JSON")
+		log.Fatal("Unable to retrieve Resources from JSON")
 	}
 
 	for _, resource := range resources {

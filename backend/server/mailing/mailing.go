@@ -77,9 +77,10 @@ func handleMessage(c echo.Context, mt messageType) error {
 			Email: c.FormValue("email"),
 			Body:  c.FormValue("body"),
 		}
+		// Validate struct
 		if err := c.Validate(enquiry); err != nil {
 			return c.JSON(http.StatusBadRequest, H{
-				"error": err,
+				"error": "Invalid form",
 			})
 		}
 	} else if mt == feedbackType {
@@ -91,7 +92,7 @@ func handleMessage(c echo.Context, mt messageType) error {
 		// Validate struct
 		if err := c.Validate(feedback); err != nil {
 			return c.JSON(http.StatusBadRequest, H{
-				"error": err,
+				"error": "Invalid form",
 			})
 		}
 	}

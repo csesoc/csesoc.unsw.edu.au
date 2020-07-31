@@ -12,9 +12,9 @@ import (
 
 // Social - struct to contain social links data
 type Social struct {
-	SocialID int    `json:"id"`
-	Title    string `json:"title"`
-	Link     string `json:"link"`
+	SocialID int    `json:"id" validate:"required"`
+	Title    string `json:"title" validate:"required"`
+	Link     string `json:"link" validate:"required"`
 	Source   string `json:"src"`
 }
 
@@ -26,7 +26,7 @@ type Social struct {
 // @Header 503 {string} error "Unable to retrieve social media links"
 // @Router /social [get]
 func GetSocial(c echo.Context) error {
-	results, err := readSocialJSON()
+	socials, err := readSocialJSON()
 
 	if err != nil {
 		return c.JSON(http.StatusServiceUnavailable, H{
@@ -34,7 +34,14 @@ func GetSocial(c echo.Context) error {
 		})
 	}
 
-	return c.JSON(http.StatusOK, results)
+	// Validate struct
+	if err := c.Validate(socials); err != nil {
+		return c.JSON(http.StatusInternalServerError, H{
+			"error": "Missing fields on one or more social link",
+		})
+	}
+
+	return c.JSON(http.StatusOK, socials)
 }
 
 //////////

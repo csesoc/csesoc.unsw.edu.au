@@ -12,8 +12,8 @@ import (
 
 // Faq - struct to store faq pairs
 type Faq struct {
-	Question string `json:"question"`
-	Answer   string `json:"answer"`
+	Question string `json:"question" validate:"required"`
+	Answer   string `json:"answer" validate:"required"`
 }
 
 // GetFaq godoc
@@ -24,7 +24,7 @@ type Faq struct {
 // @Header 503 {string} error "Unable to retrieve FAQs"
 // @Router /faq [get]
 func GetFaq(c echo.Context) error {
-	results, err := readFaqJSON()
+	faqs, err := readFaqJSON()
 
 	if err != nil {
 		return c.JSON(http.StatusServiceUnavailable, H{
@@ -32,7 +32,14 @@ func GetFaq(c echo.Context) error {
 		})
 	}
 
-	return c.JSON(http.StatusOK, results)
+	// Validate struct
+	if err := c.Validate(faqs); err != nil {
+		return c.JSON(http.StatusInternalServerError, H{
+			"error": "Missing questions and/or answer fields",
+		})
+	}
+
+	return c.JSON(http.StatusOK, faqs)
 }
 
 //////////

@@ -85,7 +85,7 @@ func NewSponsor(c echo.Context) error {
 	tier, err := strconv.Atoi(c.FormValue("tier"))
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, H{
-			"error": "Tier has to be a number",
+			"error": "Tier is not a number",
 		})
 	}
 	sponsor := Sponsor{
