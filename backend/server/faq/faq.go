@@ -36,11 +36,13 @@ func GetFaq(c echo.Context) error {
 		})
 	}
 
-	// Validate struct
-	if err := c.Validate(faqs); err != nil {
-		return c.JSON(http.StatusInternalServerError, H{
-			"error": "Missing questions and/or answer fields",
-		})
+	// Validate structs
+	for _, faq := range faqs {
+		if err := c.Validate(faq); err != nil {
+			return c.JSON(http.StatusInternalServerError, H{
+				"error": "Missing questions and/or answer fields",
+			})
+		}
 	}
 
 	return c.JSON(http.StatusOK, faqs)

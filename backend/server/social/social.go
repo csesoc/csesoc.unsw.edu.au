@@ -38,11 +38,13 @@ func GetSocial(c echo.Context) error {
 		})
 	}
 
-	// Validate struct
-	if err := c.Validate(socials); err != nil {
-		return c.JSON(http.StatusInternalServerError, H{
-			"error": "Missing fields on one or more social link",
-		})
+	// Validate structss
+	for _, social := range socials {
+		if err := c.Validate(social); err != nil {
+			return c.JSON(http.StatusInternalServerError, H{
+				"error": "Missing fields on one or more social link",
+			})
+		}
 	}
 
 	return c.JSON(http.StatusOK, socials)
