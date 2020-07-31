@@ -34,7 +34,7 @@ type FbRespEvent struct {
 	Start       string        `json:"start_time"`
 	End         string        `json:"end_time"`
 	EventTimes  []FbRespTimes `json:"event_times"`
-	Id          string        `json:"id"`
+	ID          string        `json:"id"`
 	Place       FbRespPlace   `json:"place"`
 }
 
@@ -57,7 +57,7 @@ type FbRespError struct {
 
 // FbRespCover - struct to unmarshal the URI of the cover image
 type FbRespCover struct {
-	CoverUri string `json:"source"`
+	CoverURI string `json:"source"`
 }
 
 // MarshalledEvents - struct to pack up events with the last update time to be marshalled.
@@ -72,9 +72,9 @@ type Event struct {
 	Description string `json:"description"`
 	Start       int64  `json:"start_time"`
 	End         int64  `json:"end_time"`
-	Id          string `json:"fb_event_id"`
+	ID          string `json:"fb_event_id"`
 	Place       string `json:"place"`
-	CoverUrl    string `json:"fb_cover_img"`
+	CoverURL    string `json:"fb_cover_img"`
 }
 
 ///////////
@@ -176,7 +176,7 @@ func fetchCoverImage(id string) (string, error) {
 	if result.Error != (FbRespError{}) {
 		return "", fmt.Errorf("Something went wrong with the FB request")
 	}
-	return result.Cover.CoverUri, nil
+	return result.Cover.CoverURI, nil
 }
 
 // Process the facebook event information before saving it to a new file.
@@ -193,7 +193,7 @@ func saveEvents() {
 	for _, element := range result.Data {
 		if len(element.EventTimes) != 0 {
 			for _, occurrence := range element.EventTimes {
-				cover, err := fetchCoverImage(element.Id)
+				cover, err := fetchCoverImage(element.ID)
 				if err != nil {
 					// do something
 				}
@@ -211,12 +211,12 @@ func saveEvents() {
 					Description: element.Description,
 					Start:       start.Unix(),
 					End:         end.Unix(),
-					Id:          element.Id,
-					CoverUrl:    cover,
+					ID:          element.ID,
+					CoverURL:    cover,
 				})
 			}
 		} else {
-			cover, err := fetchCoverImage(element.Id)
+			cover, err := fetchCoverImage(element.ID)
 			if err != nil {
 				// do something
 			}
@@ -234,9 +234,9 @@ func saveEvents() {
 				Description: element.Description,
 				Start:       start.Unix(),
 				End:         end.Unix(),
-				Id:          element.Id,
+				ID:          element.ID,
 				Place:       element.Place.Name,
-				CoverUrl:    cover,
+				CoverURL:    cover,
 			})
 		}
 	}
