@@ -11,7 +11,7 @@ func TestSocial(t *testing.T) {
 	t.Run("Correct status test", func(t *testing.T) {
 		resp, err := http.Get(BASE_URL + SOCIAL_URL)
 		if err != nil {
-			t.Errorf("Could not get perform request.")
+			t.Errorf("Could not perform GET request: %v", err)
 			return
 		}
 		defer resp.Body.Close()

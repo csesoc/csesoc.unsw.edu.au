@@ -37,7 +37,7 @@ func ReadJSON(name string) ([]byte, error) {
 func AssertStatus(t *testing.T, got, want int) {
 	t.Helper()
 	if got != want {
-		t.Errorf("got status %d, want %d", got, want)
+		t.Errorf("Wrong status: got '%d', want '%d'", got, want)
 	}
 }
 
@@ -45,6 +45,6 @@ func AssertStatus(t *testing.T, got, want int) {
 func AssertResponseBody(t *testing.T, got, want string) {
 	t.Helper()
 	if got != want {
-		t.Errorf("Response body is wrong, got %s, want %s", got, want)
+		t.Errorf("Wrong response body, got '%s', want '%s'", got, want)
 	}
 }

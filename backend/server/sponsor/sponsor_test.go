@@ -15,14 +15,14 @@ const companyName = "Example"
 const companyLogo = "https://static.canva.com/static/images/canva_logo_100x100@2x.png"
 const companyTier = "2"
 const companyDetail = "Example"
-const companyUrl = "https://www.google.com"
-const sponsorRequestUrl = BASE_URL + SPONSOR_URL
+const companyURL = "https://www.google.com"
+const sponsorRequestURL = BASE_URL + SPONSOR_URL
 
 func TestSponsor(t *testing.T) {
 	t.Run("Sponsor setup test", func(t *testing.T) {
-		resp, err := http.Get(sponsorRequestUrl)
+		resp, err := http.Get(sponsorRequestURL)
 		if err != nil {
-			t.Errorf("Could not perform GET request.")
+			t.Errorf("Could not perform GET request: %v", err)
 			return
 		}
 		defer resp.Body.Close()
@@ -30,17 +30,17 @@ func TestSponsor(t *testing.T) {
 		AssertStatus(t, resp.StatusCode, http.StatusOK)
 		var sponsors []*Sponsor
 		if err = json.NewDecoder(resp.Body).Decode(&sponsors); err != nil {
-			t.Errorf("Error parsing json response: %s", err)
+			t.Errorf("Error parsing JSON response: %v", err)
 		}
 		if len(sponsors) == 0 {
-			t.Errorf("Sponsors were not populated.")
+			t.Errorf("Error population Sponsor list")
 		}
 	})
 
 	t.Run("Testing sponsor filtering", func(t *testing.T) {
-		resp, err := http.Get(sponsorRequestUrl + "?tier=2")
+		resp, err := http.Get(sponsorRequestURL + "?tier=2")
 		if err != nil {
-			t.Errorf("Could not perform get sponsors request. Check connection.")
+			t.Errorf("Could not perform GET request: %v", err)
 			return
 		}
 		defer resp.Body.Close()
@@ -55,14 +55,14 @@ func TestSponsor(t *testing.T) {
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
 			"detail": {companyDetail},
-			"url":    {companyUrl},
+			"url":    {companyURL},
 		}
-		req, _ := http.NewRequest("POST", sponsorRequestUrl, strings.NewReader(form.Encode()))
+		req, _ := http.NewRequest("POST", sponsorRequestURL, strings.NewReader(form.Encode()))
 		req.Header.Add("Authorization", AUTH_TOKEN)
 		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 		resp, err := client.Do(req)
 		if err != nil {
-			t.Errorf("Could not perform post sponsor request. Check connection.")
+			t.Errorf("Could not perform POST request: %v", err)
 			return
 		}
 		defer resp.Body.Close()
@@ -71,9 +71,9 @@ func TestSponsor(t *testing.T) {
 	})
 
 	t.Run("Get newly created sponsor", func(t *testing.T) {
-		resp, err := http.Get(sponsorRequestUrl + "/" + companyName)
+		resp, err := http.Get(sponsorRequestURL + "/" + companyName)
 		if err != nil {
-			t.Errorf("Could not perform get sponsor request. Check connection.")
+			t.Errorf("Could not perform GET request: %v", err)
 			return
 		}
 		defer resp.Body.Close()
@@ -82,7 +82,7 @@ func TestSponsor(t *testing.T) {
 
 		var newSponsor *Sponsor
 		if err = json.NewDecoder(resp.Body).Decode(&newSponsor); err != nil {
-			t.Errorf("Error parsing json response: %s", err)
+			t.Errorf("Error parsing JSON response: %v", err)
 		} else {
 			AssertResponseBody(t, newSponsor.Name, companyName)
 			AssertResponseBody(t, newSponsor.Logo, companyLogo)
@@ -92,15 +92,15 @@ func TestSponsor(t *testing.T) {
 
 	t.Run("Delete newly created sponsor", func(t *testing.T) {
 		client := &http.Client{}
-		req, err := http.NewRequest("DELETE", sponsorRequestUrl+"/"+companyName, nil)
+		req, err := http.NewRequest("DELETE", sponsorRequestURL+"/"+companyName, nil)
 		req.Header.Add("Authorization", AUTH_TOKEN)
 		if err != nil {
-			t.Errorf("Could not create delete request for sponsor.")
+			t.Errorf("Error crafting DELETE request: %v", err)
 			return
 		}
 		resp, err := client.Do(req)
 		if err != nil {
-			t.Errorf("Could not perform delete sponsor request. Check connection.")
+			t.Errorf("Could not perform DELETE request: %v", err)
 			return
 		}
 		defer resp.Body.Close()
@@ -109,9 +109,9 @@ func TestSponsor(t *testing.T) {
 	})
 
 	t.Run("Check newly removed sponsor", func(t *testing.T) {
-		resp, err := http.Get(sponsorRequestUrl + "/" + companyName)
+		resp, err := http.Get(sponsorRequestURL + "/" + companyName)
 		if err != nil {
-			t.Errorf("Could not perform get sponsor request. Check connection.")
+			t.Errorf("Could not perform GET request: %v", err)
 			return
 		}
 		defer resp.Body.Close()
@@ -128,43 +128,43 @@ func TestSponsorError(t *testing.T) {
 			"logo":   {companyLogo},
 			"tier":   {companyTier},
 			"detail": {companyDetail},
-			"url":    {companyUrl},
+			"url":    {companyURL},
 		}
-		req, _ := http.NewRequest("POST", sponsorRequestUrl, strings.NewReader(form.Encode()))
+		req, _ := http.NewRequest("POST", sponsorRequestURL, strings.NewReader(form.Encode()))
 		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 		req.Header.Add("Authorization", AUTH_TOKEN)
 		req.PostForm = form
 		resp, err := client.Do(req)
 		if err != nil {
-			t.Errorf("Could not perform post sponsor request. Check connection.")
+			t.Errorf("Could not perform POST request: %v", err)
 			return
 		}
 		defer resp.Body.Close()
 
 		AssertStatus(t, resp.StatusCode, http.StatusCreated)
 
-		req, _ = http.NewRequest("POST", sponsorRequestUrl, strings.NewReader(form.Encode()))
+		req, _ = http.NewRequest("POST", sponsorRequestURL, strings.NewReader(form.Encode()))
 		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 		req.Header.Add("Authorization", AUTH_TOKEN)
 		req.PostForm = form
 		resp, err = client.Do(req)
 		if err != nil {
-			t.Errorf("Could not perform post sponsor request. Check connection.")
+			t.Errorf("Could not perform POST request: %v", err)
 			return
 		}
 		defer resp.Body.Close()
 
 		AssertStatus(t, resp.StatusCode, http.StatusConflict)
 
-		req, err = http.NewRequest("DELETE", sponsorRequestUrl+"/"+companyName, nil)
+		req, err = http.NewRequest("DELETE", sponsorRequestURL+"/"+companyName, nil)
 		req.Header.Add("Authorization", AUTH_TOKEN)
 		if err != nil {
-			t.Errorf("Could not create delete request for sponsor.")
+			t.Errorf("Error crafting DELETE request: %v", err)
 			return
 		}
 		resp, err = client.Do(req)
 		if err != nil {
-			t.Errorf("Could not perform delete sponsor request. Check connection.")
+			t.Errorf("Could not perform DELETE request: %v", err)
 			return
 		}
 		defer resp.Body.Close()
@@ -174,7 +174,7 @@ func TestSponsorError(t *testing.T) {
 
 	t.Run("Missing parameters when creating", func(t *testing.T) {
 		client := &http.Client{}
-		req, _ := http.NewRequest("POST", sponsorRequestUrl, nil)
+		req, _ := http.NewRequest("POST", sponsorRequestURL, nil)
 		req.Header.Add("Authorization", AUTH_TOKEN)
 		form := url.Values{
 			"name": {companyName},
@@ -183,7 +183,7 @@ func TestSponsorError(t *testing.T) {
 		req.PostForm = form
 		resp, err := client.Do(req)
 		if err != nil {
-			t.Errorf("Could not perform post sponsor request. Check connection.")
+			t.Errorf("Could not perform POST request: %v", err)
 			return
 		}
 		defer resp.Body.Close()
@@ -192,9 +192,9 @@ func TestSponsorError(t *testing.T) {
 	})
 
 	t.Run("Get non existent sponsor", func(t *testing.T) {
-		resp, err := http.Get(sponsorRequestUrl + "nonexistent")
+		resp, err := http.Get(sponsorRequestURL + "nonexistent")
 		if err != nil {
-			t.Errorf("Could not perform get sponsor request. Check connection.")
+			t.Errorf("Could not perform GET request: %v", err)
 			return
 		}
 		defer resp.Body.Close()
