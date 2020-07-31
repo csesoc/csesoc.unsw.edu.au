@@ -24,6 +24,8 @@ type Faq struct {
 // @Summary Return all faq questions and answers pairs
 // @Tags faq
 // @Success 200 {array} Faq
+// @Failure 500 "Service unavailable"
+// @Header 500 {string} error "Missing questions and/or answer fields"
 // @Failure 503 "Service unavailable"
 // @Header 503 {string} error "Unable to retrieve FAQs"
 // @Router /faq [get]
