@@ -31,8 +31,8 @@ var sponsorColl *mongo.Collection
 // SETUP
 ////////
 
-// SponsorSetup - Setup the collection to be used for sponsors
-func SponsorSetup(client *mongo.Client) {
+// Setup - setup the collection to be used for sponsors
+func Setup(client *mongo.Client) {
 	sponsorColl = client.Database("csesoc").Collection("sponsors")
 
 	// Creating unique index for sponsor name
@@ -66,7 +66,7 @@ func SponsorSetup(client *mongo.Client) {
 // HANDLERS
 ///////////
 
-// NewSponsor godoc
+// HandleNew godoc
 // @Summary Add a new sponsor
 // @Tags sponsors
 // @accept Content-Type application/x-www-form-urlencoded
@@ -83,7 +83,7 @@ func SponsorSetup(client *mongo.Client) {
 // @Header 409 {string} error "Sponsor already exists on database"
 // @Router /sponsors [post]
 // @Security BearerAuthKey
-func NewSponsor(c echo.Context) error {
+func HandleNew(c echo.Context) error {
 	tier, err := strconv.Atoi(c.FormValue("tier"))
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, H{
@@ -116,7 +116,7 @@ func NewSponsor(c echo.Context) error {
 	})
 }
 
-// GetSponsor godoc
+// HandleGetSingle godoc
 // @Summary Find entry for a specific sponsor
 // @Tags sponsors
 // @Param name path string true "Sponsor name"
@@ -124,7 +124,7 @@ func NewSponsor(c echo.Context) error {
 // @Failure 404 "Not found"
 // @Header 404 {string} error "No such sponsor"
 // @Router /sponsors/{name} [get]
-func GetSponsor(c echo.Context) error {
+func HandleGetSingle(c echo.Context) error {
 	var result Sponsor
 	filter := bson.D{{Key: "name", Value: c.Param("name")}}
 	if err := sponsorColl.FindOne(context.TODO(), filter).Decode(&result); err != nil {
@@ -135,7 +135,7 @@ func GetSponsor(c echo.Context) error {
 	return c.JSON(http.StatusOK, result)
 }
 
-// GetSponsors godoc
+// HandleGetMultiple godoc
 // @Summary Get a list of sponsors stored
 // @Tags sponsors
 // @Param tier query integer false "Valid sponsor tier, 0-2 inclusive" mininum(0) maxinum(2)
@@ -143,7 +143,7 @@ func GetSponsor(c echo.Context) error {
 // @Failure 500 "Internal server error"
 // @Header 500 {string} error "Unable to retrieve sponsors from database"
 // @Router /sponsors [get]
-func GetSponsors(c echo.Context) error {
+func HandleGetMultiple(c echo.Context) error {
 	tier := c.QueryParam("tier")
 	results, err := retrieveSponsors(tier)
 	if err != nil {
@@ -154,7 +154,7 @@ func GetSponsors(c echo.Context) error {
 	return c.JSON(http.StatusOK, results)
 }
 
-// DeleteSponsor godoc
+// HandleDelete godoc
 // @Summary Delete a sponsor
 // @Tags sponsors
 // @Param Authorization header string true "Bearer <token>"
@@ -165,7 +165,7 @@ func GetSponsors(c echo.Context) error {
 // @Header 500 {string} error "Unable to delete sponsor from database"
 // @Router /sponsors/{name} [delete]
 // @Security BearerAuthKey
-func DeleteSponsor(c echo.Context) error {
+func HandleDelete(c echo.Context) error {
 	filter := bson.D{{Key: "name", Value: c.Param("name")}}
 	if _, err := sponsorColl.DeleteOne(context.TODO(), filter); err != nil {
 		return c.JSON(http.StatusInternalServerError, H{

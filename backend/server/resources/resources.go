@@ -29,8 +29,8 @@ type Resource struct {
 // SETUP
 ////////
 
-// ResourcesSetup - Set up the resources collection
-func ResourcesSetup(client *mongo.Client) {
+// Setup - Set up the resources collection
+func Setup(client *mongo.Client) {
 	resourceColl = client.Database("csesoc").Collection("resources")
 
 	// Creating unique index for resource title
@@ -61,14 +61,14 @@ func ResourcesSetup(client *mongo.Client) {
 // HANDLERS
 ///////////
 
-// GetPreview godoc
+// HandleGetPreview godoc
 // @Summary Get a list of resources stored
 // @Tags resources
 // @Success 200 {array} Resource
 // @Failure 500 "Internal server error"
 // @Header 500 {string} error "Unable to retrieve resources from database"
 // @Router /responses/preview [get]
-func GetPreview(c echo.Context) error {
+func HandleGetPreview(c echo.Context) error {
 	var results []*Resource
 
 	// get database pointer

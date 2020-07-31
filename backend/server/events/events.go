@@ -81,14 +81,14 @@ type Event struct {
 // HANDLERS
 ///////////
 
-// GetEvents godoc
+// HandleGet godoc
 // @Summary Get a list of upcoming events
 // @Tags events
 // @Success 200 {array} Event
 // @Failure 500 "Internal server error"
 // @Header 500 {string} error "Unable to retrieve events from file"
 // @Router /events [get]
-func GetEvents(c echo.Context) error {
+func HandleGet(c echo.Context) error {
 	fp, err := filepath.Abs("static/events.json")
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, H{
@@ -102,8 +102,8 @@ func GetEvents(c echo.Context) error {
 // TIMERS
 /////////
 
-// EventFetchTimer - sets up a ticker to fetch events at an interval
-func EventFetchTimer() {
+// FetchTimer - sets up a ticker to fetch events at an interval
+func FetchTimer() {
 	saveEvents()
 	time.Sleep(time.Duration(FB_FETCH_INTERVAL * time.Second))
 }

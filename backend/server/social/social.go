@@ -22,7 +22,7 @@ type Social struct {
 // HANDLERS
 ///////////
 
-// GetSocial godoc
+// HandleGet godoc
 // @Summary Return all social media links
 // @Tags social
 // @Success 200 {array} Social
@@ -31,7 +31,7 @@ type Social struct {
 // @Failure 503 "Service unavailable"
 // @Header 503 {string} error "Unable to retrieve social media links"
 // @Router /social [get]
-func GetSocial(c echo.Context) error {
+func HandleGet(c echo.Context) error {
 	socials, err := readSocialJSON()
 
 	if err != nil {

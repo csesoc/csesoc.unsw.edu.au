@@ -10,13 +10,13 @@ import (
 
 	// Doing a local import
 	. "csesoc.unsw.edu.au/m/v2/server"
-	. "csesoc.unsw.edu.au/m/v2/server/events"
-	. "csesoc.unsw.edu.au/m/v2/server/faq"
-	. "csesoc.unsw.edu.au/m/v2/server/login"
-	. "csesoc.unsw.edu.au/m/v2/server/mailing"
-	. "csesoc.unsw.edu.au/m/v2/server/resources"
-	. "csesoc.unsw.edu.au/m/v2/server/social"
-	. "csesoc.unsw.edu.au/m/v2/server/sponsor"
+	Events "csesoc.unsw.edu.au/m/v2/server/events"
+	Faq "csesoc.unsw.edu.au/m/v2/server/faq"
+	Login "csesoc.unsw.edu.au/m/v2/server/login"
+	Mailing "csesoc.unsw.edu.au/m/v2/server/mailing"
+	Resources "csesoc.unsw.edu.au/m/v2/server/resources"
+	Social "csesoc.unsw.edu.au/m/v2/server/social"
+	Sponsor "csesoc.unsw.edu.au/m/v2/server/sponsor"
 
 	_ "csesoc.unsw.edu.au/m/v2/docs"
 
@@ -66,7 +66,9 @@ func main() {
 	println("Web server is online :)")
 
 	// Disable the fetch timer until we get access to the actual CSESoc page
-	// go EventFetchTimer()
+	if !DEVELOPMENT {
+		go Events.FetchTimer()
+	}
 
 	// Bind quit to listen to Interrupt signals
 	quit := make(chan os.Signal)
@@ -92,8 +94,8 @@ func main() {
 	<-quit
 	// Dispatch bundles on shutdown
 	if !DEVELOPMENT {
-		DispatchEnquiryBundles()
-		DispatchFeedbackBundle()
+		Mailing.DispatchEnquiryBundles()
+		Mailing.DispatchFeedbackBundle()
 	}
 	// Gracefully shutdown the server with a timeout of 10 seconds
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
@@ -159,52 +161,52 @@ func serveAPI(e *echo.Echo) {
 	println("Serving API...")
 
 	// AUTHENTICATION
-	e.POST("/login", TempLogin)
+	e.POST("/login", Login.TempLogin)
 
 	v1 := e.Group("/api/v1")
 	{
 		// SPONSORS
-		SponsorSetup(client)
+		Sponsor.Setup(client)
 		sponsors := v1.Group("/sponsors")
 		{
-			sponsors.GET("/:name", GetSponsor)
-			sponsors.POST("", NewSponsor, middleware.JWT(JWT_SECRET))
-			sponsors.DELETE("/:name", DeleteSponsor, middleware.JWT(JWT_SECRET))
-			sponsors.GET("", GetSponsors)
+			sponsors.GET("/:name", Sponsor.HandleGetSingle)
+			sponsors.POST("", Sponsor.HandleNew, middleware.JWT(JWT_SECRET))
+			sponsors.DELETE("/:name", Sponsor.HandleDelete, middleware.JWT(JWT_SECRET))
+			sponsors.GET("", Sponsor.HandleGetMultiple)
 		}
 
 		// MAILING
-		MailingSetup()
+		Mailing.Setup()
 		mailing := v1.Group("/mailing")
 		{
-			mailing.POST("/general", HandleGeneralMessage)
-			mailing.POST("/sponsorship", HandleSponsorshipMessage)
-			mailing.POST("/feedback", HandleFeedbackMessage)
+			mailing.POST("/general", Mailing.HandleGeneralMessage)
+			mailing.POST("/sponsorship", Mailing.HandleSponsorshipMessage)
+			mailing.POST("/feedback", Mailing.HandleFeedbackMessage)
 		}
 
 		// FAQ
 		faq := v1.Group("/faq")
 		{
-			faq.GET("", GetFaq)
+			faq.GET("", Faq.HandleGet)
 		}
 
 		// SOCIAL
 		social := v1.Group("/social")
 		{
-			social.GET("", GetSocial)
+			social.GET("", Social.HandleGet)
 		}
 
 		// EVENTS
 		events := v1.Group("/events")
 		{
-			events.GET("", GetEvents)
+			events.GET("", Events.HandleGet)
 		}
 
 		// RESOURCES
-		ResourcesSetup(client)
+		Resources.Setup(client)
 		resources := v1.Group("/resources")
 		{
-			resources.GET("/preview", GetPreview)
+			resources.GET("/preview", Resources.HandleGetPreview)
 		}
 	}
 }

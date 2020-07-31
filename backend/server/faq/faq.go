@@ -20,7 +20,7 @@ type Faq struct {
 // HANDLERS
 ///////////
 
-// GetFaq godoc
+// HandleGet godoc
 // @Summary Return all faq questions and answers pairs
 // @Tags faq
 // @Success 200 {array} Faq
@@ -29,7 +29,7 @@ type Faq struct {
 // @Failure 503 "Service unavailable"
 // @Header 503 {string} error "Unable to retrieve FAQs"
 // @Router /faq [get]
-func GetFaq(c echo.Context) error {
+func HandleGet(c echo.Context) error {
 	faqs, err := readFaqJSON()
 
 	if err != nil {

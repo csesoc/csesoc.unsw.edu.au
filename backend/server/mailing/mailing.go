@@ -49,8 +49,8 @@ var mailjetClient *mailjet.Client
 // SETUP
 ////////
 
-// MailingSetup initialises a session with the Mailjet API and stores it in a global variable
-func MailingSetup() {
+// Setup - initialises a session with the Mailjet API and stores it in a global variable
+func Setup() {
 	if DEVELOPMENT {
 		INFO_EMAIL = "projects.website+info@csesoc.org.au"
 		SPONSORSHIP_EMAIL = "projects.website+sponsorship@csesoc.org.au"
