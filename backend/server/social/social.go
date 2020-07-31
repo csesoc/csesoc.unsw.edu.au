@@ -12,9 +12,9 @@ import (
 
 // Social - struct to contain social links data
 type Social struct {
-	SocialID int    `json:"id" validate:"required"`
+	SocialID int    `json:"id" validate:"min=0"`
 	Title    string `json:"title" validate:"required"`
-	Link     string `json:"link" validate:"required"`
+	Link     string `json:"link" validate:"required,url"`
 	Source   string `json:"src"`
 }
 
@@ -42,7 +42,7 @@ func GetSocial(c echo.Context) error {
 	for _, social := range socials {
 		if err := c.Validate(social); err != nil {
 			return c.JSON(http.StatusInternalServerError, H{
-				"error": "Missing fields on one or more social link",
+				"error": fmt.Sprintf("Missing fields on: %v", social),
 			})
 		}
 	}
