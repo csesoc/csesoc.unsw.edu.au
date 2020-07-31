@@ -4,11 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
-	"path/filepath"
 
 	. "csesoc.unsw.edu.au/m/v2/server"
 
@@ -28,9 +25,9 @@ type Resource struct {
 	Source      string `json:"src" validate:"required"`
 }
 
-///////////
+////////
 // SETUP
-///////////
+////////
 
 // ResourcesSetup - Set up the resources collection
 func ResourcesSetup(client *mongo.Client) {
@@ -48,7 +45,7 @@ func ResourcesSetup(client *mongo.Client) {
 	}
 
 	// Fetching resource list
-	resources, err := retrieveJSON()
+	resources, err := readResourceJSON()
 	if err != nil {
 		log.Fatal("Could not retrive resources from JSON")
 	}
@@ -95,17 +92,14 @@ func GetPreview(c echo.Context) error {
 //////////
 // HELPERS
 //////////
-func retrieveJSON() ([]*Resource, error) {
-	abspath, _ := filepath.Abs("static/resource.json")
-	jsonFile, err := os.Open(abspath)
-	defer jsonFile.Close()
 
+func readResourceJSON() ([]Resource, error) {
+	byteValue, err := ReadJSON("resource")
 	if err != nil {
-		return nil, fmt.Errorf("Cound not open file response.json: %v", err)
+		return nil, fmt.Errorf("%v", err)
 	}
 
-	byteValue, _ := ioutil.ReadAll(jsonFile)
-	var resources []*Resource
+	var resources []Resource
 	json.Unmarshal(byteValue, &resources)
 
 	return resources, nil

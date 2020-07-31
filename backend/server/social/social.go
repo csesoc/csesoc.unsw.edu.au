@@ -3,10 +3,7 @@ package social
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
-	"os"
-	"path/filepath"
 
 	. "csesoc.unsw.edu.au/m/v2/server"
 
@@ -29,7 +26,7 @@ type Social struct {
 // @Header 503 {string} error "Unable to retrieve social media links"
 // @Router /social [get]
 func GetSocial(c echo.Context) error {
-	results, err := retriveSocialJSON()
+	results, err := readSocialJSON()
 
 	if err != nil {
 		return c.JSON(http.StatusServiceUnavailable, H{
@@ -40,19 +37,18 @@ func GetSocial(c echo.Context) error {
 	return c.JSON(http.StatusOK, results)
 }
 
-// retriveFaqJSON - returns a list of questions and answers from a json file in /static
-func retriveSocialJSON() ([]Social, error) {
-	abspath, _ := filepath.Abs("static/social.json")
-	jsonFile, err := os.Open(abspath)
+//////////
+// HELPERS
+//////////
 
+func readSocialJSON() ([]Social, error) {
+	byteValue, err := ReadJSON("social")
 	if err != nil {
-		return nil, fmt.Errorf("Cound not open file faq.json: %v", err)
+		return nil, fmt.Errorf("%v", err)
 	}
 
-	byteValue, _ := ioutil.ReadAll(jsonFile)
 	var socials []Social
 	json.Unmarshal(byteValue, &socials)
 
-	defer jsonFile.Close()
 	return socials, nil
 }

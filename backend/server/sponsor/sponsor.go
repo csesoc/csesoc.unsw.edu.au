@@ -4,11 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
-	"path/filepath"
 	"strconv"
 
 	. "csesoc.unsw.edu.au/m/v2/server"
@@ -48,7 +45,7 @@ func SponsorSetup(client *mongo.Client) {
 	}
 
 	// Fetching sponsor list
-	sponsors, err := retriveSponsorsJSON()
+	sponsors, err := readSponsorsJSON()
 	if err != nil {
 		log.Fatal("Could not retrive sponsors from JSON")
 	}
@@ -206,18 +203,14 @@ func retrieveSponsors(tierString string) ([]*Sponsor, error) {
 	return results, err
 }
 
-func retriveSponsorsJSON() ([]Sponsor, error) {
-	abspath, _ := filepath.Abs("static/sponsor.json")
-	jsonFile, err := os.Open(abspath)
-
+func readSponsorsJSON() ([]Sponsor, error) {
+	byteValue, err := ReadJSON("sponsor")
 	if err != nil {
-		return nil, fmt.Errorf("Cound not open file sponsor.json: %v", err)
+		return nil, fmt.Errorf("%v", err)
 	}
 
-	byteValue, _ := ioutil.ReadAll(jsonFile)
 	var sponsors []Sponsor
 	json.Unmarshal(byteValue, &sponsors)
 
-	defer jsonFile.Close()
 	return sponsors, nil
 }

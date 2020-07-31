@@ -3,10 +3,7 @@ package faq
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
-	"os"
-	"path/filepath"
 
 	. "csesoc.unsw.edu.au/m/v2/server"
 
@@ -27,7 +24,7 @@ type Faq struct {
 // @Header 503 {string} error "Unable to retrieve FAQs"
 // @Router /faq [get]
 func GetFaq(c echo.Context) error {
-	results, err := retriveFaqJSON()
+	results, err := readFaqJSON()
 
 	if err != nil {
 		return c.JSON(http.StatusServiceUnavailable, H{
@@ -38,19 +35,18 @@ func GetFaq(c echo.Context) error {
 	return c.JSON(http.StatusOK, results)
 }
 
-// retriveFaqJSON - returns a list of questions and answers from a json file in /static
-func retriveFaqJSON() ([]Faq, error) {
-	abspath, _ := filepath.Abs("static/faq.json")
-	jsonFile, err := os.Open(abspath)
+//////////
+// HELPERS
+//////////
 
+func readFaqJSON() ([]Faq, error) {
+	byteValue, err := ReadJSON("faq")
 	if err != nil {
-		return nil, fmt.Errorf("Cound not open file faq.json: %v", err)
+		return nil, fmt.Errorf("%v", err)
 	}
 
-	byteValue, _ := ioutil.ReadAll(jsonFile)
 	var faqs []Faq
 	json.Unmarshal(byteValue, &faqs)
 
-	defer jsonFile.Close()
 	return faqs, nil
 }
