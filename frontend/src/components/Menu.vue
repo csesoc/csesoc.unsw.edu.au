@@ -13,9 +13,6 @@
       <RouterLink to="/sponsors" class="link">
         <label>Sponsors</label>
       </RouterLink>
-      <!-- <RouterLink to="/" class="link">
-        <label>Shop</label>
-      </RouterLink> -->
       <RouterLink to="/engage" class="link">
         <label>Engage</label>
       </RouterLink>
