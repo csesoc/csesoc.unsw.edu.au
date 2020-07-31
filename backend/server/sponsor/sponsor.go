@@ -27,7 +27,9 @@ type Sponsor struct {
 
 var sponsorColl *mongo.Collection
 
-/* Setup */
+////////
+// SETUP
+////////
 
 // SponsorSetup - Setup the collection to be used for sponsors
 func SponsorSetup(client *mongo.Client) {

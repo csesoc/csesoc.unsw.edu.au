@@ -16,6 +16,10 @@ type Faq struct {
 	Answer   string `json:"answer" validate:"required"`
 }
 
+///////////
+// HANDLERS
+///////////
+
 // GetFaq godoc
 // @Summary Return all faq questions and answers pairs
 // @Tags faq

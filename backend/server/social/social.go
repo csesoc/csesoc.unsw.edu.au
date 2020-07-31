@@ -18,6 +18,10 @@ type Social struct {
 	Source   string `json:"src"`
 }
 
+///////////
+// HANDLERS
+///////////
+
 // GetSocial godoc
 // @Summary Return all social media links
 // @Tags social

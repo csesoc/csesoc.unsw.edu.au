@@ -45,6 +45,10 @@ var feedbackBundle []Feedback
 
 var mailjetClient *mailjet.Client
 
+////////
+// SETUP
+////////
+
 // MailingSetup initialises a session with the Mailjet API and stores it in a global variable
 func MailingSetup() {
 	if DEVELOPMENT {
@@ -155,9 +159,9 @@ func HandleFeedbackMessage(c echo.Context) error {
 	return handleMessage(c, feedbackType)
 }
 
-////////
-// TIMER
-////////
+/////////
+// TIMERS
+/////////
 
 // This function is executed once in a subroutine and triggers every 15 minutes
 func mailingTimer() {
