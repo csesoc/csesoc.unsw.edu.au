@@ -19,63 +19,64 @@ import (
 
 // FB response expects data (array of events), and paging, which we ignore.
 // However, should FB provide an error, we capture it.
+type (
+	// FbResponse - Facebook API response container
+	FbResponse struct {
+		Data  []FbRespEvent `json:"data"`
+		Cover FbRespCover   `json:"cover"`
+		Error FbRespError   `json:"error"`
+	}
 
-// FbResponse - Facebook API response container
-type FbResponse struct {
-	Data  []FbRespEvent `json:"data"`
-	Cover FbRespCover   `json:"cover"`
-	Error FbRespError   `json:"error"`
-}
+	// FbRespEvent - struct to unmarshal event specifics
+	FbRespEvent struct {
+		Description string        `json:"description"`
+		Name        string        `json:"name"`
+		Start       string        `json:"start_time"`
+		End         string        `json:"end_time"`
+		EventTimes  []FbRespTimes `json:"event_times"`
+		ID          string        `json:"id"`
+		Place       FbRespPlace   `json:"place"`
+	}
 
-// FbRespEvent - struct to unmarshal event specifics
-type FbRespEvent struct {
-	Description string        `json:"description"`
-	Name        string        `json:"name"`
-	Start       string        `json:"start_time"`
-	End         string        `json:"end_time"`
-	EventTimes  []FbRespTimes `json:"event_times"`
-	ID          string        `json:"id"`
-	Place       FbRespPlace   `json:"place"`
-}
+	// FbRespPlace - event location can come with added information, so we only take the name
+	FbRespPlace struct {
+		Name string `json:"name"`
+	}
 
-// FbRespPlace - event location can come with added information, so we only take the name
-type FbRespPlace struct {
-	Name string `json:"name"`
-}
+	// FbRespTimes - struct to deal with recurring events
+	FbRespTimes struct {
+		Start string `json:"start_time"`
+		End   string `json:"end_time"`
+	}
 
-// FbRespTimes - struct to deal with recurring events
-type FbRespTimes struct {
-	Start string `json:"start_time"`
-	End   string `json:"end_time"`
-}
+	// FbRespError - struct to unmarshal any error response
+	FbRespError struct {
+		ErrorType int    `json:"type"`
+		Message   string `json:"message"`
+	}
 
-// FbRespError - struct to unmarshal any error response
-type FbRespError struct {
-	ErrorType int    `json:"type"`
-	Message   string `json:"message"`
-}
+	// FbRespCover - struct to unmarshal the URI of the cover image
+	FbRespCover struct {
+		CoverURI string `json:"source"`
+	}
 
-// FbRespCover - struct to unmarshal the URI of the cover image
-type FbRespCover struct {
-	CoverURI string `json:"source"`
-}
+	// MarshalledEvents - struct to pack up events with the last update time to be marshalled.
+	MarshalledEvents struct {
+		LastUpdate int64   `json:"updated"`
+		Events     []Event `json:"events"`
+	}
 
-// MarshalledEvents - struct to pack up events with the last update time to be marshalled.
-type MarshalledEvents struct {
-	LastUpdate int64   `json:"updated"`
-	Events     []Event `json:"events"`
-}
-
-// Event - struct to store an individual event with all the info we want
-type Event struct {
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Start       int64  `json:"start_time"`
-	End         int64  `json:"end_time"`
-	ID          string `json:"fb_event_id"`
-	Place       string `json:"place"`
-	CoverURL    string `json:"fb_cover_img"`
-}
+	// Event - struct to store an individual event with all the info we want
+	Event struct {
+		Name        string `json:"name"`
+		Description string `json:"description"`
+		Start       int64  `json:"start_time"`
+		End         int64  `json:"end_time"`
+		ID          string `json:"fb_event_id"`
+		Place       string `json:"place"`
+		CoverURL    string `json:"fb_cover_img"`
+	}
+)
 
 ///////////
 // HANDLERS

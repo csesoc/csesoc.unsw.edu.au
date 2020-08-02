@@ -23,20 +23,22 @@ const (
 	feedbackType                       // 2
 )
 
-// Enquiry - struct to contain email enquiry data
-type Enquiry struct {
-	Name  string `validate:"required"`
-	Email string `validate:"required,email"`
-	Body  string `validate:"required"`
-}
+type (
+	// Enquiry - struct to contain email enquiry data
+	Enquiry struct {
+		Name  string `validate:"required"`
+		Email string `validate:"required,email"`
+		Body  string `validate:"required"`
+	}
 
-// Feedback - struct to contain feedback message data
-// name is not required, email must be valid (or empty) and body is required.
-type Feedback struct {
-	Name  string
-	Email string `validate:"omitempty,email"`
-	Body  string `validate:"required"`
-}
+	// Feedback - struct to contain feedback message data
+	// name is not required, email must be valid (or empty) and body is required.
+	Feedback struct {
+		Name  string
+		Email string `validate:"omitempty,email"`
+		Body  string `validate:"required"`
+	}
+)
 
 // Message bundles
 var generalBundle []Enquiry
