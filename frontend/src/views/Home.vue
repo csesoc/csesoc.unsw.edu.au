@@ -20,7 +20,7 @@
 
       <!--change this to scroll to Join Us section when created-->
       <a
-        @click="scrollto('content-start')"
+        @click="scrollto('sponsor')"
         target="_blank"
         v-ripple
         class="button"
@@ -86,27 +86,39 @@
     </v-container>
 
     <!-- Join Us Section -->
-    <v-container>
+    <v-container id="join">
       <h1>
         Join Us
       </h1>
-      <h3>
+      <p>
         Find our stall at O-week, or just turn up an event and get to know us!
-      </h3>
+      </p>
       <h2>
         Join our community online
       </h2>
+      <div id="joinImg" >
+        <a href="https://www.facebook.com/groups/csesoc">
+          <img src="@/assets/facebook_logo.png">
+        </a>
+        <a href="https://csesoc-community.slack.com/">
+          <img src="@/assets/slack_logo.png">
+        </a>
+        <!-- need to add in the csesoc discord link-->
+        <a href="https://www.facebook.com/groups/csesoc">
+          <img src="@/assets/discord_logo.png">
+        </a>
+      </div>
     </v-container>
 
     <!-- Support CSESoc -->
-    <v-container id=sponsor>
+    <v-container id=sponsor ref="sponsor">
       <HeaderTitle :title="'support csesoc'" />
       <p>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
         invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
         et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est      
         </p>
-        <RouterLink to="/sponsors" class="link">
+        <RouterLink to="/sponsors" class="link" >
           <a
             style="float:right"
             target="_blank"
@@ -242,6 +254,36 @@ export default {
   align-items: center;
   text-align: center;
   padding: 5vh 11vw;
+}
+
+#join {
+  align-items: center;
+  text-align: center;
+}
+
+#join h1 {
+  font-size: 80px;
+}
+
+#join h2 {
+  font-size: 40px;
+  padding-bottom: 5vh;
+}
+
+#join p {
+  font-size: 35px;
+  padding: 0 15vw 3vh;
+}
+
+#join img {
+  width: 20%;
+  height: auto;
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+#joinImg {
+  padding-bottom: 5%;
 }
 
 #sponsor {
