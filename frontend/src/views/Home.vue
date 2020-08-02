@@ -98,14 +98,14 @@
       </h2>
       <div id="joinImg" >
         <a href="https://www.facebook.com/groups/csesoc">
-          <img src="@/assets/facebook_logo.png">
+          <img src="@/assets/facebook_logo.png" class="zoom">
         </a>
         <a href="https://csesoc-community.slack.com/">
-          <img src="@/assets/slack_logo.png">
+          <img src="@/assets/slack_logo.png" class="zoom">
         </a>
         <!-- need to add in the csesoc discord link-->
         <a href="https://www.facebook.com/groups/csesoc">
-          <img src="@/assets/discord_logo.png">
+          <img src="@/assets/discord_logo.png" class="zoom">
         </a>
       </div>
     </v-container>
@@ -284,6 +284,14 @@ export default {
 
 #joinImg {
   padding-bottom: 5%;
+}
+
+.zoom {
+  transition: transform .2s;
+}
+
+.zoom:hover {
+  transform: scale(1.1);
 }
 
 #sponsor {
