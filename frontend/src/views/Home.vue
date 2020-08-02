@@ -20,7 +20,7 @@
 
       <!--change this to scroll to Join Us section when created-->
       <a
-        @click="scrollto('sponsor')"
+        @click="scrollto('joinus')"
         target="_blank"
         v-ripple
         class="button"
@@ -86,7 +86,7 @@
     </v-container>
 
     <!-- Join Us Section -->
-    <v-container id="join">
+    <v-container id="join" ref="joinus">
       <h1>
         Join Us
       </h1>
@@ -111,7 +111,7 @@
     </v-container>
 
     <!-- Support CSESoc -->
-    <v-container id=sponsor ref="sponsor">
+    <v-container id=sponsor >
       <HeaderTitle :title="'support csesoc'" />
       <p>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
