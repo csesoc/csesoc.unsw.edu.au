@@ -6,27 +6,27 @@
 
 <template>
   <v-footer dark padless id="tiers">
-    <v-card id="tiers__sponsors" width="100vw" class="white--text text-center">
-      <v-card-text class="white--text">
-        <section class="tiers__grid">
-          <a v-for="sponsor in tierOne" class="tiers__box" :href="sponsor.url" :key="sponsor.id">
+    <v-card id="tiers-sponsors" width="100vw" class="white-text text-center">
+      <v-card-text class="white-text">
+        <section class="tiers-grid">
+          <a v-for="sponsor in tierOne" class="tiers-box" :href="sponsor.url" :key="sponsor.id">
             <img :src="`data:image/png;base64,${sponsor.logo}`" style=" max-width:300px;max-height:105px;" />
           </a>
         </section>
-        <section class="tiers__grid">
-          <a v-for="sponsor in tierTwo" class="tiers__box" :href="sponsor.url" :key="sponsor.id">
+        <section class="tiers-grid">
+          <a v-for="sponsor in tierTwo" class="tiers-box" :href="sponsor.url" :key="sponsor.id">
             <img :src="`data:image/png;base64,${sponsor.logo}`" style="max-width:200px;max-height:75px" />
           </a>
         </section>
-        <section class="tiers__grid">
-          <a v-for="sponsor in tierThree" class="tiers__box" :href="sponsor.url" :key="sponsor.id">
+        <section class="tiers-grid">
+          <a v-for="sponsor in tierThree" class="tiers-box" :href="sponsor.url" :key="sponsor.id">
             <img :src="`data:image/png;base64,${sponsor.logo}`" style="max-width:100px;max-height:50px" />
           </a>
         </section>
       </v-card-text>
 
       <h2>CONTACT US</h2>
-      <v-card-text class="white--text text-center tiers__contact">
+      <v-card-text class="white-text text-center tiers-contact">
         <a href="https://www.facebook.com/csesoc">Facebook Page</a>
         |
         <a href="https://www.facebook.com/groups/csesoc">Facebook Group</a>
@@ -39,7 +39,7 @@
 
       <v-divider></v-divider>
 
-      <v-card-text class="white--text text-center">
+      <v-card-text class="white-text text-center">
         &copy; {{ new Date().getFullYear() }} &mdash;
         <strong>CSESoc UNSW</strong>
       </v-card-text>
@@ -47,51 +47,9 @@
   </v-footer>
 </template>
 
-
-<style scoped>
-#tiers {
-  margin-top: 0px;
-}
-
-#tiers__sponsors {
-  background: #4a4a4a;
-  padding-top: 5vw;
-}
-
-.white--text {
-  font-size: 16px;
-  line-height: 28px;
-}
-
-.white--text a {
-  color: white;
-}
-
-.white--text a:hover {
-  color: #427bff;
-}
-
-.tiers__grid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-left: 1vw;
-  margin-right: 1vw;
-}
-
-.tiers__box {
-  margin: 20px;
-}
-
-.tiers__contact {
-  margin-bottom: 1vw;
-}
-</style>
-
 <script type="text/javascript">
-import APIClient  from '../utils/APIClient'
+import APIClient from '../utils/APIClient';
+
 export default {
   name: 'Footer',
   data: () => ({
@@ -111,10 +69,52 @@ export default {
     }
   },
   mounted() {
-      APIClient.fetchSponsors()
-      .then((responseJson) => {
-        this.sponsors = responseJson;
-      });
+    APIClient.fetchSponsors()
+    .then((responseJson) => {
+      this.sponsors = responseJson;
+    });
   }
 };
 </script>
+
+<style scoped>
+#tiers {
+  margin-top: 0px;
+}
+
+#tiers-sponsors {
+  background: #4a4a4a;
+  padding-top: 5vw;
+}
+
+.white-text {
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.white-text a {
+  color: white;
+}
+
+.white-text a:hover {
+  color: #427bff;
+}
+
+.tiers-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
+
+.tiers-box {
+  margin: 20px;
+}
+
+.tiers-contact {
+  margin-bottom: 1vw;
+}
+</style>
