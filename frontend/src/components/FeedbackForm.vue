@@ -1,7 +1,7 @@
 <!--
   FeedbackForm
   --
-  This component contains an enquiry form which can be used to interact with the mailing API's feedback endpoints.
+  This component contains an enquiry form which can be used to interact with mailing API's feedback endpoints.
 -->
 
 <template>

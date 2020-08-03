@@ -1,7 +1,7 @@
 <!--
   EnquiryForm
   --
-  This component contains an enquiry form which can be used to interact with the mailing API's general and sponsorship endpoints.
+  This component contains an enquiry form which can be used to interact with mailing API's general and sponsorship endpoints.
   --
   Props:
     - type: string - either "general" or "sponsorship"

@@ -1,3 +1,14 @@
+<!--
+  Engage
+  --
+  This view corresponds to the Engage page of the website.
+  This page consists of:
+    - joining
+    - social links
+    - faq
+    - enquiry and feedback forms
+-->
+
 <template>
   <v-app>
     <v-parallax

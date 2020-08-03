@@ -1,7 +1,8 @@
 <!--
   HeaderTitle
   --
-  This component simply formats the title.
+  This component simply formats the title. Ensure this component 
+  is used for all titles to keep consistency across the site.
   --
   Props:
     - title: string

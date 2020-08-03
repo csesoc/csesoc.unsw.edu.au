@@ -1,7 +1,7 @@
 <!--
   Menu
   --
-  This component contains an overlay with links to all pages of the website.
+  This component contains an overlay with links to all the pages of the website.
   The links have a grow-on-hover feature.
 -->
 

@@ -1,7 +1,7 @@
 <!--
   Preview
   --
-  This component is a preview visualiser of resource links defined in the item objects passed in. 
+  This component is a preview visualiser of CSE resource links defined in the item objects passed in. 
   --
   Props:
     - items: list of times - containing the fields: id, link, src, title

@@ -1,3 +1,12 @@
+<!--
+  Sponsor
+  --
+  This view corresponds to the Sponsor page of the website.
+  This page consists of:
+    - sponsors
+    - become a sponsor form
+-->
+
 <template>
   <div>
     <header id="showcase">

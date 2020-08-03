@@ -1,7 +1,8 @@
 <!--
   EventGrid
   --
-  This component contains the number of a grid of event tiles. It is currently being used in the landing page.
+  This component contains a grid of event tiles containing basic information regarding each event. 
+  It is currently being used in the landing page.
   --
   Props:
     - events: list of event objects - containing the fields: id, name, start_time, fb_event_id, fb_cover_img
