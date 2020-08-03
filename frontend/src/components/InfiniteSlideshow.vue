@@ -1,5 +1,5 @@
 <!--
-  InfiniteSlidshow
+  InfiniteSlideshow
   --
   This component contains an infinite slideshow. It has various props to modify its behavariour.
   Credits to https://github.com/biigpongsatorn/vue-infinite-slide-bar 
