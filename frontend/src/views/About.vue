@@ -273,6 +273,7 @@
 import HeaderTitle from '@/components/HeaderTitle';
 
 export default {
+  name: 'About',
   data: () => ({
     execsDirects: require('@/assets/execs_directs.json')
   }),

@@ -95,6 +95,7 @@ import FeedbackForm from '@/components/FeedbackForm';
 import APIClient  from '../utils/APIClient'
 
 export default {
+  name: 'Engage',
   data: () => ({
     socialLinks: [],
     faqLinks: []

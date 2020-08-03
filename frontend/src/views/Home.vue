@@ -129,6 +129,7 @@ import Preview from '@/components/Preview';
 import APIClient from '../utils/APIClient';
 
 export default {
+  name: 'Home',
   data: () => ({
     drawer: false,
     resourceItems: [],
