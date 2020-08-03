@@ -1,6 +1,22 @@
+<!--
+  HeaderTitle
+  --
+  This component simply formats the title.
+  --
+  Props:
+    - title: string
+-->
+
 <template>
   <h1># {{ title }}</h1>
 </template>
+
+<script>
+export default {
+  name: 'HeaderTitle',
+  props: ['title']
+};
+</script>
 
 <style scoped>
 h1 {
@@ -10,10 +26,3 @@ h1 {
   text-transform: lowercase;
 }
 </style>
-
-<script>
-export default {
-  name: 'HeaderTitle',
-  props: ['title']
-};
-</script>

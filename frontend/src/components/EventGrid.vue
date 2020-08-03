@@ -1,10 +1,19 @@
+<!--
+  EventGrid
+  --
+  This component contains the number of a grid of event tiles. It is currently being used in the landing page.
+  --
+  Props:
+    - events: list of event objects - containing the fields: id, name, start_time, fb_event_id, fb_cover_img
+-->
+
 <template>
-  <v-container class="nav__grid" fluid>
+  <v-container fluid>
     <!-- Catch a lack of events. -->
     <div v-if="events.length == 0">Stay tuned to our Facebook page for upcoming events!</div>
     <v-row class="justify-center">
       <v-col sm="8" md="6" lg="6" xl="4" v-for="event in events" :key="event.id">
-        <v-card style = "position: relative" class="ma-1 grid__square card" height="100%"  target="_blank">
+        <v-card style = "position: relative" class="ma-1 card" height="100%"  target="_blank">
           <v-img
             :src="event.fb_cover_img"
             class="grid-img"
@@ -22,7 +31,7 @@
             <div class="month" v-text="getMonthString(event.start_time)"></div>
           </div>
           <v-card-actions>
-            <a :href="'https://facebook.com/'+ event.fb_event_id"><div class="link">Learn more ▶</div></a>
+            <a :href="'https://facebook.com/' + event.fb_event_id"><div class="link">Learn more ▶</div></a>
           </v-card-actions>
           
         </v-card>

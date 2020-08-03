@@ -1,3 +1,15 @@
+<!--
+  InfiniteSlidshow
+  --
+  This component contains an infinite slideshow. It has various props to modify its behavariour.
+  --
+  Props:
+    - delay: string - formatted with a trailing "s"
+    - direction: string - either "normal" or "reverse"
+    - duration: string - formatted with a trailing "s"
+    - paused: boolean
+-->
+
 <template>
   <div class="is-container">
     <div class="is-element" :style="settings">

@@ -1,3 +1,9 @@
+<!--
+  Footer
+  --
+  This component contains footer elements of the website, visible from all pages.
+-->
+
 <template>
   <v-footer dark padless id="tiers">
     <v-card id="tiers__sponsors" width="100vw" class="white--text text-center">

@@ -1,3 +1,10 @@
+<!--
+  Menu
+  --
+  This component contains an overlay with links to all pages of the website.
+  The links have a grow-on-hover feature.
+-->
+
 <template>
   <div @click.stop="hide" class="dimmed no-scroll">
     <div class="vertical-container">

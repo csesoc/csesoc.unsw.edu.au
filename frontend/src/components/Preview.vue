@@ -1,3 +1,12 @@
+<!--
+  Preview
+  --
+  This component is a preview visualiser of resource links defined in the item objects passed in. 
+  --
+  Props:
+    - items: list of times - containing the fields: id, link, src, title
+-->
+
 <template>
   <v-container>
     <v-row align='center' justify='center'>
@@ -47,10 +56,10 @@ import APIClient from '../utils/APIClient';
 
 export default {
   name: 'Preview',
+  props: ['items'],
   data: () => ({
     preview: '',
-  }),
-  props: ['items']
+  })
 };
 </script>
 

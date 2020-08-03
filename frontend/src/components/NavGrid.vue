@@ -1,8 +1,17 @@
+<!--
+  NavGrid
+  --
+  This component takes in a list of items and creates a grid of links defined in each of those item objects.
+  --
+  Props:
+    - items: list of times - containing the fields: id, link, src, title
+-->
+
 <template>
-  <v-container class="nav__grid" fluid>
+  <v-container fluid>
     <v-row class="align-center">
       <v-col sm="12" md="4" lg="4" v-for="item in items" :key="item.id">
-        <v-card class="ma-3 grid__square" :href="item.link ? item.link : '#0'" target="_blank">
+        <v-card class="ma-3" :href="item.link ? item.link : '#0'" target="_blank">
           <v-img
             :src="item.src"
             class="grid-img"
