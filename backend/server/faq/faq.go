@@ -1,3 +1,10 @@
+/*
+  FAQ
+  --
+  This module handles FAQ related API requests.
+  It responds with a JSON array of question/answer pairs read from a static file.
+*/
+
 package faq
 
 import (

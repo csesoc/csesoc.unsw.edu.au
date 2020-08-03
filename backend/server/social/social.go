@@ -1,3 +1,12 @@
+/*
+  Social
+  --
+  This module handles social related API requests.
+
+  It sends a JSON array of objects containing information about the various
+  social platforms of CSESoc, read from a static file.
+*/
+
 package social
 
 import (

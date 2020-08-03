@@ -1,3 +1,12 @@
+/*
+  Sponsor
+  --
+  This module deals with Sponsors. It creates a database collection
+  and inserts the sponsor objects (as JSON objects) read from a static file.
+
+  The API handles directly interact with the database.
+*/
+
 package sponsor
 
 import (

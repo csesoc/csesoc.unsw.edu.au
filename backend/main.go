@@ -1,3 +1,16 @@
+/*
+  Main
+  --
+  This file controls the backend of the CSESoc website by bringing all the local modules together.
+  The echo web server is initialized in the main() function along the servePages() and serveAPI() functions
+  that serve the 2 main functions of the backend.
+
+  SwaggerUI is served on http://localhost:1323/swagger/index.html
+
+  The server itself runs on a subroutine to enable a graceful shutdown, through the use of Go's channels
+  feature, in the case of server errors or manual SIGINT of the application.
+*/
+
 package main
 
 import (
@@ -75,7 +88,7 @@ func main() {
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 
-	// Running server on a subroutine enables a gracefully shutdown
+	// Running server on a subroutine enables a graceful shutdown
 	// Reference: https://echo.labstack.com/cookbook/graceful-shutdown
 	go func() {
 		// Start echo instance on 1323 port

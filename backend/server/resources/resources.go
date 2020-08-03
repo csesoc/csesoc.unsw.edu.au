@@ -1,3 +1,12 @@
+/*
+  Resources
+  --
+  This module deals with CSE resource links. It creates a database collection
+  and inserts the resource links (as JSON objects) read from a static file.
+
+  The API handles directly interact with the database.
+*/
+
 package resources
 
 import (

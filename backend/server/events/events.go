@@ -1,3 +1,13 @@
+/*
+  Events
+  --
+  This module takes care of grabbing event data from the Facebook Graph API
+  and handling related API requests.
+
+  Since the API returns an extensive amount of data there are a lot of
+  required structs to parse and decompose the response payload.
+*/
+
 package events
 
 import (

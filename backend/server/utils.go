@@ -1,3 +1,12 @@
+/*
+  Utils
+  --
+  This file contains general helper functions that are used in multiple modules.
+  The categories of utilities are:
+  - JSON
+  - Testing
+*/
+
 package utility
 
 import (

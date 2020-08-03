@@ -1,3 +1,14 @@
+/*
+  Mailing
+  --
+  This module deals with relaying enquiry and feedback messages, sent through
+  the forms in the website, to the relevant CSESoc admin emails to deal with them.
+
+  The Mailjet API is being used to relay these messages. Since there is a 200 emails
+  per day limit on the free tier, messages are bundled by 15-minute timeslots to
+  acomodate for this limitation.
+*/
+
 package mailing
 
 import (
