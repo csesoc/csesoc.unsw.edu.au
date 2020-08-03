@@ -1,3 +1,14 @@
+/*
+  Mailing
+  --
+  This module deals with relaying enquiry and feedback messages, sent through
+  the forms in the website, to the relevant CSESoc admin emails to deal with them.
+
+  The Mailjet API is being used to relay these messages. Since there is a 200 emails
+  per day limit on the free tier, messages are bundled by 15-minute timeslots to
+  acomodate for this limitation.
+*/
+
 package mailing
 
 import (
@@ -23,20 +34,22 @@ const (
 	feedbackType                       // 2
 )
 
-// Enquiry - struct to contain email enquiry data
-type Enquiry struct {
-	Name  string `validate:"required"`
-	Email string `validate:"required,email"`
-	Body  string `validate:"required"`
-}
+type (
+	// Enquiry - struct to contain email enquiry data
+	Enquiry struct {
+		Name  string `validate:"required"`
+		Email string `validate:"required,email"`
+		Body  string `validate:"required"`
+	}
 
-// Feedback - struct to contain feedback message data
-// name is not required, email must be valid (or empty) and body is required.
-type Feedback struct {
-	Name  string
-	Email string `validate:"omitempty,email"`
-	Body  string `validate:"required"`
-}
+	// Feedback - struct to contain feedback message data
+	// name is not required, email must be valid (or empty) and body is required.
+	Feedback struct {
+		Name  string
+		Email string `validate:"omitempty,email"`
+		Body  string `validate:"required"`
+	}
+)
 
 // Message bundles
 var generalBundle []Enquiry
@@ -45,8 +58,12 @@ var feedbackBundle []Feedback
 
 var mailjetClient *mailjet.Client
 
-// MailingSetup initialises a session with the Mailjet API and stores it in a global variable
-func MailingSetup() {
+////////
+// SETUP
+////////
+
+// Setup - initialises a session with the Mailjet API and stores it in a global variable
+func Setup() {
 	if DEVELOPMENT {
 		INFO_EMAIL = "projects.website+info@csesoc.org.au"
 		SPONSORSHIP_EMAIL = "projects.website+sponsorship@csesoc.org.au"
@@ -77,9 +94,10 @@ func handleMessage(c echo.Context, mt messageType) error {
 			Email: c.FormValue("email"),
 			Body:  c.FormValue("body"),
 		}
+		// Validate struct
 		if err := c.Validate(enquiry); err != nil {
 			return c.JSON(http.StatusBadRequest, H{
-				"error": err,
+				"error": "Invalid form",
 			})
 		}
 	} else if mt == feedbackType {
@@ -91,7 +109,7 @@ func handleMessage(c echo.Context, mt messageType) error {
 		// Validate struct
 		if err := c.Validate(feedback); err != nil {
 			return c.JSON(http.StatusBadRequest, H{
-				"error": err,
+				"error": "Invalid form",
 			})
 		}
 	}
@@ -154,9 +172,9 @@ func HandleFeedbackMessage(c echo.Context) error {
 	return handleMessage(c, feedbackType)
 }
 
-////////
-// TIMER
-////////
+/////////
+// TIMERS
+/////////
 
 // This function is executed once in a subroutine and triggers every 15 minutes
 func mailingTimer() {

@@ -1,3 +1,9 @@
+<!--
+  FeedbackForm
+  --
+  This component contains an enquiry form which can be used to interact with mailing API's feedback endpoints.
+-->
+
 <template>
   <v-row justify="space-around">
     <v-col class="form-box">

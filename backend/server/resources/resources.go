@@ -1,14 +1,20 @@
+/*
+  Resources
+  --
+  This module deals with CSE resource links. It creates a database collection
+  and inserts the resource links (as JSON objects) read from a static file.
+
+  The API handles directly interact with the database.
+*/
+
 package resources
 
 import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
-	"path/filepath"
 
 	. "csesoc.unsw.edu.au/m/v2/server"
 
@@ -28,12 +34,12 @@ type Resource struct {
 	Source      string `json:"src" validate:"required"`
 }
 
-///////////
+////////
 // SETUP
-///////////
+////////
 
-// ResourcesSetup - Set up the resources collection
-func ResourcesSetup(client *mongo.Client) {
+// Setup - Set up the resources collection
+func Setup(client *mongo.Client) {
 	resourceColl = client.Database("csesoc").Collection("resources")
 
 	// Creating unique index for resource title
@@ -48,9 +54,9 @@ func ResourcesSetup(client *mongo.Client) {
 	}
 
 	// Fetching resource list
-	resources, err := retrieveJSON()
+	resources, err := readResourceJSON()
 	if err != nil {
-		log.Fatal("Could not retrive resources from JSON")
+		log.Fatal("Unable to retrieve Resources from JSON")
 	}
 
 	for _, resource := range resources {
@@ -64,14 +70,14 @@ func ResourcesSetup(client *mongo.Client) {
 // HANDLERS
 ///////////
 
-// GetPreview godoc
+// HandleGetPreview godoc
 // @Summary Get a list of resources stored
 // @Tags resources
 // @Success 200 {array} Resource
 // @Failure 500 "Internal server error"
 // @Header 500 {string} error "Unable to retrieve resources from database"
 // @Router /responses/preview [get]
-func GetPreview(c echo.Context) error {
+func HandleGetPreview(c echo.Context) error {
 	var results []*Resource
 
 	// get database pointer
@@ -95,17 +101,14 @@ func GetPreview(c echo.Context) error {
 //////////
 // HELPERS
 //////////
-func retrieveJSON() ([]*Resource, error) {
-	abspath, _ := filepath.Abs("static/resource.json")
-	jsonFile, err := os.Open(abspath)
-	defer jsonFile.Close()
 
+func readResourceJSON() ([]Resource, error) {
+	byteValue, err := ReadJSON("resource")
 	if err != nil {
-		return nil, fmt.Errorf("Cound not open file response.json: %v", err)
+		return nil, fmt.Errorf("%v", err)
 	}
 
-	byteValue, _ := ioutil.ReadAll(jsonFile)
-	var resources []*Resource
+	var resources []Resource
 	json.Unmarshal(byteValue, &resources)
 
 	return resources, nil

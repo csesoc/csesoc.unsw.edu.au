@@ -26,7 +26,7 @@ export default new Router({
       component: () => import('../views/Engage.vue'),
     }
   ],
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     // Scroll to top for all route navigations
     return { x: 0, y: 0 }
   }

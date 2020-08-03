@@ -1,3 +1,12 @@
+<!--
+  Sponsor
+  --
+  This view corresponds to the Sponsor page of the website.
+  This page consists of:
+    - sponsors
+    - become a sponsor form
+-->
+
 <template>
   <div>
     <header id="showcase">
@@ -52,12 +61,13 @@ import EnquiryForm from '@/components/EnquiryForm';
 import {MAILING_URL} from '../utils/Constants';
 
 export default {
+  name: 'Sponsor',
   data: () => ({
     currentSponsor: {},
     sponsors: [],
     dialog: false,
 
-    //Constants
+    // Constants
     largeLogoFilter: 3,
     midLogoFilter: 4,
     smallLogoFilter: 5
@@ -79,10 +89,10 @@ export default {
     }
   },
   mounted() {
-      APIClient.fetchSponsors()
-      .then((responseJson) => {
-        this.sponsors = responseJson;
-      });
+    APIClient.fetchSponsors()
+    .then((responseJson) => {
+      this.sponsors = responseJson;
+    });
   },
   methods: {
     marginStyle: function(index, limit) {

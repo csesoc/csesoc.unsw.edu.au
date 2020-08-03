@@ -1,3 +1,16 @@
+<!--
+  Home
+  --
+  This view corresponds to the landing page of the website.
+  This page consists of:
+    - csesocs mission
+    - upcoming events
+    - slideshow
+    - resources
+    - join us
+    - sponsor us
+-->
+
 <template>
   <div id="home">
     <!-- make header a seperate component! -->
@@ -129,6 +142,7 @@ import Preview from '@/components/Preview';
 import APIClient from '../utils/APIClient';
 
 export default {
+  name: 'Home',
   data: () => ({
     drawer: false,
     resourceItems: [],

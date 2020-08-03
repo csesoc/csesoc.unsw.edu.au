@@ -1,3 +1,10 @@
+<!--
+  Menu
+  --
+  This component contains an overlay with links to all the pages of the website.
+  The links have a grow-on-hover feature.
+-->
+
 <template>
   <div @click.stop="hide" class="dimmed no-scroll">
     <div class="vertical-container">
@@ -13,9 +20,6 @@
       <RouterLink to="/sponsors" class="link">
         <label>Sponsors</label>
       </RouterLink>
-      <!-- <RouterLink to="/" class="link">
-        <label>Shop</label>
-      </RouterLink> -->
       <RouterLink to="/engage" class="link">
         <label>Engage</label>
       </RouterLink>

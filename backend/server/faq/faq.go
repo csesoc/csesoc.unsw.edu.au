@@ -1,12 +1,16 @@
+/*
+  FAQ
+  --
+  This module handles FAQ related API requests.
+  It responds with a JSON array of question/answer pairs read from a static file.
+*/
+
 package faq
 
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
-	"os"
-	"path/filepath"
 
 	. "csesoc.unsw.edu.au/m/v2/server"
 
@@ -15,19 +19,25 @@ import (
 
 // Faq - struct to store faq pairs
 type Faq struct {
-	Question string `json:"question"`
-	Answer   string `json:"answer"`
+	Question string `json:"question" validate:"required"`
+	Answer   string `json:"answer" validate:"required"`
 }
 
-// GetFaq godoc
+///////////
+// HANDLERS
+///////////
+
+// HandleGet godoc
 // @Summary Return all faq questions and answers pairs
 // @Tags faq
 // @Success 200 {array} Faq
+// @Failure 500 "Service unavailable"
+// @Header 500 {string} error "Missing questions and/or answer fields"
 // @Failure 503 "Service unavailable"
 // @Header 503 {string} error "Unable to retrieve FAQs"
 // @Router /faq [get]
-func GetFaq(c echo.Context) error {
-	results, err := retriveFaqJSON()
+func HandleGet(c echo.Context) error {
+	faqs, err := readFaqJSON()
 
 	if err != nil {
 		return c.JSON(http.StatusServiceUnavailable, H{
@@ -35,73 +45,30 @@ func GetFaq(c echo.Context) error {
 		})
 	}
 
-	return c.JSON(http.StatusOK, results)
-}
-
-// retriveFaqJSON - returns a list of questions and answers from a json file in /static
-func retriveFaqJSON() ([]Faq, error) {
-	abspath, _ := filepath.Abs("static/faq.json")
-	jsonFile, err := os.Open(abspath)
-
-	if err != nil {
-		return nil, fmt.Errorf("Cound not open file faq.json: %v", err)
+	// Validate structs
+	for _, faq := range faqs {
+		if err := c.Validate(faq); err != nil {
+			return c.JSON(http.StatusInternalServerError, H{
+				"error": "Missing questions and/or answer fields",
+			})
+		}
 	}
 
-	byteValue, _ := ioutil.ReadAll(jsonFile)
+	return c.JSON(http.StatusOK, faqs)
+}
+
+//////////
+// HELPERS
+//////////
+
+func readFaqJSON() ([]Faq, error) {
+	byteValue, err := ReadJSON("faq")
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
 	var faqs []Faq
 	json.Unmarshal(byteValue, &faqs)
 
-	defer jsonFile.Close()
 	return faqs, nil
 }
-
-/*
-///// IF USING THE DATABASE TO RETRIVE FAQ//////
-// GetFaq - returns a jsonfile of the faq
-func GetFaq(collection *mongo.Collection) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		result := getFaq(collection)
-		return c.JSON(http.StatusOK, H{
-			"faq": result,
-		})
-	}
-}
-
-// getFaq - returns a list of questions and answers from the database
-func getFaq(collection *mongo.Collection) []*Faq {
-	var results []*Faq
-	findOptions := options.Find()
-	// TODO: Get rid of limit of fix limit
-	findOptions.SetLimit(100)
-
-	// finding all Q&A
-	// note: collection is already just the faq,
-	// so we are finding all information in the collection
-	cur, err := collection.Find(context.TODO(), bson.D{{}}, findOptions)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// decoding each element in 'findOptions'
-	for cur.Next(context.TODO()) {
-
-		// create a value into which the single document can be decoded
-		var elem Faq
-		err := cur.Decode(&elem)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		results = append(results, &elem)
-	}
-
-	if err := cur.Err(); err != nil {
-		log.Fatal(err)
-	}
-
-	// Close the cursor once finished
-	cur.Close(context.TODO())
-
-	return results
-}
-*/

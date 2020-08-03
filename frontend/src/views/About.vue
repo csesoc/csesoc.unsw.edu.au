@@ -1,3 +1,14 @@
+<!--
+  About
+  --
+  This view corresponds to the About page of the website.
+  This page consists of:
+    - about
+    - executives & directors
+    - subcommittees
+    - history
+-->
+
 <template>
   <v-app>
 
@@ -33,7 +44,7 @@
 
     <!-- Executives & Directors -->
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
-      <HeaderTitle title="Executives_&_Directors"></HeaderTitle>
+      <HeaderTitle title="Executives & Directors"></HeaderTitle>
       <p>
         The Executives and Directors are responsible for organising the society to make sure that things get done. Execs 
         are elected annually by CSE students at the end of the preceding year and Directors are selected by Execs.
@@ -273,6 +284,7 @@
 import HeaderTitle from '@/components/HeaderTitle';
 
 export default {
+  name: 'About',
   data: () => ({
     execsDirects: require('@/assets/execs_directs.json')
   }),

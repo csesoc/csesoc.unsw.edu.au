@@ -1,3 +1,15 @@
+<!--
+  SponsorModal
+  --
+  This component is a modal that pops up when a sponsor link is clicked.
+  It contains information related to the selected sponsor.
+  --
+  Props:
+    - title: string
+    - body: string
+    - value: boolean
+-->
+
 <template>
     <v-dialog v-model="show" max-width="500">
       <v-card>

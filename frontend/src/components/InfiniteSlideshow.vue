@@ -1,3 +1,16 @@
+<!--
+  InfiniteSlideshow
+  --
+  This component contains an infinite slideshow. It has various props to modify its behavariour.
+  Credits to https://github.com/biigpongsatorn/vue-infinite-slide-bar 
+  --
+  Props:
+    - delay: string - formatted with a trailing "s"
+    - direction: string - either "normal" or "reverse"
+    - duration: string - formatted with a trailing "s"
+    - paused: boolean
+-->
+
 <template>
   <div class="is-container">
     <div class="is-element" :style="settings">
@@ -12,7 +25,6 @@
 </template>
 
 <script>
-// Credits to github.com/biigpongsatorn/vue-infinite-slide-bar
 export default {
   name: 'InfiniteSlideshow',
   props: {
