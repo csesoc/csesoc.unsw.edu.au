@@ -1,5 +1,7 @@
 # Change
 
+_Please remove everything in italics._
+
 _Add a brief and concise imperative sentence on what this PR does._
 _Example: Edit PR template to improve efficiency_
 
