@@ -14,8 +14,8 @@
         <v-row justify='center'>
           <v-container class='preview-container'>
             <router-link to='/'>
-              <v-img v-if="preview === ''" class='preview-img' :src="items[0].src" contain/>
-              <v-img v-else class='preview-img' :src="preview" contain/>
+              <v-progress-circular v-if="loading()" indeterminate/>
+              <v-img v-else class='preview-img' :src="previewImg" contain/>
             </router-link>
           </v-container>
         </v-row>
@@ -29,11 +29,11 @@
               class='resource-list' 
               :href="item.link" 
               target="_blank" 
-              @mouseover="preview = item.src" 
+              @mouseover="previewImg = item.src" 
               :key="item.title">
                 <v-list-item-content>
-                  <div v-if="item.title !== ''" class='text-h4' v-text="item.title" />
-                  <div v-if="item.description !== ''" class='text-subtitle-1' v-text="item.description" />
+                  <div v-if="item.title !== ''" class='text-h4' v-text="item.title" data-cy='preview-title' />
+                  <div v-if="item.description !== ''" class='text-subtitle-1' v-text="item.description"  data-cy='preview-description' />
                 </v-list-item-content>
               </v-list-item>
               <v-divider v-if="index != items.length-1" :key="index" />
@@ -52,14 +52,25 @@
 </template>
 
 <script>
-import APIClient from '../utils/APIClient';
 
 export default {
   name: 'Preview',
   props: ['items'],
-  data: () => ({
-    preview: '',
-  })
+  data: function () {
+    return {
+      previewImg: '',
+    }
+  },
+  methods: {
+    loading: function() {
+      if(this.items.length < 1) {
+        return true
+      } else if (this.previewImg === '') {
+        this.previewImg = this.items[0].src
+      }
+      return false
+    }
+  }
 };
 </script>
 
