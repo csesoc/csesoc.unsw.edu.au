@@ -13,10 +13,8 @@
       <v-col>
         <v-row justify='center'>
           <v-container class='preview-container'>
-            <router-link to='/'>
-              <v-progress-circular v-if="loading()" indeterminate/>
-              <v-img v-else class='preview-img' :src="previewImg" contain/>
-            </router-link>
+            <v-progress-circular v-if="loading()" indeterminate/>
+            <v-img v-else class='preview-img' :src="previewImg" contain/>
           </v-container>
         </v-row>
       </v-col>
