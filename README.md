@@ -95,11 +95,11 @@ These tests are written in Golang's standard testing package and are written in 
 
 ### Frontend Unit Testing
 
-While frontend unit testing of components is usually never thought of by developers still at university, it is something our teams (past and present) have given thought to. In the trial stages of frontend testing, we have adopted the use of [Vue Test Utils](https://vue-test-utils.vuejs.org/) which of writing, is still in beta development. It is Vue's official unit testing utility library.
+While frontend unit testing of components is usually never thought of by developers still at university, it is something our teams (past and present) have given thought to. We have settled on using the Cypress.io framework to run E2E tests on our system. The framework was choosen because of its ease of use and low learning curve. It fits well with our current needs to provide quality and visual assurance that our frontend code appears and is used as how an end user would interact with the website. 
 
-Testing for frontend components (for this project, those files that are in the components section), will be written in the `frontend/tests/unit` directory. When testing, we use Jest as our testing framework which has integration with Vue Test Utils.
+To get it running, go to the `frontend` folder. Make sure that you have `yarn install`ed previously when setting up to make sure that you have cypress ready to run. To launch the console please use `yarn run cypress open` which will load an application window to view tests that cypress has detected. For further information please go to the [Cypress installation documentation](https://docs.cypress.io/guides/getting-started/installing-cypress.html#Opening-Cypress).
 
-While there is no requirement to use Vue Test Utils, it is encouraged for contributors especially during our trialing phase, to think about ways and tools to test the frontend. More tools will be used in the coming weeks as the team shifts focus back to backend code and pros and cons weighed.
+Cypress is quite extensively documented but if there are any difficulties a good starting point is to learn Chai.js and look at the tutorials on the website.
 
 ### Github Actions
 
