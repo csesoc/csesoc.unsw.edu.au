@@ -20,7 +20,6 @@
           <Menu v-if="showMenu" @shown="onMenuCollapse" />
           <RouterView style="overflow-x: hidden" />
         </main>
-        
         <Footer />
     </v-main>
   </v-app>

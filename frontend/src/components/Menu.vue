@@ -31,9 +31,9 @@
 export default {
   name: 'Menu',
   methods: {
-    hide(event) {
+    hide() {
       // Relaying status to parent
-      this.$emit('shown', false)
+      this.$emit('shown', false);
     }
   }
 };

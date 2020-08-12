@@ -31,15 +31,15 @@ export default {
   },
   computed: {
     show: {
-      get () {
-        return this.value
+      get() {
+        return this.value;
       },
-      set (value) {
-        this.$emit('input', value)
+      set(value) {
+        this.$emit('input', value);
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>
