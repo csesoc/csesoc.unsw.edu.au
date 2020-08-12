@@ -25,7 +25,9 @@
           <v-expansion-panel-header class="title py-3">I'm not an Arc member, can I join?</v-expansion-panel-header>
           <v-expansion-panel-content>
             You need to sign up at Arc in order to join any society on campus.
-            <br />Joining Arc (for free!) means you can unlock all the best bits of student life. Set yourself up for success at UNSW by joining Arc online now, then come to visit us on campus for your awesome Arc Membership pack!
+            <br />Joining Arc (for free!) means you can unlock all the best bits of student life.
+            Set yourself up for success at UNSW by joining Arc online now, then come to visit us
+            on campus for your awesome Arc Membership pack!
             <br /><br />
             <br />CLUBS: gain access to over 300 Clubs & Societies
             <br />SPORT: play your way with Sport Clubs, Nationals & Social Sport
@@ -92,7 +94,7 @@
           <FeedbackForm></FeedbackForm>
         </v-card>
       </v-tab-item>
-    
+
     </v-tabs>
   </v-app>
 </template>
@@ -103,7 +105,7 @@ import HeaderTitle from '@/components/HeaderTitle';
 import EnquiryForm from '@/components/EnquiryForm';
 import FeedbackForm from '@/components/FeedbackForm';
 
-import APIClient  from '../utils/APIClient'
+import APIClient from '../utils/APIClient';
 
 export default {
   name: 'Engage',
@@ -120,14 +122,14 @@ export default {
 
   mounted() {
     APIClient.socialsAPI()
-    .then((responseJson) => {
-      this.socialLinks = responseJson;
-    });
+      .then((responseJson) => {
+        this.socialLinks = responseJson;
+      });
 
     APIClient.faqsAPI()
-    .then((responseJson) => {
-      this.faqLinks = responseJson;
-    });
+      .then((responseJson) => {
+        this.faqLinks = responseJson;
+      });
   }
 };
 </script>

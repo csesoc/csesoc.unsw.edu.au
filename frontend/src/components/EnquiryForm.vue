@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import APIClient from '../utils/APIClient'
-import {MAILING_URL} from '../utils/Constants'
+import APIClient from '../utils/APIClient';
+import { MAILING_URL } from '../utils/Constants';
 
 export default {
   name: 'EnquiryForm',
@@ -37,38 +37,38 @@ export default {
     valid: true,
     name: '',
     nameRules: [
-      v => !!v || 'Name is required',
+      (v) => !!v || 'Name is required',
     ],
     email: '',
     emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      (v) => !!v || 'E-mail is required',
+      (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
     ],
     body: '',
     bodyRules: [
-      v => !!v || 'Message is required',
+      (v) => !!v || 'Message is required',
     ],
   }),
   methods: {
     send() {
       APIClient.mailingAPI(MAILING_URL[this.type], this.name, this.email, this.body)
-      .then((res) => {
-        switch (res.status) {
-          case 202:
-            this.$refs.form.reset();
-            console.log("Message sent: " + res);
-            break;
-          case 400:
-            console.error("Invalid form: " + res);
-            console.log(res);
-            break;
-          default:
-            console.error("Failed to send message: " + res);
-        }
-      });
+        .then((res) => {
+          switch (res.status) {
+            case 202:
+              this.$refs.form.reset();
+              console.log(`Message sent: ${res}`);
+              break;
+            case 400:
+              console.error(`Invalid form: ${res}`);
+              console.log(res);
+              break;
+            default:
+              console.error(`Failed to send message: ${res}`);
+          }
+        });
     },
   },
-}
+};
 </script>
 
 <style scoped>
