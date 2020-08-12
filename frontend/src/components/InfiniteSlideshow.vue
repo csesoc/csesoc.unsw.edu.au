@@ -2,7 +2,7 @@
   InfiniteSlideshow
   --
   This component contains an infinite slideshow. It has various props to modify its behavariour.
-  Credits to https://github.com/biigpongsatorn/vue-infinite-slide-bar 
+  Credits to https://github.com/biigpongsatorn/vue-infinite-slide-bar
   --
   Props:
     - delay: string - formatted with a trailing "s"
@@ -52,8 +52,8 @@ export default {
         'animation-delay': this.delay,
         'animation-direction': this.direction,
         'animation-duration': this.duration,
-        'animation-play-state' : (this.paused) ? 'paused' : 'running'
-      }
+        'animation-play-state': (this.paused) ? 'paused' : 'running'
+      };
     }
   },
 };

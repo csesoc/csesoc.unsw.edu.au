@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import APIClient from '../utils/APIClient'
-import {MAILING_URL} from '../utils/Constants'
+import APIClient from '../utils/APIClient';
+import { MAILING_URL } from '../utils/Constants';
 
 export default {
   name: 'FeedbackForm',
@@ -59,28 +59,28 @@ export default {
     email: '',
     body: '',
     bodyRules: [
-      v => !!v || 'Message is required',
+      (v) => !!v || 'Message is required',
     ],
   }),
   methods: {
     send() {
-      APIClient.mailingAPI(MAILING_URL['feedback'], this.name, this.email, this.body)
-      .then((res) => {
-        switch (res.status) {
-          case 202:
-            this.messageSent = true;
-            console.log("Message sent: " + res);
-            break;
-          case 400:
-            console.error("Invalid form: " + res);
-            break;
-          default:
-            console.error("Failed to send message: " + res);
-        }
-      });
+      APIClient.mailingAPI(MAILING_URL.feedback, this.name, this.email, this.body)
+        .then((res) => {
+          switch (res.status) {
+            case 202:
+              this.messageSent = true;
+              console.log(`Message sent: ${res}`);
+              break;
+            case 400:
+              console.error(`Invalid form: ${res}`);
+              break;
+            default:
+              console.error(`Failed to send message: ${res}`);
+          }
+        });
     },
   },
-}
+};
 </script>
 
 <style scoped>

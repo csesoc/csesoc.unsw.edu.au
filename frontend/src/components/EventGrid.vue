@@ -1,7 +1,7 @@
 <!--
   EventGrid
   --
-  This component contains a grid of event tiles containing basic information regarding each event. 
+  This component contains a grid of event tiles containing basic information regarding each event.
   It is currently being used in the landing page.
   --
   Props:
@@ -34,7 +34,7 @@
           <v-card-actions>
             <a :href="'https://facebook.com/' + event.fb_event_id"><div class="link">Learn more ▶</div></a>
           </v-card-actions>
-          
+
         </v-card>
       </v-col>
     </v-row>
@@ -48,9 +48,9 @@ export default {
   // items have title, image url (src), and link
   props: ['events'],
   methods: {
-    getMonthString(unix_t) {
-      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
-      var d = new Date(unix_t * 1000);
+    getMonthString(unixT) {
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+      const d = new Date(unixT * 1000);
       return months[d.getMonth()];
     }
     // Removed, since this is no longer used.
@@ -61,7 +61,7 @@ export default {
     //   if (!String.prototype.format) {
     //     String.prototype.format = function() {
     //       var args = arguments;
-    //       return this.replace(/{(\d+)}/g, function(match, number) { 
+    //       return this.replace(/{(\d+)}/g, function(match, number) {
     //         return typeof args[number] != 'undefined'
     //           ? args[number]
     //           : match
@@ -69,13 +69,13 @@ export default {
     //       });
     //     };
     //   }
-     
+
     //   var start = new Date(unix1 * 1000);
     //   var end = new Date(unix2 * 1000);
     //   if (unix2 == undefined) {
     //     // eg. Thurs 1 Jan 12 PM
     //     return "{0} {1} {2} at {3}{4} {5}".format(
-    //       days[start.getDay()], 
+    //       days[start.getDay()],
     //       start.getDate(),
     //       months[start.getMonth()],
     //       (start.getHours() > 12) ? start.getHours() - 12 : start.getHours(),
@@ -87,7 +87,7 @@ export default {
     //   else if (start.getDate() === end.getDate() && start.getMonth() === end.getMonth()) {
     //     // eg. Thurs 1 Jan 12 PM to 1:30 PM
     //     return "{0} {1} {2} at {3}{4} {5} - {6}{7} {8}".format(
-    //       days[start.getDay()], 
+    //       days[start.getDay()],
     //       start.getDate(),
     //       months[start.getMonth()],
     //       (start.getHours() > 12) ? start.getHours() - 12 : start.getHours(),
@@ -97,17 +97,17 @@ export default {
     //       (end.getMinutes() === 0) ? "" : ":" + (end.getMinutes() < 10 ? "0" : "") + end.getMinutes(),
     //       (end.getHours() >= 12) ? "PM" : "AM"
     //     );
-    //   } 
+    //   }
     //   // if the dates are different
     //   // eg. Thurs 1 Jan 12 PM to Thurs 2 Jan 1:30 PM
     //   return "{0} {1} {2} at {3}{4} {5} - {6} {7} {8} at {9}{10} {11}".format(
-    //     days[start.getDay()], 
+    //     days[start.getDay()],
     //     start.getDate(),
     //     months[start.getMonth()],
     //     (start.getHours() > 12) ? start.getHours() - 12 : start.getHours(),
     //     (start.getMinutes() === 0) ? "" : ":" + (start.getMinutes() < 10 ? "0" : "") + start.getMinutes(),
     //     (start.getHours() >= 12) ? "PM" : "AM",
-    //     days[end.getDay()], 
+    //     days[end.getDay()],
     //     end.getDate(),
     //     months[end.getMonth()],
     //     (end.getHours() > 12) ? end.getHours() - 12 : end.getHours(),

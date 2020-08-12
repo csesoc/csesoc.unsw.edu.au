@@ -26,7 +26,7 @@
       />
       <v-img v-else max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
       -->
-      
+
       <h1>
         CSESoc, Lorem ipsum dolor sit amet, consetetur
       </h1>
@@ -115,9 +115,9 @@
     <v-container id=sponsor>
       <HeaderTitle :title="'support csesoc'" />
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est      
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
         </p>
         <RouterLink to="/sponsors" class="link">
           <a
@@ -129,7 +129,6 @@
           </a>
         </RouterLink>
     </v-container>
-    
 
   </div>
 </template>
@@ -164,7 +163,7 @@ export default {
   },
   mounted() {
     fetch(this.mediaApiUri)
-      .then(r => r.json())
+      .then((r) => r.json())
       .then((responseJson) => {
         this.mediaItems = responseJson;
       });
@@ -175,16 +174,16 @@ export default {
       })
       .catch((error) => {
         // fix this
-        console.log(error)
+        console.log(error);
       });
 
     APIClient.eventsAPI()
       .then((responseJson) => {
-        this.eventItems = responseJson.events.slice(0,3);
+        this.eventItems = responseJson.events.slice(0, 3);
         this.time -= responseJson.updated * 1000;
       });
     fetch(this.announceApiUri)
-      .then(r => r.json())
+      .then((r) => r.json())
       .then((responseJson) => {
         this.announceItems = responseJson;
       });

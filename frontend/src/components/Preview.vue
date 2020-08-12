@@ -1,7 +1,7 @@
 <!--
   Preview
   --
-  This component is a preview visualiser of CSE resource links defined in the item objects passed in. 
+  This component is a preview visualiser of CSE resource links defined in the item objects passed in.
   --
   Props:
     - items: list of times - containing the fields: id, link, src, title
@@ -22,23 +22,27 @@
         <v-container class='preview-container'>
           <v-list two-line>
             <template v-for="(item, index) in items">
-              <v-list-item 
-              v-if="item.link !== ''" 
-              class='preview-item' 
-              :href="item.link" 
-              target="_blank" 
-              @mouseover="previewImg = item.src" 
-              data-cy="preview-item" 
+              <v-list-item
+              v-if="item.link !== ''"
+              class='preview-item'
+              :href="item.link"
+              target="_blank"
+              @mouseover="previewImg = item.src"
+              data-cy="preview-item"
               :key="item.title">
                 <v-list-item-content>
                   <div v-if="item.title !== ''" class='text-h4' v-text="item.title" data-cy='preview-title' />
-                  <div v-if="item.description !== ''" class='text-subtitle-1' v-text="item.description"  data-cy='preview-description' />
+                  <div
+                  v-if="item.description !== ''"
+                  class='text-subtitle-1'
+                  v-text="item.description"
+                  data-cy='preview-description'/>
                 </v-list-item-content>
               </v-list-item>
               <v-divider v-if="index != items.length-1" :key="index" />
             </template>
           </v-list>
-          <div class='button-container'> 
+          <div class='button-container'>
             <router-link to='/resources'>
               <v-btn text>All resources ></v-btn>
             </router-link>
@@ -55,19 +59,19 @@
 export default {
   name: 'Preview',
   props: ['items'],
-  data: function () {
+  data() {
     return {
       previewImg: '',
-    }
+    };
   },
   methods: {
-    loading: function() {
-      if(this.items.length < 1) {
-        return true
-      } else if (this.previewImg === '') {
-        this.previewImg = this.items[0].src
+    loading() {
+      if (this.items.length < 1) {
+        return true;
+      } if (this.previewImg === '') {
+        this.previewImg = this.items[0].src;
       }
-      return false
+      return false;
     }
   }
 };
