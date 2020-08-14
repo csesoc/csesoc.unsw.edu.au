@@ -1,13 +1,14 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col cols='6'>
+    <h1>Hi</h1>
+    <!-- <v-row>
+      <v-col class="pa-4" cols='6'>
         Some text
       </v-col>
-      <v-col cols='6'>
+      <v-col class="pa-4" cols='6'>
         Some other text
       </v-col>
-    </v-row>
+    </v-row> -->
   </v-container>
 </template>
 

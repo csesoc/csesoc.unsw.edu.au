@@ -22,15 +22,19 @@ $success-color: #00FF66;
 $maxWidth: 1280;
 
 // ----------------------------------------------------------------------
-	// Font Sizes
+	// Font Sizes and Base Values
 // ----------------------------------------------------------------------
-$regularSize: 12;
+$text-base-size: 1em;
+$text-scale-ratio: 1.2;
 
 
 // ----------------------------------------------------------------------
 	// Font Families
 // ----------------------------------------------------------------------
-$helvetica: Helvetica, Arial, sans-serif;
+@font-face {
+	font-family: "Quicksand";
+	src: url(https://fonts.googleapis.com/css?family=Quicksand:400,500&display=swap);
+}
 
 // ----------------------------------------------------------------------
   // Grid

@@ -1,0 +1,27 @@
+// ----------------------------------------------------------------------
+	// Typography
+// ----------------------------------------------------------------------
+
+@use "sass:math";
+
+// ----------------------------------------------------------------------
+	// #Type Scale
+// ----------------------------------------------------------------------
+$text-xs: 1em / math.pow($text-scale-ratio, 2);
+$text-sm: 1em / math.pow($text-scale-ratio, 1);
+$text-md: 1em / math.pow($text-scale-ratio, 1);
+$text-lg: 1em / math.pow($text-scale-ratio, 2);
+$text-xl: 1em / math.pow($text-scale-ratio, 3);
+$text-xxl: 1em / math.pow($text-scale-ratio, 4);
+$text-xxxl: 1em / math.pow($text-scale-ratio, 5);
+
+body {
+  font-size: $text-base-size;
+  font-family: 'Quicksand', sans-serif;
+}
+
+// h1, h2, h3, h4, form legend {
+//   margin-bottom: var(--space-xxs);
+//   line-height: var(--heading-line-height);
+// }
+
