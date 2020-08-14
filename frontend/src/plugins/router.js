@@ -16,6 +16,11 @@ export default new Router({
       component: () => import('../views/About.vue'),
     },
     {
+      path: '/resources',
+      name: 'resources',
+      component: () => import('../views/Resources.vue'),
+    },
+    {
       path: '/sponsors',
       name: 'sponsors',
       component: () => import('../views/Sponsor.vue'),

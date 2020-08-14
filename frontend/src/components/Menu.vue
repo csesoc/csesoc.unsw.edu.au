@@ -14,9 +14,9 @@
       <!-- <RouterLink to="/" class="link">
         <label>Events</label>
       </RouterLink> -->
-      <!-- <RouterLink to="/" class="link">
+      <RouterLink to="/resources" class="link">
         <label>CSE Resources</label>
-      </RouterLink> -->
+      </RouterLink>
       <RouterLink to="/sponsors" class="link">
         <label>Sponsors</label>
       </RouterLink>
