@@ -1,26 +1,23 @@
 <template>
   <v-app id="main-app">
+    <!-- Navigation bar/app bar goes here -->
+    <v-app-bar app dark width="100vw">
+      <!-- Logo -->
+      <RouterLink to="/" v-on:click.native="showMenu = false">
+        <v-container class="fill-height" style="max-height: 64px; max-width:100px">
+          <v-img src="@/assets/csesocwhiteblue.png" />
+        </v-container>
+      </RouterLink>
+
+      <div class="flex-grow-1"></div>
+
+      <!-- Menu button -->
+      <v-app-bar-nav-icon class="ma-2" @click.stop="showMenu = !showMenu"></v-app-bar-nav-icon>
+    </v-app-bar>
     <v-main >
-        <!-- Navigation bar/app bar goes here -->
-        <v-app-bar app dark width="100vw">
-          <!-- Logo -->
-          <RouterLink to="/" v-on:click.native="showMenu = false">
-            <v-container class="fill-height" style="max-height: 64px; max-width:100px">
-              <v-img src="@/assets/csesocwhiteblue.png" />
-            </v-container>
-          </RouterLink>
-
-          <div class="flex-grow-1"></div>
-
-          <!-- Menu button -->
-          <v-app-bar-nav-icon class="ma-2" @click.stop="showMenu = !showMenu"></v-app-bar-nav-icon>
-        </v-app-bar>
-
-        <main>
-          <Menu v-if="showMenu" @shown="onMenuCollapse" />
-          <RouterView style="overflow-x: hidden" />
-        </main>
-        <Footer />
+      <Menu v-if="showMenu" @shown="onMenuCollapse" />
+      <RouterView style="overflow-x: hidden" />
+      <Footer />
     </v-main>
   </v-app>
 </template>
@@ -51,7 +48,7 @@ export default {
 * {
   margin: 0;
   padding: 0;
-  font-family: "Quicksand", sans-serif;
+  /* font-family: "Quicksand", sans-serif; */
 }
 
 html {
