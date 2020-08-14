@@ -27,7 +27,7 @@
 
 <script>
 import Footer from '@/components/Footer';
-import Menu from '@/components/Menu.vue';
+import Menu from '@/components/Menu';
 
 export default {
   name: 'App',
