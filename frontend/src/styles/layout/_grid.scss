@@ -35,7 +35,7 @@
 }
 
 @for $i from 1 through $grid-columns {
-  .col__#{$i} {
+  .col--#{$i} {
     @extend .col;
     flex-basis: round-width($i);
     max-width: round-width($i);
@@ -44,7 +44,7 @@
 
 @media only screen and (min-width: 600px) {
   @for $i from 1 through $grid-columns {
-    .col__md_#{$i} {
+    .col--md-#{$i} {
       flex-basis: round-width($i);
       max-width: round-width($i);
     }

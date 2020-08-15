@@ -14,10 +14,10 @@
       </v-col>
     </v-row> -->
     <div class="flex-grid">
-      <div class="col col__md_9">1</div>
-      <div class="col col__md_3">2</div>
-      <div class="col col__md_3">3</div>
-      <div class="col col__md_9">4</div>
+      <div class="col col--md-9">1</div>
+      <div class="col col--md-3">2</div>
+      <div class="col col--md-3">3</div>
+      <div class="col col--md-9">4</div>
     </div>
   </v-container>
 </template>
