@@ -31,4 +31,6 @@ $text-scale-ratio: 1.25;
   // Grid
 // ----------------------------------------------------------------------
 $grid-columns: 12;
-
+$grid-gap: 20px;
+$gap-horizontal: $grid-gap;
+$gap-vertical: $grid-gap;
