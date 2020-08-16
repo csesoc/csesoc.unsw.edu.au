@@ -7,6 +7,7 @@ module.exports = {
 
   extends: [
     'plugin:vue/essential',
+    'plugin:cypress/recommended',
     '@vue/airbnb',
   ],
 
