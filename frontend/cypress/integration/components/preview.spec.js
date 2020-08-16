@@ -16,7 +16,7 @@ describe('Resources Landing Page', () => {
     // Check on hover works
     cy
       .get('[data-cy=preview-item]')
-      .each(($li, index, $lis) => {
+      .each(($li) => {
         cy.wrap($li).trigger('mouseover')
           .get('[data-cy=preview-image]')
           .should('be.visible');
