@@ -57,13 +57,15 @@ From the root folder of the dev branch, run the following command in your termin
 docker-compose up -d --build
 ```
 
-This will automatically build the images required for the containers, as well as the containers for the first time. After this images will not need to be built again until changes have been made to the dependencies. The '-d' is to start the container in the background and leave them running. There will be three containers that start up `frontend`, `backend` and `mongo`. Once you are finished developing, run:
+This will automatically build the images required for the containers, as well as the containers for the first time. After this images will not need to be built again until changes have been made to the dependencies. For subsequent runs, remove the `--build`.
+
+The '-d' is to start the container in the background and leave them running. There will be three containers that start up `frontend`, `backend` and `mongo`. Once you are finished developing, run:
 
 ``` script
-docker-compose down
+docker-compose down -v
 ```
 
-which kills your containers but keeps your images. Be sure to use `docker-compose --help` for any additional help or other options.
+which kills your containers and removes any bind mounts and named volumes but keeps your images. Be sure to use `docker-compose --help` for any additional help or other options.
 
 To access the website, the static files will be served on `0.0.0.0:8080` (`[::]:8080`) while the backend APIs are served on `0.0.0.0:1323` (`[::]:1323`). Make sure when you are making calls from the frontend to the backend in development stage, you use the suffix of the api call and not call with the domain e.g
 
