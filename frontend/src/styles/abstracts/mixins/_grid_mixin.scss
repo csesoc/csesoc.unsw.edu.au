@@ -4,6 +4,9 @@
   
 // ----------------------------------------------------------------------
 
+/**
+ * Use this when you need to display items in a grid format within a container.
+ */
 @mixin grid {
   @supports(grid-area: auto) {
     display: grid;
