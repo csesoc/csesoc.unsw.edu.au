@@ -1,8 +1,15 @@
-@import "setup/mixins";
-@import "setup/typography";
-@import "setup/variables";
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
 
-@import "basics/buttons";
-@import "basics/links";
+@import "base/reset";
+@import "base/typography";
 
-@import "layout/layout";
+@import "components/buttons";
+@import "components/links";
+
+@import "layout/footer";
+@import "layout/forms";
+@import "layout/grid";
+@import "layout/header";
+@import "layout/navigation";

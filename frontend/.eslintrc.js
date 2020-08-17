@@ -26,6 +26,7 @@ module.exports = {
       },
     ],
     'comma-dangle': 'off',
+    "linebreak-style": 0
   },
 
   parserOptions: {
