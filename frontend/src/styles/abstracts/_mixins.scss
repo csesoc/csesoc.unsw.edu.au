@@ -8,7 +8,8 @@
   // Alignment
 
 // ----------------------------------------------------------------------
-// @import "mixins/margin-auto";
+@import "mixins/center";
+@import "mixins/spacing_mixin";
 
 // ----------------------------------------------------------------------
 
@@ -48,7 +49,7 @@
 // ----------------------------------------------------------------------
 // @import "mixins/background-cover";
 // @import "mixins/box-model";
-// @import "mixins/clearfix";
+@import "mixins/clearfix";
 // @import "mixins/inline-block";
 
 // ----------------------------------------------------------------------
@@ -56,7 +57,7 @@
   // Media Queries
 
 // ----------------------------------------------------------------------
-// @import "mixins/breakpoint";
+@import "mixins/breakpoint";
 // @import "mixins/min-breakpoint";
 // @import "mixins/retina";
 
