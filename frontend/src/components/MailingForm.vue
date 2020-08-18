@@ -17,8 +17,8 @@
           :rules="this.type !== 'feedback' && [rules.required]"></v-text-field>
         <!-- Email -->
         <label class="text-body-1 input-label"> Email </label>
-        <v-text-field class="input" placeholder="john.smith@gmail.com" v-model="email"
-          :rules="this.type !== 'feedback' ? [rules.required, rules.email] : [rules.emailOptional]"></v-text-field>
+        <v-text-field class="input" placeholder="john.smith@email.com" v-model="email"
+          :rules="[rules.email, this.type !== 'feedback' ? rules.required : true]"></v-text-field>
         <!-- Message -->
         <label class="text-body-1 input-label"> Message </label>
         <v-textarea class="input" placeholder="Message" v-model="body"
@@ -47,12 +47,7 @@ export default {
       email: (value) => {
         // eslint-disable-next-line max-len
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return pattern.test(value) || 'Invalid e-mail';
-      },
-      emailOptional: (value) => {
-        // eslint-disable-next-line max-len
-        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return pattern.test(value) || value.length === 0 || 'Invalid e-mail';
+        return value.length === 0 || pattern.test(value) || 'Invalid e-mail';
       },
     },
   }),
