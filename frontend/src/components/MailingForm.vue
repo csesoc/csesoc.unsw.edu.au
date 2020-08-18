@@ -14,7 +14,7 @@
         <!-- Name -->
         <label class="text-body-1 input-label">{{ this.type === "sponsorship" ? "Company Name" : "Name" }}</label>
         <v-text-field class="input" placeholder="John Smith" v-model="name"
-          :rules="this.type !== 'feedback' && [rules.required]"></v-text-field>
+          :rules="[this.type !== 'feedback' ? rules.required : true]"></v-text-field>
         <!-- Email -->
         <label class="text-body-1 input-label"> Email </label>
         <v-text-field class="input" placeholder="john.smith@email.com" v-model="email"
