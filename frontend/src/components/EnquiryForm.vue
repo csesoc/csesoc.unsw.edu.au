@@ -1,25 +1,29 @@
 <!--
   EnquiryForm
   --
-  This component contains an enquiry form which can be used to interact with mailing API's general and sponsorship endpoints.
+  This component contains an enquiry form which can be used to interact with mailing API's endpoints.
   --
   Props:
-    - type: string - either "general" or "sponsorship"
+    - type: string - either "general", "sponsorship" or "feedback"
 -->
 
 <template>
   <v-row justify="space-around">
     <v-col class="form-box">
-      <v-form
-        ref="form"
-        v-model="valid"
-      >
-        <label class="text-body-1 input-label">{{ this.type == "sponsorship" ? "Company Name" : "Name" }}</label>
-        <v-text-field class="input" placeholder="Name" :rules="nameRules" v-model="name"></v-text-field>
+      <v-form ref="form" v-model="valid">
+        <!-- Name -->
+        <label class="text-body-1 input-label">{{ this.type === "sponsorship" ? "Company Name" : "Name" }}</label>
+        <v-text-field class="input" placeholder="John Smith" v-model="name"
+          :rules="this.type !== 'feedback' && [rules.required]"></v-text-field>
+        <!-- Email -->
         <label class="text-body-1 input-label"> Email </label>
-        <v-text-field class="input" placeholder="John.smith@gmail.com" :rules="emailRules" v-model="email"></v-text-field>
+        <v-text-field class="input" placeholder="john.smith@gmail.com" v-model="email"
+          :rules="this.type !== 'feedback' ? [rules.required, rules.email] : [rules.emailOptional]"></v-text-field>
+        <!-- Message -->
         <label class="text-body-1 input-label"> Message </label>
-        <v-textarea class="input" placeholder="Body" :rules="bodyRules" v-model="body"></v-textarea>
+        <v-textarea class="input" placeholder="Message" v-model="body"
+          :rules="[rules.required]"></v-textarea>
+        <!-- Send button -->
         <v-btn text style="margin-left:60%" :disabled="!valid" @click="send">Send</v-btn>
       </v-form>
     </v-col>
@@ -36,18 +40,21 @@ export default {
   data: () => ({
     valid: true,
     name: '',
-    nameRules: [
-      (v) => !!v || 'Name is required',
-    ],
     email: '',
-    emailRules: [
-      (v) => !!v || 'E-mail is required',
-      (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-    ],
     body: '',
-    bodyRules: [
-      (v) => !!v || 'Message is required',
-    ],
+    rules: {
+      required: (value) => !!value || 'Required',
+      email: (value) => {
+        // eslint-disable-next-line max-len
+        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return pattern.test(value) || 'Invalid e-mail';
+      },
+      emailOptional: (value) => {
+        // eslint-disable-next-line max-len
+        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return pattern.test(value) || value.length === 0 || 'Invalid e-mail';
+      },
+    },
   }),
   methods: {
     send() {
