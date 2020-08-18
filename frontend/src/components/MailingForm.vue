@@ -1,5 +1,5 @@
 <!--
-  EnquiryForm
+  MailingForm
   --
   This component contains an enquiry form which can be used to interact with mailing API's endpoints.
   --
@@ -35,7 +35,7 @@ import APIClient from '../utils/APIClient';
 import { MAILING_URL } from '../utils/Constants';
 
 export default {
-  name: 'EnquiryForm',
+  name: 'MailingForm',
   props: ['type'],
   data: () => ({
     valid: true,
