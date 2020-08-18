@@ -91,7 +91,7 @@
       <v-tab>Feedback</v-tab>
       <v-tab-item>
         <v-card flat tile>
-          <FeedbackForm></FeedbackForm>
+          <EnquiryForm type="feedback"></EnquiryForm>
         </v-card>
       </v-tab-item>
 
@@ -103,7 +103,6 @@
 import NavGrid from '@/components/NavGrid';
 import HeaderTitle from '@/components/HeaderTitle';
 import EnquiryForm from '@/components/EnquiryForm';
-import FeedbackForm from '@/components/FeedbackForm';
 
 import APIClient from '../utils/APIClient';
 
@@ -116,8 +115,7 @@ export default {
   components: {
     NavGrid,
     HeaderTitle,
-    EnquiryForm,
-    FeedbackForm
+    EnquiryForm
   },
 
   mounted() {
