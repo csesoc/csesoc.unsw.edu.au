@@ -1,12 +1,12 @@
 // ----------------------------------------------------------------------
 
-  // Grid Layout
+// Grid Layout
 
 // ----------------------------------------------------------------------
 @use 'sass:math';
 
-@function round-width($i) {
-  $width: floor($i / $grid-columns * 100%);
+@function width($i) {
+  $width: ($i / $grid-columns) * 100%;
   @return $width;
 }
 
@@ -18,7 +18,7 @@
    * the grid gap so that no empty space is left between the .flex-grid
    * element and its container.
    */
-  margin: ($grid-gap * -1) 0 0 ($grid-gap * -1);
+  margin: 0 0 0 ($gap-horizontal * -1);
 }
 
 .col {
@@ -45,9 +45,8 @@
 @media only screen and (min-width: 600px) {
   @for $i from 1 through $grid-columns {
     .col--md-#{$i} {
-      flex-basis: round-width($i);
-      max-width: round-width($i);
+      flex-basis: width($i);
+      max-width: width($i);
     }
   }
 }
-
