@@ -1,3 +1,16 @@
+/*
+  Main
+  --
+  This file controls the backend of the CSESoc website by bringing all the local modules together.
+  The echo web server is initialized in the main() function along the servePages() and serveAPI() functions
+  that serve the 2 main functions of the backend.
+
+  SwaggerUI is served on http://localhost:1323/swagger/index.html
+
+  The server itself runs on a subroutine to enable a graceful shutdown, through the use of Go's channels
+  feature, in the case of server errors or manual SIGINT of the application.
+*/
+
 package main
 
 import (
@@ -8,15 +21,16 @@ import (
 	"os/signal"
 	"time"
 
-	// Doing a local import
+	// Import utilities
 	. "csesoc.unsw.edu.au/m/v2/server"
-	. "csesoc.unsw.edu.au/m/v2/server/events"
-	. "csesoc.unsw.edu.au/m/v2/server/faq"
-	. "csesoc.unsw.edu.au/m/v2/server/login"
-	. "csesoc.unsw.edu.au/m/v2/server/mailing"
-	. "csesoc.unsw.edu.au/m/v2/server/resources"
-	. "csesoc.unsw.edu.au/m/v2/server/social"
-	. "csesoc.unsw.edu.au/m/v2/server/sponsor"
+
+	"csesoc.unsw.edu.au/m/v2/server/events"
+	"csesoc.unsw.edu.au/m/v2/server/faq"
+	"csesoc.unsw.edu.au/m/v2/server/login"
+	"csesoc.unsw.edu.au/m/v2/server/mailing"
+	"csesoc.unsw.edu.au/m/v2/server/resources"
+	"csesoc.unsw.edu.au/m/v2/server/social"
+	"csesoc.unsw.edu.au/m/v2/server/sponsor"
 
 	_ "csesoc.unsw.edu.au/m/v2/docs"
 
@@ -66,13 +80,15 @@ func main() {
 	println("Web server is online :)")
 
 	// Disable the fetch timer until we get access to the actual CSESoc page
-	// go EventFetchTimer()
+	if !DEVELOPMENT {
+		go events.FetchTimer()
+	}
 
 	// Bind quit to listen to Interrupt signals
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 
-	// Running server on a subroutine enables a gracefully shutdown
+	// Running server on a subroutine enables a graceful shutdown
 	// Reference: https://echo.labstack.com/cookbook/graceful-shutdown
 	go func() {
 		// Start echo instance on 1323 port
@@ -92,8 +108,8 @@ func main() {
 	<-quit
 	// Dispatch bundles on shutdown
 	if !DEVELOPMENT {
-		DispatchEnquiryBundles()
-		DispatchFeedbackBundle()
+		mailing.DispatchEnquiryBundles()
+		mailing.DispatchFeedbackBundle()
 	}
 	// Gracefully shutdown the server with a timeout of 10 seconds
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
@@ -159,52 +175,52 @@ func serveAPI(e *echo.Echo) {
 	println("Serving API...")
 
 	// AUTHENTICATION
-	e.POST("/login", TempLogin)
+	e.POST("/login", login.TempLogin)
 
 	v1 := e.Group("/api/v1")
 	{
 		// SPONSORS
-		SponsorSetup(client)
-		sponsors := v1.Group("/sponsors")
+		sponsor.Setup(client)
+		sponsorsAPI := v1.Group("/sponsors")
 		{
-			sponsors.GET("/:name", GetSponsor)
-			sponsors.POST("", NewSponsor, middleware.JWT(JWT_SECRET))
-			sponsors.DELETE("/:name", DeleteSponsor, middleware.JWT(JWT_SECRET))
-			sponsors.GET("", GetSponsors)
+			sponsorsAPI.GET("/:name", sponsor.HandleGetSingle)
+			sponsorsAPI.POST("", sponsor.HandleNew, middleware.JWT(JWT_SECRET))
+			sponsorsAPI.DELETE("/:name", sponsor.HandleDelete, middleware.JWT(JWT_SECRET))
+			sponsorsAPI.GET("", sponsor.HandleGetMultiple)
 		}
 
 		// MAILING
-		MailingSetup()
-		mailing := v1.Group("/mailing")
+		mailing.Setup()
+		mailingAPI := v1.Group("/mailing")
 		{
-			mailing.POST("/general", HandleGeneralMessage)
-			mailing.POST("/sponsorship", HandleSponsorshipMessage)
-			mailing.POST("/feedback", HandleFeedbackMessage)
+			mailingAPI.POST("/general", mailing.HandleGeneralMessage)
+			mailingAPI.POST("/sponsorship", mailing.HandleSponsorshipMessage)
+			mailingAPI.POST("/feedback", mailing.HandleFeedbackMessage)
 		}
 
 		// FAQ
-		faq := v1.Group("/faq")
+		faqsAPI := v1.Group("/faq")
 		{
-			faq.GET("", GetFaq)
+			faqsAPI.GET("", faq.HandleGet)
 		}
 
 		// SOCIAL
-		social := v1.Group("/social")
+		socialAPI := v1.Group("/social")
 		{
-			social.GET("", GetSocial)
+			socialAPI.GET("", social.HandleGet)
 		}
 
 		// EVENTS
-		events := v1.Group("/events")
+		eventsAPI := v1.Group("/events")
 		{
-			events.GET("", GetEvents)
+			eventsAPI.GET("", events.HandleGet)
 		}
 
 		// RESOURCES
-		ResourcesSetup(client)
-		resources := v1.Group("/resources")
+		resources.Setup(client)
+		resourcesAPI := v1.Group("/resources")
 		{
-			resources.GET("/preview", GetPreview)
+			resourcesAPI.GET("/preview", resources.HandleGetPreview)
 		}
 	}
 }

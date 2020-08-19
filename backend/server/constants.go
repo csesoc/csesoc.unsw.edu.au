@@ -1,3 +1,9 @@
+/*
+  Constants
+  --
+  These constants can be dot imported into any module to get direct access to them.
+*/
+
 package utility
 
 const DEVELOPMENT bool = true

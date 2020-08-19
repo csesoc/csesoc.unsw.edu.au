@@ -1,3 +1,14 @@
+<!--
+  Engage
+  --
+  This view corresponds to the Engage page of the website.
+  This page consists of:
+    - joining
+    - social links
+    - faq
+    - enquiry and feedback forms
+-->
+
 <template>
   <v-app>
     <v-parallax
@@ -14,7 +25,9 @@
           <v-expansion-panel-header class="title py-3">I'm not an Arc member, can I join?</v-expansion-panel-header>
           <v-expansion-panel-content>
             You need to sign up at Arc in order to join any society on campus.
-            <br />Joining Arc (for free!) means you can unlock all the best bits of student life. Set yourself up for success at UNSW by joining Arc online now, then come to visit us on campus for your awesome Arc Membership pack!
+            <br />Joining Arc (for free!) means you can unlock all the best bits of student life.
+            Set yourself up for success at UNSW by joining Arc online now, then come to visit us
+            on campus for your awesome Arc Membership pack!
             <br /><br />
             <br />CLUBS: gain access to over 300 Clubs & Societies
             <br />SPORT: play your way with Sport Clubs, Nationals & Social Sport
@@ -70,7 +83,7 @@
       <v-tab>Enquiry</v-tab>
       <v-tab-item>
         <v-card flat tile>
-          <EnquiryForm type="general"></EnquiryForm>
+          <MailingForm type="general"></MailingForm>
         </v-card>
       </v-tab-item>
 
@@ -78,10 +91,10 @@
       <v-tab>Feedback</v-tab>
       <v-tab-item>
         <v-card flat tile>
-          <FeedbackForm></FeedbackForm>
+          <MailingForm type="feedback"></MailingForm>
         </v-card>
       </v-tab-item>
-    
+
     </v-tabs>
   </v-app>
 </template>
@@ -89,12 +102,12 @@
 <script>
 import NavGrid from '@/components/NavGrid';
 import HeaderTitle from '@/components/HeaderTitle';
-import EnquiryForm from '@/components/EnquiryForm';
-import FeedbackForm from '@/components/FeedbackForm';
+import MailingForm from '@/components/MailingForm';
 
-import APIClient  from '../utils/APIClient'
+import APIClient from '../utils/APIClient';
 
 export default {
+  name: 'Engage',
   data: () => ({
     socialLinks: [],
     faqLinks: []
@@ -102,20 +115,19 @@ export default {
   components: {
     NavGrid,
     HeaderTitle,
-    EnquiryForm,
-    FeedbackForm
+    MailingForm
   },
 
   mounted() {
     APIClient.socialsAPI()
-    .then((responseJson) => {
-      this.socialLinks = responseJson;
-    });
+      .then((responseJson) => {
+        this.socialLinks = responseJson;
+      });
 
     APIClient.faqsAPI()
-    .then((responseJson) => {
-      this.faqLinks = responseJson;
-    });
+      .then((responseJson) => {
+        this.faqLinks = responseJson;
+      });
   }
 };
 </script>

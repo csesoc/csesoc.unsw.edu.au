@@ -1,3 +1,9 @@
+/*
+  JWT
+  --
+  This file lays the foundation behind session management using JWTs and cookies.
+*/
+
 package login
 
 import (

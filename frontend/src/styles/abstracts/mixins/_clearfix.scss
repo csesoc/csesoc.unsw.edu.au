@@ -1,0 +1,26 @@
+// ----------------------------------------------------------------------
+
+  // Clearfix after element
+
+// ----------------------------------------------------------------------
+
+// example: @include clearfix();
+
+/**
+ * Use clearfix whenever you have content floating and want to clear the
+ * space below the floated element to insert new content below. Also makes
+ * sure that the element stays inside its container.
+ */
+@mixin clearfix() {
+  & {
+    *zoom: 1;
+  }
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}

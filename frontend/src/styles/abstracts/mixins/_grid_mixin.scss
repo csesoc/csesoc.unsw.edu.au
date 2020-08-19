@@ -1,0 +1,22 @@
+// ----------------------------------------------------------------------
+
+  // Grid Mixins
+  
+// ----------------------------------------------------------------------
+
+/**
+ * Use this when you need to display items in a grid format within a container.
+ */
+@mixin grid {
+  @supports(grid-area: auto) {
+    display: grid;
+    column-gap: $gap-horizontal;
+    row-gap: $gap-vertical;
+  }
+}
+
+@mixin gridAuto($min-width) {
+  @supports(grid-area: auto){
+    grid-template-columns: repeat(auto-fit, minmax($min-width, 1 fr));
+  }
+}

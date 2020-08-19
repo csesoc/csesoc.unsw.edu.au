@@ -1,3 +1,10 @@
+<!--
+  Menu
+  --
+  This component contains an overlay with links to all the pages of the website.
+  The links have a grow-on-hover feature.
+-->
+
 <template>
   <div @click.stop="hide" class="dimmed no-scroll">
     <div class="vertical-container">
@@ -7,15 +14,12 @@
       <!-- <RouterLink to="/" class="link">
         <label>Events</label>
       </RouterLink> -->
-      <!-- <RouterLink to="/" class="link">
+      <RouterLink to="/resources" class="link">
         <label>CSE Resources</label>
-      </RouterLink> -->
+      </RouterLink>
       <RouterLink to="/sponsors" class="link">
         <label>Sponsors</label>
       </RouterLink>
-      <!-- <RouterLink to="/" class="link">
-        <label>Shop</label>
-      </RouterLink> -->
       <RouterLink to="/engage" class="link">
         <label>Engage</label>
       </RouterLink>
@@ -27,9 +31,9 @@
 export default {
   name: 'Menu',
   methods: {
-    hide(event) {
+    hide() {
       // Relaying status to parent
-      this.$emit('shown', false)
+      this.$emit('shown', false);
     }
   }
 };

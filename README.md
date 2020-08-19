@@ -57,13 +57,15 @@ From the root folder of the dev branch, run the following command in your termin
 docker-compose up -d --build
 ```
 
-This will automatically build the images required for the containers, as well as the containers for the first time. After this images will not need to be built again until changes have been made to the dependencies. The '-d' is to start the container in the background and leave them running. There will be three containers that start up `frontend`, `backend` and `mongo`. Once you are finished developing, run:
+This will automatically build the images required for the containers, as well as the containers for the first time. After this images will not need to be built again until changes have been made to the dependencies. For subsequent runs, remove the `--build`.
+
+The '-d' is to start the container in the background and leave them running. There will be three containers that start up `frontend`, `backend` and `mongo`. Once you are finished developing, run:
 
 ``` script
-docker-compose down
+docker-compose down -v
 ```
 
-which kills your containers but keeps your images. Be sure to use `docker-compose --help` for any additional help or other options.
+which kills your containers and removes any bind mounts and named volumes but keeps your images. Be sure to use `docker-compose --help` for any additional help or other options.
 
 To access the website, the static files will be served on `0.0.0.0:8080` (`[::]:8080`) while the backend APIs are served on `0.0.0.0:1323` (`[::]:1323`). Make sure when you are making calls from the frontend to the backend in development stage, you use the suffix of the api call and not call with the domain e.g
 
@@ -95,11 +97,11 @@ These tests are written in Golang's standard testing package and are written in 
 
 ### Frontend Unit Testing
 
-While frontend unit testing of components is usually never thought of by developers still at university, it is something our teams (past and present) have given thought to. In the trial stages of frontend testing, we have adopted the use of [Vue Test Utils](https://vue-test-utils.vuejs.org/) which of writing, is still in beta development. It is Vue's official unit testing utility library.
+While frontend unit testing of components is usually never thought of by developers still at university, it is something our teams (past and present) have given thought to. We have settled on using the Cypress.io framework to run E2E tests on our system. The framework was choosen because of its ease of use and low learning curve. It fits well with our current needs to provide quality and visual assurance that our frontend code appears and is used as how an end user would interact with the website. 
 
-Testing for frontend components (for this project, those files that are in the components section), will be written in the `frontend/tests/unit` directory. When testing, we use Jest as our testing framework which has integration with Vue Test Utils.
+To get it running, go to the `frontend` folder. Make sure that you have `yarn install`ed previously when setting up to make sure that you have cypress ready to run. To launch the console please use `yarn run cypress open` which will load an application window to view tests that cypress has detected. For further information please go to the [Cypress installation documentation](https://docs.cypress.io/guides/getting-started/installing-cypress.html#Opening-Cypress).
 
-While there is no requirement to use Vue Test Utils, it is encouraged for contributors especially during our trialing phase, to think about ways and tools to test the frontend. More tools will be used in the coming weeks as the team shifts focus back to backend code and pros and cons weighed.
+Cypress is quite extensively documented but if there are any difficulties a good starting point is to learn Chai.js and look at the tutorials on the website.
 
 ### Github Actions
 

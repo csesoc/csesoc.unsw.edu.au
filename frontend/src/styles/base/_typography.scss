@@ -1,0 +1,79 @@
+// ----------------------------------------------------------------------
+	// Typography
+// ----------------------------------------------------------------------
+
+@use "sass:math";
+
+// ----------------------------------------------------------------------
+	// #Type Scale
+// ----------------------------------------------------------------------
+$text-xs: 1em / math.pow($text-scale-ratio, 1);   //caption
+$text-sm: 1em / math.pow($text-scale-ratio, 0.5); //button
+$text-md: 1em * math.pow($text-scale-ratio, 4);   // h4
+$text-lg: 1em * math.pow($text-scale-ratio, 5);   // h3
+$text-xl: 1em * math.pow($text-scale-ratio, 6);   // h2
+$text-xxl: 1em * math.pow($text-scale-ratio, 8);  //h1
+$text-xxxl: 1em * math.pow($text-scale-ratio, 9);
+
+// ----------------------------------------------------------------------
+	// #Line Height
+// ----------------------------------------------------------------------
+$heading-line-height: 1.5;
+$body-line-height:1.2;
+
+body {
+  font-size: $text-base-size;
+}
+
+h1, h2, h3, h4, form legend {
+  margin-bottom: $space-xxs;
+  line-height: $heading-line-height;
+}
+
+// ----------------------------------------------------------------------
+	// #Text Size
+// ----------------------------------------------------------------------
+.text--xxxl {
+  font-size: $text-xxxl;
+}
+
+h1, .text--xxl {
+  font-size: $text-xxl;
+}
+
+h2, .text--xl {
+  font-size: $text-xl;
+}
+
+h3, .text--lg {
+  font-size: $text-lg;
+}
+
+h4, .text--md {
+  font-size: $text-md;
+}
+
+.text--sm, small {
+  font-size: $text-sm;
+}
+
+.text--xs {
+  font-size: $text-xs;
+}
+
+p {
+    line-height: $body-line-height;
+}
+
+// ----------------------------------------------------------------------
+	// #Text Component - class used to stylize blocks
+// ----------------------------------------------------------------------
+.text-container {
+  h2, h3, h4 {
+    margin-top: $space-sm;
+  }
+
+  ul, ol, p {
+    margin-bottom: $space-md;
+  }
+}

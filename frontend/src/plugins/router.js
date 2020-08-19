@@ -16,6 +16,11 @@ export default new Router({
       component: () => import('../views/About.vue'),
     },
     {
+      path: '/resources',
+      name: 'resources',
+      component: () => import('../views/Resources.vue'),
+    },
+    {
       path: '/sponsors',
       name: 'sponsors',
       component: () => import('../views/Sponsor.vue'),
@@ -26,8 +31,8 @@ export default new Router({
       component: () => import('../views/Engage.vue'),
     }
   ],
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior() {
     // Scroll to top for all route navigations
-    return { x: 0, y: 0 }
+    return { x: 0, y: 0 };
   }
 });

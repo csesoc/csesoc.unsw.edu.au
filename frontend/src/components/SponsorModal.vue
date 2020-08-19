@@ -1,3 +1,15 @@
+<!--
+  SponsorModal
+  --
+  This component is a modal that pops up when a sponsor link is clicked.
+  It contains information related to the selected sponsor.
+  --
+  Props:
+    - title: string
+    - body: string
+    - value: boolean
+-->
+
 <template>
     <v-dialog v-model="show" max-width="500">
       <v-card>
@@ -19,15 +31,15 @@ export default {
   },
   computed: {
     show: {
-      get () {
-        return this.value
+      get() {
+        return this.value;
       },
-      set (value) {
-        this.$emit('input', value)
+      set(value) {
+        this.$emit('input', value);
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>

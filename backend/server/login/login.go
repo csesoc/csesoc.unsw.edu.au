@@ -1,3 +1,10 @@
+/*
+  Login
+  --
+  This module constitutes the groundwork for the authentication system
+  using UNSW's LDAP server.
+*/
+
 package login
 
 import (

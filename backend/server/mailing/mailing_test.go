@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"net/url"
 	"testing"
-	
+
 	. "csesoc.unsw.edu.au/m/v2/server"
 )
 
-const mailingRequestUrl =  BASE_URL + MAILING_URL;
+const mailingRequestUrl = BASE_URL + MAILING_URL
 
 func TestJoinMessages(t *testing.T) {
 	t.Run("Join enquiries", func(t *testing.T) {
@@ -35,7 +35,7 @@ func TestJoinMessages(t *testing.T) {
 			"<hr />"
 
 		if composedMsg != expectedMsg {
-			t.Errorf("Output doesn't match expected output")
+			t.Errorf("Output doesn't match expected output\n=== Composed ===\n%v\n=== Expected ===\n%v", composedMsg, expectedMsg)
 		}
 	})
 
@@ -70,7 +70,7 @@ func TestJoinMessages(t *testing.T) {
 			"<hr />"
 
 		if composedMsg != expectedMsg {
-			t.Errorf("Output doesn't match expected output")
+			t.Errorf("Output doesn't match expected output\n=== Composed ===\n%v\n=== Expected ===\n%v", composedMsg, expectedMsg)
 		}
 	})
 }
@@ -83,10 +83,10 @@ func TestEnquirySuccessful(t *testing.T) {
 	}
 
 	t.Run("Handle successful sponsorship enquiry", func(t *testing.T) {
-		resp, err := http.PostForm(mailingRequestUrl + "/sponsorship", formCorrectData)
+		resp, err := http.PostForm(mailingRequestUrl+"/sponsorship", formCorrectData)
 		if err != nil {
-			t.Errorf("Could not perform POST request")
-			return;
+			t.Errorf("Could not perform POST request: %v", err)
+			return
 		}
 		defer resp.Body.Close()
 
@@ -94,10 +94,10 @@ func TestEnquirySuccessful(t *testing.T) {
 	})
 
 	t.Run("Handle successful general enquiry", func(t *testing.T) {
-		resp, err := http.PostForm(mailingRequestUrl + "/general", formCorrectData)
+		resp, err := http.PostForm(mailingRequestUrl+"/general", formCorrectData)
 		if err != nil {
-			t.Errorf("Could not perform POST request")
-			return;
+			t.Errorf("Could not perform POST request: %v", err)
+			return
 		}
 		defer resp.Body.Close()
 
@@ -113,10 +113,10 @@ func TestEnquiryUnsuccessful(t *testing.T) {
 			"body":  {"I'd like to sponsor CSESoc"},
 		}
 
-		resp, err := http.PostForm(mailingRequestUrl + "/sponsorship", formIncorrectData)
+		resp, err := http.PostForm(mailingRequestUrl+"/sponsorship", formIncorrectData)
 		if err != nil {
-			t.Errorf("Could not perform POST request")
-			return;
+			t.Errorf("Could not perform POST request: %v", err)
+			return
 		}
 		defer resp.Body.Close()
 
@@ -130,10 +130,10 @@ func TestEnquiryUnsuccessful(t *testing.T) {
 			"body":  {"I'd like to sponsor CSESoc"},
 		}
 
-		resp, err := http.PostForm(mailingRequestUrl + "/sponsorship", formIncorrectData)
+		resp, err := http.PostForm(mailingRequestUrl+"/sponsorship", formIncorrectData)
 		if err != nil {
-			t.Errorf("Could not perform POST request")
-			return;
+			t.Errorf("Could not perform POST request: %v", err)
+			return
 		}
 		defer resp.Body.Close()
 
@@ -147,10 +147,10 @@ func TestEnquiryUnsuccessful(t *testing.T) {
 			"body":  {""},
 		}
 
-		resp, err := http.PostForm(mailingRequestUrl + "/sponsorship", formIncorrectData)
+		resp, err := http.PostForm(mailingRequestUrl+"/sponsorship", formIncorrectData)
 		if err != nil {
-			t.Errorf("Could not perform POST request")
-			return;
+			t.Errorf("Could not perform POST request: %v", err)
+			return
 		}
 		defer resp.Body.Close()
 
@@ -186,10 +186,10 @@ func TestEnquiryUnsuccessful(t *testing.T) {
 				"body":  {"I'd like to sponsor CSESoc"},
 			}
 
-			resp, err := http.PostForm(mailingRequestUrl + "/sponsorship", formIncorrectData)
+			resp, err := http.PostForm(mailingRequestUrl+"/sponsorship", formIncorrectData)
 			if err != nil {
-				t.Errorf("Could not perform POST request")
-				return;
+				t.Errorf("Could not perform POST request: %v", err)
+				return
 			}
 			defer resp.Body.Close()
 
@@ -200,14 +200,14 @@ func TestEnquiryUnsuccessful(t *testing.T) {
 
 func TestFeedbackSuccessful(t *testing.T) {
 	t.Run("Feedback Successful", func(t *testing.T) {
-		resp, err := http.PostForm(mailingRequestUrl + "/feedback", url.Values{
+		resp, err := http.PostForm(mailingRequestUrl+"/feedback", url.Values{
 			"name":  {"John Smith"},
 			"email": {"johnsmith@gmail.com"},
 			"body":  {"feedback message"},
 		})
 		if err != nil {
 			t.Errorf("could not perform POST request")
-			return;
+			return
 		}
 		defer resp.Body.Close()
 
@@ -215,12 +215,12 @@ func TestFeedbackSuccessful(t *testing.T) {
 	})
 
 	t.Run("Feedback missing name, missing email", func(t *testing.T) {
-		resp, err := http.PostForm(mailingRequestUrl + "/feedback", url.Values{
+		resp, err := http.PostForm(mailingRequestUrl+"/feedback", url.Values{
 			"body": {"feedback message"},
 		})
 		if err != nil {
 			t.Errorf("could not perform POST request")
-			return;
+			return
 		}
 		defer resp.Body.Close()
 
@@ -230,13 +230,13 @@ func TestFeedbackSuccessful(t *testing.T) {
 
 func TestFeedbackError(t *testing.T) {
 	t.Run("Feedback missing name, missing email", func(t *testing.T) {
-		resp, err := http.PostForm(mailingRequestUrl + "/feedback", url.Values{
+		resp, err := http.PostForm(mailingRequestUrl+"/feedback", url.Values{
 			"email": {"abcde"},
 			"body":  {"feedback message"},
 		})
 		if err != nil {
 			t.Errorf("could not perform POST request")
-			return;
+			return
 		}
 		defer resp.Body.Close()
 
@@ -244,12 +244,12 @@ func TestFeedbackError(t *testing.T) {
 	})
 
 	t.Run("Feedback missing body", func(t *testing.T) {
-		resp, err := http.PostForm(mailingRequestUrl + "/feedback", url.Values{
+		resp, err := http.PostForm(mailingRequestUrl+"/feedback", url.Values{
 			"name": {"John Smith"},
 		})
 		if err != nil {
 			t.Errorf("could not perform POST request")
-			return;
+			return
 		}
 		defer resp.Body.Close()
 

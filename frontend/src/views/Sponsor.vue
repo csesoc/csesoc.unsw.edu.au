@@ -1,3 +1,12 @@
+<!--
+  Sponsor
+  --
+  This view corresponds to the Sponsor page of the website.
+  This page consists of:
+    - sponsors
+    - become a sponsor form
+-->
+
 <template>
   <div>
     <header id="showcase">
@@ -37,67 +46,67 @@
       <div style="clear:both;"></div>
     </v-container>
     <SponsorModal v-model="dialog" v-bind:title="currentSponsor.name" v-bind:body="currentSponsor.detail"> </SponsorModal>
-    
+
     <h1 class="text-center text-h1 font-weight-bold">Become a <br> Sponsor</h1>
     <v-card flat tile style="margin-left:15%">
-      <EnquiryForm type="sponsorship"></EnquiryForm>
+      <MailingForm type="sponsorship"></MailingForm>
     </v-card>
   </div>
 </template>
-  
+
 <script type="text/javascript">
-import APIClient  from '../utils/APIClient';
 import SponsorModal from '@/components/SponsorModal';
-import EnquiryForm from '@/components/EnquiryForm';
-import {MAILING_URL} from '../utils/Constants';
+import MailingForm from '@/components/MailingForm';
+import APIClient from '../utils/APIClient';
 
 export default {
+  name: 'Sponsor',
   data: () => ({
     currentSponsor: {},
     sponsors: [],
     dialog: false,
 
-    //Constants
+    // Constants
     largeLogoFilter: 3,
     midLogoFilter: 4,
     smallLogoFilter: 5
   }),
   components: {
     SponsorModal,
-    EnquiryForm
+    MailingForm
   },
   computed: {
     // functions to determine sizing category of sponsor based on their value
     tierOne() {
-      return this.sponsors.filter(x => x.tier == 2);
+      return this.sponsors.filter((x) => x.tier === 2);
     },
     tierTwo() {
-      return this.sponsors.filter(x => x.tier == 1);
+      return this.sponsors.filter((x) => x.tier === 1);
     },
     tierThree() {
-      return this.sponsors.filter(x => x.tier == 0);
+      return this.sponsors.filter((x) => x.tier === 0);
     }
   },
   mounted() {
-      APIClient.fetchSponsors()
+    APIClient.fetchSponsors()
       .then((responseJson) => {
         this.sponsors = responseJson;
       });
   },
   methods: {
-    marginStyle: function(index, limit) {
-      var style = {};
-      
-      var row = parseInt((index) / limit);
-      if (row % 2 == 0) {
-        style["margin-left"] = "10%";
+    marginStyle(index, limit) {
+      const style = {};
+
+      const row = parseInt((index) / limit, 10);
+      if (row % 2 === 0) {
+        style['margin-left'] = '10%';
       } else {
-        style["margin-left"] = "15%";
+        style['margin-left'] = '15%';
       }
-      
+
       return style;
     },
-    onClickModal: function (sponsor) {
+    onClickModal(sponsor) {
       this.currentSponsor = sponsor;
       this.dialog = true;
     }
