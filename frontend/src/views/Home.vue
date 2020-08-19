@@ -129,8 +129,8 @@ import HeaderTitle from '@/components/HeaderTitle';
 import EventGrid from '@/components/EventGrid';
 import InfiniteSlideshow from '@/components/InfiniteSlideshow';
 import Preview from '@/components/Preview';
-import APIClient from '../utils/APIClient';
 import CommunityLinks from '@/components/CommunityLink';
+import APIClient from '../utils/APIClient';
 
 export default {
   name: 'Home',
