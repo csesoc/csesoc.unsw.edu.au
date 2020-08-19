@@ -19,7 +19,7 @@ $success-color: #00FF66;
 // ----------------------------------------------------------------------
 	// Layout Breakpoints
 // ----------------------------------------------------------------------
-$maxWidth: 1920;
+$maxWidth: 1280;
 
 // ----------------------------------------------------------------------
 	// Font Sizes and Base Values
@@ -33,4 +33,4 @@ $text-scale-ratio: 1.25;
 $grid-columns: 12;
 $grid-gap: 40px;
 $gap-horizontal: $grid-gap;
-$gap-vertical: $grid-gap;
+$gap-vertical: $grid-gap * 3;

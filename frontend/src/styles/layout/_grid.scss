@@ -22,7 +22,7 @@
 }
 
 .col {
-  padding: $grid-gap 0 0 $grid-gap;
+  padding: 0 0 $gap-vertical $gap-horizontal;
   /**
    * Makes sure that the background-color/image is not applied to the
    * padding.
