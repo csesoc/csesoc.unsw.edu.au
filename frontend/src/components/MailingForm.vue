@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import isEmail from 'validator/lib/isEmail';
+
 import APIClient from '../utils/APIClient';
 import { MAILING_URL } from '../utils/Constants';
 
@@ -50,11 +52,7 @@ export default {
     body: '',
     rules: {
       required: (value) => !!value || 'Required',
-      email: (value) => {
-        // eslint-disable-next-line max-len
-        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return value.length === 0 || pattern.test(value) || 'Invalid e-mail';
-      },
+      email: (value) => value.length === 0 || isEmail(value) || 'Invalid e-mail',
     },
   }),
   methods: {
@@ -78,7 +76,7 @@ export default {
           }
         });
     },
-  },
+  }
 };
 </script>
 
