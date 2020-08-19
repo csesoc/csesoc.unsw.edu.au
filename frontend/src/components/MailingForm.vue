@@ -12,17 +12,17 @@
     <v-col class="form-box">
       <v-form ref="form" v-model="valid">
         <!-- Name -->
-        <label class="text-body-1 input-label">{{ this.type === "sponsorship" ? "Company Name" : "Name" }}</label>
+        <label class="text-body-1 input-label">{{ isType('sponsorship') ? "Company Name" : "Name" }}</label>
         <v-text-field class="input" placeholder="John Smith" v-model="name"
-          :rules="[this.type !== 'feedback' ? rules.required : true]"></v-text-field>
+          :rules="[ !isType('feedback') ? rules.required : true ]"></v-text-field>
         <!-- Email -->
         <label class="text-body-1 input-label"> Email </label>
         <v-text-field class="input" placeholder="john.smith@email.com" v-model="email"
-          :rules="[rules.email, this.type !== 'feedback' ? rules.required : true]"></v-text-field>
+          :rules="[ rules.email, !isType('feedback') ? rules.required : true ]"></v-text-field>
         <!-- Message -->
         <label class="text-body-1 input-label"> Message </label>
         <v-textarea class="input" placeholder="Message" v-model="body"
-          :rules="[rules.required]"></v-textarea>
+          :rules="[ rules.required ]"></v-textarea>
         <!-- Send button -->
         <v-btn text style="margin-left:60%" :disabled="!valid" @click="send">Send</v-btn>
       </v-form>
@@ -52,6 +52,9 @@ export default {
     },
   }),
   methods: {
+    isType(name) {
+      return this.type === name;
+    },
     send() {
       APIClient.mailingAPI(MAILING_URL[this.type], this.name, this.email, this.body)
         .then((res) => {
