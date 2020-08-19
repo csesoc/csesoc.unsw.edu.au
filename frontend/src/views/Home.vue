@@ -33,7 +33,7 @@
 
       <!--change this to scroll to Join Us section when created-->
       <a
-        @click="scrollto('content-start')"
+        @click="scrollto('joinus')"
         target="_blank"
         v-ripple
         class="button"
@@ -98,28 +98,19 @@
       <Preview :items="resourceItems"/>
     </v-container>
 
-    <!-- Join Us Section -->
     <v-container>
-      <h1>
-        Join Us
-      </h1>
-      <h3>
-        Find our stall at O-week, or just turn up an event and get to know us!
-      </h3>
-      <h2>
-        Join our community online
-      </h2>
+      <CommunityLinks></CommunityLinks>
     </v-container>
 
     <!-- Support CSESoc -->
-    <v-container id=sponsor>
+    <v-container id=sponsor >
       <HeaderTitle :title="'support csesoc'" />
       <p>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
         invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
         et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
         </p>
-        <RouterLink to="/sponsors" class="link">
+        <RouterLink to="/sponsors" class="link" >
           <a
             style="float:right"
             target="_blank"
@@ -138,6 +129,7 @@ import HeaderTitle from '@/components/HeaderTitle';
 import EventGrid from '@/components/EventGrid';
 import InfiniteSlideshow from '@/components/InfiniteSlideshow';
 import Preview from '@/components/Preview';
+import CommunityLinks from '@/components/CommunityLink';
 import APIClient from '../utils/APIClient';
 
 export default {
@@ -159,7 +151,8 @@ export default {
     HeaderTitle,
     EventGrid,
     InfiniteSlideshow,
-    Preview
+    Preview,
+    CommunityLinks
   },
   mounted() {
     fetch(this.mediaApiUri)
