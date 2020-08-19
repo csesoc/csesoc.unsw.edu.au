@@ -14,10 +14,23 @@
       </v-col>
     </v-row> -->
     <div class="flex-grid">
-      <div class="col col--md-9">1</div>
-      <div class="col col--md-3">2</div>
-      <div class="col col--md-3">3</div>
-      <div class="col col--md-9">4</div>
+      <div class="col col--md-12">100%</div>
+      <div class="col col--md-6">50%</div>
+      <div class="col col--md-6">50%</div>
+      <div class="col col--md-4">33%</div>
+      <div class="col col--md-4">33%</div>
+      <div class="col col--md-4">33%</div>
+      <div class="col col--md-3">25%</div>
+      <div class="col col--md-3">25%</div>
+      <div class="col col--md-3">25%</div>
+      <div class="col col--md-3">25%</div>
+      <div class="col col--md-4">33%</div>
+      <div class="col col--md-8">66%</div>
+      <div class="col col--md-8">66%</div>
+      <div class="col col--md-4">33%</div>
+      <div class="col col--md-3">25%</div>
+      <div class="col col--md-6">50%</div>
+      <div class="col col--md-3">25%</div>
     </div>
   </v-container>
 </template>
