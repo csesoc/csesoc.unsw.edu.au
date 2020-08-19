@@ -12,19 +12,19 @@
     <v-col class="form-box">
       <v-form ref="form" v-model="valid">
         <!-- Name -->
-        <label class="text-body-1 input-label">{{ isType('sponsorship') ? "Company Name" : "Name" }}
+        <label class="text-body-1 input-label" data-cy="mailing-name">{{ isType('sponsorship') ? "Company Name" : "Name" }}
           <span v-if="!isType('feedback')" class="required">*</span>
         </label>
         <v-text-field class="input" placeholder="John Smith" v-model="name"
           :rules="[ !isType('feedback') ? rules.required : true ]"></v-text-field>
         <!-- Email -->
-        <label class="text-body-1 input-label"> Email
+        <label class="text-body-1 input-label" data-cy="mailing-email"> Email
           <span v-if="!isType('feedback')" class="required">*</span>
         </label>
         <v-text-field class="input" placeholder="john.smith@email.com" v-model="email"
           :rules="[ rules.email, !isType('feedback') ? rules.required : true ]"></v-text-field>
         <!-- Message -->
-        <label class="text-body-1 input-label"> Message
+        <label class="text-body-1 input-label" data-cy="mailing-message"> Message
           <span class="required">*</span>
         </label>
         <v-textarea class="input" placeholder="Message" v-model="body"
