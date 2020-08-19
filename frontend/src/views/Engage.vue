@@ -80,7 +80,7 @@
       <v-tabs-slider></v-tabs-slider>
 
       <!-- Enquiry tab -->
-      <v-tab>Enquiry</v-tab>
+      <v-tab data-cy="general-form-tab">Enquiry</v-tab>
       <v-tab-item>
         <v-card flat tile>
           <MailingForm type="general"></MailingForm>
@@ -88,7 +88,7 @@
       </v-tab-item>
 
       <!-- Feedback tab -->
-      <v-tab>Feedback</v-tab>
+      <v-tab data-cy="feedback-form-tab">Feedback</v-tab>
       <v-tab-item>
         <v-card flat tile>
           <MailingForm type="feedback"></MailingForm>
