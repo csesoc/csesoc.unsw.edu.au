@@ -49,14 +49,14 @@
 
     <h1 class="text-center text-h1 font-weight-bold">Become a <br> Sponsor</h1>
     <v-card flat tile style="margin-left:15%">
-      <EnquiryForm type="sponsorship"></EnquiryForm>
+      <MailingForm type="sponsorship"></MailingForm>
     </v-card>
   </div>
 </template>
 
 <script type="text/javascript">
 import SponsorModal from '@/components/SponsorModal';
-import EnquiryForm from '@/components/EnquiryForm';
+import MailingForm from '@/components/MailingForm';
 import APIClient from '../utils/APIClient';
 
 export default {
@@ -73,7 +73,7 @@ export default {
   }),
   components: {
     SponsorModal,
-    EnquiryForm
+    MailingForm
   },
   computed: {
     // functions to determine sizing category of sponsor based on their value
