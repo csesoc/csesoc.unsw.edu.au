@@ -32,7 +32,7 @@
         <a href="https://www.facebook.com/groups/csesoc">Facebook Group</a>
         |
         <a href="https://www.linkedin.com/company/csesoc/about/">LinkedIn</a>
-        <br />B03 CSE Building K17, UNSW
+        <br /><p data-cy="footer-address">B03 CSE Building K17, UNSW</p>
         <br />
         <a id="tiers__link" href="mailto:csesoc@csesoc.org.au">csesoc@csesoc.org.au</a>
       </v-card-text>
