@@ -1,0 +1,16 @@
+// ----------------------------------------------------------------------
+  // Buttons
+// ----------------------------------------------------------------------
+
+.btn {
+    display: inline-flex;
+    position: relative;
+    white-space: nowrap;
+    text-decoration: none;
+    line-height: 1;
+
+    padding: $space-xs $space-sm;
+    border-radius: $btn-radius;
+    font-size: $btn-font-size;
+    color: $light-color
+}
