@@ -44,11 +44,18 @@ export default {
 </script>
 
 <style>
+
+@font-face {
+  font-family: "Core Sans C";
+  src: url("localhost:8080/frontend/src/styles/fonts/CoreSansC-45Regular.eot");
+  src: url("localhost:8080/frontend/src/styles/fonts/CoreSansC-45Regular.woff") format("woff"),
+}
+
 /** Must keep html and body seperate to allow scrolling */
 * {
   margin: 0;
   padding: 0;
-  /* font-family: "Quicksand", sans-serif; */
+  font-family: "Core Sans C", sans-serif;
 }
 
 html {

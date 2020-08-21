@@ -3,23 +3,16 @@
 // ----------------------------------------------------------------------
 
 @use "sass:math";
-// @font-face {
-//   font-family: "CustomFont";
-//   src: url("https://yoursite.com/css/fonts/CustomFont.eot");
-//   src: url("https://yoursite.com/css/fonts/CustomFont.woff") format("woff"),
-//   url("https://yoursite.com/css/fonts/CustomFont.otf") format("opentype"),
-//   url("https://yoursite.com/css/fonts/CustomFont.svg#filename") format("svg");
-// }
 
 // ----------------------------------------------------------------------
 	// #Type Scale
 // ----------------------------------------------------------------------
-$text-xs: 1em / math.pow($text-scale-ratio, 1);   //caption
-$text-sm: 1em / math.pow($text-scale-ratio, 0.5); //button
-$text-md: 1em * math.pow($text-scale-ratio, 4);   // h4
-$text-lg: 1em * math.pow($text-scale-ratio, 5);   // h3
-$text-xl: 1em * math.pow($text-scale-ratio, 6);   // h2
-$text-xxl: 1em * math.pow($text-scale-ratio, 8);  //h1
+$text-xs: 1em ;   //caption
+$text-sm: 1em * math.pow($text-scale-ratio, 1);   // h4
+$text-md: 1em * math.pow($text-scale-ratio, 2);   
+$text-lg: 1em * math.pow($text-scale-ratio, 3);   // h2
+$text-xl: 1em * math.pow($text-scale-ratio, 6);   // h1
+$text-xxl: 1em * math.pow($text-scale-ratio, 8);  
 $text-xxxl: 1em * math.pow($text-scale-ratio, 9);
 
 // ----------------------------------------------------------------------
@@ -44,23 +37,23 @@ h1, h2, h3, h4, form legend {
   font-size: $text-xxxl;
 }
 
-h1, .text--xxl {
-  font-size: $text-xxl;
+.text--xxl {
+  font-size: $text-xxl; 
 }
 
-h2, .text--xl {
+.text--xl {
   font-size: $text-xl;
 }
 
-h3, .text--lg {
+.text--lg {
   font-size: $text-lg;
 }
 
-h4, .text--md {
+.text--md {
   font-size: $text-md;
 }
 
-.text--sm, small {
+.text--sm {
   font-size: $text-sm;
 }
 
@@ -68,10 +61,31 @@ h4, .text--md {
   font-size: $text-xs;
 }
 
-p {
-    line-height: $body-line-height;
+h1 {
+  font-size: $text-xl;
+  font-weight: 600;
 }
 
+h2 {
+  font-size: $text-lg;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: $text-lg;
+  font-weight: 100;
+}
+
+h4 {
+  font-size: $text-sm;
+  font-weight: 600;
+}
+
+p {
+  font-size: $text-xs;
+  font-weight: 100;
+  line-height: $body-line-height;
+}
 // ----------------------------------------------------------------------
 	// #Text Component - class used to stylize blocks
 // ----------------------------------------------------------------------
@@ -81,6 +95,6 @@ p {
   }
 
   ul, ol, p {
-    margin-bottom: $space-md;
+    margin-bottom: $space-sm;
   }
 }
