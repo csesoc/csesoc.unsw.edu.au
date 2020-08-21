@@ -23,5 +23,11 @@ describe("Footer Testing", () => {
             expect($lis.eq(3), 'forth item').to.have.attr('href', 'localhost:8080/engage');
             expect($lis.eq(3), 'first item').to.have.text('Engage');
         });
+
+        // Check if the external link is displayed and the logo is displayed
+
+        cy.get('[data-cy=footer-external-link]').should(($lis) => {
+            expect($lis, '10 items').to.have.length(10);
+        });
     });
 })
