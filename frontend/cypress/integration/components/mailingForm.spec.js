@@ -2,8 +2,7 @@ describe('Mailing forms', () => {
   it('checks labels and validation of a general form', () => {
     // Visit engage page
     cy.visit('/#/engage');
-    // Select general form tab
-    cy.get('[data-cy=general-form-tab]').click();
+    // By referencing general-tab items we are ensuring that it is selected by default
     // Check if name label exists
     cy.get('[data-cy=general-name-label]').contains('Name *');
     // Check if email label exists
