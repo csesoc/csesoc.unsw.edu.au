@@ -3,11 +3,11 @@ describe('Mailing forms', () => {
     // Visit engage page
     cy.visit('/#/engage');
     // By referencing general-tab items we are ensuring that it is selected by default
-    // Check if name label exists
+    // Check if name label exists and is required
     cy.get('[data-cy=general-name-label]').contains('Name *');
-    // Check if email label exists
+    // Check if email label exists and is required
     cy.get('[data-cy=general-email-label]').contains('Email *');
-    // Check if message label exists
+    // Check if message label exists and is required
     cy.get('[data-cy=general-message-label]').contains('Message *');
     // Ensure send button is disabled
     cy.get('[data-cy=general-send-button]').should('be.disabled');
@@ -39,9 +39,9 @@ describe('Mailing forms', () => {
     // Select feedback form tab
     cy.get('[data-cy=feedback-form-tab]').click();
     // Check if name label is not required (marked with *)
-    cy.get('[data-cy=feedback-name-label]').contains('Name');
+    cy.get('[data-cy=feedback-name-label]').should('not.contain', '*');
     /// Check if email label is not required (marked with *)
-    cy.get('[data-cy=feedback-email-label]').contains('Email');
+    cy.get('[data-cy=feedback-email-label]').should('not.contain', '*');
     // Ensure send button is disabled
     cy.get('[data-cy=feedback-send-button]').should('be.disabled');
     // Fill in valid message
