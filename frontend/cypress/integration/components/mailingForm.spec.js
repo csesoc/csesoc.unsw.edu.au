@@ -2,6 +2,8 @@ describe('Mailing forms', () => {
   it('checks labels and validation of a form', () => {
     // Visit engage page
     cy.visit('/#/engage');
+    // Ensure the mailing form exists in the Engage page
+    cy.get('[data-cy=mailing-form]');
     // By referencing general-tab items we are ensuring that it is selected by default
     // Check if name label exists and is required
     cy.get('[data-cy=general-name-label]').contains('Name *');
@@ -29,6 +31,8 @@ describe('Mailing forms', () => {
   it('ensures the name label is different in a sponsorship form', () => {
     // Visit sponsors page
     cy.visit('/#/sponsors');
+    // Ensure the mailing form exists in the Sponsors page
+    cy.get('[data-cy=mailing-form]');
     // Check if name label changed to the sponsorship form version
     cy.get('[data-cy=sponsorship-name-label]').contains('Company Name *');
   });

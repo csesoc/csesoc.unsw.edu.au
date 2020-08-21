@@ -9,7 +9,7 @@
 
 <template>
   <v-row justify="space-around">
-    <v-col class="form-box">
+    <v-col class="form-box" data-cy="mailing-form">
       <v-form ref="form" v-model="valid">
         <!-- Name -->
         <label class="text-body-1 input-label" :data-cy="`${this.type}-name-label`">
