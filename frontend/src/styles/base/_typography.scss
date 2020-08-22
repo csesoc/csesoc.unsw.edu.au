@@ -10,7 +10,7 @@
 $text-xs: 1em ;   //caption
 $text-sm: 1em * math.pow($text-scale-ratio, 1);   // h4
 $text-md: 1em * math.pow($text-scale-ratio, 2);   
-$text-lg: 1em * math.pow($text-scale-ratio, 3);   // h2
+$text-lg: 1em * math.pow($text-scale-ratio, 3);   // h2 h3
 $text-xl: 1em * math.pow($text-scale-ratio, 6);   // h1
 $text-xxl: 1em * math.pow($text-scale-ratio, 8);  
 $text-xxxl: 1em * math.pow($text-scale-ratio, 9);
