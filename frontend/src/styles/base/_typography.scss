@@ -19,7 +19,7 @@ $text-xxxl: 1em * math.pow($text-scale-ratio, 9);
 	// #Line Height
 // ----------------------------------------------------------------------
 $heading-line-height: 1.5;
-$body-line-height:1.2;
+$body-line-height: 2.5;
 
 body {
   font-size: $text-base-size;
@@ -85,16 +85,17 @@ p {
   font-size: $text-xs;
   font-weight: 100;
   line-height: $body-line-height;
+  margin-bottom: $space-xxxs;
 }
 // ----------------------------------------------------------------------
 	// #Text Component - class used to stylize blocks
 // ----------------------------------------------------------------------
 .text-container {
   h2, h3, h4 {
-    margin-top: $space-sm;
+    margin-top: $space-md;
   }
 
   ul, ol, p {
-    margin-bottom: $space-sm;
+    margin-bottom: $space-sm; 
   }
 }
