@@ -47,7 +47,7 @@ export default {
 
 @font-face {
     font-family: 'CoreSansC';
-    src: url("assets/fonts/CoreSansC-45Regular.woff") format("woff");
+    src: url('assets/fonts/CoreSansC-45Regular.woff') format("woff");
 }
 
 /** Must keep html and body seperate to allow scrolling */
