@@ -87,6 +87,11 @@ p {
   line-height: $body-line-height;
   margin-bottom: $space-xxxs;
 }
+
+button {
+  font-size: $text-sm;
+  font-weight: 600;
+}
 // ----------------------------------------------------------------------
 	// #Text Component - class used to stylize blocks
 // ----------------------------------------------------------------------
