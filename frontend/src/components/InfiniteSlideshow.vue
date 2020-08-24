@@ -13,11 +13,11 @@
 
 <template>
   <div class="is-container">
-    <div class="is-element" :style="settings">
-      <div class="is-section" data-cy="is-slot-1">
+    <div class="is-element" :style="settings" data-cy="infinite-slideshow">
+      <div class="is-section">
         <slot></slot>
       </div>
-      <div class="is-section" data-cy="is-slot-2">
+      <div class="is-section">
         <slot></slot>
       </div>
     </div>
