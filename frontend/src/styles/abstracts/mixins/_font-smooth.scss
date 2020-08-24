@@ -1,0 +1,14 @@
+// ----------------------------------------------------------------------
+
+    // Font Smooth Mixins
+
+// ----------------------------------------------------------------------
+
+/**
+ * Font smooth used to improve rendering when a light text is used on a 
+ * dark background.
+ */
+@mixin fontSmooth {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

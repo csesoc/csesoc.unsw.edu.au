@@ -48,6 +48,12 @@
       <div class="col col--md-6">50%</div>
       <div class="col col--md-3">25%</div>
     </div>
+
+    <div class="btns">
+      <button class="btn-primary">Primary</button>
+      <button class="btn-secondary">Secondary</button>
+      <button class="btn-accent">Accent</button>
+    </div>
   </v-container>
 </template>
 
