@@ -14,10 +14,10 @@
 <template>
   <div class="is-container">
     <div class="is-element" :style="settings">
-      <div class="is-section">
+      <div class="is-section" data-cy="is-slot-1">
         <slot></slot>
       </div>
-      <div class="is-section">
+      <div class="is-section" data-cy="is-slot-2">
         <slot></slot>
       </div>
     </div>
