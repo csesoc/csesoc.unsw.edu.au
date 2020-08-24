@@ -43,14 +43,18 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 
-
+@font-face {
+    font-family: 'CoreSansC';
+    src: url("assets/fonts/CoreSansC-45Regular.woff") format("woff");
+}
 
 /** Must keep html and body seperate to allow scrolling */
 * {
   margin: 0;
   padding: 0;
+  font-family: 'CoreSansC', Arial, sans-serif;
 }
 
 html {
