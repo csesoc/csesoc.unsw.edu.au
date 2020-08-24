@@ -45,10 +45,12 @@ export default {
 
 <style lang="scss">
 
-@font-face {
-    font-family: 'CoreSansC';
-    src: url('assets/fonts/CoreSansC-45Regular.woff') format("woff");
-}
+// @font-face {
+//     font-family: 'CoreSansC';
+//     src: url('assets/fonts/CoreSansC-45Regular.woff') format("woff"),
+//          url('/assets/fonts/CoreSansC-25ExtraLight.woff') format("woff"),
+//          url('/assets/fonts/CoreSansC-65Bold.woff') format("woff");
+// }
 
 /** Must keep html and body seperate to allow scrolling */
 * {
