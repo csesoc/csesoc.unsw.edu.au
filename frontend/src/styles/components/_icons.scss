@@ -1,0 +1,24 @@
+// ----------------------------------------------------------------------
+    // Icons
+// ----------------------------------------------------------------------
+
+/**
+ * Utility classes for icons
+ */
+.icon {
+    color: $light-color
+}
+
+.icon-text-aligner {
+    display:flex;
+    align-items:center;
+
+    > *:nth-child(2) {
+        margin-left: $space-xxs;
+    }
+
+    .icon {
+        color: inherit;
+        flex-shrink: 0;
+    }
+}
