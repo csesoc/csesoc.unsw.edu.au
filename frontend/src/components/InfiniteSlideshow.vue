@@ -13,7 +13,7 @@
 
 <template>
   <div class="is-container">
-    <div class="is-element" :style="settings">
+    <div class="is-element" :style="settings" data-cy="infinite-slideshow">
       <div class="is-section">
         <slot></slot>
       </div>
