@@ -44,19 +44,12 @@ export default {
 </script>
 
 <style lang="scss">
-
-// @font-face {
-//     font-family: 'CoreSansC';
-//     src: url('assets/fonts/CoreSansC-45Regular.woff') format("woff"),
-//          url('/assets/fonts/CoreSansC-25ExtraLight.woff') format("woff"),
-//          url('/assets/fonts/CoreSansC-65Bold.woff') format("woff");
-// }
-
+@import 'assets/font/stylesheet.css';
 /** Must keep html and body seperate to allow scrolling */
 * {
   margin: 0;
   padding: 0;
-  font-family: 'CoreSansC', Arial, sans-serif;
+  font-family: 'Core Sans C', Arial, sans-serif;
 }
 
 html {
