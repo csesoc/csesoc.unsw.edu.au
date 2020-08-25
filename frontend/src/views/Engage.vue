@@ -77,11 +77,11 @@
       <br>
 
       <v-btn-toggle v-model="activeForm">
-        <v-btn value="feedback">
-          Feedback
-        </v-btn>
-        <v-btn value="general">
+        <v-btn value="general" data-cy="general-form-selector">
           Enquiry
+        </v-btn>
+        <v-btn value="feedback" data-cy="feedback-form-selector">
+          Feedback
         </v-btn>
       </v-btn-toggle>
 
@@ -103,7 +103,7 @@ import APIClient from '../utils/APIClient';
 export default {
   name: 'Engage',
   data: () => ({
-    activeForm: 'feedback',
+    activeForm: 'general',
     socialLinks: [],
     faqLinks: []
   }),

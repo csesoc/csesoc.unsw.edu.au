@@ -6,11 +6,11 @@ describe('Mailing forms', () => {
     cy.get('[data-cy=mailing-form]');
     // By referencing general-tab items we are ensuring that it is selected by default
     // Check if name label exists and is required
-    cy.get('[data-cy=general-name-label]').contains('Name *');
+    cy.get('[data-cy=general-name-label]').contains('Name').should('have.class', 'required');
     // Check if email label exists and is required
-    cy.get('[data-cy=general-email-label]').contains('Email *');
+    cy.get('[data-cy=general-email-label]').contains('Email').should('have.class', 'required');
     // Check if message label exists and is required
-    cy.get('[data-cy=general-message-label]').contains('Message *');
+    cy.get('[data-cy=general-message-label]').contains('Message').should('have.class', 'required');
     // Ensure send button is disabled
     cy.get('[data-cy=general-send-button]').should('be.disabled');
     // Fill in valid name
@@ -34,18 +34,18 @@ describe('Mailing forms', () => {
     // Ensure the mailing form exists in the Sponsors page
     cy.get('[data-cy=mailing-form]');
     // Check if name label changed to the sponsorship form version
-    cy.get('[data-cy=sponsorship-name-label]').contains('Company Name *');
+    cy.get('[data-cy=sponsorship-name-label]').contains('Company Name').should('have.class', 'required');
   });
 
   it('checks labels and validation of a feedback form', () => {
     // Visit engage page
     cy.visit('/#/engage');
     // Select feedback form tab
-    cy.get('[data-cy=feedback-form-tab]').click();
+    cy.get('[data-cy=feedback-form-selector]').click();
     // Check if name label is not required (marked with *)
-    cy.get('[data-cy=feedback-name-label]').should('not.contain', '*');
+    cy.get('[data-cy=feedback-name-label]').should('not.have.class', 'required');
     /// Check if email label is not required (marked with *)
-    cy.get('[data-cy=feedback-email-label]').should('not.contain', '*');
+    cy.get('[data-cy=feedback-email-label]').should('not.have.class', 'required');
     // Ensure send button is disabled
     cy.get('[data-cy=feedback-send-button]').should('be.disabled');
     // Fill in valid message
