@@ -43,12 +43,13 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import 'assets/font/stylesheet.css';
 /** Must keep html and body seperate to allow scrolling */
 * {
   margin: 0;
   padding: 0;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Core Sans C', Arial, sans-serif;
 }
 
 html {
