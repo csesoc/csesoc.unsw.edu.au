@@ -12,21 +12,21 @@
     <v-col class="form-box" data-cy="mailing-form">
       <v-form ref="form" v-model="valid">
         <!-- Name -->
-        <label class="text-body-1 input-label" :data-cy="`${this.type}-name-label`">
+        <label :class="getLabelClass(!isType('feedback'))" :data-cy="`${this.type}-name-label`">
           {{ isType('sponsorship') ? "Company Name" : "Name" }}
-          <span v-if="!isType('feedback')" class="required">*</span>
+          <!-- <span v-if="!isType('feedback')" class="required">*</span> -->
         </label>
         <v-text-field class="input" placeholder="John Smith" v-model="name" :data-cy="`${this.type}-name-field`"
           :rules="[ !isType('feedback') ? rules.required : true ]"></v-text-field>
         <!-- Email -->
-        <label class="text-body-1 input-label" :data-cy="`${this.type}-email-label`"> Email
-          <span v-if="!isType('feedback')" class="required">*</span>
+        <label :class="getLabelClass(!isType('feedback'))" :data-cy="`${this.type}-email-label`"> Email
+          <!-- <span v-if="!isType('feedback')" class="required">*</span> -->
         </label>
         <v-text-field class="input" placeholder="john.smith@email.com" v-model="email" :data-cy="`${this.type}-email-field`"
           :rules="[ rules.email, !isType('feedback') ? rules.required : true ]"></v-text-field>
         <!-- Message -->
-        <label class="text-body-1 input-label" :data-cy="`${this.type}-message-label`"> Message
-          <span class="required">*</span>
+        <label :class="getLabelClass(true)" :data-cy="`${this.type}-message-label`"> Message
+          <!-- <span class="required">*</span> -->
         </label>
         <v-textarea class="input" placeholder="Message" v-model="body" :data-cy="`${this.type}-message-field`"
           :rules="[ rules.required ]"></v-textarea>
@@ -59,6 +59,11 @@ export default {
   methods: {
     isType(name) {
       return this.type === name;
+    },
+    getLabelClass(isRequired) {
+      const lc = 'text-body-1 input-label';
+      if (isRequired) return lc.concat(' required');
+      return lc;
     },
     send() {
       APIClient.mailingAPI(MAILING_URL[this.type], this.name, this.email, this.body)
@@ -97,8 +102,8 @@ export default {
   float:left;
 }
 
-.required
-{
+.required:after {
+  content:" *";
   color: red;
-}
+  }
 </style>
