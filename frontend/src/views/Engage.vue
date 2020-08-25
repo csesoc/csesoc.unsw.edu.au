@@ -72,30 +72,24 @@
     </v-container>
 
     <!-- Forms -->
-    <v-tabs
-      class="elevation-2"
-      vertical
-      dark
-    >
-      <v-tabs-slider></v-tabs-slider>
+    <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
+      <h2>Still have some questions?</h2>
+      <br>
 
-      <!-- Enquiry tab -->
-      <v-tab data-cy="general-form-tab">Enquiry</v-tab>
-      <v-tab-item>
-        <v-card flat tile>
-          <MailingForm type="general"></MailingForm>
-        </v-card>
-      </v-tab-item>
+      <v-btn-toggle v-model="activeForm">
+        <v-btn value="feedback">
+          Feedback
+        </v-btn>
+        <v-btn value="general">
+          Enquiry
+        </v-btn>
+      </v-btn-toggle>
 
-      <!-- Feedback tab -->
-      <v-tab data-cy="feedback-form-tab">Feedback</v-tab>
-      <v-tab-item>
-        <v-card flat tile>
-          <MailingForm type="feedback"></MailingForm>
-        </v-card>
-      </v-tab-item>
+      <v-card flat tile>
+        <MailingForm :type="this.activeForm"></MailingForm>
+      </v-card>
 
-    </v-tabs>
+    </v-container>
   </v-app>
 </template>
 
@@ -109,6 +103,7 @@ import APIClient from '../utils/APIClient';
 export default {
   name: 'Engage',
   data: () => ({
+    activeForm: 'feedback',
     socialLinks: [],
     faqLinks: []
   }),
