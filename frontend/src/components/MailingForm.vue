@@ -31,7 +31,7 @@
         <v-textarea class="input" placeholder="Message" v-model="body" :data-cy="`${this.type}-message-field`"
           :rules="[ rules.required ]"></v-textarea>
         <!-- Send button -->
-        <v-btn text style="margin-left:60%" :disabled="!valid" @click="send" :data-cy="`${this.type}-send-button`">Send</v-btn>
+        <v-btn text style="margin-left:60%" :disabled="!valid" @click="send" :data-cy="`${this.type}-send-button`">Send ></v-btn>
       </v-form>
     </v-col>
   </v-row>
