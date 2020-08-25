@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'Core Sans C 15';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-15Thin.eot');
     src: local('Core Sans C 15 Thin'), local('CoreSansC-15Thin'),
         url('CoreSansC-15Thin.eot?#iefix') format('embedded-opentype'),
@@ -11,7 +11,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 65';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-65BoldIt.eot');
     src: local('Core Sans C 65 Bold Italic'), local('CoreSansC-65BoldIt'),
         url('CoreSansC-65BoldIt.eot?#iefix') format('embedded-opentype'),
@@ -23,7 +23,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 25';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-25ExtraLightIt.eot');
     src: local('Core Sans C 25 ExtraLight Italic'), local('CoreSansC-25ExtraLightIt'),
         url('CoreSansC-25ExtraLightIt.eot?#iefix') format('embedded-opentype'),
@@ -35,7 +35,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 65';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-65Bold.eot');
     src: local('Core Sans C 65 Bold'), local('CoreSansC-65Bold'),
         url('CoreSansC-65Bold.eot?#iefix') format('embedded-opentype'),
@@ -47,7 +47,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 35';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-35LightIt.eot');
     src: local('Core Sans C 35 Light Italic'), local('CoreSansC-35LightIt'),
         url('CoreSansC-35LightIt.eot?#iefix') format('embedded-opentype'),
@@ -59,7 +59,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 55';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-55Medium.eot');
     src: local('Core Sans C 55 Medium'), local('CoreSansC-55Medium'),
         url('CoreSansC-55Medium.eot?#iefix') format('embedded-opentype'),
@@ -71,7 +71,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 85';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-85HeavyIt.eot');
     src: local('Core Sans C 85 Heavy Italic'), local('CoreSansC-85HeavyIt'),
         url('CoreSansC-85HeavyIt.eot?#iefix') format('embedded-opentype'),
@@ -83,7 +83,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 15';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-15ThinIt.eot');
     src: local('Core Sans C 15 Thin Italic'), local('CoreSansC-15ThinIt'),
         url('CoreSansC-15ThinIt.eot?#iefix') format('embedded-opentype'),
@@ -95,7 +95,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 45';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-45RegularIt.eot');
     src: local('Core Sans C 45 Regular Italic'), local('CoreSansC-45RegularIt'),
         url('CoreSansC-45RegularIt.eot?#iefix') format('embedded-opentype'),
@@ -107,7 +107,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 25';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-25ExtraLight.eot');
     src: local('Core Sans C 25 ExtraLight'), local('CoreSansC-25ExtraLight'),
         url('CoreSansC-25ExtraLight.eot?#iefix') format('embedded-opentype'),
@@ -119,7 +119,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 75';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-75ExtraBoldIt.eot');
     src: local('Core Sans C 75 ExtraBold Italic'), local('CoreSansC-75ExtraBoldIt'),
         url('CoreSansC-75ExtraBoldIt.eot?#iefix') format('embedded-opentype'),
@@ -131,7 +131,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 55';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-55MediumIt.eot');
     src: local('Core Sans C 55 Medium Italic'), local('CoreSansC-55MediumIt'),
         url('CoreSansC-55MediumIt.eot?#iefix') format('embedded-opentype'),
@@ -143,7 +143,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 95';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-95Black.eot');
     src: local('Core Sans C 95 Black'), local('CoreSansC-95Black'),
         url('CoreSansC-95Black.eot?#iefix') format('embedded-opentype'),
@@ -155,7 +155,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 75';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-75ExtraBold.eot');
     src: local('Core Sans C 75 ExtraBold'), local('CoreSansC-75ExtraBold'),
         url('CoreSansC-75ExtraBold.eot?#iefix') format('embedded-opentype'),
@@ -167,7 +167,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 95';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-95BlackIt.eot');
     src: local('Core Sans C 95 Black Italic'), local('CoreSansC-95BlackIt'),
         url('CoreSansC-95BlackIt.eot?#iefix') format('embedded-opentype'),
@@ -179,7 +179,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 35';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-35Light.eot');
     src: local('Core Sans C 35 Light'), local('CoreSansC-35Light'),
         url('CoreSansC-35Light.eot?#iefix') format('embedded-opentype'),
@@ -191,7 +191,7 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 85';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-85Heavy.eot');
     src: local('Core Sans C 85 Heavy'), local('CoreSansC-85Heavy'),
         url('CoreSansC-85Heavy.eot?#iefix') format('embedded-opentype'),
@@ -203,9 +203,9 @@
 }
 
 @font-face {
-    font-family: 'Core Sans C 45';
+    font-family: 'Core Sans C';
     src: url('CoreSansC-45Regular.eot');
-    src: local('Core Sans C 45 Regular'), local('CoreSansC-45Regular'),
+    src: local('Core Sans C Regular'), local('CoreSansC-45Regular'),
         url('CoreSansC-45Regular.eot?#iefix') format('embedded-opentype'),
         url('CoreSansC-45Regular.woff2') format('woff2'),
         url('CoreSansC-45Regular.woff') format('woff'),
