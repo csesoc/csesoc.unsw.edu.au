@@ -63,34 +63,34 @@ h1, h2, h3, h4, form legend {
 
 h1 {
   font-size: $text-xl;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 h2 {
   font-size: $text-lg;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 h3 {
   font-size: $text-lg;
-  font-weight: 100;
+  font-weight: 200;
 }
 
 h4 {
   font-size: $text-sm;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 p {
   font-size: $text-xs;
-  font-weight: 100;
+  font-weight: 200;
   line-height: $body-line-height;
   margin-bottom: $space-xxxs;
 }
 
 button {
   font-size: $text-sm;
-  font-weight: 600;
+  font-weight: 800;
 }
 // ----------------------------------------------------------------------
 	// #Text Component - class used to stylize blocks
