@@ -14,7 +14,6 @@ on:
 jobs:
   backend:
     runs-on: ubuntu-latest
-    container: cypress/included:3.8.3
     steps:
       - uses: actions/checkout@v2
       - name: Building docker containers using docker-compose
