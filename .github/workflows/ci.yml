@@ -26,4 +26,4 @@ jobs:
       - name: Cypress Tests
         uses: cypress-io/github-action@v2
         with:
-          project: ./frontend/cypress/integration
+          project: ./frontend
