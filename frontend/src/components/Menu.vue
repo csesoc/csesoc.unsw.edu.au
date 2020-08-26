@@ -34,6 +34,30 @@
             <h2>100 | Engage</h2>
           </RouterLink>
         </div>
+        <!-- Social Links -->
+        <div class="social-links-container">
+          <label class="link">
+            <p>Facebook</p>
+          </label>
+          <label class="link">
+            <p>Twitter</p>
+          </label>
+          <label class="link">
+            <p>Instagram</p>
+          </label>
+          <label class="link">
+            <p>Youtube</p>
+          </label>
+          <label class="link">
+            <p>LinkedIn</p>
+          </label>
+          <label class="link">
+            <p>Discord Community</p>
+          </label>
+          <label class="link">
+            <p>Slack Community</p>
+          </label>
+        </div>
       </div>
     </div>
   </div>
@@ -114,6 +138,36 @@ export default {
     color: white;
     font-weight: bolder;
     font-size: $text-lg;
+  }
+}
+
+.social-links-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+
+  .link {
+    text-decoration: none; /* Remove underline from links */
+    text-align: right;
+    color: white;
+    padding: $space-xxxs/2; /* Add some padding */
+    padding-right: 0px; /* Keep it right aligned */
+    cursor: pointer; /* To simulate a link */
+    // font-size: $text-md;
+    font-weight: normal;
+    transition: all .2s ease-in-out;
+    width: 200px;
+
+    p {
+      cursor: pointer; /* To simulate a link */
+    }
+  }
+
+  .link:hover {
+    color: white;
+    font-weight: bolder;
+    font-size: $text-sm;
   }
 }
 
