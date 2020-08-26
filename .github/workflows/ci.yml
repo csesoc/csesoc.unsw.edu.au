@@ -27,3 +27,4 @@ jobs:
       - name: Cypress Tests
         run: cypress run
         working-directory: ./frontend
+        # something
