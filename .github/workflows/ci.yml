@@ -25,5 +25,6 @@ jobs:
         run: go test ./...
         working-directory: ./backend/server
       - name: Cypress Tests
-        run: cypress run
-        working-directory: ./frontend
+        uses: cypress-io/github-action@v2
+        with:
+          working-directory: ./frontend
