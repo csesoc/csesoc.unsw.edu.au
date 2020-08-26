@@ -19,11 +19,12 @@ jobs:
       - name: Building docker containers using docker-compose
         env:
           MAILJET_TOKEN: ${{ secrets.MAILJET_TOKEN }}
-        run: docker-compose up -d --build
+        run: docker-compose up -d --build backend mongo
       - name: Golang Tests
         run: go test ./...
         working-directory: ./backend/server
-      - name: Cypress Tests
-        uses: cypress-io/github-action@v2
-        with:
-          working-directory: ./frontend
+      # - name: Cypress Tests
+      #   uses: cypress-io/github-action@v2
+      #   with:
+      #     working-directory: ./frontend
+      #   build: yarn run
