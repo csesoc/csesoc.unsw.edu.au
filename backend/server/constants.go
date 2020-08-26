@@ -16,7 +16,7 @@ const FAQ_URL = "api/v1/faq"
 const RESOURCES_URL = "api/v1/resources"
 
 // JWT used for testing
-const AUTH_TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNTk4Mzg5MDg2LCJ6SUQiOiJ6NTEyMzQ1NiJ9.a8869YcfgBZCQcWUFuomF4Fqx9nJzT-rWpP2yRVsBWg"
+const AUTH_TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNjA2Mjc5MDg2LCJ6SUQiOiJ6NTEyMzQ1NiJ9.HElUm-Qmj9asFcemvD-8Na4dIXNEZpft3BzANxUS6ZU"
 
 var JWT_SECRET = []byte("temp_secret_until_proper_secrets_are_implemented")
 
