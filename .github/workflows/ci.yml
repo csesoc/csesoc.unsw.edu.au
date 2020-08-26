@@ -22,6 +22,6 @@ jobs:
         run: docker-compose up -d --build backend mongo
       - name: Golang Tests
         run: go test ./...
-        working-directory: /backend/server
+        working-directory: ./backend/server
       # - name: Cypress Tests
       #   uses: cypress-io/github-action@v2
