@@ -25,4 +25,4 @@ jobs:
         working-directory: ./backend/server
       - name: Cypress Tests
         uses: cypress-io/github-action@v2
-        working-directory: ./frontend/
+        working-directory: ./frontend
