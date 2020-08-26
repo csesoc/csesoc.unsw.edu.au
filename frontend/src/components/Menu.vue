@@ -7,22 +7,34 @@
 
 <template>
   <div @click.stop="hide" class="dimmed no-scroll">
-    <div class="vertical-container">
-      <RouterLink to="/about" class="link">
-        <label>About</label>
+    <div class="frame">
+      <!-- Logo -->
+      <RouterLink to="/" v-on:click.native="showMenu = false">
+        <div class="fill-height" style="max-height: 64px; max-width:100px">
+          <v-img src="@/assets/csesoc-logo-white.svg" />
+        </div>
       </RouterLink>
-      <!-- <RouterLink to="/" class="link">
-        <label>Events</label>
-      </RouterLink> -->
-      <RouterLink to="/resources" class="link">
-        <label>CSE Resources</label>
-      </RouterLink>
-      <RouterLink to="/sponsors" class="link">
-        <label>Sponsors</label>
-      </RouterLink>
-      <RouterLink to="/engage" class="link">
-        <label>Engage</label>
-      </RouterLink>
+      <div class="spacing-md" />
+      <div class="row">
+        <!-- Page Links -->
+        <div class="page-links-container">
+          <RouterLink to="/about" class="link">
+            <h2>001 | About</h2>
+          </RouterLink>
+          <!-- <RouterLink to="/" class="link">
+            <h2>Events</h2>
+          </RouterLink> -->
+          <RouterLink to="/resources" class="link">
+            <h2>010 | Resources</h2>
+          </RouterLink>
+          <RouterLink to="/sponsors" class="link">
+            <h2>011 | Sponsors</h2>
+          </RouterLink>
+          <RouterLink to="/engage" class="link">
+            <h2>100 | Engage</h2>
+          </RouterLink>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -39,7 +51,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .dimmed {
   z-index: 5; /* display on top of nav-bar */
   display: block;
@@ -49,36 +61,74 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 1);
+  background: $dark-color-1;
 }
 
-.vertical-container {
+.spacing-md {
+  height: $space-md;
+}
+
+.spacing-xs {
+  height: $space-xs;
+}
+
+.spacing-xxs {
+  height: $space-xxs;
+}
+
+.spacing-xxxs {
+  height: $space-xxxs;
+}
+
+.frame {
+  margin-top: $space-xxs;
+  margin-right: 4.5em;
+  margin-bottom: $space-xs;
+  margin-left: 4.5em;
+}
+
+.page-links-container {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 700px;
-  margin: auto;
+  width: 50%;
+
+  .link {
+    text-decoration: none; /* Remove underline from links */
+    color: white;
+    padding: $space-xs/2; /* Add some padding */
+    padding-left: 0px; /* Keep it left aligned */
+    cursor: pointer; /* To simulate a link */
+    font-size: $text-md;
+    font-weight: normal;
+    transition: all .2s ease-in-out;
+    width: 500px;
+
+    h2 {
+      cursor: pointer; /* To simulate a link */
+    }
+  }
+
+  .link:hover {
+    color: white;
+    font-weight: bolder;
+    font-size: $text-lg;
+  }
 }
 
-.vertical-container .link {
-  text-decoration: none; /* Remove underline from links */
-  text-align: center;
-  color: white;
-  padding: 2vh; /* Add some padding */
-  cursor: pointer; /* To simulate a link */
-  font-size: 4vh;
-  font-weight: normal;
-  transition: all .2s ease-in-out;
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
 }
 
-.vertical-container .link:hover {
-  color: white;
-  font-weight: bolder;
-  font-size: 8vh;
-}
-
-label {
-  cursor: pointer; /* To simulate a link */
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 </style>
