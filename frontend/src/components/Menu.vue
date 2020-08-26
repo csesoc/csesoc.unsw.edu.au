@@ -41,7 +41,7 @@ export default {
 
 <style>
 .dimmed {
-  z-index: 2;
+  z-index: 5; /* display on top of nav-bar */
   display: block;
   position: fixed;
   height: 100%;
@@ -50,7 +50,6 @@ export default {
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 1);
-  margin-top: 64px; /* Block out nav bar */
 }
 
 .vertical-container {
