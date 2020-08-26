@@ -115,7 +115,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: flex-start;
   width: 50%;
 
   .link {
@@ -145,6 +145,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   width: 50%;
 
   .link {
@@ -184,5 +185,6 @@ export default {
   content: "";
   display: table;
   clear: both;
+  height: 1000px;
 }
 </style>
