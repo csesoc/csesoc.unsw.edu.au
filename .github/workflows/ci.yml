@@ -25,7 +25,7 @@ jobs:
         working-directory: ./backend/server
       - uses: actions/setup-node@v1
       - name: Run frontend server
-        run: yarn install
+        run: yarn
         working-directory: /frontend
       # - uses: cypress-io/github-action@v1
       #     with:
