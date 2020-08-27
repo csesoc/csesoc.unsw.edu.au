@@ -6,7 +6,7 @@
 -->
 
 <template>
-  <div @click.stop="hide" class="dimmed no-scroll">
+  <div @click.stop="hide" class="cover">
     <div class="frame">
       <!-- Logo -->
       <RouterLink to="/" v-on:click.native="showMenu = false">
@@ -36,29 +36,37 @@
         </div>
         <!-- Social Links -->
         <div class="social-links-container">
-          <label class="link">
-            <p>Facebook</p>
-          </label>
-          <label class="link">
-            <p>Twitter</p>
-          </label>
-          <label class="link">
-            <p>Instagram</p>
-          </label>
-          <label class="link">
-            <p>Youtube</p>
-          </label>
-          <label class="link">
-            <p>LinkedIn</p>
-          </label>
-          <label class="link">
-            <p>Discord Community</p>
-          </label>
-          <label class="link">
-            <p>Slack Community</p>
-          </label>
+          <div class="push-down">
+            <label class="link">
+              <p>Facebook</p>
+            </label>
+            <label class="link">
+              <p>Twitter</p>
+            </label>
+            <label class="link">
+              <p>Instagram</p>
+            </label>
+            <label class="link">
+              <p>Youtube</p>
+            </label>
+            <label class="link">
+              <p>LinkedIn</p>
+            </label>
+            <label class="link">
+              <p>Discord Community</p>
+            </label>
+            <label class="link">
+              <p>Slack Community</p>
+            </label>
+          </div>
         </div>
       </div>
+      <!-- Footer -->
+      <div class="spacing-xs" />
+      <div>
+        <p> Only Dark mode allowed here at CSESoc. Our apologies. </p>
+      </div>
+      <div class="spacing-xs" />
     </div>
   </div>
 </template>
@@ -76,7 +84,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dimmed {
+.cover {
   z-index: 5; /* display on top of nav-bar */
   display: block;
   position: fixed;
@@ -85,7 +93,18 @@ export default {
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   background: $dark-color-1;
+}
+
+.frame {
+  display: flex;
+  flex-direction: column;
+  margin-top: $space-xxs;
+  margin-right: 4.5em;
+  margin-bottom: $space-xs;
+  margin-left: 4.5em;
+  height: 100%;
 }
 
 .spacing-md {
@@ -94,21 +113,6 @@ export default {
 
 .spacing-xs {
   height: $space-xs;
-}
-
-.spacing-xxs {
-  height: $space-xxs;
-}
-
-.spacing-xxxs {
-  height: $space-xxxs;
-}
-
-.frame {
-  margin-top: $space-xxs;
-  margin-right: 4.5em;
-  margin-bottom: $space-xs;
-  margin-left: 4.5em;
 }
 
 .page-links-container {
@@ -132,59 +136,61 @@ export default {
     h2 {
       cursor: pointer; /* To simulate a link */
     }
-  }
 
-  .link:hover {
-    color: white;
-    font-weight: bolder;
-    font-size: $text-lg;
+    &:hover {
+      color: white;
+      font-weight: bolder;
+      font-size: $text-lg;
+    }
   }
 }
 
 .social-links-container {
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-end;
   width: 50%;
 
-  .link {
-    text-decoration: none; /* Remove underline from links */
-    text-align: right;
-    color: white;
-    padding: $space-xxxs/2; /* Add some padding */
-    padding-right: 0px; /* Keep it right aligned */
-    cursor: pointer; /* To simulate a link */
-    // font-size: $text-md;
-    font-weight: normal;
-    transition: all .2s ease-in-out;
-    width: 200px;
+  .push-down {
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
 
-    p {
+    .link {
+      text-decoration: none; /* Remove underline from links */
+      text-align: right;
+      color: white;
+      padding: $space-xxxs/2; /* Add some padding */
+      padding-right: 0px; /* Keep it right aligned */
       cursor: pointer; /* To simulate a link */
+      // font-size: $text-md;
+      font-weight: normal;
+      transition: all .2s ease-in-out;
+      width: 200px;
+
+      p {
+        cursor: pointer; /* To simulate a link */
+      };
+
+      &:hover {
+        color: white;
+        font-weight: bolder;
+        font-size: $text-sm;
+      }
     }
   }
+}
 
-  .link:hover {
-    color: white;
-    font-weight: bolder;
-    font-size: $text-sm;
+.row {
+  height: 100%;
+
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 100%;
   }
 }
 
-/* Create two equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 50%;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-  height: 1000px;
-}
 </style>
