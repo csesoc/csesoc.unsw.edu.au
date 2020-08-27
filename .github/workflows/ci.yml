@@ -23,6 +23,10 @@ jobs:
       - name: Golang Tests
         run: go test ./...
         working-directory: ./backend/server
+      - uses: actions/setup-node@v1
+      - name: Run frontend server
+      - run: yarn install
+      - run: yarn serve
       # - name: Cypress Tests
       #   uses: cypress-io/github-action@v2
       #   with:
