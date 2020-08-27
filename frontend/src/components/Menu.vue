@@ -10,12 +10,12 @@
     <div class="frame">
       <!-- Logo -->
       <RouterLink to="/" v-on:click.native="showMenu = false">
-        <div class="fill-height" style="max-height: 64px; max-width:100px">
+        <div class="fill-height" style="width: 140px; margin-left: 5px;">
           <v-img src="@/assets/csesoc-logo-white.svg" />
         </div>
       </RouterLink>
       <div class="spacing-md" />
-      <div class="row">
+      <div class="split">
         <!-- Page Links -->
         <div class="page-links-container">
           <RouterLink to="/about" class="link">
@@ -64,7 +64,10 @@
       <!-- Footer -->
       <div class="spacing-xs" />
       <div>
-        <p> Only Dark mode allowed here at CSESoc. Our apologies. </p>
+        <p style="display: inline;">
+          <img height="14px" src="@/assets/moon-icon.png" style="display: inline; padding-right: 5px;">
+          Only Dark mode allowed here at CSESoc. Our apologies.
+        </p>
       </div>
       <div class="spacing-xs" />
     </div>
@@ -131,7 +134,6 @@ export default {
     font-size: $text-md;
     font-weight: normal;
     transition: all .2s ease-in-out;
-    width: 500px;
 
     h2 {
       cursor: pointer; /* To simulate a link */
@@ -182,15 +184,10 @@ export default {
   }
 }
 
-.row {
-  height: 100%;
-
-  &:after {
-    content: "";
-    display: block;
-    clear: both;
-    height: 100%;
-  }
+.split {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
 }
 
 </style>
