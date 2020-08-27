@@ -37,27 +37,27 @@
         <!-- Social Links -->
         <div class="social-links-container">
           <div class="push-down">
-            <label class="link">
+            <a class="link" href="https://www.facebook.com/csesoc/">
               <p>Facebook</p>
-            </label>
-            <label class="link">
-              <p>Twitter</p>
-            </label>
-            <label class="link">
+            </a>
+            <a class="link" href="https://www.instagram.com/csesoc_unsw/">
               <p>Instagram</p>
-            </label>
-            <label class="link">
-              <p>Youtube</p>
-            </label>
-            <label class="link">
-              <p>LinkedIn</p>
-            </label>
-            <label class="link">
+            </a>
+            <a class="link" href="https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u">
               <p>Discord Community</p>
-            </label>
-            <label class="link">
+            </a>
+            <a class="link" href="https://csesoc-community.slack.com/">
               <p>Slack Community</p>
-            </label>
+            </a>
+            <a class="link" href="https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg">
+              <p>Youtube</p>
+            </a>
+            <a class="link" href="https://www.linkedin.com/company/csesoc/">
+              <p>LinkedIn</p>
+            </a>
+            <a class="link" href="#">
+              <p>TikTok</p>
+            </a>
           </div>
         </div>
       </div>
