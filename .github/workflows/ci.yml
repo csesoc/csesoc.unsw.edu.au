@@ -28,12 +28,12 @@ jobs:
         with:
           node-version: '12.x'
       - name: Install dependencies
-        run: yarn
+        run: npm ci
         working-directory: ./frontend
       - name: Cypress Tests
         uses: cypress-io/github-action@v1
         with:
-          start: yarn serve
+          start: npm run serve
           wait-on: http://localhost:3030 
           working-directory: /frontend
       #   uses: cypress-io/github-action@v2
