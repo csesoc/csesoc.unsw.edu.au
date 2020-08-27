@@ -30,6 +30,8 @@ jobs:
       - name: Install dependencies
         run: npm install
         working-directory: ./frontend
+      - name: Check directory
+        run: ls /frontend
       - name: Cypress Tests
         uses: cypress-io/github-action@v1
         with:
