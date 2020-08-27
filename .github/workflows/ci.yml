@@ -38,7 +38,3 @@ jobs:
           start: yarn serve
           wait-on: http://localhost:8080 
           working-directory: ./frontend
-      #   uses: cypress-io/github-action@v2
-      #   with:
-      #     working-directory: ./frontend
-      #   build: yarn run
