@@ -30,12 +30,12 @@ jobs:
       - name: Install dependencies
         run: yarn
         working-directory: ./frontend
-      # - uses: cypress-io/github-action@v1
-      #     with:
-      #       start: yarn serve
-      #       wait-on: http://localhost:3030 
-      #       working-directory: /frontend
-      # - name: Cypress Tests
+      - name: Cypress Tests
+          uses: cypress-io/github-action@v1
+          with:
+            start: yarn serve
+            wait-on: http://localhost:3030 
+            working-directory: /frontend
       #   uses: cypress-io/github-action@v2
       #   with:
       #     working-directory: ./frontend
