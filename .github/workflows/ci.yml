@@ -27,10 +27,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-          working-directory: ./backend/server
       - name: Install dependencies
         run: yarn
-        working-directory: /frontend
+        working-directory: ./frontend
       # - uses: cypress-io/github-action@v1
       #     with:
       #       start: yarn serve
