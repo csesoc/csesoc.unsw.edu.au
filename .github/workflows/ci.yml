@@ -16,15 +16,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Building docker containers using docker-compose
-        env:
-          MAILJET_TOKEN: ${{ secrets.MAILJET_TOKEN }}
-        run: docker-compose up -d --build backend mongo
-      - name: Golang Tests
-        run: go test ./...
-        working-directory: ./backend/server
-      - uses: actions/setup-node@v1
-      - name: Run frontend server
+      # - name: Building docker containers using docker-compose
+      #   env:
+      #     MAILJET_TOKEN: ${{ secrets.MAILJET_TOKEN }}
+      #   run: docker-compose up -d --build backend mongo
+      # - name: Golang Tests
+      #   run: go test ./...
+      #   working-directory: ./backend/server
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+          working-directory: ./backend/server
+      - name: Install dependencies
         run: yarn
         working-directory: /frontend
       # - uses: cypress-io/github-action@v1
