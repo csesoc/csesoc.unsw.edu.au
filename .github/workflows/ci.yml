@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: '12.x'
       - name: Install dependencies
-        run: npm ci
+        run: npm install
         working-directory: ./frontend
       - name: Cypress Tests
         uses: cypress-io/github-action@v1
