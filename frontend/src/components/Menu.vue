@@ -6,34 +6,35 @@
 -->
 
 <template>
-  <div @click.stop="hide" class="cover">
+  <div class="cover">
     <div class="frame">
       <!-- Header -->
       <v-container class="stack-elem">
         <v-row no-gutters>
           <!-- Logo -->
-          <v-col>
-            <RouterLink to="/" v-on:click.native="showMenu = false">
-              <div class="fill-height" style="width: 140px; margin-left: 5px;">
-                <v-img src="@/assets/csesoc-logo-white.svg" />
-              </div>
+          <v-col cols="2">
+            <RouterLink to="/">
+              <v-img @click.stop="hide" class="logo-btn" width="140px" src="@/assets/csesoc-logo-white.svg" />
             </RouterLink>
+          </v-col>
+          <!-- Spacer -->
+          <v-spacer></v-spacer>
+          <!-- Close -->
+          <v-col cols="1">
+            <v-img @click.stop="hide" class="close-btn" width="32px" src="@/assets/close-icon.svg" />
           </v-col>
         </v-row>
       </v-container>
 
       <!-- Links -->
-      <v-container class="stack-elem" style="height: 100%;">
+      <v-container class="body stack-elem">
         <v-row no-gutters style="height: 100%;">
-          <!-- Page Links -->
+          <!-- Page links -->
           <v-col cols="6">
-            <div class="page-links-container">
+            <div class="page-links-container" @click.stop="hide">
               <RouterLink to="/about" class="link">
                 <h2>001 | About</h2>
               </RouterLink>
-              <!-- <RouterLink to="/" class="link">
-                <h2>Events</h2>
-              </RouterLink> -->
               <RouterLink to="/resources" class="link">
                 <h2>010 | Resources</h2>
               </RouterLink>
@@ -45,8 +46,7 @@
               </RouterLink>
             </div>
           </v-col>
-
-          <!-- Social Links -->
+          <!-- Social links -->
           <v-col cols="6">
             <div class="social-links-container">
               <div class="push-down">
@@ -81,7 +81,7 @@
       <v-container class="stack-elem">
         <div class="footer">
           <p style="display: inline;">
-            <img height="14px" src="@/assets/moon-icon.png" style="display: inline; padding-right: 5px;">
+            <img height="14px" src="@/assets/moon-icon.png" style="padding-right: 5px;">
             Only Dark mode allowed here at CSESoc. Our apologies.
           </p>
         </div>
@@ -137,9 +137,26 @@ export default {
   margin-top: $space-md;
 }
 
+.body {
+  margin-top: $space-md;
+  height: 100%;
+}
+
 .footer {
   margin-top: $space-xs;
   margin-bottom: $space-xs;
+  color: white;
+}
+
+.logo-btn {
+  margin-left: 5px;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.close-btn {
+  margin-left: auto;
+  cursor: pointer;
 }
 
 .page-links-container {
@@ -162,7 +179,6 @@ export default {
     }
 
     &:hover {
-      color: white;
       font-weight: bolder;
       font-size: $text-sm;
     }
@@ -196,7 +212,6 @@ export default {
       };
 
       &:hover {
-        color: white;
         font-weight: bolder;
         font-size: $text-sm;
       }
