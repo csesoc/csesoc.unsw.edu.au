@@ -26,5 +26,15 @@ describe('Community Links Landing Page', () => {
       cy.get('[data-cy=communityLinks-discordImage].zoom')
         .trigger('mouseover')
     });
+
+    it('tests scrolling to the join us section from the top of the landing page', () => {
+      // finding the join us button and clicking it
+      cy.get('[data-cy=communitLinks]').should('not.be.inViewPort');
+      cy.get('[data-cy=joinus-button]').click();
+      // it should scroll to the join us section
+      cy.get('[data-cy=communitLinks]').should('not.be.inViewPort');
+      
+    });
+
   });
   

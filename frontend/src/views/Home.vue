@@ -37,6 +37,7 @@
         target="_blank"
         v-ripple
         class="button"
+        data-cy=joinus-button
       >Join Us</a>
     </header>
 
@@ -98,8 +99,8 @@
       <Preview :items="resourceItems"/>
     </v-container>
 
-    <v-container>
-      <CommunityLinks></CommunityLinks>
+    <v-container ref="joinus">
+      <CommunityLinks ></CommunityLinks>
     </v-container>
 
     <!-- Support CSESoc -->
