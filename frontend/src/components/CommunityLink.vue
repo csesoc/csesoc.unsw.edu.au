@@ -1,25 +1,25 @@
 <template>
 <!-- Join Us Section -->
-    <v-container id="join" ref="joinus">
-      <h1>
+    <v-container id="join" ref="joinus" data-cy="communitLinks">
+      <h1 data-cy="communityLinks-title">
         Join Us
       </h1>
-      <p>
+      <p data-cy="communityLinks-bodyText">
         Find our stall at O-week, or just turn up an event and get to know us!
       </p>
-      <h2>
+      <h2 data-cy="communityLinks-joinCommunityText">
         Join our community online
       </h2>
-      <div id="joinImg" >
+      <div id="joinImg" data-cy="communityLinks-images">
         <a href="https://www.facebook.com/groups/csesoc">
-          <img src="@/assets/facebook_logo.png" class="zoom">
+          <img src="@/assets/facebook_logo.png" class="zoom" data-cy="communityLinks-facebookImage">
         </a>
         <a href="https://csesoc-community.slack.com/">
-          <img src="@/assets/slack_logo.png" class="zoom">
+          <img src="@/assets/slack_logo.png" class="zoom" data-cy="communityLinks-slackImage">
         </a>
         <!-- need to add in the csesoc discord link-->
         <a href="https://www.facebook.com/groups/csesoc">
-          <img src="@/assets/discord_logo.png" class="zoom">
+          <img src="@/assets/discord_logo.png" class="zoom" data-cy="communityLinks-discordImage">
         </a>
       </div>
     </v-container>
