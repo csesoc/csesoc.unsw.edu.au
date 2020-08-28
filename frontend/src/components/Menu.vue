@@ -180,7 +180,7 @@ export default {
 
     &:hover {
       font-weight: bolder;
-      font-size: $text-sm;
+      font-size: $text-lg;
     }
   }
 }
