@@ -8,65 +8,84 @@
 <template>
   <div @click.stop="hide" class="cover">
     <div class="frame">
-      <!-- Logo -->
-      <RouterLink to="/" v-on:click.native="showMenu = false">
-        <div class="fill-height" style="width: 140px; margin-left: 5px;">
-          <v-img src="@/assets/csesoc-logo-white.svg" />
-        </div>
-      </RouterLink>
-      <div class="split">
-        <!-- Page Links -->
-        <div class="page-links-container">
-          <RouterLink to="/about" class="link">
-            <h2>001 | About</h2>
-          </RouterLink>
-          <!-- <RouterLink to="/" class="link">
-            <h2>Events</h2>
-          </RouterLink> -->
-          <RouterLink to="/resources" class="link">
-            <h2>010 | Resources</h2>
-          </RouterLink>
-          <RouterLink to="/sponsors" class="link">
-            <h2>011 | Sponsors</h2>
-          </RouterLink>
-          <RouterLink to="/engage" class="link">
-            <h2>100 | Engage</h2>
-          </RouterLink>
-        </div>
-        <!-- Social Links -->
-        <div class="social-links-container">
-          <div class="push-down">
-            <a class="link" href="https://www.facebook.com/csesoc/">
-              <p>Facebook</p>
-            </a>
-            <a class="link" href="https://www.instagram.com/csesoc_unsw/">
-              <p>Instagram</p>
-            </a>
-            <a class="link" href="https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u">
-              <p>Discord Community</p>
-            </a>
-            <a class="link" href="https://csesoc-community.slack.com/">
-              <p>Slack Community</p>
-            </a>
-            <a class="link" href="https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg">
-              <p>Youtube</p>
-            </a>
-            <a class="link" href="https://www.linkedin.com/company/csesoc/">
-              <p>LinkedIn</p>
-            </a>
-            <a class="link" href="#">
-              <p>TikTok</p>
-            </a>
-          </div>
-        </div>
-      </div>
+      <!-- Header -->
+      <v-container class="stack-elem">
+        <v-row no-gutters>
+          <!-- Logo -->
+          <v-col>
+            <RouterLink to="/" v-on:click.native="showMenu = false">
+              <div class="fill-height" style="width: 140px; margin-left: 5px;">
+                <v-img src="@/assets/csesoc-logo-white.svg" />
+              </div>
+            </RouterLink>
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <!-- Links -->
+      <v-container class="stack-elem" style="height: 100%;">
+        <v-row no-gutters style="height: 100%;">
+          <!-- Page Links -->
+          <v-col cols="6">
+            <div class="page-links-container">
+              <RouterLink to="/about" class="link">
+                <h2>001 | About</h2>
+              </RouterLink>
+              <!-- <RouterLink to="/" class="link">
+                <h2>Events</h2>
+              </RouterLink> -->
+              <RouterLink to="/resources" class="link">
+                <h2>010 | Resources</h2>
+              </RouterLink>
+              <RouterLink to="/sponsors" class="link">
+                <h2>011 | Sponsors</h2>
+              </RouterLink>
+              <RouterLink to="/engage" class="link">
+                <h2>100 | Engage</h2>
+              </RouterLink>
+            </div>
+          </v-col>
+
+          <!-- Social Links -->
+          <v-col cols="6">
+            <div class="social-links-container">
+              <div class="push-down">
+                <a class="link" href="https://www.facebook.com/csesoc/">
+                  <p>Facebook</p>
+                </a>
+                <a class="link" href="https://www.instagram.com/csesoc_unsw/">
+                  <p>Instagram</p>
+                </a>
+                <a class="link" href="https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u">
+                  <p>Discord Community</p>
+                </a>
+                <a class="link" href="https://csesoc-community.slack.com/">
+                  <p>Slack Community</p>
+                </a>
+                <a class="link" href="https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg">
+                  <p>Youtube</p>
+                </a>
+                <a class="link" href="https://www.linkedin.com/company/csesoc/">
+                  <p>LinkedIn</p>
+                </a>
+                <a class="link" href="#">
+                  <p>TikTok</p>
+                </a>
+              </div>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+
       <!-- Footer -->
-      <div class="footer">
-        <p style="display: inline;">
-          <img height="14px" src="@/assets/moon-icon.png" style="display: inline; padding-right: 5px;">
-          Only Dark mode allowed here at CSESoc. Our apologies.
-        </p>
-      </div>
+      <v-container class="stack-elem">
+        <div class="footer">
+          <p style="display: inline;">
+            <img height="14px" src="@/assets/moon-icon.png" style="display: inline; padding-right: 5px;">
+            Only Dark mode allowed here at CSESoc. Our apologies.
+          </p>
+        </div>
+      </v-container>
     </div>
   </div>
 </template>
@@ -107,6 +126,10 @@ export default {
   height: 100%;
 }
 
+.stack-elem {
+  padding: 0;
+}
+
 .split {
   display: flex;
   flex-direction: row;
@@ -124,7 +147,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 50%;
 
   .link {
     text-decoration: none; /* Remove underline from links */
@@ -153,7 +175,6 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  width: 50%;
 
   .push-down {
     flex-direction: column;
@@ -167,7 +188,6 @@ export default {
       padding: $space-xxxs/2; /* Add some padding */
       padding-right: 0px; /* Keep it right aligned */
       cursor: pointer; /* To simulate a link */
-      // font-size: $text-md;
       font-weight: normal;
       transition: all .2s ease-in-out;
       width: 200px;
