@@ -154,7 +154,6 @@ export default {
     padding: $space-xs/2; /* Add some padding */
     padding-left: 0px; /* Keep it left aligned */
     cursor: pointer; /* To simulate a link */
-    font-size: $text-md;
     font-weight: normal;
     transition: all .2s ease-in-out;
 
@@ -165,7 +164,7 @@ export default {
     &:hover {
       color: white;
       font-weight: bolder;
-      font-size: $text-lg;
+      font-size: $text-sm;
     }
   }
 }
