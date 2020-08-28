@@ -14,7 +14,6 @@
           <v-img src="@/assets/csesoc-logo-white.svg" />
         </div>
       </RouterLink>
-      <div class="spacing-md" />
       <div class="split">
         <!-- Page Links -->
         <div class="page-links-container">
@@ -62,14 +61,12 @@
         </div>
       </div>
       <!-- Footer -->
-      <div class="spacing-xs" />
-      <div>
+      <div class="footer">
         <p style="display: inline;">
           <img height="14px" src="@/assets/moon-icon.png" style="display: inline; padding-right: 5px;">
           Only Dark mode allowed here at CSESoc. Our apologies.
         </p>
       </div>
-      <div class="spacing-xs" />
     </div>
   </div>
 </template>
@@ -110,12 +107,16 @@ export default {
   height: 100%;
 }
 
-.spacing-md {
-  height: $space-md;
+.split {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  margin-top: $space-md;
 }
 
-.spacing-xs {
-  height: $space-xs;
+.footer {
+  margin-top: $space-xs;
+  margin-bottom: $space-xs;
 }
 
 .page-links-container {
@@ -183,11 +184,4 @@ export default {
     }
   }
 }
-
-.split {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-}
-
 </style>
