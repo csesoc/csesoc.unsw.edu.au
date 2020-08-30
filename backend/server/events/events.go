@@ -16,6 +16,7 @@ import (
 	"fmt"
 	"sort"
 	"time"
+	"os"
 
 	"io/ioutil"
 	"net/http"
@@ -131,7 +132,7 @@ func fetchEvents(response *FbResponse) error {
 			"%s%s?access_token=%s&since=%d",
 			FB_API_PATH,
 			FB_EVENT_PATH,
-			FB_TOKEN,
+			os.Getenv("FB_TOKEN"),
 			time.Now().Unix()),
 	)
 	if err != nil {
@@ -163,7 +164,7 @@ func fetchCoverImage(id string) (string, error) {
 			"%s/%s?fields=cover&access_token=%s",
 			FB_API_PATH,
 			id,
-			FB_TOKEN,
+			os.Getenv("FB_TOKEN"),
 		),
 	)
 	if err != nil {
@@ -252,13 +253,13 @@ func saveEvents() {
 		}
 	}
 
-	// Sort by starting dates:
+	// Sort the parsed events by starting date
 	sort.Slice(processedEvents, func(i, j int) bool {
 		return processedEvents[i].Start < processedEvents[j].Start
 	})
 
 	buf := bytes.NewBuffer([]byte{})
-	// Avoids escaping ampersands:
+	// Using json.NewEncoder allows for escaping ampersands.
 	jsonEncoder := json.NewEncoder(buf)
 	jsonEncoder.SetEscapeHTML(false)
 	jsonEncoder.Encode(MarshalledEvents{
@@ -266,7 +267,7 @@ func saveEvents() {
 		Events:     processedEvents,
 	})
 	fp, _ := filepath.Abs("static/events.json")
-	// 644 = chmod a+rwx,u-x,g-wx,o-wx
+	// 644 = rw--w--w-
 	err = ioutil.WriteFile(fp, buf.Bytes(), 0644)
 
 	if err != nil {
