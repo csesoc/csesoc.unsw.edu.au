@@ -10,9 +10,6 @@
 
 // ----------------------------------------------------------------------
 $btn-radius: 5px;
-$btn-sm: $btn-font-size - 0.2em;
-$btn-md: $btn-font-size+0.2em;
-$btn-lg: $btn-font-size+0.4em;
 
 // ----------------------------------------------------------------------
 
@@ -28,7 +25,6 @@ $btn-lg: $btn-font-size+0.4em;
 
   padding: $space-sm $space-md;
   border-radius: $btn-radius;
-  font-size: $btn-font-size;
 
   color: $light-color;
 
@@ -74,15 +70,13 @@ $btn-lg: $btn-font-size+0.4em;
 
 // ----------------------------------------------------------------------
 .btn--sm {
-  font-size: $btn-sm;
-}
-
-.btn--md {
-  font-size: $btn-md;
+  @extend .btn;
+  font-size: $text-sm;
 }
 
 .btn--lg {
-  font-size: $btn-lg;
+  @extend .btn;
+  font-size: $text-lg;
 }
 
 .btn--full-width {
@@ -101,7 +95,7 @@ $btn-lg: $btn-font-size+0.4em;
   flex-wrap: wrap;
   margin-bottom: -1 * $space-xs;
 
-  > * {
+  >* {
     margin: 0 $space-xs $space-xs 0;
 
     &:last-of-type {
