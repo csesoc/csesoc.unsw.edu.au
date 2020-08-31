@@ -22,6 +22,7 @@ services:
         container_name: backend
         environment: 
             - MAILJET_TOKEN=${MAILJET_TOKEN}
+            - FB_TOKEN=${FB_TOKEN}
     mongo:
         image: mongo:latest
         restart: always
