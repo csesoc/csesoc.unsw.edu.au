@@ -31,13 +31,7 @@
         CSESoc, Lorem ipsum dolor sit amet, consetetur
       </h1>
 
-      <!--change this to scroll to Join Us section when created-->
-      <a
-        @click="scrollto('joinus')"
-        target="_blank"
-        v-ripple
-        class="button"
-      >Join Us</a>
+      <button class="btn--joinUs" @click="scrollto('joinus')">Join Us</button>
     </header>
 
     <!-- CSESocs Mission -->
