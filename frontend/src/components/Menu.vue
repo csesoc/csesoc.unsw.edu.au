@@ -51,32 +51,32 @@
             <div class="social-links-container">
               <div class="push-down">
                 <div class="link">
-                  <a href="https://www.facebook.com/csesoc/">
+                  <a target="_blank" href="https://www.facebook.com/csesoc/" >
                     Facebook
                   </a>
                 </div>
                 <div class="link">
-                  <a href="https://www.instagram.com/csesoc_unsw/">
+                  <a target="_blank" href="https://www.instagram.com/csesoc_unsw/">
                     Instagram
                   </a>
                 </div>
                 <div class="link">
-                  <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u">
+                  <a target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u">
                     Discord Community
                   </a>
                 </div>
                 <div class="link">
-                  <a href="https://csesoc-community.slack.com/">
+                  <a target="_blank" href="https://csesoc-community.slack.com/">
                     Slack Community
                   </a>
                 </div>
                 <div class="link">
-                  <a href="https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg">
+                  <a target="_blank" href="https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg">
                     Youtube
                   </a>
                 </div>
                 <div class="link">
-                  <a href="https://www.linkedin.com/company/csesoc/">
+                  <a target="_blank" href="https://www.linkedin.com/company/csesoc/">
                     LinkedIn
                   </a>
                 </div>
