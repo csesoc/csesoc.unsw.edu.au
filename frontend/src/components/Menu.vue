@@ -168,8 +168,8 @@ export default {
   .link {
     text-decoration: none; /* Remove underline from links */
     color: white;
-    padding: $space-xs/2; /* Add some padding */
-    padding-left: 0px; /* Keep it left aligned */
+    // padding: $space-xs/2; /* Add some padding */
+    // padding-left: 0px; /* Keep it left aligned */
     cursor: pointer; /* To simulate a link */
     font-weight: normal;
     transition: all .2s ease-in-out;
