@@ -30,7 +30,7 @@
       <v-container class="body stack-elem">
         <v-row no-gutters style="height: 100%;">
           <!-- Page links -->
-          <v-col cols="6">
+          <v-col xs="12" sm="6">
             <div class="page-links-container" @click.stop="hide">
               <RouterLink to="/about" class="link">
                 <h2>001 | About</h2>
@@ -47,7 +47,7 @@
             </div>
           </v-col>
           <!-- Social links -->
-          <v-col cols="6">
+          <v-col xs="12" sm="6">
             <div class="social-links-container">
               <div class="push-down">
                 <a class="link" href="https://www.facebook.com/csesoc/">
