@@ -14,14 +14,14 @@
           <!-- Logo -->
           <v-col cols="2">
             <RouterLink to="/">
-              <v-img @click.stop="hide" class="logo-btn" width="140px" src="@/assets/csesoc-logo-white.svg" />
+              <v-img @click.stop="hide" class="logo-btn" width="140px" height="32px" src="@/assets/csesoc-logo-white.svg" />
             </RouterLink>
           </v-col>
           <!-- Spacer -->
           <v-spacer></v-spacer>
           <!-- Close -->
           <v-col cols="1">
-            <v-img @click.stop="hide" class="close-btn" width="32px" src="@/assets/close-icon.svg" />
+            <v-img @click.stop="hide" class="close-btn" width="32px" height="32px" src="@/assets/close-icon.svg" />
           </v-col>
         </v-row>
       </v-container>
