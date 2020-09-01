@@ -143,7 +143,6 @@ export default {
 }
 
 .footer {
-  margin-top: $space-xs;
   margin-bottom: $space-xs;
   color: white;
 }
