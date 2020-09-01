@@ -7,12 +7,30 @@
 .btn--joinUs {
   @extend .btn--lg;
   border: 2px solid #ffffff;
-  width: 250px;
-  text-align: center;
   // TODO: Fix position depending on spacing
-  left: 1000px;
+  left: 70vw;
+  background-image: url(/assets/tmp_chain.png);
+  background-repeat:no-repeat;
 }
 
+.btn--joinUs:hover {
+  transition: 0.4s;
+  background: #3A75F7;
+}
+
+.btn--joinUs:hover span {
+  display:none
+}
+
+.btn--joinUs:hover:before {
+  background-image: url(/assets/tmp_chain.png);
+  background-repeat:no-repeat;
+}
+/*
+.btn--joinUs:hover {
+  background-color: green;
+}
+*/
 // ----------------------------------------------------------------------
 
 // #Variables

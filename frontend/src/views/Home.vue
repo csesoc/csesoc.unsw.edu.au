@@ -26,21 +26,24 @@
       />
       <v-img v-else max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
       -->
-
-      <h1>
-        CSESoc, Lorem ipsum dolor sit amet, consetetur
+      <h1 class="showcase--h1">
+        We inspire the programmers of the future.
       </h1>
 
-      <button class="btn--joinUs" @click="scrollto('joinus')">Join Us</button>
+      <button
+        class="btn--joinUs"
+        @click="scrollto('joinus')">
+          Join Us
+      </button>
     </header>
 
     <!-- CSESocs Mission -->
-    <v-container id="mission">
-      <HeaderTitle :title="'csesocs mission'" />
+    <div id="mission">
+      <h1 class="header"> csesocs mission1 </h1>
       <p>
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temp or invidunt ut labore et dolore "
       </p>
-    </v-container>
+    </div>
 
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <HeaderTitle :title="'upcoming events'" />
@@ -186,27 +189,17 @@ export default {
 </script>
 
 <style scoped>
-#showcase {
-  align-items: left;
-  background-blend-mode: darken;
-  background-image: url("../assets/black_lozenge_@2X.png");
-  background-position: center;
-  background-repeat: repeat;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-  justify-content: center;
-  padding: 7% ;
-  text-align: left;
+
+#home {
+  background-color: #000033;
+  padding-left: 7%;
+
 }
 
-#showcase h1 {
-  color: #fff;
-  font-size: 80px;
-  width: 80%;
-  font-weight: bolder;
-  line-height: 95px;
+#showcase {
+  height: 100vh;
+  width: 100vw;
+  text-align: left;
 }
 
 #showcase img {
@@ -214,10 +207,7 @@ export default {
   max-width: 30%;
 }
 
-#showcase p {
-  font-size: 20px;
-}
-
+/*
 #showcase .button {
   text-align: center;
   background: rgb(54, 119, 243);
@@ -236,7 +226,7 @@ export default {
   background: rgb(54, 119, 243);
   color: #fff;
 }
-
+*/
 #mission p {
   font-size: 40px;
   align-items: center;

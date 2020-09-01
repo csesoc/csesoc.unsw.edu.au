@@ -4,10 +4,23 @@
 
 @use "sass:math";
 
+.showcase--h1 {
+  @extend h1;
+  color: #ffffff;
+  padding-right: 60vw;
+  line-height: 95px;
+  padding-top: 20vh;
+}
+
+.header {
+  @extend h1;
+  color: #ffffff;
+}
+
 // ----------------------------------------------------------------------
 	// #Type Scale
 // ----------------------------------------------------------------------
-$text-xs: 1em ;   //caption
+$text-xs: 1em;   //caption
 $text-sm: 1em * math.pow($text-scale-ratio, 1);   // h4
 $text-md: 1em * math.pow($text-scale-ratio, 2);   
 $text-lg: 1em * math.pow($text-scale-ratio, 3);   // h2 h3
@@ -33,6 +46,7 @@ h1, h2, h3, h4, form legend {
 // ----------------------------------------------------------------------
 	// #Text Size
 // ----------------------------------------------------------------------
+
 .text--xxxl {
   font-size: $text-xxxl;
 }
