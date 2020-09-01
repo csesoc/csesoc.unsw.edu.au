@@ -27,6 +27,7 @@ describe('Community Links Landing Page', () => {
         .trigger('mouseover')
     });
 
+    /*
     it('tests scrolling to the join us section from the top of the landing page', () => {
       // finding the join us button and clicking it
 
@@ -39,6 +40,6 @@ describe('Community Links Landing Page', () => {
       cy.get('[data-cy=communitLinks]').should('not.be.inViewPort');
       
     });
-
+    */
   });
   
