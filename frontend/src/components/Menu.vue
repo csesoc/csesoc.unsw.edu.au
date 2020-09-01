@@ -168,8 +168,6 @@ export default {
   .link {
     text-decoration: none; /* Remove underline from links */
     color: white;
-    // padding: $space-xs/2; /* Add some padding */
-    // padding-left: 0px; /* Keep it left aligned */
     cursor: pointer; /* To simulate a link */
     font-weight: normal;
     transition: all .2s ease-in-out;
@@ -200,8 +198,6 @@ export default {
       text-decoration: none; /* Remove underline from links */
       text-align: right;
       color: white;
-      padding: $space-xxxs/2; /* Add some padding */
-      padding-right: 0px; /* Keep it right aligned */
       cursor: pointer; /* To simulate a link */
       font-weight: normal;
       transition: all .2s ease-in-out;
@@ -209,6 +205,7 @@ export default {
 
       p {
         cursor: pointer; /* To simulate a link */
+        line-height: 20px !important;
       };
 
       &:hover {
