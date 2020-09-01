@@ -5,6 +5,7 @@
 @use "sass:math";
 
 .showcase--h1 {
+  padding-left: 7%;
   @extend h1;
   color: #ffffff;
   padding-right: 60vw;
@@ -13,6 +14,7 @@
 }
 
 .header {
+  padding-left: 7%;
   @extend h1;
   color: #ffffff;
 }

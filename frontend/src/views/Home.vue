@@ -13,19 +13,7 @@
 
 <template>
   <div id="home">
-    <!-- make header a seperate component! -->
     <header id="showcase">
-      <!-- CSESoc Image Logo (to replace h1 below)
-
-      <v-img
-        v-if="$vuetify.breakpoint.mdAndUp"
-        max-width="35vw"
-        max-height="20vh"
-        contain
-        src="@/assets/csesocwhiteblue.png"
-      />
-      <v-img v-else max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
-      -->
       <h1 class="showcase--h1">
         We inspire the programmers of the future.
       </h1>
@@ -39,7 +27,9 @@
 
     <!-- CSESocs Mission -->
     <div id="mission">
+      
       <h1 class="header"> csesocs mission1 </h1>
+      <!--<img src="@/assets/mission.jpg" style="width:50%;">-->
       <p>
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temp or invidunt ut labore et dolore "
       </p>
@@ -192,7 +182,6 @@ export default {
 
 #home {
   background-color: #000033;
-  padding-left: 7%;
 
 }
 
@@ -202,31 +191,6 @@ export default {
   text-align: left;
 }
 
-#showcase img {
-  max-height: 30vh;
-  max-width: 30%;
-}
-
-/*
-#showcase .button {
-  text-align: center;
-  background: rgb(54, 119, 243);
-  border-radius: 0px;
-  color: #fff;
-  font-size: 40px;
-  font-weight: bold;
-  margin-top: 45px;
-  padding: 15px 20px;
-  text-decoration: none;
-  width: 250px;
-}
-
-#showcase .button:hover {
-  transition: 0.4s;
-  background: rgb(54, 119, 243);
-  color: #fff;
-}
-*/
 #mission p {
   font-size: 40px;
   align-items: center;
