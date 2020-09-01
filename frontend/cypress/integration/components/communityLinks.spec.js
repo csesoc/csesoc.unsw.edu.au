@@ -4,10 +4,8 @@ describe('Community Links Landing Page', () => {
     });
   
     it('finds whether the text and images are displayed', () => {
-      // TODO: fix padding according to style scape and add to testing
-
       // Making sure that the community links are included in the landing page
-      cy.get('[data-cy=communitLinks]');
+      cy.get('[data-cy=communityLinks]');
       // making sure that the join us text is there
       cy.get('[data-cy=communityLinks-title]');
       // making sure that the body text is there
@@ -34,10 +32,10 @@ describe('Community Links Landing Page', () => {
       // cypress is giving a 'the chainer inViewPort cannot be found', 
       // might try making it a command not an assert to see if that fixes it
       // ref: https://github.com/cypress-io/cypress/issues/877
-      cy.get('[data-cy=communitLinks]').should('not.be.inViewPort');
+      cy.get('[data-cy=communityLinks]').should('not.be.inViewPort');
       cy.get('[data-cy=joinus-button]').click();
       // it should scroll to the join us section
-      cy.get('[data-cy=communitLinks]').should('not.be.inViewPort');
+      cy.get('[data-cy=communityLinks]').should('not.be.inViewPort');
       
     });
     */
