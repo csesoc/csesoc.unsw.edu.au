@@ -1,6 +1,6 @@
 <template>
 <!-- Join Us Section -->
-    <v-container id="join" ref="joinus" data-cy="communitLinks">
+    <v-container id="join" ref="joinus" data-cy="communityLinks">
       <h1 data-cy="communityLinks-title">
         Join Us
       </h1>
