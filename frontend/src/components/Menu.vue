@@ -79,12 +79,12 @@
 
       <!-- Footer -->
       <v-container class="stack-elem">
-        <div class="footer">
+        <v-row no-gutters class="footer">
           <p style="display: inline;">
             <img height="14px" src="@/assets/moon-icon.png" style="padding-right: 5px;">
             Only Dark mode allowed here at CSESoc. Our apologies.
           </p>
-        </div>
+        </v-row>
       </v-container>
     </div>
   </div>
