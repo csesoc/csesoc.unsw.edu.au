@@ -204,7 +204,7 @@ export default {
 
       p {
         cursor: pointer; /* To simulate a link */
-        line-height: 20px !important;
+        line-height: 1.25em !important;
       };
 
       &:hover {
