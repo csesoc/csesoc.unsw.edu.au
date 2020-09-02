@@ -9,7 +9,6 @@
 package login
 
 import (
-	"log"
 	"fmt"
 	"github.com/go-ldap/ldap/v3"
 )
