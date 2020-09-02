@@ -5,15 +5,15 @@
 // ----------------------------------------------------------------------
   // #Spacing Values
 // ----------------------------------------------------------------------
-$space-xxxs: 0.25em;
-$space-xxs: 0.375em;
-$space-xs: 0.5em;
-$space-sm: 0.75em;
-$space-md: 1.25em;
-$space-lg: 2em;
-$space-xl: 3.25em;
-$space-xxl: 5.25em;
-$space-xxxl: 8.5em;
+$space-xxxs: 20px; // 20px on desktop
+$space-xxs: 40px;   // 40px on desktop
+$space-xs: 60px;   // 60px on desktop
+$space-sm: 80px;      // 80px on desktop
+$space-md: 100px;   // 100px on desktop
+$space-lg: 160px;     // 160px on desktop
+$space-xl: 200px;   // 200px on desktop
+$space-xxl: 240px;    // 240px on desktop
+$space-xxxl: 280px;  // 280px on desktop
 
 // ----------------------------------------------------------------------
   // #Default Values
