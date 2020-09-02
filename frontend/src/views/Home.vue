@@ -14,20 +14,21 @@
 <template>
   <div id="home">
     <header id="showcase">
-      <h1 class="showcase--h1">
-        We inspire the programmers of the future.
-      </h1>
+      <div class="showcase-image">
+        <h1 class="showcase--h1">
+          We inspire the programmers of the future.
+        </h1>
 
-      <button
-        class="btn--joinUs"
-        @click="scrollto('joinus')">
-          Join Us
-      </button>
+        <button
+          class="btn--joinUs"
+          @click="scrollto('joinus')">
+            Join Us
+        </button>
+      </div>
     </header>
-
+    <h1>HELLO</h1>
     <!-- CSESocs Mission -->
     <div id="mission">
-      
       <h1 class="header"> csesocs mission1 </h1>
       <!--<img src="@/assets/mission.jpg" style="width:50%;">-->
       <p>
@@ -189,6 +190,13 @@ export default {
   height: 100vh;
   width: 100vw;
   text-align: left;
+}
+
+.showcase-image {
+  background-image: url(../assets/landingPageHeaderBackground.png);
+  height: 100vh;
+  /*background-position: 70%;*/
+  background-size: 100%;
 }
 
 #mission p {
