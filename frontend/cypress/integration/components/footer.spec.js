@@ -12,6 +12,7 @@ describe("Footer Testing", () => {
 
         // Check if the internal link is displayed
         cy.get('[data-cy=footer-internal-link]').should( ($lis) => {
+            // Check there is the correct number of items
             expect($lis, '5 items').to.have.length(5);
             // Check if the link is correctly linked
             expect($lis.eq(0), 'first item').to.have.attr('href', 'localhost:8080/');
@@ -35,8 +36,12 @@ describe("Footer Testing", () => {
             expect($lis.eq(4), 'fifth item').to.have.text('Engage');
         });
 
+        // Check if the address is displayed
+        cy.get('[data-cy=footer-media-title]').contains('Social Media');
+
         // Check if the internal link is displayed
         cy.get('[data-cy=footer-social-media-link]').should(($lis) => {
+            // Check there is the correct number of items
             expect($lis, '8 items').to.have.length(8);
             // Check if the link is correctly linked
             expect($lis.eq(0), 'first item').to.have.attr('href', 'https://www.facebook.com/csesoc');
@@ -70,6 +75,35 @@ describe("Footer Testing", () => {
             expect($lis.eq(7), 'eighth item').to.have.attr('href', 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg');
             // Check if the text is correctly displayed
             expect($lis.eq(7), 'eighth item').to.have.text('YouTube');
+        });
+
+        // Check if the address is displayed
+        cy.get('[data-cy=footer-resources-title]').contains('For Your Better Future');
+
+        // Check if the resources link is displayed
+        cy.get('[data-cy=footer-resources-link]').should(($lis) => {
+            // Check there is the correct number of items
+            expect($lis, '5 items').to.have.length(5);
+            // Check if the link is correctly linked
+            expect($lis.eq(0), 'first item').to.have.attr('href', 'https://media.csesoc.org.au/');
+            // Check if the text is correctly displayed
+            expect($lis.eq(0), 'first item').to.have.text('CSESoc Media');
+            // Check if the link is correctly linked
+            expect($lis.eq(1), 'second item').to.have.attr('href', 'https://blog.csesoc.org.au/');
+            // Check if the text is correctly displayed
+            expect($lis.eq(1), 'second item').to.have.text('CSESoc Blog');
+            // Check if the link is correctly linked
+            expect($lis.eq(2), 'third item').to.have.attr('href', 'https://compclub.csesoc.unsw.edu.au/');
+            // Check if the text is correctly displayed
+            expect($lis.eq(2), 'third item').to.have.text('CSESoc Compclub');
+            // Check if the link is correctly linked
+            expect($lis.eq(3), 'forth item').to.have.attr('href', 'https://www.engineering.unsw.edu.au/computer-science-engineering/');
+            // Check if the text is correctly displayed
+            expect($lis.eq(3), 'forth item').to.have.text('UNSW CSE');
+            // Check if the link is correctly linked
+            expect($lis.eq(4), 'fifth item').to.have.attr('href', 'https://www.handbook.unsw.edu.au/');
+            // Check if the text is correctly displayed
+            expect($lis.eq(4), 'fifth item').to.have.text('UNSW Handbook');
         });
     });
 })
