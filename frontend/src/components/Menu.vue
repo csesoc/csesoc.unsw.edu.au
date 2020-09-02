@@ -209,14 +209,12 @@ export default {
 
     .link {
       text-align: right;
-
       color: white;
       cursor: pointer; /* To simulate a link */
       font-weight: normal;
       transition: all .2s ease-in-out;
       width: fit-content;
       margin-left: auto;
-
 
       a {
         @extend p; /* Copy <p> */
@@ -225,7 +223,6 @@ export default {
         cursor: pointer; /* To simulate a link */
         line-height: 1.25em !important;
       }
-
 
       &:hover {
         font-weight: bolder;
