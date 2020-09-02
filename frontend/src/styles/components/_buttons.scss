@@ -4,33 +4,8 @@
 
 // ----------------------------------------------------------------------
 
-.btn--joinUs {
-  @extend .btn--lg;
-  border: 2px solid #ffffff;
-  // TODO: Fix position depending on spacing
-  left: 80vw;
-  background-image: url(/assets/tmp_chain.png);
-  background-repeat:no-repeat;
-}
 
-.btn--joinUs:hover {
-  transition: 0.4s;
-  background: #3A75F7;
-}
 
-.btn--joinUs:hover span {
-  display:none
-}
-
-.btn--joinUs:hover:before {
-  background-image: url(/assets/tmp_chain.png);
-  background-repeat:no-repeat;
-}
-/*
-.btn--joinUs:hover {
-  background-color: green;
-}
-*/
 // ----------------------------------------------------------------------
 
 // #Variables
@@ -50,7 +25,7 @@ $btn-radius: 0px;
   text-decoration: none;
   line-height: 1;
 
-  padding: $space-sm $space-md;
+  padding: $space-xxxs $space-xxs;
   border-radius: $btn-radius;
 
   color: $light-color;

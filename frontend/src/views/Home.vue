@@ -13,7 +13,7 @@
 
 <template>
   <div id="home">
-    <header id="showcase">
+    <div id="showcase">
       <div class="showcase-image">
         <h1 class="showcase--h1">
           We inspire the programmers of the future.
@@ -25,10 +25,10 @@
             Join Us
         </button>
       </div>
-    </header>
+    </div>
     <!-- CSESocs Mission -->
     <div class="mission">
-      <h1 class="mission--h1"> csesocs mission1 </h1>
+      <h1 class="mission--h1"> CSESOCS MISSION </h1>
       <p class=mission--p>
         "To empower every person and every organization on the planet to achieve more.
         We strive to create local opportunity, growth, and impact in every country around the world. "
@@ -188,10 +188,44 @@ export default {
   height: 100vh;
   width: 100vw;
   text-align: left;
+  margin-bottom: $space-sm;
+}
+
+.showcase--h1 {
+  padding-left: 7%;
+  @extend h1;
+  color: $light-color;
+  /*padding-right: 9em;*/
+  padding-right: 50vw;
+  line-height: 95px;
+  padding-top: $space-xl;
+}
+
+.btn--joinUs {
+  @extend .btn--lg;
+  border: 2px solid #ffffff;
+  // TODO: Fix position depending on spacing
+  left: 80vw;
+  //background-image: url(/assets/tmp_chain.png);
+  //background-repeat:no-repeat;
+}
+
+.btn--joinUs:hover {
+  transition: 0.4s;
+  background: rgba(102,255,255, 0.2);
+}
+
+.btn--joinUs:hover span {
+  display:none
+}
+
+.btn--joinUs:hover:before {
+  background-image: url(/assets/tmp_chain.png);
+  background-repeat:no-repeat;
 }
 
 .showcase-image {
-  background-image: linear-gradient(transparent, transparent, $dark-color-1, ), url(../assets/landingPageHeaderBackground.png);
+  background-image: linear-gradient(transparent, transparent, $dark-color-1), url(../assets/landingPageHeaderBackground.png);
   height: 100vh;
   background-position: 75% 50%;
   background-size: 100%;
@@ -205,20 +239,37 @@ export default {
   background-size: 100%;
   background-size: cover;
   position: relative;
-  padding-top: $space-xl;
+  margin-bottom: $space-xl;
+}
+
+.mission--h1 {
+  padding-left: 7%;
+  @extend h1;
+  color: $light-color;
+  padding-top: $space-md;
+  position: relative;
+}
+
+.mission--p {
+  // TODO: find which size this is actually meant to be
+  @extend h3;
+  color: $light-color;
+  padding-left: 67%;
+  padding-right: 7%;
+  padding-top: $space-md;
+  position: relative;
 }
 
 .mission::before {
-      content: "";
-      background-image: linear-gradient($dark-color-1, transparent, $dark-color-1), url(../assets/mission.jpg);
-      background-size: cover;
-      position: absolute;
-      width: 60%;
-      top: 0px;
-      right: 0px;
-      bottom: 0px;
-      left: 0px;
-      padding-top: 200px;
+  content: "";
+  background-image: linear-gradient($dark-color-1, transparent, $dark-color-1), url(../assets/mission.jpg);
+  background-size: cover;
+  position: absolute;
+  width: 60%;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
 }
 
 #sponsor {
