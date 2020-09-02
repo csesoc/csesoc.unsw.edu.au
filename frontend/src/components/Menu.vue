@@ -220,7 +220,7 @@ export default {
         @extend p; /* Copy <p> */
         text-decoration: none; /* Remove underline from links */
         color: white;
-        cursor: pointer; /* To simulate a link */ 
+        cursor: pointer; /* To simulate a link */
       }
 
       &:hover {
