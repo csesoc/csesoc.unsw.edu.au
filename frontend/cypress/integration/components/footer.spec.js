@@ -11,7 +11,6 @@ describe("Footer Testing", () => {
         cy.get('[data-cy=footer-address]').contains('B03 CSE Building K17, UNSW');
 
         // Check if the internal link is displayed
-
         cy.get('[data-cy=footer-internal-link]').should( ($lis) => {
             expect($lis, '5 items').to.have.length(5);
             // Check if the link is correctly linked
@@ -36,15 +35,41 @@ describe("Footer Testing", () => {
             expect($lis.eq(4), 'fifth item').to.have.text('Engage');
         });
 
-        // Check if the external link is displayed and the logo is displayed
-
+        // Check if the internal link is displayed
         cy.get('[data-cy=footer-social-media-link]').should(($lis) => {
             expect($lis, '8 items').to.have.length(8);
+            // Check if the link is correctly linked
             expect($lis.eq(0), 'first item').to.have.attr('href', 'https://www.facebook.com/csesoc');
+            // Check if the text is correctly displayed
             expect($lis.eq(0), 'first item').to.have.text('Facebook Page');
-            expect($lis.eq(1), 'second item').to.have.attr('href', 'https://www.facebook.com/csesoc');
-            expect($lis.eq(1), 'second item').to.have.text('Facebook Page');
-
+            // Check if the link is correctly linked
+            expect($lis.eq(1), 'second item').to.have.attr('href', 'https://www.facebook.com/groups/csesoc');
+            // Check if the text is correctly displayed
+            expect($lis.eq(1), 'second item').to.have.text('Facebook Group');
+            // Check if the link is correctly linked
+            expect($lis.eq(2), 'third item').to.have.attr('href', 'https://www.instagram.com/csesoc_unsw');
+            // Check if the text is correctly displayed
+            expect($lis.eq(2), 'third item').to.have.text('Instagram');
+            // Check if the link is correctly linked
+            expect($lis.eq(3), 'forth item').to.have.attr('href', 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u');
+            // Check if the text is correctly displayed
+            expect($lis.eq(3), 'forth item').to.have.text('Discord Community');
+            // Check if the link is correctly linked
+            expect($lis.eq(4), 'fifth item').to.have.attr('href', 'https://csesoc-community.slack.com/');
+            // Check if the text is correctly displayed
+            expect($lis.eq(4), 'fifth item').to.have.text('Slack Community');
+            // Check if the link is correctly linked
+            expect($lis.eq(5), 'sixth item').to.have.attr('href', 'https://www.linkedin.com/company/csesoc/');
+            // Check if the text is correctly displayed
+            expect($lis.eq(5), 'sixth item').to.have.text('LinkedIn');
+            // Check if the link is correctly linked
+            expect($lis.eq(6), 'seventh item').to.have.attr('href', '#');
+            // Check if the text is correctly displayed
+            expect($lis.eq(6), 'seventh item').to.have.text('Tiktok');
+            // Check if the link is correctly linked
+            expect($lis.eq(7), 'eighth item').to.have.attr('href', 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg');
+            // Check if the text is correctly displayed
+            expect($lis.eq(7), 'eighth item').to.have.text('YouTube');
         });
     });
 })
