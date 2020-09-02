@@ -28,8 +28,7 @@
     </header>
     <!-- CSESocs Mission -->
     <div class="mission">
-      <!--<img class="mission-image"/>-->
-      <h1 class="header--h1"> csesocs mission1 </h1>
+      <h1 class="mission--h1"> csesocs mission1 </h1>
       <p class=mission--p>
         "To empower every person and every organization on the planet to achieve more.
         We strive to create local opportunity, growth, and impact in every country around the world. "
@@ -179,11 +178,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 #home {
-  background-color: #000033;
-
+  background-color: $dark-color-1;
 }
 
 #showcase {
@@ -193,7 +191,7 @@ export default {
 }
 
 .showcase-image {
-  background-image: url(../assets/landingPageHeaderBackground.png);
+  background-image: linear-gradient(transparent, transparent, $dark-color-1, ), url(../assets/landingPageHeaderBackground.png);
   height: 100vh;
   background-position: 75% 50%;
   background-size: 100%;
@@ -207,11 +205,12 @@ export default {
   background-size: 100%;
   background-size: cover;
   position: relative;
+  padding-top: $space-xl;
 }
 
 .mission::before {
       content: "";
-      background-image: url(../assets/mission.jpg);
+      background-image: linear-gradient($dark-color-1, transparent, $dark-color-1), url(../assets/mission.jpg);
       background-size: cover;
       position: absolute;
       width: 60%;
@@ -219,11 +218,7 @@ export default {
       right: 0px;
       bottom: 0px;
       left: 0px;
-}
-
-.mission-text {
-  width: 50%;
-  float: left;
+      padding-top: 200px;
 }
 
 #sponsor {

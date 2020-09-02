@@ -7,29 +7,28 @@
 .showcase--h1 {
   padding-left: 7%;
   @extend h1;
-  color: #ffffff;
+  color: $light-color;
   /*padding-right: 9em;*/
   padding-right: 50vw;
   line-height: 95px;
-  padding-top: 20vh;
+  padding-top: $space-xl;
 }
 
-.header--h1 {
+.mission--h1 {
   padding-left: 7%;
   @extend h1;
-  color: #ffffff;
-  // TODO: change this to spacing-md
-  padding-top: 10%;
+  color: $light-color;
+  padding-top: $space-md;
   position: relative;
 }
 
 .mission--p {
+  // TODO: find which size this is actually meant to be
   @extend h4;
-  color: white;
+  color: $light-color;
   padding-left: 70%;
   padding-right: 10%;
-  // TODO: change this to spacing-md
-  padding-top: 10%;
+  padding-top: $space-md;
   position: relative;
 }
 
