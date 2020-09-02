@@ -14,10 +14,23 @@
   padding-top: 20vh;
 }
 
-.header {
+.header--h1 {
   padding-left: 7%;
   @extend h1;
   color: #ffffff;
+  // TODO: change this to spacing-md
+  padding-top: 10%;
+  position: relative;
+}
+
+.mission--p {
+  @extend h4;
+  color: white;
+  padding-left: 70%;
+  padding-right: 10%;
+  // TODO: change this to spacing-md
+  padding-top: 10%;
+  position: relative;
 }
 
 // ----------------------------------------------------------------------

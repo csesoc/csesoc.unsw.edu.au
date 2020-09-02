@@ -26,13 +26,13 @@
         </button>
       </div>
     </header>
-    <h1>HELLO</h1>
     <!-- CSESocs Mission -->
-    <div id="mission">
-      <h1 class="header"> csesocs mission1 </h1>
-      <!--<img src="@/assets/mission.jpg" style="width:50%;">-->
-      <p>
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temp or invidunt ut labore et dolore "
+    <div class="mission">
+      <!--<img class="mission-image"/>-->
+      <h1 class="header--h1"> csesocs mission1 </h1>
+      <p class=mission--p>
+        "To empower every person and every organization on the planet to achieve more.
+        We strive to create local opportunity, growth, and impact in every country around the world. "
       </p>
     </div>
 
@@ -195,16 +195,35 @@ export default {
 .showcase-image {
   background-image: url(../assets/landingPageHeaderBackground.png);
   height: 100vh;
-  background-position: 80% 50%;
+  background-position: 75% 50%;
   background-size: 100%;
   background-size: cover;
 }
 
-#mission p {
-  font-size: 40px;
-  align-items: center;
-  text-align: center;
-  padding: 5vh 11vw;
+.mission {
+  height: 120vh;
+  width: 100vw;
+  float: left;
+  background-size: 100%;
+  background-size: cover;
+  position: relative;
+}
+
+.mission::before {
+      content: "";
+      background-image: url(../assets/mission.jpg);
+      background-size: cover;
+      position: absolute;
+      width: 60%;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+}
+
+.mission-text {
+  width: 50%;
+  float: left;
 }
 
 #sponsor {
