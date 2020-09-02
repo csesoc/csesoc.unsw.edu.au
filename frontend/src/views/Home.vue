@@ -86,8 +86,8 @@
       <Preview :items="resourceItems"/>
     </v-container>
 
-    <v-container>
-      <CommunityLinks></CommunityLinks>
+    <v-container ref="joinus">
+      <CommunityLinks ></CommunityLinks>
     </v-container>
 
     <!-- Support CSESoc -->

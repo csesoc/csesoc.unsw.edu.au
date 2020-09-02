@@ -14,14 +14,14 @@
           <!-- Logo -->
           <v-col cols="2">
             <RouterLink to="/">
-              <v-img @click.stop="hide" class="logo-btn" width="140px" src="@/assets/csesoc-logo-white.svg" />
+              <v-img @click.stop="hide" class="logo-btn" width="140px" height="32px" src="@/assets/csesoc-logo-white.svg" />
             </RouterLink>
           </v-col>
           <!-- Spacer -->
           <v-spacer></v-spacer>
           <!-- Close -->
           <v-col cols="1">
-            <v-img @click.stop="hide" class="close-btn" width="32px" src="@/assets/close-icon.svg" />
+            <v-img @click.stop="hide" class="close-btn" width="32px" height="32px" src="@/assets/close-icon.svg" />
           </v-col>
         </v-row>
       </v-container>
@@ -30,7 +30,7 @@
       <v-container class="body stack-elem">
         <v-row no-gutters style="height: 100%;">
           <!-- Page links -->
-          <v-col cols="6">
+          <v-col xs="12" sm="6">
             <div class="page-links-container" @click.stop="hide">
               <RouterLink to="/about" class="link">
                 <h2>001 | About</h2>
@@ -47,30 +47,44 @@
             </div>
           </v-col>
           <!-- Social links -->
-          <v-col cols="6">
+          <v-col xs="12" sm="6">
             <div class="social-links-container">
               <div class="push-down">
-                <a class="link" href="https://www.facebook.com/csesoc/">
-                  <p>Facebook</p>
-                </a>
-                <a class="link" href="https://www.instagram.com/csesoc_unsw/">
-                  <p>Instagram</p>
-                </a>
-                <a class="link" href="https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u">
-                  <p>Discord Community</p>
-                </a>
-                <a class="link" href="https://csesoc-community.slack.com/">
-                  <p>Slack Community</p>
-                </a>
-                <a class="link" href="https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg">
-                  <p>Youtube</p>
-                </a>
-                <a class="link" href="https://www.linkedin.com/company/csesoc/">
-                  <p>LinkedIn</p>
-                </a>
-                <a class="link" href="#">
-                  <p>TikTok</p>
-                </a>
+                <div class="link">
+                  <a target="_blank" href="https://www.facebook.com/csesoc/" >
+                    Facebook
+                  </a>
+                </div>
+                <div class="link">
+                  <a target="_blank" href="https://www.instagram.com/csesoc_unsw/">
+                    Instagram
+                  </a>
+                </div>
+                <div class="link">
+                  <a target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u">
+                    Discord Community
+                  </a>
+                </div>
+                <div class="link">
+                  <a target="_blank" href="https://csesoc-community.slack.com/">
+                    Slack Community
+                  </a>
+                </div>
+                <div class="link">
+                  <a target="_blank" href="https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg">
+                    Youtube
+                  </a>
+                </div>
+                <div class="link">
+                  <a target="_blank" href="https://www.linkedin.com/company/csesoc/">
+                    LinkedIn
+                  </a>
+                </div>
+                <div class="link">
+                  <a href="#">
+                    TikTok
+                  </a>
+                </div>
               </div>
             </div>
           </v-col>
@@ -79,12 +93,12 @@
 
       <!-- Footer -->
       <v-container class="stack-elem">
-        <div class="footer">
+        <v-row no-gutters class="footer">
           <p style="display: inline;">
             <img height="14px" src="@/assets/moon-icon.png" style="padding-right: 5px;">
             Only Dark mode allowed here at CSESoc. Our apologies.
           </p>
-        </div>
+        </v-row>
       </v-container>
     </div>
   </div>
@@ -197,19 +211,20 @@ export default {
     width: 100%;
 
     .link {
-      text-decoration: none; /* Remove underline from links */
       text-align: right;
-      color: white;
       padding: $space-xxxs/2; /* Add some padding */
       padding-right: 0px; /* Keep it right aligned */
       cursor: pointer; /* To simulate a link */
       font-weight: normal;
       transition: all .2s ease-in-out;
-      width: 200px;
+      width: fit-content;
+      margin-left: auto;
 
-      p {
-        cursor: pointer; /* To simulate a link */
-      };
+      a {
+        @extend p; /* Copy <p> */
+        text-decoration: none; /* Remove underline from links */
+        color: white;
+      }
 
       &:hover {
         font-weight: bolder;
