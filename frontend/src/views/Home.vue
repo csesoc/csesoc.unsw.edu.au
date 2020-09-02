@@ -195,8 +195,9 @@ export default {
 .showcase-image {
   background-image: url(../assets/landingPageHeaderBackground.png);
   height: 100vh;
-  /*background-position: 70%;*/
+  background-position: 80% 50%;
   background-size: 100%;
+  background-size: cover;
 }
 
 #mission p {
