@@ -21,6 +21,7 @@
 
         <button
           class="btn--joinUs"
+          data-cy=joinus-button
           @click="scrollto('joinus')">
             Join Us
         </button>
@@ -195,7 +196,6 @@ export default {
   padding-left: 7%;
   @extend h1;
   color: $light-color;
-  /*padding-right: 9em;*/
   padding-right: 50vw;
   line-height: 95px;
   padding-top: $space-xl;
@@ -204,24 +204,12 @@ export default {
 .btn--joinUs {
   @extend .btn--lg;
   border: 2px solid #ffffff;
-  // TODO: Fix position depending on spacing
   left: 80vw;
-  //background-image: url(/assets/tmp_chain.png);
-  //background-repeat:no-repeat;
 }
 
 .btn--joinUs:hover {
   transition: 0.4s;
   background: rgba(102,255,255, 0.2);
-}
-
-.btn--joinUs:hover span {
-  display:none
-}
-
-.btn--joinUs:hover:before {
-  background-image: url(/assets/tmp_chain.png);
-  background-repeat:no-repeat;
 }
 
 .showcase-image {
@@ -251,7 +239,6 @@ export default {
 }
 
 .mission--p {
-  // TODO: find which size this is actually meant to be
   @extend h3;
   color: $light-color;
   padding-left: 67%;
@@ -260,6 +247,7 @@ export default {
   position: relative;
 }
 
+// css for background image only
 .mission::before {
   content: "";
   background-image: linear-gradient($dark-color-1, transparent, $dark-color-1), url(../assets/mission.jpg);
