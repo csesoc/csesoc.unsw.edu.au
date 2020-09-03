@@ -93,23 +93,22 @@
     </v-container>
 
     <!-- Sponsor -->
-    <v-container id=sponsor >
-      <HeaderTitle :title="'support csesoc'" />
-      <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-        </p>
-        <RouterLink to="/sponsors" class="link" >
-          <a
-            style="float:right"
-            target="_blank"
-            v-ripple
-            class="button">
-            Sponsor Us
-          </a>
-        </RouterLink>
-    </v-container>
+    <div class=sponsor >
+      <h1 class=sponsor--h1>SUPPORT CSESOC</h1>
+      <div class=sponsor-block1>
+        <h4 class=sponsor--h4>Reach Australia's Best Computing Graduates</h4>
+
+      </div>
+      <div class=sponsor-block2>
+        <h4 class=sponsor--h4>Interact With Our Huge Active Community</h4>
+
+      </div>
+      <RouterLink to="/sponsors" class="link" >
+        <button class="btn--sponsorUs">
+          Sponsor Us
+        </button>
+      </RouterLink>
+    </div>
 
   </div>
 </template>
@@ -264,27 +263,51 @@ export default {
   left: 0px;
 }
 
+/*
+.mission {
+  float: left;
+  background-size: 100%;
+  background-size: cover;
+  position: relative;
+  margin-bottom: $space-xl;
+}*/
 // Sponsor
-#sponsor {
-  align-items: right;
+.sponsor {
   padding-bottom: 150px;
+  margin-bottom: space-xl;
+
 }
 
-#sponsor p {
-  font-size: 30px;
-  padding: 0 0 25px 0;
+.sponsor--h1 {
+  padding-left: 7%;
+  @extend h1;
+  color: $light-color;
 }
 
-#sponsor .button {
-  text-align: center;
-  background: rgb(54, 119, 243);
-  border-radius: 0px;
-  color: #fff;
-  font-size: 30px;
-  font-weight: bold;
-  padding: 15px 20px;
-  text-decoration: none;
-  width: 250px;
+.sponsor--h4 {
+  padding-left: 33%;
+  @extend h4;
+  color: $light-color;
+}
+
+.sponsor-block1 {
+  margin-top: space-md;
+  margin-bottom: space-xs;
+}
+
+.sponsor-block1 {
+  margin-bottom: space-md;
+}
+
+.btn--sponsorUs {
+  @extend .btn--lg;
+  border: 2px solid #ffffff;
+  left: 75.5vw;
+}
+
+.btn--sponsorUs:hover {
+  transition: 0.4s;
+  background: rgba(102,255,255, 0.2);
 }
 
 .fb-event-link {
