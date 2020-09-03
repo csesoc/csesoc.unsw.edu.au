@@ -13,6 +13,7 @@
 
 <template>
   <div id="home">
+    <!-- Showcase -->
     <div id="showcase">
       <div class="showcase-image">
         <h1 class="showcase--h1">
@@ -27,7 +28,7 @@
         </button>
       </div>
     </div>
-    <!-- CSESocs Mission -->
+    <!-- Mission -->
     <div class="mission">
       <h1 class="mission--h1"> CSESOCS MISSION </h1>
       <p class=mission--p>
@@ -35,7 +36,7 @@
         We strive to create local opportunity, growth, and impact in every country around the world. "
       </p>
     </div>
-
+    <!-- Events -->
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <HeaderTitle :title="'upcoming events'" />
       <v-row>
@@ -59,7 +60,7 @@
         <a href = "https://www.facebook.com/csesoc/events" class="fb-event-link">See more events on our Facebook page! ⭝</a>
       </v-row>
     </v-container>
-
+    <!-- Slideshow -->
     <div class="blue-cutout">
       <InfiniteSlideshow duration="32s" direction="reverse">
         <img height="250px" src="@/assets/banner-1.jpg" style="padding-left: 20px; padding-right: 20px;">
@@ -80,17 +81,18 @@
         <img height="250px" src="@/assets/banner-4.jpg" style="padding-left: 20px; padding-right: 20px;">
       </InfiniteSlideshow>
     </div>
-
+    <!-- Resources -->
     <v-container>
       <HeaderTitle :title="'resources'" />
       <Preview :items="resourceItems"/>
     </v-container>
 
+    <!-- Join Us -->
     <v-container ref="joinus">
       <CommunityLinks ></CommunityLinks>
     </v-container>
 
-    <!-- Support CSESoc -->
+    <!-- Sponsor -->
     <v-container id=sponsor >
       <HeaderTitle :title="'support csesoc'" />
       <p>
@@ -185,6 +187,7 @@ export default {
   background-color: $dark-color-1;
 }
 
+// Showcase
 #showcase {
   height: 100vh;
   width: 100vw;
@@ -220,6 +223,7 @@ export default {
   background-size: cover;
 }
 
+// Mission
 .mission {
   height: 120vh;
   width: 100vw;
@@ -260,6 +264,7 @@ export default {
   left: 0px;
 }
 
+// Sponsor
 #sponsor {
   align-items: right;
   padding-bottom: 150px;
