@@ -97,11 +97,9 @@
       <h1 class=sponsor--h1>SUPPORT CSESOC</h1>
       <div class=sponsor-block1>
         <h4 class=sponsor--h4>Reach Australia's Best Computing Graduates</h4>
-
       </div>
       <div class=sponsor-block2>
         <h4 class=sponsor--h4>Interact With Our Huge Active Community</h4>
-
       </div>
       <RouterLink to="/sponsors" class="link" >
         <button class="btn--sponsorUs">
@@ -273,30 +271,29 @@ export default {
 }*/
 // Sponsor
 .sponsor {
-  padding-bottom: 150px;
-  margin-bottom: space-xl;
-
+  margin-bottom: $space-xl;
 }
 
 .sponsor--h1 {
-  padding-left: 7%;
+  margin-left: 7%;
   @extend h1;
   color: $light-color;
+  margin-bottom:  $space-md;
 }
 
 .sponsor--h4 {
   padding-left: 33%;
   @extend h4;
   color: $light-color;
+  margin-bottom: $space-md;
 }
 
 .sponsor-block1 {
-  margin-top: space-md;
-  margin-bottom: space-xs;
+  margin-bottom: $space-xs;
 }
 
 .sponsor-block1 {
-  margin-bottom: space-md;
+  margin-bottom: $space-md;
 }
 
 .btn--sponsorUs {
