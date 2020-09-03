@@ -10,6 +10,7 @@ package login
 
 import (
 	"fmt"
+	"regexp"
 	"github.com/go-ldap/ldap/v3"
 )
 
@@ -43,6 +44,12 @@ func bind(zId string, password string) (*ldap.Conn, bool, error) {
 // state, and the name of the authenticated user.
 func login(zId string, password string) (bool, string, error) {
 
+	// We can expect a zId to be of the form zXXXXXXX.
+	
+	if valid, _:= regexp.MatchString(`[zZ]\d{7}`, zId); !valid {
+		return false, "", fmt.Errorf("Invalid zID.")
+	}
+
 	conn, auth, err := bind(zId, password)
 
 	// Ensure the connection is closed on completion.
@@ -60,15 +67,15 @@ func login(zId string, password string) (bool, string, error) {
 		baseDN,
 		ldap.ScopeWholeSubtree,
 		ldap.NeverDerefAliases,
-		0, // Max time for request.
+		10, // Max time for request (seconds).
 		0, // Max size of request.
-		false, // 
+		false, // typesOnly flag 
 		"(cn="+zId+")", // Common name is set to the zID, and is used as search filter.
 		[]string{"displayName"}, // We only require the name of the user.
-		nil,
+		nil, 
 	))
 	
-	if err != nil {
+	if err != nil || len(result.Entries) == 0{
 		return true, "", err
 	}
 
