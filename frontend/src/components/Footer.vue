@@ -5,113 +5,101 @@
 -->
 
 <template>
-  <v-footer dark padless id="tiers" >
-    <v-card style="padding:75px;width:100%">
-
-      <v-card-text class="white--text" style="float:left;width:25%">
-        <v-container class="fill-height" fluid style="float:left;max-height: 200px;max-width:300px;">
-          <v-img src="@/assets/csesocwhiteblue.png" />
-          <br/>B03 CSE Building K17, 
-          <br/> UNSW
-          <br/>
-        </v-container>
-      </v-card-text>
-      <v-card-text class="white--text" style="float:left;width:20%">
-        <a href="https://www.facebook.com/csesoc">About</a>
-        <br/>
-        <a href="https://www.facebook.com/groups/csesoc">Events</a>
-        <br/>
-        <a href="https://www.linkedin.com/company/csesoc/about/">CSE Resources</a>
-        <br/>
-        <a id="tiers__link" href="mailto:csesoc@csesoc.org.au">Sponsorship</a>
-        <br/>
-        <a id="tiers__link" href="mailto:csesoc@csesoc.org.au">Engage</a>
-      </v-card-text>
-      <v-card-text class="white--text" style="float:left;width:20%">
-        <a href="https://www.facebook.com/csesoc">Facebook Page</a>
-        <br/>
-        <a href="https://www.facebook.com/groups/csesoc">Instagram</a>
-        <br/>
-        <a href="https://www.linkedin.com/company/csesoc/about/">LinkedIn</a>
-        <br/>
-        <a id="tiers__link" href="mailto:csesoc@csesoc.org.au">Twitter</a>
-        <br/>
-        <a id="tiers__link" href="mailto:csesoc@csesoc.org.au">Youtube</a>
-      </v-card-text>
-<<<<<<< HEAD
-
-      <v-divider></v-divider>
-
-      <v-card-text class="white-text text-center">
-        &copy; {{ new Date().getFullYear() }} &mdash;
-        <strong>CSESoc UNSW</strong>
-=======
-      <v-card-text class="white--text" style="float:left;width:25%">
-        <a href="https://www.facebook.com/csesoc">Notangle</a>
-        <br/>
-        <a href="https://www.facebook.com/groups/csesoc">Compclub</a>
-        <br/>
-        <a href="https://www.linkedin.com/company/csesoc/about/">Job Board</a>
-        <br/>
-        <a id="tiers__link" href="mailto:csesoc@csesoc.org.au">CSE UNSW</a>
-        <br/>
-        <a id="tiers__link" href="mailto:csesoc@csesoc.org.au">CSESoc Media</a>
->>>>>>> inital framework for footer
-      </v-card-text>
-    </v-card>
+  <v-footer color="#000033" padless >
+    <v-container class="white--text" style="padding:75px" fluid>
+      <v-row no-gutters>
+        <v-col
+          sm="6"
+        >
+          <div class="white-text" style="margin-bottom:20%">
+          <v-img class="img-size" src="@/assets/csesoc-logo-white.svg" />
+          <br/>B03 CSE Building K17, UNSW
+          <br/> <a href="mailto:csesoc@csesoc.org.au"> csesoc@csesoc.org.au </a>
+          </div>
+          © 2020 — CSESoc UNSW
+        </v-col>
+        <v-col
+          sm="6"
+        >
+          <div class="white-text">
+            <div class="nav-divider">
+              <a style="padding-right:50px" v-for="url in csesocInternal" :key="url.name" :href="url.url">
+              {{ url.name }}
+              </a>
+            </div>
+            <v-row style="margin-top:25px" no-gutters>
+              <v-col
+                sm="5"
+              >
+                <h2>Social Media</h2>
+                <v-list-item class="anchor-items" v-for="url in media" :key="url.name">
+                  <v-list-item-content>
+                    <a :href="url.url">
+                      {{ url.name }}
+                    </a>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-col>
+              <v-col
+                sm="5"
+              >
+                <h2>For your better future</h2>
+                <v-list-item class="anchor-items" v-for="url in csesocExternal" :key="url.name">
+                  <v-list-item-content>
+                    <a :href="url.url">
+                      {{ url.name }}
+                    </a>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-col>
+            </v-row>
+          </div>
+        </v-col>
+      </v-row>
+    </v-container>
   </v-footer>
 </template>
 
 <script type="text/javascript">
-import APIClient from '../utils/APIClient';
-
 export default {
   name: 'Footer',
   data: () => ({
     // sponsors have name, logo, 'tier' value, and link
-    sponsors: []
-  }),
-  computed: {
-    // functions to determine sizing category of sponsor based on their value
-    tierOne() {
-      return this.sponsors.filter((x) => x.tier === 2);
-    },
-    tierTwo() {
-      return this.sponsors.filter((x) => x.tier === 1);
-    },
-    tierThree() {
-      return this.sponsors.filter((x) => x.tier === 0);
-    }
-  },
-  mounted() {
-    APIClient.fetchSponsors()
-      .then((responseJson) => {
-        this.sponsors = responseJson;
-      });
-  }
+    csesocInternal: [
+      { name: 'Home', url: '/' },
+      { name: 'About', url: '/#/about' },
+      { name: 'Resources', url: '/#/resources' },
+      { name: 'Sponsorships', url: '/#/sponsors' },
+      { name: 'Engage', url: '/#/engage' }
+    ],
+    csesocExternal: [
+      { name: 'CSESoc Media', url: 'https://media.csesoc.org.au/' },
+      { name: 'CSESoc Blog', url: '#' },
+      { name: 'CSESoc Compclub', url: '#' },
+      { name: 'UNSW CSE', url: 'https://www.engineering.unsw.edu.au/computer-science-engineering/' },
+      { name: 'UNSW Handbook', url: 'https://www.handbook.unsw.edu.au/' }
+    ],
+    media: [
+      { name: 'Facebook page', url: 'https://www.facebook.com/csesoc/' },
+      { name: 'Facebook Group', url: 'https://www.facebook.com/csesoc/' },
+      { name: 'Instagram', url: 'https://www.instagram.com/csesoc_unsw/' },
+      { name: 'Discord Community', url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u' },
+      { name: 'Slack Community', url: 'https://csesoc-community.slack.com/' },
+      { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' },
+      { name: 'Tiktok', url: '#' }
+    ]
+  })
 };
 </script>
 
 <style scoped>
-<<<<<<< HEAD
-#tiers {
-  margin-top: 0px;
-}
-
-#tiers-sponsors {
-=======
-#tiers__sponsors {
->>>>>>> inital framework for footer
-  background: #4a4a4a;
-  padding-top: 5vw;
-}
-
 .white-text {
   font-size: 16px;
   line-height: 28px;
 }
 
 .white-text a {
+  text-decoration: none;
   color: white;
 }
 
@@ -119,24 +107,17 @@ export default {
   color: #427bff;
 }
 
-.tiers-grid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-left: 1vw;
-  margin-right: 1vw;
+.nav-divider {
+  padding-bottom: 25px;
+  border-bottom:2px solid white
 }
 
-.tiers-box {
-  margin: 20px;
+.anchor-items {
+  margin-left:-15px;
 }
-<<<<<<< HEAD
 
-.tiers-contact {
-  margin-bottom: 1vw;
+.img-size {
+  max-width:300px;
+  max-height:200px;
 }
-=======
->>>>>>> inital framework for footer
 </style>
