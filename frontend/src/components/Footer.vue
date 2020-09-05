@@ -11,10 +11,10 @@
         <v-col
           sm="6"
         >
-          <div class="white-text" style="margin-bottom:20%">
-          <v-img class="img-size" src="@/assets/csesoc-logo-white.svg" />
+          <div class="white-text" style="margin-bottom:20%" data-cy="footer-address">
+          <v-img class="img-size" src="@/assets/csesoc-logo-white.svg" data-cy="footer-main-logo"/>
           <br/>B03 CSE Building K17, UNSW
-          <br/> <a href="mailto:csesoc@csesoc.org.au"> csesoc@csesoc.org.au </a>
+          <br/> <a href="mailto:csesoc@csesoc.org.au" > csesoc@csesoc.org.au </a>
           </div>
           © 2020 — CSESoc UNSW
         </v-col>
@@ -22,7 +22,7 @@
           sm="6"
         >
           <div class="white-text">
-            <div class="nav-divider">
+            <div class="nav-divider" data-cy = "footer-internal-link">
               <a v-for="url in csesocInternal" :key="url.name" :href="url.url">
               {{ url.name }}
               </a>
@@ -31,9 +31,9 @@
               <v-col
                 sm="6"
               >
-                <h4>Social Media</h4>
+                <h4 data-cy="footer-media-title">Social Media</h4>
                 <v-list-item class="anchor-items" v-for="url in media" :key="url.name">
-                  <v-list-item-content>
+                  <v-list-item-content data-cy="footer-social-media-link">
                     <a :href="url.url">
                       {{ url.name }}
                     </a>
@@ -43,9 +43,9 @@
               <v-col
                 sm="6"
               >
-                <h4>For your better future</h4>
+                <h4 data-cy="footer-resources-title">For your better future</h4>
                 <v-list-item class="anchor-items" v-for="url in csesocExternal" :key="url.name">
-                  <v-list-item-content>
+                  <v-list-item-content data-cy=footer-resources-link>
                     <a :href="url.url">
                       {{ url.name }}
                     </a>
