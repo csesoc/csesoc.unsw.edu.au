@@ -6,7 +6,7 @@
 
 <template>
   <v-footer color="#000033" padless >
-    <v-container class="white--text" style="padding:75px" fluid>
+    <v-container class="white--text" style="padding:60px 72px" fluid>
       <v-row no-gutters>
         <v-col
           sm="6"
@@ -23,15 +23,15 @@
         >
           <div class="white-text">
             <div class="nav-divider">
-              <a style="padding-right:50px" v-for="url in csesocInternal" :key="url.name" :href="url.url">
+              <a v-for="url in csesocInternal" :key="url.name" :href="url.url">
               {{ url.name }}
               </a>
             </div>
             <v-row style="margin-top:25px" no-gutters>
               <v-col
-                sm="5"
+                sm="6"
               >
-                <h2>Social Media</h2>
+                <h4>Social Media</h4>
                 <v-list-item class="anchor-items" v-for="url in media" :key="url.name">
                   <v-list-item-content>
                     <a :href="url.url">
@@ -41,9 +41,9 @@
                 </v-list-item>
               </v-col>
               <v-col
-                sm="5"
+                sm="6"
               >
-                <h2>For your better future</h2>
+                <h4>For your better future</h4>
                 <v-list-item class="anchor-items" v-for="url in csesocExternal" :key="url.name">
                   <v-list-item-content>
                     <a :href="url.url">
@@ -92,24 +92,25 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .white-text {
-  font-size: 16px;
-  line-height: 28px;
+  @extend p;
 }
 
 .white-text a {
   text-decoration: none;
   color: white;
+  padding-right:$space-xxs;
 }
 
 .white-text a:hover {
-  color: #427bff;
+  font-weight: 800;
+  transition-duration: 0.5s;
 }
 
 .nav-divider {
-  padding-bottom: 25px;
-  border-bottom:2px solid white
+  padding-bottom: $space-xxs;
+  border-bottom:2px solid white;
 }
 
 .anchor-items {
