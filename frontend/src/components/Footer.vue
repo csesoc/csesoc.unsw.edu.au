@@ -12,9 +12,12 @@
           sm="6"
         >
           <div class="white-text" style="margin-bottom:20%" data-cy="footer-address">
-          <v-img class="img-size" src="@/assets/csesoc-logo-white.svg" data-cy="footer-main-logo"/>
+          <a href="/" data-cy="footer-main-logo-link">
+            <v-img class="img-size" src="@/assets/csesoc-logo-white.svg" data-cy="footer-main-logo"/>
+          </a>
           <br/>B03 CSE Building K17, UNSW
-          <br/> <a href="mailto:csesoc@csesoc.org.au" > csesoc@csesoc.org.au </a>
+          <br/>
+          <a href="mailto:csesoc@csesoc.org.au" > csesoc@csesoc.org.au </a>
           </div>
           © 2020 — CSESoc UNSW
         </v-col>
@@ -74,8 +77,8 @@ export default {
     ],
     csesocExternal: [
       { name: 'CSESoc Media', url: 'https://media.csesoc.org.au/' },
-      { name: 'CSESoc Blog', url: '#' },
-      { name: 'CSESoc Compclub', url: '#' },
+      { name: 'CSESoc Blog', url: 'https://blog.csesoc.org.au/' },
+      { name: 'CSESoc Compclub', url: 'https://compclub.csesoc.unsw.edu.au/' },
       { name: 'UNSW CSE', url: 'https://www.engineering.unsw.edu.au/computer-science-engineering/' },
       { name: 'UNSW Handbook', url: 'https://www.handbook.unsw.edu.au/' }
     ],
@@ -86,7 +89,8 @@ export default {
       { name: 'Discord Community', url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u' },
       { name: 'Slack Community', url: 'https://csesoc-community.slack.com/' },
       { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' },
-      { name: 'Tiktok', url: '#' }
+      { name: 'Tiktok', url: '#' },
+      { name: 'Youtube', url: 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg' }
     ]
   })
 };
@@ -104,7 +108,7 @@ export default {
 }
 
 .white-text a:hover {
-  font-weight: 800;
+  font-weight: 900;
   transition-duration: 0.5s;
 }
 

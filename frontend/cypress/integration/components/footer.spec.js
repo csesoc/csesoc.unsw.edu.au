@@ -5,7 +5,8 @@ describe("Footer Testing", () => {
 
     it('finds whether the logo links to the homepage and the address is displayed', () => {
         // Check if the logo has link
-        cy.get('[data-cy=footer-main-logo]').should('have.attr', 'href', 'localhost:8080/');
+        cy.get('[data-cy=footer-main-logo-link]').should('have.attr', 'href', '/');
+        cy.get('[data-cy=footer-main-logo]');
 
         // Check if the address is displayed
         cy.get('[data-cy=footer-address]').contains('B03 CSE Building K17, UNSW');
@@ -15,23 +16,23 @@ describe("Footer Testing", () => {
             // Check there is the correct number of items
             expect($lis, '5 items').to.have.length(5);
             // Check if the link is correctly linked
-            expect($lis.eq(0), 'first item').to.have.attr('href', 'localhost:8080/');
+            expect($lis.eq(0), 'first item').to.have.attr('href', '/');
             // Check if the text is correctly displayed
             expect($lis.eq(0), 'first item').to.have.text('Home');
             // Check if the link is correctly linked
-            expect($lis.eq(1), 'second item').to.have.attr('href', 'localhost:8080/about');
+            expect($lis.eq(1), 'second item').to.have.attr('href', '/#/about');
             // Check if the text is correctly displayed
             expect($lis.eq(1), 'second item').to.have.text('About');
             // Check if the link is correctly linked
-            expect($lis.eq(2), 'third item').to.have.attr('href', 'localhost:8080/resources');
+            expect($lis.eq(2), 'third item').to.have.attr('href', '/#/resources');
             // Check if the text is correctly displayed
             expect($lis.eq(2), 'third item').to.have.text('Resources');
             // Check if the link is correctly linked
-            expect($lis.eq(3), 'forth item').to.have.attr('href', 'localhost:8080/sponsor');
+            expect($lis.eq(3), 'forth item').to.have.attr('href', '/#/sponsor');
             // Check if the text is correctly displayed
             expect($lis.eq(3), 'forth item').to.have.text('Sponsor');
             // Check if the link is correctly linked
-            expect($lis.eq(4), 'fifth item').to.have.attr('href', 'localhost:8080/engage');
+            expect($lis.eq(4), 'fifth item').to.have.attr('href', '/#/engage');
             // Check if the text is correctly displayed
             expect($lis.eq(4), 'fifth item').to.have.text('Engage');
         });
