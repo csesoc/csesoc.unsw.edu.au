@@ -13,41 +13,28 @@
 
 <template>
   <div id="home">
-    <!-- make header a seperate component! -->
-    <header id="showcase">
-      <!-- CSESoc Image Logo (to replace h1 below)
+    <div id="showcase">
+      <div class="showcase-image">
+        <h1 class="showcase--h1">
+          We inspire the programmers of the future.
+        </h1>
 
-      <v-img
-        v-if="$vuetify.breakpoint.mdAndUp"
-        max-width="35vw"
-        max-height="20vh"
-        contain
-        src="@/assets/csesocwhiteblue.png"
-      />
-      <v-img v-else max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
-      -->
-
-      <h1>
-        CSESoc, Lorem ipsum dolor sit amet, consetetur
-      </h1>
-
-      <!--change this to scroll to Join Us section when created-->
-      <a
-        @click="scrollto('joinus')"
-        target="_blank"
-        v-ripple
-        class="button"
-        data-cy=joinus-button
-      >Join Us</a>
-    </header>
-
+        <button
+          class="btn--joinUs"
+          data-cy=joinus-button
+          @click="scrollto('joinus')">
+            Join Us
+        </button>
+      </div>
+    </div>
     <!-- CSESocs Mission -->
-    <v-container id="mission">
-      <HeaderTitle :title="'csesocs mission'" />
-      <p>
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temp or invidunt ut labore et dolore "
+    <div class="mission">
+      <h1 class="mission--h1"> CSESOCS MISSION </h1>
+      <p class=mission--p>
+        "To empower every person and every organization on the planet to achieve more.
+        We strive to create local opportunity, growth, and impact in every country around the world. "
       </p>
-    </v-container>
+    </div>
 
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <HeaderTitle :title="'upcoming events'" />
@@ -192,63 +179,85 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+#home {
+  background-color: $dark-color-1;
+}
+
 #showcase {
-  align-items: left;
-  background-blend-mode: darken;
-  background-image: url("../assets/black_lozenge_@2X.png");
-  background-position: center;
-  background-repeat: repeat;
-  display: flex;
-  flex-direction: column;
   height: 100vh;
   width: 100vw;
-  justify-content: center;
-  padding: 7% ;
   text-align: left;
+  margin-bottom: $space-sm;
 }
 
-#showcase h1 {
-  color: #fff;
-  font-size: 80px;
-  width: 80%;
-  font-weight: bolder;
+.showcase--h1 {
+  padding-left: 7%;
+  @extend h1;
+  color: $light-color;
+  padding-right: 50vw;
   line-height: 95px;
+  padding-top: $space-xl;
 }
 
-#showcase img {
-  max-height: 30vh;
-  max-width: 30%;
+.btn--joinUs {
+  @extend .btn--lg;
+  border: 2px solid #ffffff;
+  left: 80vw;
 }
 
-#showcase p {
-  font-size: 20px;
-}
-
-#showcase .button {
-  text-align: center;
-  background: rgb(54, 119, 243);
-  border-radius: 0px;
-  color: #fff;
-  font-size: 40px;
-  font-weight: bold;
-  margin-top: 45px;
-  padding: 15px 20px;
-  text-decoration: none;
-  width: 250px;
-}
-
-#showcase .button:hover {
+.btn--joinUs:hover {
   transition: 0.4s;
-  background: rgb(54, 119, 243);
-  color: #fff;
+  background: rgba(102,255,255, 0.2);
 }
 
-#mission p {
-  font-size: 40px;
-  align-items: center;
-  text-align: center;
-  padding: 5vh 11vw;
+.showcase-image {
+  background-image: linear-gradient(transparent, transparent, $dark-color-1), url(../assets/landingPageHeaderBackground.png);
+  height: 100vh;
+  background-position: 75% 50%;
+  background-size: 100%;
+  background-size: cover;
+}
+
+.mission {
+  height: 120vh;
+  width: 100vw;
+  float: left;
+  background-size: 100%;
+  background-size: cover;
+  position: relative;
+  margin-bottom: $space-xl;
+}
+
+.mission--h1 {
+  padding-left: 7%;
+  @extend h1;
+  color: $light-color;
+  padding-top: $space-md;
+  position: relative;
+}
+
+.mission--p {
+  @extend h3;
+  color: $light-color;
+  padding-left: 67%;
+  padding-right: 7%;
+  padding-top: $space-md;
+  position: relative;
+}
+
+// css for background image only
+.mission::before {
+  content: "";
+  background-image: linear-gradient($dark-color-1, transparent, $dark-color-1), url(../assets/mission.jpg);
+  background-size: cover;
+  position: absolute;
+  width: 60%;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
 }
 
 #sponsor {

@@ -7,7 +7,7 @@
 // ----------------------------------------------------------------------
 	// #Type Scale
 // ----------------------------------------------------------------------
-$text-xs: 1em ;   //caption
+$text-xs: 1em;   //caption
 $text-sm: 1em * math.pow($text-scale-ratio, 1);   // h4
 $text-md: 1em * math.pow($text-scale-ratio, 2);   
 $text-lg: 1em * math.pow($text-scale-ratio, 3);   // h2 h3
@@ -92,6 +92,7 @@ button {
   font-size: $text-sm;
   font-weight: 800;
 }
+
 // ----------------------------------------------------------------------
 	// #Text Component - class used to stylize blocks
 // ----------------------------------------------------------------------
