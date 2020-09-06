@@ -286,6 +286,7 @@ export default {
   left: 0px;
 }
 
+// SUPPORT CSESOC SECTION
 .sponsor {
   margin-bottom: $space-xl;
   background-image: url(../assets/supportusbackground.png);
@@ -311,11 +312,13 @@ export default {
   margin-bottom: $space-xs;
 }
 
+// for icon images
 .sponsor--img {
   height: 100px;
   margin-top: $space-xxxs;
 }
 
+// "Sponsor Us" button
 .btn--sponsorUs {
   @extend .btn--lg;
   border: 2px solid #ffffff;
@@ -323,6 +326,7 @@ export default {
 
 .btn--sponsorUs:hover {
   transition: 0.4s;
+  // when on hover, change background from transparent to $brand-color with light opacity
   background: rgba(102,255,255, 0.2);
 }
 
