@@ -94,28 +94,35 @@
 
     <!-- Sponsor -->
     <div class=sponsor >
+      <!-- title -->
       <h1 class=sponsor--h1>SUPPORT CSESOC</h1>
-      <div class=sponsor--block1>
-        <img src="@/assets/share.svg" class="sponsor--img">
-        <div class=sponsor--text>
+      <v-row no-gutters>
+        <v-col cols="4" align="center">
+          <img src="@/assets/trophy.svg" class="sponsor--img">
+        </v-col>
+        <v-col cols="8">
           <h4 class=sponsor--h4>Reach Australia's Best Computing Graduates</h4>
           <p class=sponsor--p> Many of our past members have gone on to work at our previous
             sponsor companies including Google, Facebook, Jane St and Commonwealth Bank. </p>
-        </div>
-      </div>
-      <div class=sponsor--block2>
-        <img src="@/assets/trophy.svg" class="sponsor--img">
-        <div class=sponsor--text>
+        </v-col>
+      </v-row>
+      <v-row no-gutters>
+        <v-col cols="4" align="center">
+          <img src="@/assets/share.svg" class="sponsor--img">
+        </v-col>
+        <v-col cols="8">
           <h4 class=sponsor--h4>Interact With Our Huge Active Community</h4>
           <p class=sponsor--p> We have an extremely active community of ~3000 CSE students,
             achieved through our offering of career, social and educational events. </p>
-        </div>
-      </div>
-      <RouterLink to="/sponsors" class="link" >
-        <button class="btn--sponsorUs">
-          Sponsor Us
-        </button>
-      </RouterLink>
+        </v-col>
+      </v-row>
+      <v-row align="center">
+        <RouterLink to="/sponsors" class="link" >
+          <button class="btn--sponsorUs">
+            Sponsor Us
+          </button>
+        </RouterLink>
+      </v-row>
     </div>
   </div>
 </template>
@@ -281,6 +288,9 @@ export default {
 // Sponsor
 .sponsor {
   margin-bottom: $space-xl;
+  background-image: linear-gradient(transparent, transparent, $dark-color-1), url(../assets/landingPageHeaderBackground.png);
+  background-size: cover;
+  background-position: 75% 50%;
 }
 
 .sponsor--h1 {
@@ -304,29 +314,16 @@ export default {
 
 .sponsor--text {
   //width: 70%;
-  opacity: 1;
-  float: left;
   width: 70%;
 }
 
 .sponsor--img {
   height: 100px;
-  float: left;
-  width: 30%;
-}
-
-.sponsor--block1 {
-  padding-bottom: $space-md;
-}
-
-.sponsor--block2 {
-  padding-bottom: $space-md;
 }
 
 .btn--sponsorUs {
   @extend .btn--lg;
   border: 2px solid #ffffff;
-  left: 75.5vw;
 }
 
 .btn--sponsorUs:hover {
