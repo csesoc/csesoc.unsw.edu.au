@@ -6,15 +6,18 @@
 
 <template>
   <v-footer color="#000033" padless >
-    <v-container class="white--text" style="padding:75px" fluid>
+    <v-container class="white--text" style="padding:60px 72px" fluid>
       <v-row no-gutters>
         <v-col
           sm="6"
         >
-          <div class="white-text" style="margin-bottom:20%">
-          <v-img class="img-size" src="@/assets/csesoc-logo-white.svg" />
+          <div class="white-text" style="margin-bottom:20%" data-cy="footer-address">
+          <a href="/">
+            <v-img class="img-size" src="@/assets/csesoc-logo-white.svg" data-cy="footer-logo"/>
+          </a>
           <br/>B03 CSE Building K17, UNSW
-          <br/> <a href="mailto:csesoc@csesoc.org.au"> csesoc@csesoc.org.au </a>
+          <br/>
+          <a href="mailto:csesoc@csesoc.org.au" > csesoc@csesoc.org.au </a>
           </div>
           © 2020 — CSESoc UNSW
         </v-col>
@@ -22,18 +25,18 @@
           sm="6"
         >
           <div class="white-text">
-            <div class="nav-divider">
-              <a style="padding-right:50px" v-for="url in csesocInternal" :key="url.name" :href="url.url">
+            <div class="nav-divider" data-cy = "footer-internal-link">
+              <a v-for="url in csesocInternal" :key="url.name" :href="url.url">
               {{ url.name }}
               </a>
             </div>
             <v-row style="margin-top:25px" no-gutters>
               <v-col
-                sm="5"
+                sm="6"
               >
-                <h2>Social Media</h2>
+                <h4 data-cy="footer-media-title">Social Media</h4>
                 <v-list-item class="anchor-items" v-for="url in media" :key="url.name">
-                  <v-list-item-content>
+                  <v-list-item-content data-cy="footer-media-link">
                     <a :href="url.url">
                       {{ url.name }}
                     </a>
@@ -41,11 +44,11 @@
                 </v-list-item>
               </v-col>
               <v-col
-                sm="5"
+                sm="6"
               >
-                <h2>For your better future</h2>
+                <h4 data-cy="footer-resources-title">For your better future</h4>
                 <v-list-item class="anchor-items" v-for="url in csesocExternal" :key="url.name">
-                  <v-list-item-content>
+                  <v-list-item-content data-cy=footer-resources-link>
                     <a :href="url.url">
                       {{ url.name }}
                     </a>
@@ -74,8 +77,8 @@ export default {
     ],
     csesocExternal: [
       { name: 'CSESoc Media', url: 'https://media.csesoc.org.au/' },
-      { name: 'CSESoc Blog', url: '#' },
-      { name: 'CSESoc Compclub', url: '#' },
+      { name: 'CSESoc Blog', url: 'https://blog.csesoc.org.au/' },
+      { name: 'CSESoc Compclub', url: 'https://compclub.csesoc.unsw.edu.au/' },
       { name: 'UNSW CSE', url: 'https://www.engineering.unsw.edu.au/computer-science-engineering/' },
       { name: 'UNSW Handbook', url: 'https://www.handbook.unsw.edu.au/' }
     ],
@@ -86,30 +89,32 @@ export default {
       { name: 'Discord Community', url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u' },
       { name: 'Slack Community', url: 'https://csesoc-community.slack.com/' },
       { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' },
-      { name: 'Tiktok', url: '#' }
+      { name: 'Tiktok', url: '#' },
+      { name: 'Youtube', url: 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg' }
     ]
   })
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .white-text {
-  font-size: 16px;
-  line-height: 28px;
+  @extend p;
 }
 
 .white-text a {
   text-decoration: none;
   color: white;
+  padding-right:$space-xxs;
 }
 
 .white-text a:hover {
-  color: #427bff;
+  font-weight: 900;
+  transition-duration: 0.5s;
 }
 
 .nav-divider {
-  padding-bottom: 25px;
-  border-bottom:2px solid white
+  padding-bottom: $space-xxs;
+  border-bottom:2px solid white;
 }
 
 .anchor-items {
