@@ -52,14 +52,10 @@ export default {
   font-family: 'Core Sans C', Arial, sans-serif;
 }
 
-html {
+html, body {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
-}
-
-body {
-  width: 100vw;
-  height: 100vh;
+  box-sizing: border-box;
 }
 </style>
