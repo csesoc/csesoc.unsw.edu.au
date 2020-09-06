@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve --silent",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "kss": "kss --config kss-config.json"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -23,10 +24,12 @@
     "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.0.1",
     "css-loader": "^4.2.2",
-    "cypress": "^4.12.1",
+    "cypress": "^5.1.0",
     "eslint": "^7.6.0",
     "eslint-plugin-cypress": "^2.11.1",
     "eslint-plugin-vue": "^6.2.2",
+    "kss": "^3.0.1",
+    "michelangelo": "^0.8.0",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.3",
     "vue-cli-plugin-vuetify": "^2.0.7",
