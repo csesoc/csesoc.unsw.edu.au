@@ -1,0 +1,224 @@
+/**
+ * Use center whenever you need to center content in the middle of the
+ * container with size.
+ */
+/**
+ * Use clearfix whenever you have content floating and want to clear the
+ * space below the floated element to insert new content below. Also makes
+ * sure that the element stays inside its container.
+ */
+/** 
+ * These breakpoint variables are used as follows:
+ * - small screen sizes for phones
+ * - medium for tablets
+ * - large for laptops
+ * - extra large for desktop computers
+ * We use bootstrap breakpoints.
+ */
+body {
+  font-size: 1em;
+}
+
+h1, h2, h3, h4, form legend {
+  margin-bottom: 40px;
+  line-height: 1.5;
+}
+
+.text--xxxl {
+  font-size: 7.4505805969em;
+}
+
+.text--xxl {
+  font-size: 5.9604644775em;
+}
+
+.text--xl {
+  font-size: 3.8146972656em;
+}
+
+.text--lg {
+  font-size: 1.953125em;
+}
+
+.text--md {
+  font-size: 1.5625em;
+}
+
+.text--sm {
+  font-size: 1.25em;
+}
+
+.text--xs {
+  font-size: 1em;
+}
+
+h1 {
+  font-size: 3.8146972656em;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 1.953125em;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 1.953125em;
+  font-weight: 200;
+}
+
+h4 {
+  font-size: 1.25em;
+  font-weight: 800;
+}
+
+p {
+  font-size: 1em;
+  font-weight: 200;
+  line-height: 2.5;
+  margin-bottom: 20px;
+}
+
+button {
+  font-size: 1.25em;
+  font-weight: 800;
+}
+
+.text-container h2, .text-container h3, .text-container h4 {
+  margin-top: 100px;
+}
+.text-container ul, .text-container ol, .text-container p {
+  margin-bottom: 80px;
+}
+
+/**
+ * Utility classes for icons
+ */
+.icon {
+  color: #FFFFFF;
+}
+
+.icon-text-aligner {
+  display: flex;
+  align-items: center;
+}
+.icon-text-aligner > *:nth-child(2) {
+  margin-left: 40px;
+}
+.icon-text-aligner .icon {
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.btn, .btn--lg, .btn--sm, .btn--accent, .btn--secondary, .btn--primary {
+  display: inline-flex;
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+  line-height: 1;
+  padding: 20px 40px;
+  color: #FFFFFF;
+  transition: 0.2s;
+}
+.btn:active, .btn--lg:active, .btn--sm:active, .btn--accent:active, .btn--secondary:active, .btn--primary:active {
+  transition: none;
+}
+.btn .icon, .btn--lg .icon, .btn--sm .icon, .btn--accent .icon, .btn--secondary .icon, .btn--primary .icon {
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.btn--sm, .btn--accent, .btn--secondary, .btn--primary {
+  font-size: 1.25em;
+  border-radius: 5px;
+}
+
+.btn--lg {
+  font-size: 1.953125em;
+  border: 2px solid #FFFFFF;
+}
+
+.btn--full-width {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn--primary {
+  background: #3333CC;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #3333CC 0%, #9933CC 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3333CC), color-stop(100%, #9933CC));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #3333CC 0%, #9933CC 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #3333CC 0%, #9933CC 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #3333CC 0%, #9933CC 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #3333CC 0%, #9933CC 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#3333CC", endColorstr="#9933CC", GradientType=0 );
+  /* IE6-9 */
+}
+
+.btn--secondary {
+  background: #3333CC;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #3333CC 0%, #66FFFF 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3333CC), color-stop(100%, #66FFFF));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #3333CC 0%, #66FFFF 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #3333CC 0%, #66FFFF 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #3333CC 0%, #66FFFF 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #3333CC 0%, #66FFFF 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#3333CC", endColorstr="#66FFFF", GradientType=0 );
+  /* IE6-9 */
+}
+
+.btn--accent {
+  background: #000033;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #000033 0%, #191947 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #000033), color-stop(100%, #191947));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #000033 0%, #191947 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #000033 0%, #191947 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #000033 0%, #191947 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #000033 0%, #191947 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#000033", endColorstr="#191947", GradientType=0 );
+  /* IE6-9 */
+  outline-color: #FFFFFF;
+}
+
+.btn[disabled], [disabled].btn--sm, [disabled].btn--lg, [disabled].btn--primary, [disabled].btn--secondary, [disabled].btn--accent {
+  cursor: not-allowed;
+}
+.btn[disabled]:visited, [disabled].btn--sm:visited, [disabled].btn--lg:visited, [disabled].btn--primary:visited, [disabled].btn--secondary:visited, [disabled].btn--accent:visited {
+  color: inherit;
+}
+
+.btns {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: -60px;
+}
+.btns > * {
+  margin: 0 60px 60px 0;
+}
+.btns > *:last-of-type {
+  margin-right: 0;
+}
+
+/*# sourceMappingURL=global.css.map */
