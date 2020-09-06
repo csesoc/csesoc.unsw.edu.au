@@ -13,19 +13,28 @@
 
 <template>
   <div id="home">
-    <div id="showcase">
-      <div class="showcase-image">
-        <h1 class="showcase--h1">
-          We inspire the programmers of the future.
-        </h1>
-
-        <button
-          class="btn--joinUs"
-          data-cy=joinus-button
-          @click="scrollto('joinus')">
-            Join Us
-        </button>
-      </div>
+    <div id="showcase" class="content">
+      <!-- <div class="showcase-image"> -->
+        <v-container>
+          <v-row no-gutters>
+            <v-col class="pa-0" cols="6">
+              <h1 id="showcase--h1">
+                We inspire the programmers of the future.
+              </h1>
+            </v-col>
+          </v-row>
+          <v-row no-gutters>
+            <v-col class="pa-0" cols="12">
+              <button
+                class="btn--join-us"
+                data-cy=joinus-button
+                @click="scrollto('joinus')">
+                  Join Us
+              </button>
+            </v-col>
+          </v-row>
+        </v-container>
+      <!-- </div> -->
     </div>
     <!-- CSESocs Mission -->
     <div class="mission">
@@ -183,40 +192,29 @@ export default {
 
 #home {
   background-color: $dark-color-1;
+  box-sizing: border-box;
 }
 
 #showcase {
-  height: 100vh;
-  width: 100vw;
-  text-align: left;
-  margin-bottom: $space-sm;
+  background-image: linear-gradient(transparent, transparent, $dark-color-1), url(../assets/landingPageHeaderBackground.png);
+  background-position: 75% 50%;
+  align-items: center;
+  justify-content: center;
+  background-size: 150%;
 }
 
-.showcase--h1 {
-  padding-left: 7%;
-  @extend h1;
+#showcase--h1 {
   color: $light-color;
-  padding-right: 50vw;
-  line-height: 95px;
-  padding-top: $space-xl;
 }
 
-.btn--joinUs {
+.btn--join-us {
   @extend .btn--lg;
-  left: 80vw;
+  float: right;
 }
 
-.btn--joinUs:hover {
+.btn--join-us:hover {
   transition: 0.4s;
   background: rgba(102,255,255, 0.2);
-}
-
-.showcase-image {
-  background-image: linear-gradient(transparent, transparent, $dark-color-1), url(../assets/landingPageHeaderBackground.png);
-  height: 100vh;
-  background-position: 75% 50%;
-  background-size: 100%;
-  background-size: cover;
 }
 
 .mission {
