@@ -95,27 +95,34 @@
     <!-- Sponsor -->
     <div class=sponsor >
       <v-container>
-        <!-- title -->
+        <!-- "support csesoc" title -->
         <h1 class=sponsor--h1>SUPPORT CSESOC</h1>
+        <!-- row for trophy image and text adjacent -->
         <v-row no-gutters>
-          <v-col cols="4" align="center">
+          <!-- trophy image -->
+          <v-col cols="4" align="center" class="pa-0">
             <img src="@/assets/trophy.svg" class="sponsor--img">
           </v-col>
-          <v-col cols="8">
+          <!-- h4 and p text adjacent to trophy image -->
+          <v-col cols="8" class="pa-0">
             <h4 class=sponsor--h4>Reach Australia's Best Computing Graduates</h4>
             <p class=sponsor--p> Many of our past members have gone on to work at our previous
               sponsor companies including Google, Facebook, Jane St and Commonwealth Bank. </p>
           </v-col>
         </v-row>
-        <v-row no-gutters>
-          <v-col cols="4" align="center">
+        <!-- row for network/share image and text adjacent -->
+        <v-row no-gutters class="pa-0">
+          <!-- network image -->
+          <v-col cols="4" align="center" justify="center" class="pa-0">
             <img src="@/assets/share.svg" class="sponsor--img">
           </v-col>
-          <v-col cols="8">
+          <!-- h4 and p text adjacent to network image -->
+          <v-col cols="8" class="pa-0">
             <h4 class=sponsor--h4>Interact With Our Huge Active Community</h4>
             <p class=sponsor--p> We have an extremely active community of ~3000 CSE students,
               achieved through our offering of career, social and educational events. </p>
           </v-col>
+        <!-- "sponsor us" button -->
         </v-row>
         <v-col cols="12" align="right">
           <RouterLink to="/sponsors" class="link" >
@@ -279,20 +286,11 @@ export default {
   left: 0px;
 }
 
-/*
-.mission {
-  float: left;
-  background-size: 100%;
-  background-size: cover;
-  position: relative;
-  margin-bottom: $space-xl;
-}*/
-// Sponsor
 .sponsor {
   margin-bottom: $space-xl;
-  background-image: linear-gradient(transparent, transparent, $dark-color-1), url(../assets/landingPageHeaderBackground.png);
+  background-image: url(../assets/supportusbackground.png);
   background-size: cover;
-  background-position: 75% 50%;
+  background-position: 20% 50%;
 }
 
 .sponsor--h1 {
@@ -302,7 +300,6 @@ export default {
 }
 
 .sponsor--h4 {
-  //padding-left: 33%;
   @extend h4;
   color: $light-color;
   margin-bottom: $space-xxs;
@@ -311,15 +308,12 @@ export default {
 .sponsor--p {
   @extend p;
   color: $light-color;
-}
-
-.sponsor--text {
-  //width: 70%;
-  width: 70%;
+  margin-bottom: $space-xs;
 }
 
 .sponsor--img {
   height: 100px;
+  margin-top: $space-xxxs;
 }
 
 .btn--sponsorUs {
