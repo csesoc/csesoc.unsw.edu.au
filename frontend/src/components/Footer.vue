@@ -12,8 +12,8 @@
           sm="6"
         >
           <div class="white-text" style="margin-bottom:20%" data-cy="footer-address">
-          <a href="/" data-cy="footer-main-logo-link">
-            <v-img class="img-size" src="@/assets/csesoc-logo-white.svg" data-cy="footer-main-logo"/>
+          <a href="/">
+            <v-img class="img-size" src="@/assets/csesoc-logo-white.svg" data-cy="footer-logo"/>
           </a>
           <br/>B03 CSE Building K17, UNSW
           <br/>
@@ -36,7 +36,7 @@
               >
                 <h4 data-cy="footer-media-title">Social Media</h4>
                 <v-list-item class="anchor-items" v-for="url in media" :key="url.name">
-                  <v-list-item-content data-cy="footer-social-media-link">
+                  <v-list-item-content data-cy="footer-media-link">
                     <a :href="url.url">
                       {{ url.name }}
                     </a>
