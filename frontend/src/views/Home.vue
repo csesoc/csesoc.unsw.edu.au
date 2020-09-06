@@ -203,7 +203,6 @@ export default {
 
 .btn--joinUs {
   @extend .btn--lg;
-  border: 2px solid #ffffff;
   left: 80vw;
 }
 
