@@ -1,5 +1,5 @@
 <!--
-  EventGrid
+  EventDisplay
   --
   This component contains a grid of event tiles containing basic information regarding each event.
   It is currently being used in the landing page.
@@ -12,11 +12,15 @@
   <v-container>
     <!-- Catch a lack of events. -->
     <div v-if="events.length == 0">Stay tuned to our Facebook page for upcoming events!</div>
-      <v-slide-group show-arrows class = "hidden-sm-and-down">
-        <v-slide-item v-for="event in events" :key="event.id">
-          <Event :event = 'event'></Event>
+      <v-slide-group show-arrows dark class="hidden-sm-and-down">
+        <v-slide-item v-for="event in events" :key="event.id" style="margin-right: 20px;">
+          <Event :event = "event"></Event>
         </v-slide-item>
       </v-slide-group>
+
+    <v-row class="hidden-md-and-up" v-for="event in events.slice(0,3)" :key="event.id">
+        <Event :event = "event" style="margin: 0 auto; margin-bottom: 20px;"></Event>
+    </v-row>
   </v-container>
 </template>
 
@@ -24,7 +28,7 @@
 import Event from '@/components/Event';
 
 export default {
-  name: 'EventGrid',
+  name: 'EventDisplay',
   // Must be passed from parent object
   // items have title, image url (src), and link
   props: ['events'],

@@ -1,3 +1,12 @@
+<!--
+  EventDisplay
+  --
+  This component is an individual event tile used to represent an event.
+  --
+  Props:
+    - event: an event - containing the fields: id, name, start_time, fb_event_id, fb_cover_img
+-->
+
 <template>
   <v-card class="event-card" :href="`https://facebook.com/${event.fb_event_id}`">
     <v-hover v-slot:default="{ hover }">
@@ -61,8 +70,8 @@ export default {
 <style scoped lang="scss">
 
   .event-card {
-    margin-right: 50px;
-    max-width: 32em;
+    width: 32em;
+    max-width: 90vw;
   }
 
   .info-card {

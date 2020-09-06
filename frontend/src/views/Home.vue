@@ -38,7 +38,7 @@
 
     <v-container ref="content-start">
       <HeaderTitle :title="'upcoming events'"/>
-      <EventGrid :events="eventItems" v-if="time < 60 * 1440 * 60000"></EventGrid>
+      <EventDisplay :events="eventItems" v-if="time < 60 * 1440 * 60000"></EventDisplay>
       <v-row>
         <v-spacer></v-spacer>
       </v-row>
@@ -98,7 +98,7 @@
 
 <script>
 import HeaderTitle from '@/components/HeaderTitle';
-import EventGrid from '@/components/EventGrid';
+import EventDisplay from '@/components/EventDisplay';
 import InfiniteSlideshow from '@/components/InfiniteSlideshow';
 import Preview from '@/components/Preview';
 import CommunityLinks from '@/components/CommunityLink';
@@ -121,7 +121,7 @@ export default {
   }),
   components: {
     HeaderTitle,
-    EventGrid,
+    EventDisplay,
     InfiniteSlideshow,
     Preview,
     CommunityLinks
