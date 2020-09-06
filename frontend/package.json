@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve --silent",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "kss": "kss --config kss-config.json"
+    "kss": "sass src/styles/global.scss src/styles/global.css && kss --config kss-config.json"
   },
   "dependencies": {
     "core-js": "^3.6.5",
