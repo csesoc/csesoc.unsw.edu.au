@@ -160,7 +160,7 @@ export default {
 
     APIClient.eventsAPI()
       .then((responseJson) => {
-        this.eventItems = responseJson.events.slice(0, 3);
+        this.eventItems = responseJson.events;
         this.time -= responseJson.updated * 1000;
       });
     fetch(this.announceApiUri)
