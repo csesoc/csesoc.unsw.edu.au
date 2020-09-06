@@ -1,22 +1,22 @@
 <template>
-  <v-card>
-    <v-hover v-slot:default="{ hover }">
-
-      <v-img :src="event.fb_cover_img">
-        <v-expand-transition>
-          <div
-            v-if="hover"
-            id="info-card"
-            class="transition-fast-in-fast-out v-card--reveal"
-          >
-            <strong><div id="name" class="text--lg" v-text="event.name"/></strong>
-            <div class="event__place" v-if="event.place != undefined" v-text="'@ '+event.place"/>
-            <div id="date" v-text="getDateString(event.start_time, event.end_time)"></div>
-          </div>
-        </v-expand-transition>
-      </v-img>
-    </v-hover>
-  </v-card>
+  <v-slide-item>
+    <v-card class="event-card">
+      <v-hover v-slot:default="{ hover }">
+        <v-img :src="event.fb_cover_img">
+          <v-expand-transition>
+            <div
+              v-if="hover"
+              class="info-card transition-fast-in-fast-out v-card--reveal"
+            >
+              <strong><div id="name" class="text--lg" v-text="event.name"/></strong>
+              <div class="event__place" v-if="event.place != undefined" v-text="'@ '+event.place"/>
+              <div id="date" v-text="getDateString(event.start_time, event.end_time)"></div>
+            </div>
+          </v-expand-transition>
+        </v-img>
+      </v-hover>
+    </v-card>
+  </v-slide-item>
 </template>
 
 <script>
@@ -61,8 +61,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  #info-card {
+
+  .event-card {
+    margin-right: 50px;
+  }
+  .info-card {
     background-color: $primary-color;
+    background: linear-gradient(0deg, $primary-color, $secondary-color-2);
     color: $light-color;
     box-sizing: border-box;
     height: 100%;
