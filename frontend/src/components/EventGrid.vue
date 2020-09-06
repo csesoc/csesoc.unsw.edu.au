@@ -9,11 +9,13 @@
 -->
 
 <template>
-  <v-container fluid>
+  <v-container>
     <!-- Catch a lack of events. -->
     <div v-if="events.length == 0">Stay tuned to our Facebook page for upcoming events!</div>
-      <v-slide-group show-arrows>
-        <Event v-for="event in events" :key="event.id" :event = 'event'></Event>
+      <v-slide-group show-arrows class = "hidden-sm-and-down">
+        <v-slide-item v-for="event in events" :key="event.id">
+          <Event :event = 'event'></Event>
+        </v-slide-item>
       </v-slide-group>
   </v-container>
 </template>

@@ -36,27 +36,11 @@
       </p>
     </div>
 
-    <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
-      <HeaderTitle :title="'upcoming events'" />
-      <v-row>
-          <EventGrid :events="eventItems" v-if="time < 60 * 1440 * 60000"></EventGrid>
-          <!-- <div
-            class="fb-page"
-            data-href="https://www.facebook.com/csesoc"
-            data-tabs="events"
-            data-small-header="false"
-            data-adapt-container-width="true"
-            data-hide-cover="false"
-            data-show-facepile="false"
-          >
-            <blockquote cite="https://www.facebook.com/csesoc" class="fb-xfbml-parse-ignore">
-              <a href="https://www.facebook.com/csesoc">Loading...</a>
-            </blockquote>
-          </div> -->
-      </v-row>
+    <v-container ref="content-start">
+      <HeaderTitle :title="'upcoming events'"/>
+      <EventGrid :events="eventItems" v-if="time < 60 * 1440 * 60000"></EventGrid>
       <v-row>
         <v-spacer></v-spacer>
-        <a href = "https://www.facebook.com/csesoc/events" class="fb-event-link">See more events on our Facebook page! ⭝</a>
       </v-row>
     </v-container>
 
@@ -183,6 +167,7 @@ export default {
 
 #home {
   background-color: $dark-color-1;
+  color: $light-color;
 }
 
 #showcase {
