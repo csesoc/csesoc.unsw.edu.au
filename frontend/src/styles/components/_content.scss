@@ -1,0 +1,23 @@
+// ----------------------------------------------------------------------
+// Content
+// ----------------------------------------------------------------------
+
+// Content
+// 
+// Content class is used as the class name for all div tags that
+// contain a design component. Use v-rows and v-columns for
+// layouts inside the component.
+// 
+// Markup:
+// <div class="content">Lorem Ipsum</div>
+// 
+// Styleguide Components.content
+
+.content {
+    @include clearfix;
+    height: 100vh;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    margin-bottom: $space-sm;
+}
