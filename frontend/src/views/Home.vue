@@ -81,12 +81,38 @@
         <img height="250px" src="@/assets/banner-4.jpg" style="padding-left: 20px; padding-right: 20px;">
       </InfiniteSlideshow>
     </div>
-    <!-- Resources -->
-    <v-container>
-      <HeaderTitle :title="'resources'" />
-      <Preview :items="resourceItems"/>
+
+    <!-- Student Resources -->
+    <v-container class="resource--styles">
+      <h1>STUDENT RESOURCES</h1>
+
+      <v-row no-gutters class="row">
+        <v-col xs="12" sm="8" class="pa-0">
+          <div class="box">
+            <h2>Job Board</h2>
+          </div>
+        </v-col>
+        <v-col xs="12" sm="4" class="pb-0">
+          <div class="box">
+            <h2>First Year Guide</h2>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row no-gutters>
+        <v-col xs="12" sm="4" class="pa-0">
+          <div class="box">
+            <h2>CSESoc Media</h2>
+          </div>
+        </v-col>
+        <v-col xs="12" sm="8" class="pb-0">
+          <div class="box">
+            <h2>Notangles</h2>
+          </div>
+        </v-col>
+      </v-row>
     </v-container>
 
+    <!-- Community Links -->
     <v-container ref="joinus" class="joinUs">
       <h1 class="joinUs--h1" data-cy=communityLinks-title>BE PART OF THE COMMUNITY</h1>
       <h4 class="joinUs--h4" data-cy=communityLinks-bodyText>
@@ -143,7 +169,6 @@
 import HeaderTitle from '@/components/HeaderTitle';
 import EventGrid from '@/components/EventGrid';
 import InfiniteSlideshow from '@/components/InfiniteSlideshow';
-import Preview from '@/components/Preview';
 import CommunityLinks from '@/components/CommunityLink';
 import APIClient from '../utils/APIClient';
 
@@ -166,7 +191,6 @@ export default {
     HeaderTitle,
     EventGrid,
     InfiniteSlideshow,
-    Preview,
     CommunityLinks
   },
   mounted() {
@@ -301,6 +325,31 @@ export default {
 .joinUs--h4 {
   color: $light-color;
   margin-bottom: $space-md
+}
+
+// Student resources
+.resource--styles {
+  color: $light-color;
+  .row {
+    margin-bottom: $space-xxs;
+
+    .box {
+      border-radius: 10px;
+      background-color: grey;
+      padding-left: 20px;
+      padding-right: 20px;
+
+      h2 {
+        padding-top: $space-xs;
+        padding-bottom: $space-xxs;
+        margin: 0;
+      }
+
+      .description {
+
+      }
+    }
+  }
 }
 
 // SUPPORT CSESOC SECTION
