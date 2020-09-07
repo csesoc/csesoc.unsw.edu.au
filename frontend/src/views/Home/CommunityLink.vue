@@ -12,7 +12,7 @@
         <!-- Display community links -->
         <v-col cols="4" align="center" class="pa-0" v-for="channel in communityLinks" :key="channel.title">
           <a :href="channel.link">
-            <img :src="channel.logo" class="logo zoom" data-cy="communityLinks-slackImage">
+            <img :src="channel.logo" class="logo zoom" data-cy="community-links-image">
           </a>
           <h2>{{channel.title}}</h2>
         </v-col>
