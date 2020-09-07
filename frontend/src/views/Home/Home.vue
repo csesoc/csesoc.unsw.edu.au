@@ -18,13 +18,7 @@
     <!-- Mission -->
     <Mission />
     <!--Events-->
-    <v-container ref="content-start">
-      <HeaderTitle :title="'upcoming events'"/>
-      <EventDisplay :events="eventItems" :updated="lastEventUpdate"></EventDisplay>
-      <v-row>
-        <v-spacer></v-spacer>
-      </v-row>
-    </v-container>
+    <EventDisplay :events="eventItems" :updated="lastEventUpdate" />
     <!-- Slideshow -->
     <div class="blue-cutout">
       <InfiniteSlideshow duration="32s" direction="reverse">
