@@ -8,9 +8,14 @@
 -->
 
 <template>
-  <v-card class="event-card" :href="`https://facebook.com/${event.fb_event_id}`">
+  <v-card class="event-card"
+    :href="`https://facebook.com/${event.fb_event_id}`"
+    target="_blank"
+    rel="noreferrer noopener"
+  >
     <v-hover v-slot:default="{ hover }">
       <v-img :src="event.fb_cover_img">
+        <!-- Display extra event information on hover -->
         <v-expand-transition>
           <div
             v-if="hover"
