@@ -211,7 +211,7 @@ button {
 }
 
 .content {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   text-align: left;
   display: flex;
@@ -237,7 +237,9 @@ button {
 
 .icon-text-aligner {
   display: flex;
+  height: 100%;
   align-items: center;
+  justify-content: center;
 }
 .icon-text-aligner > *:nth-child(2) {
   margin-left: 40px;
@@ -245,152 +247,6 @@ button {
 .icon-text-aligner .icon {
   color: inherit;
   flex-shrink: 0;
-}
-
-.flex-grid {
-  display: flex;
-  flex-wrap: wrap;
-  /** 
-   * The negative margins are added to balance the padding we use to create
-   * the grid gap so that no empty space is left between the .flex-grid
-   * element and its container.
-   */
-  margin: 0 0 0 -40px;
-}
-
-.col, .col--12, .col--11, .col--10, .col--9, .col--8, .col--7, .col--6, .col--5, .col--4, .col--3, .col--2, .col--1 {
-  padding: 0 0 120px 40px;
-  /**
-   * Makes sure that the background-color/image is not applied to the
-   * padding.
-   */
-  background-clip: content-box;
-  /**
-   * Sets the initial main size of a flex item.
-   */
-  flex-basis: 100%;
-}
-
-.col--1 {
-  flex-basis: round-width(1);
-  max-width: round-width(1);
-}
-
-.col--2 {
-  flex-basis: round-width(2);
-  max-width: round-width(2);
-}
-
-.col--3 {
-  flex-basis: round-width(3);
-  max-width: round-width(3);
-}
-
-.col--4 {
-  flex-basis: round-width(4);
-  max-width: round-width(4);
-}
-
-.col--5 {
-  flex-basis: round-width(5);
-  max-width: round-width(5);
-}
-
-.col--6 {
-  flex-basis: round-width(6);
-  max-width: round-width(6);
-}
-
-.col--7 {
-  flex-basis: round-width(7);
-  max-width: round-width(7);
-}
-
-.col--8 {
-  flex-basis: round-width(8);
-  max-width: round-width(8);
-}
-
-.col--9 {
-  flex-basis: round-width(9);
-  max-width: round-width(9);
-}
-
-.col--10 {
-  flex-basis: round-width(10);
-  max-width: round-width(10);
-}
-
-.col--11 {
-  flex-basis: round-width(11);
-  max-width: round-width(11);
-}
-
-.col--12 {
-  flex-basis: round-width(12);
-  max-width: round-width(12);
-}
-
-@media only screen and (min-width: 600px) {
-  .col--md-1 {
-    flex-basis: 8.3333333333%;
-    max-width: 8.3333333333%;
-  }
-
-  .col--md-2 {
-    flex-basis: 16.6666666667%;
-    max-width: 16.6666666667%;
-  }
-
-  .col--md-3 {
-    flex-basis: 25%;
-    max-width: 25%;
-  }
-
-  .col--md-4 {
-    flex-basis: 33.3333333333%;
-    max-width: 33.3333333333%;
-  }
-
-  .col--md-5 {
-    flex-basis: 41.6666666667%;
-    max-width: 41.6666666667%;
-  }
-
-  .col--md-6 {
-    flex-basis: 50%;
-    max-width: 50%;
-  }
-
-  .col--md-7 {
-    flex-basis: 58.3333333333%;
-    max-width: 58.3333333333%;
-  }
-
-  .col--md-8 {
-    flex-basis: 66.6666666667%;
-    max-width: 66.6666666667%;
-  }
-
-  .col--md-9 {
-    flex-basis: 75%;
-    max-width: 75%;
-  }
-
-  .col--md-10 {
-    flex-basis: 83.3333333333%;
-    max-width: 83.3333333333%;
-  }
-
-  .col--md-11 {
-    flex-basis: 91.6666666667%;
-    max-width: 91.6666666667%;
-  }
-
-  .col--md-12 {
-    flex-basis: 100%;
-    max-width: 100%;
-  }
 }
 
 /*# sourceMappingURL=global.css.map */
