@@ -125,7 +125,7 @@
         <!-- "sponsor us" button -->
         </v-row>
         <v-col cols="12" align="right">
-          <RouterLink to="/sponsors" class="link" >
+          <RouterLink to="/sponsors" class="link" style="text-decoration: none;">
             <button class="btn--sponsorUs">
               Sponsor Us
             </button>
