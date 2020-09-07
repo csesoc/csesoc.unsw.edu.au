@@ -66,7 +66,7 @@ import Showcase from '@/views/Home/Showcase';
 import Mission from '@/views/Home/Mission';
 import CommunityLinks from '@/views/Home/CommunityLink';
 import SponsorUs from '@/views/Home/SponsorUs';
-import EventDisplay from '@/components/EventDisplay';
+import EventDisplay from '@/views/Home/EventDisplay';
 import InfiniteSlideshow from '@/components/InfiniteSlideshow';
 import Preview from '@/components/Preview';
 import APIClient from '../../utils/APIClient';
