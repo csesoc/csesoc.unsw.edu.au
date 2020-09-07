@@ -203,10 +203,6 @@ export default {
   padding-top: $space-xl;
 }
 
-.joinUs {
-  padding-bottom: $space-xl;
-}
-
 .btn--joinUs {
   @extend .btn--lg;
   border: 2px solid #ffffff;
@@ -264,6 +260,10 @@ export default {
   right: 0px;
   bottom: 0px;
   left: 0px;
+}
+
+.joinUs {
+  padding-bottom: $space-xl;
 }
 
 .joinUs--h1 {
