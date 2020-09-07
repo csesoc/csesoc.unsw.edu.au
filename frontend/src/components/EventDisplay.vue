@@ -6,6 +6,7 @@
   --
   Props:
     - events: list of event objects - containing the fields: id, name, start_time, fb_event_id, fb_cover_img
+    - updated: the time since the JSON file of events was last updated.
 -->
 
 <template>
