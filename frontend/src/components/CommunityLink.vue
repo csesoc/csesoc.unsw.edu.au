@@ -1,15 +1,6 @@
 <template>
 <!-- Join Us Section -->
     <v-container id="join" ref="joinus" data-cy="communityLinks">
-      <h1 data-cy="communityLinks-title">
-        Join Us
-      </h1>
-      <p data-cy="communityLinks-bodyText">
-        Find our stall at O-week, or just turn up an event and get to know us!
-      </p>
-      <h2 data-cy="communityLinks-joinCommunityText">
-        Join our community online
-      </h2>
       <div id="joinImg" data-cy="communityLinks-images">
         <a href="https://www.facebook.com/groups/csesoc">
           <img src="@/assets/facebook_logo.png" class="zoom" data-cy="communityLinks-facebookImage">
@@ -33,20 +24,6 @@
 #join {
   align-items: center;
   text-align: center;
-}
-
-#join h1 {
-  font-size: 80px;
-}
-
-#join h2 {
-  font-size: 40px;
-  padding-bottom: 5vh;
-}
-
-#join p {
-  font-size: 35px;
-  padding: 0 15vw 3vh;
 }
 
 #join img {

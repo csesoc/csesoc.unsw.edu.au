@@ -87,7 +87,9 @@
     </v-container>
 
     <v-container ref="joinus">
-      <CommunityLinks ></CommunityLinks>
+      <h1 class="joinUs--h1">BE PART OF THE COMMUNITY</h1>
+      <h4 class="joinUs--h4">Find our stall at O-week, or just turn up to an event and get to know us!</h4>
+      <CommunityLinks></CommunityLinks>
     </v-container>
 
     <!-- Support CSESoc -->
@@ -258,6 +260,16 @@ export default {
   right: 0px;
   bottom: 0px;
   left: 0px;
+}
+
+.joinUs--h1 {
+  color: $light-color;
+  margin-bottom: $space-xs;
+}
+
+.joinUs--h4 {
+  color: $light-color;
+  margin-bottom: $space-md
 }
 
 #sponsor {
