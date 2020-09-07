@@ -36,30 +36,16 @@
         We strive to create local opportunity, growth, and impact in every country around the world. "
       </p>
     </div>
-    <!-- Events -->
-    <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
-      <HeaderTitle :title="'upcoming events'" />
-      <v-row>
-          <EventGrid :events="eventItems" v-if="time < 60 * 1440 * 60000"></EventGrid>
-          <!-- <div
-            class="fb-page"
-            data-href="https://www.facebook.com/csesoc"
-            data-tabs="events"
-            data-small-header="false"
-            data-adapt-container-width="true"
-            data-hide-cover="false"
-            data-show-facepile="false"
-          >
-            <blockquote cite="https://www.facebook.com/csesoc" class="fb-xfbml-parse-ignore">
-              <a href="https://www.facebook.com/csesoc">Loading...</a>
-            </blockquote>
-          </div> -->
-      </v-row>
+
+    <!--Events-->
+    <v-container ref="content-start">
+      <HeaderTitle :title="'upcoming events'"/>
+      <EventDisplay :events="eventItems" :updated="lastEventUpdate"></EventDisplay>
       <v-row>
         <v-spacer></v-spacer>
-        <a href = "https://www.facebook.com/csesoc/events" class="fb-event-link">See more events on our Facebook page! ⭝</a>
       </v-row>
     </v-container>
+
     <!-- Slideshow -->
     <div class="blue-cutout">
       <InfiniteSlideshow duration="32s" direction="reverse">
@@ -141,7 +127,7 @@
 
 <script>
 import HeaderTitle from '@/components/HeaderTitle';
-import EventGrid from '@/components/EventGrid';
+import EventDisplay from '@/components/EventDisplay';
 import InfiniteSlideshow from '@/components/InfiniteSlideshow';
 import Preview from '@/components/Preview';
 import CommunityLinks from '@/components/CommunityLink';
@@ -160,11 +146,12 @@ export default {
     mediaItems: [],
     items: [],
     eventItems: [],
-    time: new Date().getTime()
+    loadTime: new Date().getTime(),
+    lastEventUpdate: 0
   }),
   components: {
     HeaderTitle,
-    EventGrid,
+    EventDisplay,
     InfiniteSlideshow,
     Preview,
     CommunityLinks
@@ -187,8 +174,8 @@ export default {
 
     APIClient.eventsAPI()
       .then((responseJson) => {
-        this.eventItems = responseJson.events.slice(0, 3);
-        this.time -= responseJson.updated * 1000;
+        this.eventItems = responseJson.events;
+        this.lastEventUpdate = this.loadTime - responseJson.updated * 1000;
       });
     fetch(this.announceApiUri)
       .then((r) => r.json())
@@ -210,6 +197,7 @@ export default {
 
 #home {
   background-color: $dark-color-1;
+  color: $light-color;
 }
 
 // Showcase
