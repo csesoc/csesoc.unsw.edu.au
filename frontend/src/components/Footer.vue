@@ -5,116 +5,124 @@
 -->
 
 <template>
-  <v-footer dark padless id="tiers">
-    <v-card id="tiers-sponsors" width="100vw" class="white-text text-center">
-      <v-card-text class="white-text">
-        <section class="tiers-grid">
-          <a v-for="sponsor in tierOne" class="tiers-box" :href="sponsor.url" :key="sponsor.id">
-            <img :src="`data:image/png;base64,${sponsor.logo}`" style=" max-width:300px;max-height:105px;" />
+  <v-footer color="#000033" padless >
+    <v-container class="white--text" style="padding:60px 72px" fluid>
+      <v-row no-gutters>
+        <v-col
+          sm="6"
+        >
+          <div class="white-text" style="margin-bottom:20%" data-cy="footer-address">
+          <a href="/">
+            <v-img class="img-size" src="@/assets/csesoc-logo-white.svg" data-cy="footer-logo"/>
           </a>
-        </section>
-        <section class="tiers-grid">
-          <a v-for="sponsor in tierTwo" class="tiers-box" :href="sponsor.url" :key="sponsor.id">
-            <img :src="`data:image/png;base64,${sponsor.logo}`" style="max-width:200px;max-height:75px" />
-          </a>
-        </section>
-        <section class="tiers-grid">
-          <a v-for="sponsor in tierThree" class="tiers-box" :href="sponsor.url" :key="sponsor.id">
-            <img :src="`data:image/png;base64,${sponsor.logo}`" style="max-width:100px;max-height:50px" />
-          </a>
-        </section>
-      </v-card-text>
-
-      <h2>CONTACT US</h2>
-      <v-card-text class="white-text text-center tiers-contact">
-        <a href="https://www.facebook.com/csesoc">Facebook Page</a>
-        |
-        <a href="https://www.facebook.com/groups/csesoc">Facebook Group</a>
-        |
-        <a href="https://www.linkedin.com/company/csesoc/about/">LinkedIn</a>
-        <br />B03 CSE Building K17, UNSW
-        <br />
-        <a id="tiers__link" href="mailto:csesoc@csesoc.org.au">csesoc@csesoc.org.au</a>
-      </v-card-text>
-
-      <v-divider></v-divider>
-
-      <v-card-text class="white-text text-center">
-        &copy; {{ new Date().getFullYear() }} &mdash;
-        <strong>CSESoc UNSW</strong>
-      </v-card-text>
-    </v-card>
+          <br/>B03 CSE Building K17, UNSW
+          <br/>
+          <a href="mailto:csesoc@csesoc.org.au" > csesoc@csesoc.org.au </a>
+          </div>
+          © 2020 — CSESoc UNSW
+        </v-col>
+        <v-col
+          sm="6"
+        >
+          <div class="white-text">
+            <div class="nav-divider" data-cy = "footer-internal-link">
+              <a v-for="url in csesocInternal" :key="url.name" :href="url.url">
+              {{ url.name }}
+              </a>
+            </div>
+            <v-row style="margin-top:25px" no-gutters>
+              <v-col
+                sm="6"
+              >
+                <h4 data-cy="footer-media-title">Social Media</h4>
+                <v-list-item class="anchor-items" v-for="url in media" :key="url.name">
+                  <v-list-item-content data-cy="footer-media-link">
+                    <a :href="url.url">
+                      {{ url.name }}
+                    </a>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-col>
+              <v-col
+                sm="6"
+              >
+                <h4 data-cy="footer-resources-title">For your better future</h4>
+                <v-list-item class="anchor-items" v-for="url in csesocExternal" :key="url.name">
+                  <v-list-item-content data-cy=footer-resources-link>
+                    <a :href="url.url">
+                      {{ url.name }}
+                    </a>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-col>
+            </v-row>
+          </div>
+        </v-col>
+      </v-row>
+    </v-container>
   </v-footer>
 </template>
 
 <script type="text/javascript">
-import APIClient from '../utils/APIClient';
-
 export default {
   name: 'Footer',
   data: () => ({
     // sponsors have name, logo, 'tier' value, and link
-    sponsors: []
-  }),
-  computed: {
-    // functions to determine sizing category of sponsor based on their value
-    tierOne() {
-      return this.sponsors.filter((x) => x.tier === 2);
-    },
-    tierTwo() {
-      return this.sponsors.filter((x) => x.tier === 1);
-    },
-    tierThree() {
-      return this.sponsors.filter((x) => x.tier === 0);
-    }
-  },
-  mounted() {
-    APIClient.fetchSponsors()
-      .then((responseJson) => {
-        this.sponsors = responseJson;
-      });
-  }
+    csesocInternal: [
+      { name: 'Home', url: '/' },
+      { name: 'About', url: '/#/about' },
+      { name: 'Resources', url: '/#/resources' },
+      { name: 'Sponsorships', url: '/#/sponsors' },
+      { name: 'Engage', url: '/#/engage' }
+    ],
+    csesocExternal: [
+      { name: 'CSESoc Media', url: 'https://media.csesoc.org.au/' },
+      { name: 'CSESoc Blog', url: 'https://blog.csesoc.org.au/' },
+      { name: 'CSESoc Compclub', url: 'https://compclub.csesoc.unsw.edu.au/' },
+      { name: 'UNSW CSE', url: 'https://www.engineering.unsw.edu.au/computer-science-engineering/' },
+      { name: 'UNSW Handbook', url: 'https://www.handbook.unsw.edu.au/' }
+    ],
+    media: [
+      { name: 'Facebook page', url: 'https://www.facebook.com/csesoc/' },
+      { name: 'Facebook Group', url: 'https://www.facebook.com/csesoc/' },
+      { name: 'Instagram', url: 'https://www.instagram.com/csesoc_unsw/' },
+      { name: 'Discord Community', url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u' },
+      { name: 'Slack Community', url: 'https://csesoc-community.slack.com/' },
+      { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' },
+      { name: 'Tiktok', url: '#' },
+      { name: 'Youtube', url: 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg' }
+    ]
+  })
 };
 </script>
 
-<style scoped>
-#tiers {
-  margin-top: 0px;
-}
-
-#tiers-sponsors {
-  background: #4a4a4a;
-  padding-top: 5vw;
-}
-
+<style lang="scss" scoped>
 .white-text {
-  font-size: 16px;
-  line-height: 28px;
+  @extend p;
 }
 
 .white-text a {
+  text-decoration: none;
   color: white;
+  padding-right:$space-xxs;
 }
 
 .white-text a:hover {
-  color: #427bff;
+  font-weight: 900;
+  transition-duration: 0.5s;
 }
 
-.tiers-grid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-left: 1vw;
-  margin-right: 1vw;
+.nav-divider {
+  padding-bottom: $space-xxs;
+  border-bottom:2px solid white;
 }
 
-.tiers-box {
-  margin: 20px;
+.anchor-items {
+  margin-left:-15px;
 }
 
-.tiers-contact {
-  margin-bottom: 1vw;
+.img-size {
+  max-width:300px;
+  max-height:200px;
 }
 </style>
