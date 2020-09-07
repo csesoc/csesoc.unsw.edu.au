@@ -1,3 +1,9 @@
+<!--
+  Community Links
+  --
+  This view contains the links to community social channels.
+-->
+
 <template>
 <!-- Join Us Icons -->
   <div id="community" class="content">
