@@ -5,27 +5,27 @@
 -->
 
 <template>
-    <div id="showcase" class="content">
-        <v-container>
-          <v-row no-gutters>
-            <v-col class="pa-0" cols="6">
-              <h1>
-                We inspire the programmers of the future.
-              </h1>
-            </v-col>
-          </v-row>
-          <v-row no-gutters>
-            <v-col class="pa-0" cols="12">
-              <button
-                class="btn--join-us"
-                data-cy=joinus-button
-                @click="scrollto('joinus')">
-                  Join Us
-              </button>
-            </v-col>
-          </v-row>
-        </v-container>
-    </div>
+  <div id="showcase" class="content">
+    <v-container>
+      <v-row no-gutters>
+        <v-col class="pa-0" cols="6">
+          <h1>
+            We inspire the programmers of the future.
+          </h1>
+        </v-col>
+      </v-row>
+      <v-row no-gutters>
+        <v-col class="pa-0" cols="12">
+          <button
+            class="btn--join-us"
+            data-cy=joinus-button
+            @click="scrollto('joinus')">
+              Join Us
+          </button>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <style lang="scss" scoped>
