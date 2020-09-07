@@ -1,40 +1,37 @@
 <template>
 <!-- Join Us Section -->
-    <v-container id="join" ref="joinus" data-cy="communityLinks">
-      <div id="joinImg" data-cy="communityLinks-images">
-        <a href="https://www.facebook.com/groups/csesoc">
-          <img src="@/assets/facebook_logo.png" class="zoom" data-cy="communityLinks-facebookImage">
-        </a>
-        <a href="https://csesoc-community.slack.com/">
-          <img src="@/assets/slack_logo.png" class="zoom" data-cy="communityLinks-slackImage">
-        </a>
-        <!-- need to add in the csesoc discord link-->
-        <a href="https://www.facebook.com/groups/csesoc">
-          <img src="@/assets/discord_logo.png" class="zoom" data-cy="communityLinks-discordImage">
-        </a>
-      </div>
+<!-- data-cy="communityLinks-images" -->
+    <v-container data-cy="communityLinks" id="join">
+      <v-row class="pa-0">
+        <v-col cols="4" align="center" class="pa-0">
+          <a href="https://www.facebook.com/groups/csesoc">
+            <img src="@/assets/facebook_logo.png" class="zoom" data-cy="communityLinks-facebookImage">
+          </a>
+        </v-col>
+        <v-col cols="4" align="center" class="pa-0">
+          <a href="https://csesoc-community.slack.com/">
+            <img src="@/assets/slack_logo.png" class="zoom" data-cy="communityLinks-slackImage">
+          </a>
+        </v-col>
+        <v-col cols="4" align="center" class="pa-0">
+          <a href="https://www.facebook.com/groups/csesoc">
+            <img src="@/assets/discord_logo.png" class="zoom" data-cy="communityLinks-discordImage">
+          </a>
+        </v-col>
+      </v-row>
     </v-container>
 </template>
 
 <script>
 </script>
 
-<style scoped>
-
-#join {
-  align-items: center;
-  text-align: center;
-}
+<style scoped lang="scss">
 
 #join img {
-  width: 20%;
+  width: 150px;
   height: auto;
-  padding-left: 4%;
-  padding-right: 4%;
-}
-
-#joinImg {
-  padding-bottom: 5%;
+  //padding-left: 4%;
+  //padding-right: 4%;
 }
 
 .zoom {
