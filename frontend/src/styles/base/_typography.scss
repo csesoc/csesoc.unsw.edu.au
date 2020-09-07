@@ -1,11 +1,11 @@
 // ----------------------------------------------------------------------
-	// Typography
+// Typography
 // ----------------------------------------------------------------------
 
 @use "sass:math";
 
 // ----------------------------------------------------------------------
-	// #Type Scale
+// #Type Scale
 // ----------------------------------------------------------------------
 $text-xs: 1em;
 $text-sm: 1em * math.pow($text-scale-ratio, 1);
@@ -16,7 +16,7 @@ $text-xxl: 1em * math.pow($text-scale-ratio, 8);
 $text-xxxl: 1em * math.pow($text-scale-ratio, 9);
 
 // ----------------------------------------------------------------------
-	// #Line Height
+// #Line Height
 // ----------------------------------------------------------------------
 $heading-line-height: 1.5;
 $body-line-height: 2.5;
@@ -25,20 +25,24 @@ body {
   font-size: $text-base-size;
 }
 
-h1, h2, h3, h4, form legend {
+h1,
+h2,
+h3,
+h4,
+form legend {
   margin-bottom: $space-xxs;
   line-height: $heading-line-height;
 }
 
 // ----------------------------------------------------------------------
-	// #Text Size
+// #Text Size
 // ----------------------------------------------------------------------
 .text--xxxl {
   font-size: $text-xxxl;
 }
 
 .text--xxl {
-  font-size: $text-xxl; 
+  font-size: $text-xxl;
 }
 
 .text--xl {
@@ -94,14 +98,52 @@ button {
 }
 
 // ----------------------------------------------------------------------
-	// #Text Component - class used to stylize blocks
+// #Text Component - class used to stylize blocks
 // ----------------------------------------------------------------------
 .text-container {
-  h2, h3, h4 {
+
+  h2,
+  h3,
+  h4 {
     margin-top: $space-md;
   }
 
-  ul, ol, p {
-    margin-bottom: $space-sm; 
+  ul,
+  ol,
+  p {
+    margin-bottom: $space-sm;
   }
 }
+
+// Tags
+//
+// Tags guide. Apologies for not being able to import the font.
+//
+// Weight: 1
+//
+// Markup:
+// <h1>Heading 1</h1>
+// <h2>Heading 2</h2>
+// <h3>Heading 3</h3>
+// <h4>Heading 4</h4>
+// <p>Lorem Ipsum</p>
+//
+// h1 - Use for title of content sections. Used by HeaderTitle component.
+// h2 - Use for subtitle of content sections or captions.
+//
+// Styleguide Base.typography.tags
+
+// Size Classes
+//
+// Size classes can also be used to match design if heading tags are not to
+// be used. Most commonly sized fonts are displayed.
+//
+// Markup:
+// <div class="{{modifier_class}}">Lorem Ipsum</div>
+//
+// .text--sm - Small equivalent of h4
+// .text--md - Medium size
+// .text--lg - Large equivalent of h2 and h3
+// .text--xl - X - Large equivalent of h1
+//
+// Styleguide Base.typography.size-classes

@@ -19,7 +19,11 @@ body {
   font-size: 1em;
 }
 
-h1, h2, h3, h4, form legend {
+h1,
+h2,
+h3,
+h4,
+form legend {
   margin-bottom: 40px;
   line-height: 1.5;
 }
@@ -84,10 +88,14 @@ button {
   font-weight: 800;
 }
 
-.text-container h2, .text-container h3, .text-container h4 {
+.text-container h2,
+.text-container h3,
+.text-container h4 {
   margin-top: 100px;
 }
-.text-container ul, .text-container ol, .text-container p {
+.text-container ul,
+.text-container ol,
+.text-container p {
   margin-bottom: 80px;
 }
 
