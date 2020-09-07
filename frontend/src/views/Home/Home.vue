@@ -156,7 +156,7 @@ import EventGrid from '@/components/EventGrid';
 import InfiniteSlideshow from '@/components/InfiniteSlideshow';
 import Preview from '@/components/Preview';
 import CommunityLinks from '@/components/CommunityLink';
-import APIClient from '../utils/APIClient';
+import APIClient from '../../utils/APIClient';
 
 export default {
   name: 'Home',
@@ -227,7 +227,7 @@ export default {
 
 // Showcase
 #showcase {
-  background-image: linear-gradient(transparent, transparent, $dark-color-1), url(../assets/landingPageHeaderBackground.png);
+  background-image: linear-gradient(transparent, transparent, $dark-color-1), url(../../assets/landingPageHeaderBackground.png);
   background-position: 75% 50%;
   align-items: center;
   justify-content: center;
@@ -250,7 +250,7 @@ export default {
 
 // Mission
 #mission {
-  background-image: linear-gradient($dark-color-1, transparent, $dark-color-1), url(../assets/mission.jpg);
+  background-image: linear-gradient($dark-color-1, transparent, $dark-color-1), url(../../assets/mission.jpg);
   background-size: 50%;
 }
 // .mission {
@@ -296,7 +296,7 @@ export default {
 // SUPPORT CSESOC SECTION
 .sponsor {
   margin-bottom: $space-xl;
-  background-image: url(../assets/supportusbackground.png);
+  background-image: url(../../assets/supportusbackground.png);
   background-size: cover;
   background-position: 20% 50%;
 }
