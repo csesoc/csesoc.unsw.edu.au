@@ -36,12 +36,19 @@
         </v-container>
     </div>
     <!-- Mission -->
-    <div class="mission">
-      <h1 class="mission--h1"> CSESOCS MISSION </h1>
-      <p class=mission--p>
-        "To empower every person and every organization on the planet to achieve more.
-        We strive to create local opportunity, growth, and impact in every country around the world. "
-      </p>
+    <div id="mission" class="content">
+      <v-container>
+        <HeaderTitle :title="'CSESOC\'S MISSION'" />
+        <!-- <h1 class="mission--h1"> CSESOCS MISSION </h1> -->
+        <v-row no-gutters justify="end">
+          <v-col cols="5" class="mission--p">
+            <p class="text--md">
+              "To empower every person and every organization on the planet to achieve more.
+              We strive to create local opportunity, growth, and impact in every country around the world. "
+            </p>
+          </v-col>
+        </v-row>
+      </v-container>
     </div>
     <!-- Events -->
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
@@ -215,6 +222,7 @@ export default {
 #home {
   background-color: $dark-color-1;
   box-sizing: border-box;
+  color: $light-color;
 }
 
 // Showcase
@@ -241,45 +249,49 @@ export default {
 }
 
 // Mission
-.mission {
-  height: 120vh;
-  width: 100vw;
-  float: left;
-  background-size: 100%;
-  background-size: cover;
-  position: relative;
-  margin-bottom: $space-xl;
-}
-
-.mission--h1 {
-  padding-left: 7%;
-  @extend h1;
-  color: $light-color;
-  padding-top: $space-md;
-  position: relative;
-}
-
-.mission--p {
-  @extend h3;
-  color: $light-color;
-  padding-left: 67%;
-  padding-right: 7%;
-  padding-top: $space-md;
-  position: relative;
-}
-
-// css for background image only
-.mission::before {
-  content: "";
+#mission {
   background-image: linear-gradient($dark-color-1, transparent, $dark-color-1), url(../assets/mission.jpg);
-  background-size: cover;
-  position: absolute;
-  width: 60%;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+  background-size: 50%;
 }
+// .mission {
+//   height: 120vh;
+//   width: 100vw;
+//   float: left;
+//   background-size: 100%;
+//   background-size: cover;
+//   position: relative;
+//   margin-bottom: $space-xl;
+// }
+
+// .mission--h1 {
+//   padding-left: 7%;
+//   @extend h1;
+//   color: $light-color;
+//   padding-top: $space-md;
+//   position: relative;
+// }
+
+// .mission--p {
+//   @extend h3;
+//   color: $light-color;
+//   padding-left: 67%;
+//   padding-right: 7%;
+//   padding-top: $space-md;
+//   position: relative;
+// }
+
+// // css for background image only
+// .mission::before {
+//   content: "";
+//   background-image: linear-gradient($dark-color-1, transparent, $dark-color-1), url(../assets/mission.jpg);
+//   background-size: cover;
+//   position: absolute;
+//   width: 60%;
+//   top: 0px;
+//   right: 0px;
+//   bottom: 0px;
+//   left: 0px;
+// }
 
 // SUPPORT CSESOC SECTION
 .sponsor {
