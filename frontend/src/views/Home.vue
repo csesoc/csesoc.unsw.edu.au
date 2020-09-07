@@ -36,7 +36,7 @@
         We strive to create local opportunity, growth, and impact in every country around the world. "
       </p>
     </div>
-    
+
     <!--Events-->
     <v-container ref="content-start">
       <HeaderTitle :title="'upcoming events'"/>
@@ -45,7 +45,7 @@
         <v-spacer></v-spacer>
       </v-row>
     </v-container>
-    
+
     <!-- Slideshow -->
     <div class="blue-cutout">
       <InfiniteSlideshow duration="32s" direction="reverse">
