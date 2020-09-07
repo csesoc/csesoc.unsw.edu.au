@@ -38,7 +38,7 @@
 
     <v-container ref="content-start">
       <HeaderTitle :title="'upcoming events'"/>
-      <EventDisplay :events="eventItems" v-if="time < 60 * 1440 * 60000"></EventDisplay>
+      <EventDisplay :events="eventItems" :updated="lastEventUpdate"></EventDisplay>
       <v-row>
         <v-spacer></v-spacer>
       </v-row>
@@ -117,7 +117,8 @@ export default {
     mediaItems: [],
     items: [],
     eventItems: [],
-    time: new Date().getTime()
+    loadTime: new Date().getTime(),
+    lastEventUpdate: 0
   }),
   components: {
     HeaderTitle,
@@ -145,7 +146,7 @@ export default {
     APIClient.eventsAPI()
       .then((responseJson) => {
         this.eventItems = responseJson.events;
-        this.time -= responseJson.updated * 1000;
+        this.lastEventUpdate = this.loadTime - responseJson.updated * 1000;
       });
     fetch(this.announceApiUri)
       .then((r) => r.json())

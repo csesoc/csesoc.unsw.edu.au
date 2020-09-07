@@ -10,8 +10,8 @@
 
 <template>
   <v-container>
-    <!-- Catch a lack of events. -->
-    <div v-if="events.length == 0">Stay tuned to our Facebook page for upcoming events!</div>
+    <!-- Catch a lack of events, or if events haven't been updated in 60 days. -->
+    <div v-if="events.length == 0 | updated > 86400 * 1000 * 60">Stay tuned to our Facebook page for upcoming events!</div>
       <v-slide-group show-arrows dark class="hidden-sm-and-down">
         <v-slide-item v-for="event in events" :key="event.id" style="margin-right: 20px;">
           <Event :event = "event"></Event>
@@ -31,7 +31,7 @@ export default {
   name: 'EventDisplay',
   // Must be passed from parent object
   // items have title, image url (src), and link
-  props: ['events'],
+  props: ['events', 'updated'],
   components: {
     Event
   }
