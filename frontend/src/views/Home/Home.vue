@@ -68,9 +68,12 @@
       <Preview :items="resourceItems"/>
     </v-container>
 
-    <!-- Join Us -->
-    <v-container ref="joinus">
-      <CommunityLinks ></CommunityLinks>
+    <v-container ref="joinus" class="joinUs">
+      <h1 class="joinUs--h1" data-cy=communityLinks-title>BE PART OF THE COMMUNITY</h1>
+      <h4 class="joinUs--h4" data-cy=communityLinks-bodyText>
+        Find our stall at O-week, or just turn up to an event and get to know us!
+      </h4>
+      <CommunityLinks></CommunityLinks>
     </v-container>
 
     <!-- Sponsor -->
