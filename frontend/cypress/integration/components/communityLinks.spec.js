@@ -11,8 +11,6 @@ describe('Community Links Landing Page', () => {
       // making sure that the body text is there
       cy.get('[data-cy=communityLinks-bodyText]');
       // making sure that the body text is there
-      cy.get('[data-cy=communityLinks-joinCommunityText]');
-      // making sure that the body text is there
       cy.get('[data-cy=communityLinks-images]');
 
       // making sure that each image is being displayed, and is visible after hovering

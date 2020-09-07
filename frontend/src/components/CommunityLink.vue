@@ -1,63 +1,46 @@
 <template>
-<!-- Join Us Section -->
-    <v-container id="join" ref="joinus" data-cy="communityLinks">
-      <h1 data-cy="communityLinks-title">
-        Join Us
-      </h1>
-      <p data-cy="communityLinks-bodyText">
-        Find our stall at O-week, or just turn up an event and get to know us!
-      </p>
-      <h2 data-cy="communityLinks-joinCommunityText">
-        Join our community online
-      </h2>
-      <div id="joinImg" data-cy="communityLinks-images">
-        <a href="https://www.facebook.com/groups/csesoc">
-          <img src="@/assets/facebook_logo.png" class="zoom" data-cy="communityLinks-facebookImage">
-        </a>
+<!-- Join Us Icons -->
+  <v-container data-cy="communityLinks" id="join">
+    <v-row class="pa-0" data-cy="communityLinks-images">
+      <!-- community slack -->
+      <v-col cols="4" align="center" class="pa-0">
         <a href="https://csesoc-community.slack.com/">
           <img src="@/assets/slack_logo.png" class="zoom" data-cy="communityLinks-slackImage">
         </a>
-        <!-- need to add in the csesoc discord link-->
+        <h2>Slack Community</h2>
+      </v-col>
+      <!-- facebook group -->
+      <v-col cols="4" align="center" class="pa-0">
+        <a href="https://www.facebook.com/groups/csesoc">
+          <img src="@/assets/facebook_logo.png" class="zoom" data-cy="communityLinks-facebookImage">
+        </a>
+        <h2>Facebook Group</h2>
+      </v-col>
+      <!-- discord server -->
+      <v-col cols="4" align="center" class="pa-0">
         <a href="https://www.facebook.com/groups/csesoc">
           <img src="@/assets/discord_logo.png" class="zoom" data-cy="communityLinks-discordImage">
         </a>
-      </div>
-    </v-container>
+        <h2>Discord Server</h2>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 </script>
 
-<style scoped>
-
-#join {
-  align-items: center;
-  text-align: center;
-}
-
-#join h1 {
-  font-size: 80px;
-}
-
-#join h2 {
-  font-size: 40px;
-  padding-bottom: 5vh;
-}
-
-#join p {
-  font-size: 35px;
-  padding: 0 15vw 3vh;
-}
+<style scoped lang="scss">
 
 #join img {
-  width: 20%;
+  width: 150px;
   height: auto;
-  padding-left: 4%;
-  padding-right: 4%;
+  margin-bottom: $space-xxs
 }
 
-#joinImg {
-  padding-bottom: 5%;
+// text under icons
+h2 {
+  color: $light-color;
 }
 
 .zoom {
