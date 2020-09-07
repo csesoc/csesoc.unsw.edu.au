@@ -13,8 +13,8 @@
 
 <template>
   <div id="home">
+    <!-- Showcase -->
     <div id="showcase" class="content">
-      <!-- <div class="showcase-image"> -->
         <v-container>
           <v-row no-gutters>
             <v-col class="pa-0" cols="6">
@@ -34,9 +34,8 @@
             </v-col>
           </v-row>
         </v-container>
-      <!-- </div> -->
     </div>
-    <!-- CSESocs Mission -->
+    <!-- Mission -->
     <div class="mission">
       <h1 class="mission--h1"> CSESOCS MISSION </h1>
       <p class=mission--p>
@@ -44,7 +43,7 @@
         We strive to create local opportunity, growth, and impact in every country around the world. "
       </p>
     </div>
-
+    <!-- Events -->
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <HeaderTitle :title="'upcoming events'" />
       <v-row>
@@ -68,7 +67,7 @@
         <a href = "https://www.facebook.com/csesoc/events" class="fb-event-link">See more events on our Facebook page! ⭝</a>
       </v-row>
     </v-container>
-
+    <!-- Slideshow -->
     <div class="blue-cutout">
       <InfiniteSlideshow duration="32s" direction="reverse">
         <img height="250px" src="@/assets/banner-1.jpg" style="padding-left: 20px; padding-right: 20px;">
@@ -89,35 +88,58 @@
         <img height="250px" src="@/assets/banner-4.jpg" style="padding-left: 20px; padding-right: 20px;">
       </InfiniteSlideshow>
     </div>
-
+    <!-- Resources -->
     <v-container>
       <HeaderTitle :title="'resources'" />
       <Preview :items="resourceItems"/>
     </v-container>
 
+    <!-- Join Us -->
     <v-container ref="joinus">
       <CommunityLinks ></CommunityLinks>
     </v-container>
 
-    <!-- Support CSESoc -->
-    <v-container id=sponsor >
-      <HeaderTitle :title="'support csesoc'" />
-      <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-        </p>
-        <RouterLink to="/sponsors" class="link" >
-          <a
-            style="float:right"
-            target="_blank"
-            v-ripple
-            class="button">
-            Sponsor Us
-          </a>
-        </RouterLink>
-    </v-container>
-
+    <!-- Sponsor -->
+    <div class=sponsor >
+      <v-container>
+        <!-- "support csesoc" title -->
+        <h1 class=sponsor--h1>SUPPORT CSESOC</h1>
+        <!-- row for trophy image and text adjacent -->
+        <v-row no-gutters>
+          <!-- trophy image -->
+          <v-col cols="4" align="center" class="pa-0">
+            <img src="@/assets/trophy.svg" class="sponsor--img">
+          </v-col>
+          <!-- h4 and p text adjacent to trophy image -->
+          <v-col cols="8" class="pa-0">
+            <h4 class=sponsor--h4>Reach Australia's Best Computing Graduates</h4>
+            <p class=sponsor--p> Many of our past members have gone on to work at our previous
+              sponsor companies including Google, Facebook, Jane St and Commonwealth Bank. </p>
+          </v-col>
+        </v-row>
+        <!-- row for network/share image and text adjacent -->
+        <v-row no-gutters class="pa-0">
+          <!-- network image -->
+          <v-col cols="4" align="center" justify="center" class="pa-0">
+            <img src="@/assets/share.svg" class="sponsor--img">
+          </v-col>
+          <!-- h4 and p text adjacent to network image -->
+          <v-col cols="8" class="pa-0">
+            <h4 class=sponsor--h4>Interact With Our Huge Active Community</h4>
+            <p class=sponsor--p> We have an extremely active community of ~3000 CSE students,
+              achieved through our offering of career, social and educational events. </p>
+          </v-col>
+        <!-- "sponsor us" button -->
+        </v-row>
+        <v-col cols="12" align="right">
+          <RouterLink to="/sponsors" class="link" style="text-decoration: none;">
+            <button class="btn--sponsorUs">
+              Sponsor Us
+            </button>
+          </RouterLink>
+        </v-col>
+      </v-container>
+    </div>
   </div>
 </template>
 
@@ -195,6 +217,7 @@ export default {
   box-sizing: border-box;
 }
 
+// Showcase
 #showcase {
   background-image: linear-gradient(transparent, transparent, $dark-color-1), url(../assets/landingPageHeaderBackground.png);
   background-position: 75% 50%;
@@ -217,6 +240,7 @@ export default {
   background: rgba(102,255,255, 0.2);
 }
 
+// Mission
 .mission {
   height: 120vh;
   width: 100vw;
@@ -257,26 +281,45 @@ export default {
   left: 0px;
 }
 
-#sponsor {
-  align-items: right;
-  padding-bottom: 150px;
+// SUPPORT CSESOC SECTION
+.sponsor {
+  margin-bottom: $space-xl;
+  background-image: url(../assets/supportusbackground.png);
+  background-size: cover;
+  background-position: 20% 50%;
 }
 
-#sponsor p {
-  font-size: 30px;
-  padding: 0 0 25px 0;
+.sponsor--h1 {
+  color: $light-color;
+  margin-bottom:  $space-md;
 }
 
-#sponsor .button {
-  text-align: center;
-  background: rgb(54, 119, 243);
-  border-radius: 0px;
-  color: #fff;
-  font-size: 30px;
-  font-weight: bold;
-  padding: 15px 20px;
-  text-decoration: none;
-  width: 250px;
+.sponsor--h4 {
+  color: $light-color;
+  margin-bottom: $space-xxs;
+}
+
+.sponsor--p {
+  color: $light-color;
+  margin-bottom: $space-xs;
+}
+
+// for icon images
+.sponsor--img {
+  height: 100px;
+  margin-top: $space-xxxs;
+}
+
+// "Sponsor Us" button
+.btn--sponsorUs {
+  @extend .btn--lg;
+  border: 2px solid #ffffff;
+}
+
+.btn--sponsorUs:hover {
+  transition: 0.4s;
+  // when on hover, change background from transparent to $brand-color with light opacity
+  background: rgba(102,255,255, 0.2);
 }
 
 .fb-event-link {
