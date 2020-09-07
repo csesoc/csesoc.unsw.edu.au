@@ -253,45 +253,6 @@ export default {
   background-image: linear-gradient($dark-color-1, transparent, $dark-color-1), url(../../assets/mission.jpg);
   background-size: 50%;
 }
-// .mission {
-//   height: 120vh;
-//   width: 100vw;
-//   float: left;
-//   background-size: 100%;
-//   background-size: cover;
-//   position: relative;
-//   margin-bottom: $space-xl;
-// }
-
-// .mission--h1 {
-//   padding-left: 7%;
-//   @extend h1;
-//   color: $light-color;
-//   padding-top: $space-md;
-//   position: relative;
-// }
-
-// .mission--p {
-//   @extend h3;
-//   color: $light-color;
-//   padding-left: 67%;
-//   padding-right: 7%;
-//   padding-top: $space-md;
-//   position: relative;
-// }
-
-// // css for background image only
-// .mission::before {
-//   content: "";
-//   background-image: linear-gradient($dark-color-1, transparent, $dark-color-1), url(../assets/mission.jpg);
-//   background-size: cover;
-//   position: absolute;
-//   width: 60%;
-//   top: 0px;
-//   right: 0px;
-//   bottom: 0px;
-//   left: 0px;
-// }
 
 // SUPPORT CSESOC SECTION
 .sponsor {
