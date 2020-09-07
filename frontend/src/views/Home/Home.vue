@@ -68,13 +68,8 @@
       <Preview :items="resourceItems"/>
     </v-container>
 
-    <v-container ref="joinus" class="joinUs">
-      <h1 class="joinUs--h1" data-cy=communityLinks-title>BE PART OF THE COMMUNITY</h1>
-      <h4 class="joinUs--h4" data-cy=communityLinks-bodyText>
-        Find our stall at O-week, or just turn up to an event and get to know us!
-      </h4>
-      <CommunityLinks></CommunityLinks>
-    </v-container>
+    <!-- Community Links -->
+    <CommunityLinks />
 
     <!-- Sponsor -->
     <SponsorUs />
@@ -82,14 +77,14 @@
 </template>
 
 <script>
+import HeaderTitle from '@/components/HeaderTitle';
 import Showcase from '@/views/Home/Showcase';
 import Mission from '@/views/Home/Mission';
+import CommunityLinks from '@/views/Home/CommunityLink';
 import SponsorUs from '@/views/Home/SponsorUs';
-import HeaderTitle from '@/components/HeaderTitle';
 import EventGrid from '@/components/EventGrid';
 import InfiniteSlideshow from '@/components/InfiniteSlideshow';
 import Preview from '@/components/Preview';
-import CommunityLinks from '@/components/CommunityLink';
 import APIClient from '../../utils/APIClient';
 
 export default {
