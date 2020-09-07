@@ -295,19 +295,16 @@ export default {
 }
 
 .sponsor--h1 {
-  @extend h1;
   color: $light-color;
   margin-bottom:  $space-md;
 }
 
 .sponsor--h4 {
-  @extend h4;
   color: $light-color;
   margin-bottom: $space-xxs;
 }
 
 .sponsor--p {
-  @extend p;
   color: $light-color;
   margin-bottom: $space-xs;
 }
