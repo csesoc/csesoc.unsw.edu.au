@@ -88,16 +88,16 @@
 
       <v-row no-gutters class="row">
         <v-col xs="12" sm="8" class="pa-0">
-          <div class="box big rounded-lg">
+          <div class="box big">
             <h2>Job Board</h2>
             <h3>A place where CSESoc students can look for relevant job opportunities.</h3>
-            <v-img src="@/assets/resource-job-board.png" contain class=".rounded-b-lg" />
+            <v-img src="@/assets/resource-job-board.png" class="image" />
           </div>
         </v-col>
         <v-col xs="12" sm="4" class="pb-0">
           <div class="box small rounded-lg">
             <h2>First Year Guide</h2>
-            <v-img src="@/assets/resource-first-year-guide.png" contain class=".rounded-b-lg" />
+            <v-img src="@/assets/resource-first-year-guide.png" contain class="image" />
           </div>
         </v-col>
       </v-row>
@@ -105,14 +105,14 @@
         <v-col xs="12" sm="4" class="pa-0">
           <div class="box small rounded-lg">
             <h2>CSESoc Media</h2>
-            <v-img src="@/assets/resource-media.png" class=".rounded-b-lg" />
+            <v-img src="@/assets/resource-media.png" class="image" />
           </div>
         </v-col>
         <v-col xs="12" sm="8" class="pb-0">
           <div class="box big rounded-lg">
             <h2>Notangles</h2>
             <h3>Trimester timetabling tool - no more timetable tangles!</h3>
-            <v-img src="@/assets/resource-notangles.png" class=".rounded-b-lg" />
+            <v-img src="@/assets/resource-notangles.png" class="image" />
           </div>
         </v-col>
       </v-row>
@@ -340,6 +340,7 @@ export default {
     margin-bottom: $space-xxs;
 
     .box {
+      border-radius: 10px;
       display: flex;
       flex-direction: column;
       height: 100%;
@@ -362,7 +363,6 @@ export default {
       h3 {
         padding-left: 20px;
         padding-right: 20px;
-        margin: 0;
       }
 
       .image {
