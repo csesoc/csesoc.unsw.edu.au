@@ -31,4 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header-title {
+  padding-bottom: $space-xs;
+}
 </style>
