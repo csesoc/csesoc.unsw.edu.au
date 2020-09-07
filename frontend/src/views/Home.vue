@@ -86,7 +86,7 @@
       <Preview :items="resourceItems"/>
     </v-container>
 
-    <v-container ref="joinus">
+    <v-container ref="joinus" class="joinUs">
       <h1 class="joinUs--h1">BE PART OF THE COMMUNITY</h1>
       <h4 class="joinUs--h4">Find our stall at O-week, or just turn up to an event and get to know us!</h4>
       <CommunityLinks></CommunityLinks>
@@ -201,6 +201,10 @@ export default {
   padding-right: 50vw;
   line-height: 95px;
   padding-top: $space-xl;
+}
+
+.joinUs {
+  padding-bottom: $space-xl;
 }
 
 .btn--joinUs {
