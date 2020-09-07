@@ -31,7 +31,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header-title {
-  margin-top: $space-sm
-}
 </style>
