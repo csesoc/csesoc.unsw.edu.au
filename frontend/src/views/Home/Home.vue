@@ -14,42 +14,9 @@
 <template>
   <div id="home">
     <!-- Showcase -->
-    <div id="showcase" class="content">
-        <v-container>
-          <v-row no-gutters>
-            <v-col class="pa-0" cols="6">
-              <h1 id="showcase--h1">
-                We inspire the programmers of the future.
-              </h1>
-            </v-col>
-          </v-row>
-          <v-row no-gutters>
-            <v-col class="pa-0" cols="12">
-              <button
-                class="btn--join-us"
-                data-cy=joinus-button
-                @click="scrollto('joinus')">
-                  Join Us
-              </button>
-            </v-col>
-          </v-row>
-        </v-container>
-    </div>
+    <Showcase />
     <!-- Mission -->
-    <div id="mission" class="content">
-      <v-container>
-        <HeaderTitle :title="'CSESOC\'S MISSION'" />
-        <!-- <h1 class="mission--h1"> CSESOCS MISSION </h1> -->
-        <v-row no-gutters justify="end">
-          <v-col cols="5" class="mission--p">
-            <p class="text--md">
-              "To empower every person and every organization on the planet to achieve more.
-              We strive to create local opportunity, growth, and impact in every country around the world. "
-            </p>
-          </v-col>
-        </v-row>
-      </v-container>
-    </div>
+    <Mission />
     <!-- Events -->
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <HeaderTitle :title="'upcoming events'" />
@@ -107,50 +74,14 @@
     </v-container>
 
     <!-- Sponsor -->
-    <div class=sponsor >
-      <v-container>
-        <!-- "support csesoc" title -->
-        <h1 class=sponsor--h1>SUPPORT CSESOC</h1>
-        <!-- row for trophy image and text adjacent -->
-        <v-row no-gutters>
-          <!-- trophy image -->
-          <v-col cols="4" align="center" class="pa-0">
-            <img src="@/assets/trophy.svg" class="sponsor--img">
-          </v-col>
-          <!-- h4 and p text adjacent to trophy image -->
-          <v-col cols="8" class="pa-0">
-            <h4 class=sponsor--h4>Reach Australia's Best Computing Graduates</h4>
-            <p class=sponsor--p> Many of our past members have gone on to work at our previous
-              sponsor companies including Google, Facebook, Jane St and Commonwealth Bank. </p>
-          </v-col>
-        </v-row>
-        <!-- row for network/share image and text adjacent -->
-        <v-row no-gutters class="pa-0">
-          <!-- network image -->
-          <v-col cols="4" align="center" justify="center" class="pa-0">
-            <img src="@/assets/share.svg" class="sponsor--img">
-          </v-col>
-          <!-- h4 and p text adjacent to network image -->
-          <v-col cols="8" class="pa-0">
-            <h4 class=sponsor--h4>Interact With Our Huge Active Community</h4>
-            <p class=sponsor--p> We have an extremely active community of ~3000 CSE students,
-              achieved through our offering of career, social and educational events. </p>
-          </v-col>
-        <!-- "sponsor us" button -->
-        </v-row>
-        <v-col cols="12" align="right">
-          <RouterLink to="/sponsors" class="link" style="text-decoration: none;">
-            <button class="btn--sponsorUs">
-              Sponsor Us
-            </button>
-          </RouterLink>
-        </v-col>
-      </v-container>
-    </div>
+    <SponsorUs />
   </div>
 </template>
 
 <script>
+import Showcase from '@/views/Home/Showcase';
+import Mission from '@/views/Home/Mission';
+import SponsorUs from '@/views/Home/SponsorUs';
 import HeaderTitle from '@/components/HeaderTitle';
 import EventGrid from '@/components/EventGrid';
 import InfiniteSlideshow from '@/components/InfiniteSlideshow';
@@ -174,6 +105,9 @@ export default {
     time: new Date().getTime()
   }),
   components: {
+    Showcase,
+    Mission,
+    SponsorUs,
     HeaderTitle,
     EventGrid,
     InfiniteSlideshow,
@@ -218,81 +152,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 #home {
   background-color: $dark-color-1;
   box-sizing: border-box;
   color: $light-color;
-}
-
-// Showcase
-#showcase {
-  background-image: linear-gradient(transparent, transparent, $dark-color-1), url(../../assets/landingPageHeaderBackground.png);
-  background-position: 75% 50%;
-  align-items: center;
-  justify-content: center;
-  background-size: 150%;
-}
-
-#showcase--h1 {
-  color: $light-color;
-}
-
-.btn--join-us {
-  @extend .btn--lg;
-  float: right;
-}
-
-.btn--join-us:hover {
-  transition: 0.4s;
-  background: rgba(102,255,255, 0.2);
-}
-
-// Mission
-#mission {
-  background-image: linear-gradient($dark-color-1, transparent, $dark-color-1), url(../../assets/mission.jpg);
-  background-size: 50%;
-}
-
-// SUPPORT CSESOC SECTION
-.sponsor {
-  margin-bottom: $space-xl;
-  background-image: url(../../assets/supportusbackground.png);
-  background-size: cover;
-  background-position: 20% 50%;
-}
-
-.sponsor--h1 {
-  color: $light-color;
-  margin-bottom:  $space-md;
-}
-
-.sponsor--h4 {
-  color: $light-color;
-  margin-bottom: $space-xxs;
-}
-
-.sponsor--p {
-  color: $light-color;
-  margin-bottom: $space-xs;
-}
-
-// for icon images
-.sponsor--img {
-  height: 100px;
-  margin-top: $space-xxxs;
-}
-
-// "Sponsor Us" button
-.btn--sponsorUs {
-  @extend .btn--lg;
-  border: 2px solid #ffffff;
-}
-
-.btn--sponsorUs:hover {
-  transition: 0.4s;
-  // when on hover, change background from transparent to $brand-color with light opacity
-  background: rgba(102,255,255, 0.2);
 }
 
 .fb-event-link {
@@ -304,10 +167,10 @@ export default {
 .blue-cutout {
   background: rgb(18, 76, 219);
   background: linear-gradient(
-    125deg,
-    rgba(18, 76, 219, 1) 0%,
-    rgba(50, 112, 255, 1) 50%,
-    rgba(30, 104, 255, 1) 100%
+  125deg,
+  rgba(18, 76, 219, 1) 0%,
+  rgba(50, 112, 255, 1) 50%,
+  rgba(30, 104, 255, 1) 100%
   );
   margin: 50px 0px;
   padding: 30px 0px;

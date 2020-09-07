@@ -11,8 +11,10 @@
 
 .icon-text-aligner {
     display:flex;
-    align-items:center;
-
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    
     > *:nth-child(2) {
         margin-left: $space-xxs;
     }
