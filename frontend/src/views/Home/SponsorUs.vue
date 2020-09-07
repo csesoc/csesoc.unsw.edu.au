@@ -9,7 +9,7 @@
   <div id="sponsor" class="content">
     <v-container>
     <!-- "support csesoc" title -->
-    <h1 class=sponsor--h1>SUPPORT CSESOC</h1>
+    <HeaderTitle title="SUPPORT CSESOC" />
     <!-- row for trophy image and text adjacent -->
     <v-row no-gutters v-for="info in supportInfo" :key="info.title">
       <v-col cols="4" align="center">
@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import HeaderTitle from '@/components/HeaderTitle';
+
 export default {
   name: 'SponsorUs',
   data: () => ({
@@ -53,6 +55,9 @@ export default {
       },
     ]
   }),
+  components: {
+    HeaderTitle,
+  }
 };
 </script>
 

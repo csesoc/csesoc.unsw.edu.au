@@ -11,7 +11,7 @@
 <template>
   <div class="header-title">
     <h1>{{ title }}</h1>
-    <h3 v-if="subtitle !== false">{{ subtitle }}</h3>
+    <h4 v-if="subtitle !== false">{{ subtitle }}</h4>
   </div>
 </template>
 
