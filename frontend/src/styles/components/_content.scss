@@ -15,10 +15,9 @@
 
 .content {
     @include clearfix;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     text-align: left;
     display: flex;
     margin-bottom: $space-sm;
-    overflow: hidden;
 }
