@@ -92,7 +92,7 @@
             <div class="box big">
               <h2>Job Board</h2>
               <h3>A place where CSESoc students can look for relevant job opportunities.</h3>
-              <v-img src="@/assets/resource-job-board.png" class="image" />
+              <v-img src="@/assets/resource-job-board.png" contain class="image" />
             </div>
           </a>
         </v-col>
@@ -344,6 +344,7 @@ export default {
 // Student resources
 .resource--styles {
   color: $light-color;
+
   .row {
     margin-bottom: $space-xxs;
     text-decoration: none;
@@ -357,6 +358,7 @@ export default {
         display: flex;
         flex-direction: column;
         height: 100%;
+        overflow: hidden;
 
         &.big{
           @include linearGradient($primary-color, $secondary-color-2);
@@ -381,7 +383,12 @@ export default {
         .image {
           border-bottom-left-radius: 10px;
           border-bottom-right-radius: 10px;
+          transition: transform .2s;
         }
+      }
+
+      .box:hover > .image {
+        transform: scale(1.1);
       }
     }
   }
