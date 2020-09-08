@@ -371,13 +371,13 @@ export default {
           padding-top: $space-xs;
           padding-bottom: $space-xxs;
           margin: 0;
-          padding-left: 20px;
-          padding-right: 20px;
+          padding-left: 35px;
+          padding-right: 35px;
         }
 
         h3 {
-          padding-left: 20px;
-          padding-right: 20px;
+          padding-left: 35px;
+          padding-right: 35px;
         }
 
         .image {
