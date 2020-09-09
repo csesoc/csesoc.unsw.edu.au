@@ -19,6 +19,7 @@ jobs:
       - name: Building docker containers using docker-compose
         env:
           MAILJET_TOKEN: ${{ secrets.MAILJET_TOKEN }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: docker-compose up -d --build backend mongo
       - name: Golang Tests
         run: go test ./...

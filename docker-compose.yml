@@ -23,6 +23,7 @@ services:
         environment: 
             - MAILJET_TOKEN=${MAILJET_TOKEN}
             - FB_TOKEN=${FB_TOKEN}
+            - JWT_SECRET=${JWT_SECRET}
     mongo:
         image: mongo:latest
         restart: always
