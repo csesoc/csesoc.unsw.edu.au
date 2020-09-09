@@ -115,8 +115,8 @@
             achieve this goal - such as tech talks and workshops, networking nights, resume and interview workshops,
             hackathons, coding competitions and so on. We also help manage sponsor relations, as sponsors play a key role
             in everything we do. This subcommittee helps its members develop both personally and professionally as they
-            correspond with our points of contact in the world's biggest tech companies, such as Google, Microsoft, Amazon, Facebook,
-            Atlassian and Canva.
+            correspond with our points of contact in the world's biggest tech companies, such as Google, Microsoft, Amazon,
+            Facebook, Atlassian and Canva.
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
