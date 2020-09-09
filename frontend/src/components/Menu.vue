@@ -61,7 +61,7 @@
                   </a>
                 </div>
                 <div class="link">
-                  <a target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u">
+                  <a target="_blank" href="https://bitly.com/CSESocCourseChats">
                     Discord Community
                   </a>
                 </div>
