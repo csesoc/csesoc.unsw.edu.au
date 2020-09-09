@@ -24,6 +24,7 @@ services:
             - MAILJET_TOKEN=${MAILJET_TOKEN}
             - FB_TOKEN=${FB_TOKEN}
             - JWT_SECRET=${JWT_SECRET}
+            - TESTING_JWT=${TESTING_JWT}
     mongo:
         image: mongo:latest
         restart: always
