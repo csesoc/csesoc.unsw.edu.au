@@ -18,7 +18,7 @@ const FAQ_URL = "api/v1/faq"
 const RESOURCES_URL = "api/v1/resources"
 
 // JWT used for testing
-const AUTH_TOKEN = "Bearer " + os.Getenv("TESTING_JWT")
+var AUTH_TOKEN = "Bearer " + os.Getenv("TESTING_JWT")
 
 var JWT_SECRET = []byte(os.Getenv("JWT_SECRET"))
 
