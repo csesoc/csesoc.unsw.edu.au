@@ -93,7 +93,7 @@
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <HeaderTitle title="Subcommittees"></HeaderTitle>
       <p>
-        The CSESoc Subcommittees are an integral part of CSESoc and are responsible for directly interacting with the
+        The CSESoc Subcommittees are an integral part of our society and are responsible for directly interacting with the
         students and sponsors through events, publications, this website, etc. Each subcommittee is run by the portfolio
         directors, and those directors are selected by the executive and is part of the director board.
         The CSESoc Executive and Directors hope you have enjoyed our events and activities - so much so that you wish to
@@ -115,8 +115,8 @@
             achieve this goal - such as tech talks and workshops, networking nights, resume and interview workshops,
             hackathons, coding competitions and so on. We also help manage sponsor relations, as sponsors play a key role
             in everything we do. This subcommittee helps its members develop both personally and professionally as they
-            correspond with our points of contact the worlds biggest tech companies: Google, Microsoft, Amazon, Facebook,
-            Atlassian, Canva, etc.
+            correspond with our points of contact in the world's biggest tech companies, such as Google, Microsoft, Amazon, Facebook,
+            Atlassian and Canva.
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
@@ -257,10 +257,10 @@
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <HeaderTitle title="History"></HeaderTitle>
       <p>
-        CSESoc was formed in October 2006 from the old CompSoc and SESoc societies. CompSoc helped represent the interest
+        CSESoc was formed in October 2006 from the old CompSoc and SESoc societies. CompSoc helped represent the interests
         of students studying Computer Engineering, Computer Science and postgraduate courses, while SESoc was the
         representative body for Software Engineering students. Both societies provided technical and social support to
-        their members. In the best interest of everyone, the societies merged to provide a better experience to all CSE
+        their members. In the best interests of everyone, the societies merged to provide a better experience to all CSE
         students.
       </p>
       <p>
