@@ -32,16 +32,16 @@
           <!-- Page links -->
           <v-col xs="12" sm="6">
             <div class="page-links-container" @click.stop="hide">
-              <RouterLink to="/about" class="link">
+              <RouterLink to="/about" class="link" data-cy="about-link">
                 <h2>001 | About</h2>
               </RouterLink>
-              <RouterLink to="/resources" class="link">
+              <RouterLink to="/resources" class="link" data-cy="resources-link">
                 <h2>010 | Resources</h2>
               </RouterLink>
-              <RouterLink to="/sponsors" class="link">
+              <RouterLink to="/sponsors" class="link" data-cy="sponsors-link">
                 <h2>011 | Sponsors</h2>
               </RouterLink>
-              <RouterLink to="/engage" class="link">
+              <RouterLink to="/engage" class="link" data-cy="engage-link">
                 <h2>100 | Engage</h2>
               </RouterLink>
             </div>
@@ -50,37 +50,37 @@
           <v-col xs="12" sm="6">
             <div class="social-links-container">
               <div class="push-down">
-                <div class="link">
+                <div class="link" data-cy="menu-social-link">
                   <a target="_blank" href="https://www.facebook.com/csesoc/" >
                     Facebook
                   </a>
                 </div>
-                <div class="link">
+                <div class="link" data-cy="menu-social-link">
                   <a target="_blank" href="https://www.instagram.com/csesoc_unsw/">
                     Instagram
                   </a>
                 </div>
-                <div class="link">
+                <div class="link" data-cy="menu-social-link">
                   <a target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u">
                     Discord Community
                   </a>
                 </div>
-                <div class="link">
+                <div class="link" data-cy="menu-social-link">
                   <a target="_blank" href="https://csesoc-community.slack.com/">
                     Slack Community
                   </a>
                 </div>
-                <div class="link">
+                <div class="link" data-cy="menu-social-link">
                   <a target="_blank" href="https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg">
                     Youtube
                   </a>
                 </div>
-                <div class="link">
+                <div class="link" data-cy="menu-social-link">
                   <a target="_blank" href="https://www.linkedin.com/company/csesoc/">
                     LinkedIn
                   </a>
                 </div>
-                <div class="link">
+                <div class="link" data-cy="menu-social-link">
                   <a href="#">
                     TikTok
                   </a>
