@@ -50,39 +50,9 @@
           <v-col xs="12" sm="6">
             <div class="social-links-container">
               <div class="push-down">
-                <div class="link" data-cy="menu-social-link">
-                  <a target="_blank" href="https://www.facebook.com/csesoc/" >
-                    Facebook
-                  </a>
-                </div>
-                <div class="link" data-cy="menu-social-link">
-                  <a target="_blank" href="https://www.instagram.com/csesoc_unsw/">
-                    Instagram
-                  </a>
-                </div>
-                <div class="link" data-cy="menu-social-link">
-                  <a target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u">
-                    Discord Community
-                  </a>
-                </div>
-                <div class="link" data-cy="menu-social-link">
-                  <a target="_blank" href="https://csesoc-community.slack.com/">
-                    Slack Community
-                  </a>
-                </div>
-                <div class="link" data-cy="menu-social-link">
-                  <a target="_blank" href="https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg">
-                    Youtube
-                  </a>
-                </div>
-                <div class="link" data-cy="menu-social-link">
-                  <a target="_blank" href="https://www.linkedin.com/company/csesoc/">
-                    LinkedIn
-                  </a>
-                </div>
-                <div class="link" data-cy="menu-social-link">
-                  <a href="#">
-                    TikTok
+                <div v-for="link in socialLinks" :key="link.name" class="link" data-cy="menu-social-link">
+                  <a target="_blank" :href="link.url" >
+                    {{ link.name }}
                   </a>
                 </div>
               </div>
@@ -107,6 +77,17 @@
 <script>
 export default {
   name: 'Menu',
+  data: () => ({
+    socialLinks: [
+      { name: 'Facebook', url: 'https://www.facebook.com/csesoc/' },
+      { name: 'Instagram', url: 'https://www.instagram.com/csesoc_unsw/' },
+      { name: 'Discord Community', url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u' },
+      { name: 'Slack Community', url: 'https://csesoc-community.slack.com/' },
+      { name: 'Youtube', url: 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg' },
+      { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' },
+      { name: 'TikTok', url: '#' },
+    ]
+  }),
   methods: {
     hide() {
       // Relaying status to parent
