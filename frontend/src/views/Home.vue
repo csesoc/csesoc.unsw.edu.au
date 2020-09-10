@@ -75,37 +75,37 @@
       <v-row no-gutters class="row">
         <v-col xs="12" sm="8" class="pa-0">
           <a style="color: inherit" href="">
-            <div class="box big">
+            <div class="box big" data-cy="resources-box">
               <h2>Job Board</h2>
               <h3>A place where CSESoc students can look for relevant job opportunities.</h3>
-              <v-img src="@/assets/resource-job-board.png" contain class="image" />
+              <v-img src="@/assets/resource-job-board.png" data-cy="resources-img" contain class="image" />
             </div>
           </a>
         </v-col>
         <v-col xs="12" sm="4" class="pb-0">
           <a style="color: inherit" href="">
-            <div class="box small rounded-lg">
+            <div class="box small rounded-lg" data-cy="resources-box">
               <h2>First Year Guide</h2>
-              <v-img src="@/assets/resource-first-year-guide.png" contain class="image" />
+              <v-img src="@/assets/resource-first-year-guide.png" data-cy="resources-img" contain class="image" />
             </div>
           </a>
         </v-col>
       </v-row>
       <v-row no-gutters>
         <v-col xs="12" sm="4" class="pa-0">
-          <a style="color: inherit" href="https://media.csesoc.org.au/">
+          <a style="color: inherit" href="https://media.csesoc.org.au/" data-cy="resources-box">
             <div class="box small rounded-lg">
               <h2>CSESoc Media</h2>
-              <v-img src="@/assets/resource-media.png" class="image" />
+              <v-img src="@/assets/resource-media.png" data-cy="resources-img" class="image" />
             </div>
           </a>
         </v-col>
         <v-col xs="12" sm="8" class="pb-0" href="">
-          <a style="color: inherit" href="">
+          <a style="color: inherit" href="" data-cy="resources-box">
             <div class="box big rounded-lg">
               <h2>Notangles</h2>
               <h3>Trimester timetabling tool - no more timetable tangles!</h3>
-              <v-img src="@/assets/resource-notangles.png" class="image" />
+              <v-img src="@/assets/resource-notangles.png" data-cy="resources-img" class="image" />
             </div>
           </a>
         </v-col>
