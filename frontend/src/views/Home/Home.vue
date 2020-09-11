@@ -40,10 +40,49 @@
         <img height="250px" src="@/assets/banner-4.jpg" style="padding-left: 20px; padding-right: 20px;">
       </InfiniteSlideshow>
     </div>
-    <!-- Resources -->
-    <v-container>
-      <HeaderTitle :title="'resources'" />
-      <Preview :items="resourceItems"/>
+
+    <!-- Student Resources -->
+    <v-container class="resource--styles">
+      <h1>STUDENT RESOURCES</h1>
+
+      <v-row no-gutters class="row">
+        <v-col xs="12" sm="8" class="pa-0">
+          <a style="color: inherit" href="">
+            <div class="box big">
+              <h2>Job Board</h2>
+              <h3>A place where CSESoc students can look for relevant job opportunities.</h3>
+              <v-img src="@/assets/resource-job-board.png" contain class="image" />
+            </div>
+          </a>
+        </v-col>
+        <v-col xs="12" sm="4" class="pb-0">
+          <a style="color: inherit" href="">
+            <div class="box small rounded-lg">
+              <h2>First Year Guide</h2>
+              <v-img src="@/assets/resource-first-year-guide.png" contain class="image" />
+            </div>
+          </a>
+        </v-col>
+      </v-row>
+      <v-row no-gutters>
+        <v-col xs="12" sm="4" class="pa-0">
+          <a style="color: inherit" href="https://media.csesoc.org.au/">
+            <div class="box small rounded-lg">
+              <h2>CSESoc Media</h2>
+              <v-img src="@/assets/resource-media.png" class="image" />
+            </div>
+          </a>
+        </v-col>
+        <v-col xs="12" sm="8" class="pb-0" href="">
+          <a style="color: inherit" href="">
+            <div class="box big rounded-lg">
+              <h2>Notangles</h2>
+              <h3>Trimester timetabling tool - no more timetable tangles!</h3>
+              <v-img src="@/assets/resource-notangles.png" class="image" />
+            </div>
+          </a>
+        </v-col>
+      </v-row>
     </v-container>
 
     <!-- Community Links -->
@@ -135,6 +174,58 @@ export default {
   color: $light-color;
 }
 
+// Student resources
+.resource--styles {
+  color: $light-color;
+
+  .row {
+    margin-bottom: $space-xxs;
+    text-decoration: none;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      .box {
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+
+        &.big{
+          @include linearGradient($primary-color, $secondary-color-2);
+        }
+        &.small{
+          @include linearGradient($primary-color, $secondary-color-1);
+        }
+
+        h2 {
+          padding-top: $space-xs;
+          padding-bottom: $space-xxs;
+          margin: 0;
+          padding-left: 35px;
+          padding-right: 35px;
+        }
+
+        h3 {
+          padding-left: 35px;
+          padding-right: 35px;
+        }
+
+        .image {
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+          transition: transform .2s;
+        }
+      }
+
+      .box:hover > .image {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
 .fb-event-link {
   text-decoration: none;
   font-weight: bold;
