@@ -18,7 +18,7 @@
       </v-col>
       <!-- discord server -->
       <v-col cols="4" align="center" class="pa-0">
-        <a href="https://www.facebook.com/groups/csesoc">
+        <a href="https://bitly.com/CSESocCourseChats">
           <img src="@/assets/discord_logo.png" class="zoom" data-cy="communityLinks-discordImage">
         </a>
         <h2>Discord Server</h2>

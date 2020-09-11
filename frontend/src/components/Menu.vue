@@ -66,7 +66,7 @@
         <v-row no-gutters class="footer">
           <p style="display: inline;">
             <img height="14px" src="@/assets/moon-icon.png" style="padding-right: 5px;">
-            Only Dark mode allowed here at CSESoc. Our apologies.
+            We're sorry, only Dark Mode is available at CSESoc.
           </p>
         </v-row>
       </v-container>
@@ -81,9 +81,9 @@ export default {
     socialLinks: [
       { name: 'Facebook', url: 'https://www.facebook.com/csesoc/' },
       { name: 'Instagram', url: 'https://www.instagram.com/csesoc_unsw/' },
-      { name: 'Discord Community', url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u' },
+      { name: 'Discord Community', url: 'https://bitly.com/CSESocCourseChats' },
       { name: 'Slack Community', url: 'https://csesoc-community.slack.com/' },
-      { name: 'Youtube', url: 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg' },
+      { name: 'YouTube', url: 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg' },
       { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' },
       { name: 'TikTok', url: '#' },
     ]

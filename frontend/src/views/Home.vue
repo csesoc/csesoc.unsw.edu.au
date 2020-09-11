@@ -74,7 +74,7 @@
 
       <v-row no-gutters class="row">
         <v-col xs="12" sm="8" class="pa-0">
-          <a style="color: inherit" href="">
+          <a style="color: inherit" href="https://jobsboard.csesoc.unsw.edu.au/login">
             <div class="box big">
               <h2>Job Board</h2>
               <h3>A place where CSESoc students can look for relevant job opportunities.</h3>
@@ -136,7 +136,7 @@
           <v-col cols="8" class="pa-0">
             <h4 class=sponsor--h4>Reach Australia's Best Computing Graduates</h4>
             <p class=sponsor--p> Many of our past members have gone on to work at our previous
-              sponsor companies including Google, Facebook, Jane St and Commonwealth Bank. </p>
+              sponsor companies including Google, Facebook, Jane Street and Commonwealth Bank. </p>
           </v-col>
         </v-row>
         <!-- row for network/share image and text adjacent -->
@@ -148,7 +148,7 @@
           <!-- h4 and p text adjacent to network image -->
           <v-col cols="8" class="pa-0">
             <h4 class=sponsor--h4>Interact With Our Huge Active Community</h4>
-            <p class=sponsor--p> We have an extremely active community of ~3000 CSE students,
+            <p class=sponsor--p> We have an extremely active community of over 3000 CSE students,
               achieved through our offering of career, social and educational events. </p>
           </v-col>
         <!-- "sponsor us" button -->

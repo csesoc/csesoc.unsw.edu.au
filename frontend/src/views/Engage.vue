@@ -44,10 +44,10 @@
         <v-expansion-panel>
           <v-expansion-panel-header class="title py-3">I'm not a CSE student, can I join?</v-expansion-panel-header>
           <v-expansion-panel-content>
-            If you are not enrolled in CSE program, you need to
+            If you are not enrolled in a CSE program or course, you need to
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSfDrhmyDz6F3Q98EEouoUYENwOzCWG1tEes_wJKl8xRzR84gg/viewform"
-            >sign up</a> as an associate member with the payment of 10$ per semester.
+            >sign up</a> as an associate member with a payment of $10 per semester.
             <br />
           </v-expansion-panel-content>
         </v-expansion-panel>
