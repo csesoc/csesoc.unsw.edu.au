@@ -46,12 +46,12 @@ export default {
       {
         logo: require('../../assets/trophy.svg'),
         title: 'Reach Australia\'s Best Computing Graduates',
-        desc: 'Many of our past members have gone on to work at our previous sponsor companies including Google, Facebook, Jane St and Commonwealth Bank.'
+        desc: 'Many of our past members have gone on to work at our previous sponsor companies including Google, Facebook, Jane Street and Commonwealth Bank.'
       },
       {
         logo: require('../../assets/share.svg'),
         title: 'Interact With Our Huge Active Community',
-        desc: 'We have an extremely active community of ~3000 CSE students, achieved through our offering of career, social and educational events.'
+        desc: 'We have an extremely active community of over 3000 CSE students, achieved through our offering of career, social and educational events.'
       },
     ]
   }),

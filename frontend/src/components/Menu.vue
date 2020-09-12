@@ -61,7 +61,7 @@
                   </a>
                 </div>
                 <div class="link">
-                  <a target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u">
+                  <a target="_blank" href="https://bitly.com/CSESocCourseChats">
                     Discord Community
                   </a>
                 </div>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="link">
                   <a target="_blank" href="https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg">
-                    Youtube
+                    YouTube
                   </a>
                 </div>
                 <div class="link">
@@ -96,7 +96,7 @@
         <v-row no-gutters class="footer">
           <p style="display: inline;">
             <img height="14px" src="@/assets/moon-icon.png" style="padding-right: 5px;">
-            Only Dark mode allowed here at CSESoc. Our apologies.
+            We're sorry, only Dark Mode is available at CSESoc.
           </p>
         </v-row>
       </v-container>

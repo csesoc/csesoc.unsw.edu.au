@@ -83,14 +83,14 @@ export default {
       { name: 'UNSW Handbook', url: 'https://www.handbook.unsw.edu.au/' }
     ],
     media: [
-      { name: 'Facebook page', url: 'https://www.facebook.com/csesoc/' },
+      { name: 'Facebook Page', url: 'https://www.facebook.com/csesoc/' },
       { name: 'Facebook Group', url: 'https://www.facebook.com/csesoc/' },
       { name: 'Instagram', url: 'https://www.instagram.com/csesoc_unsw/' },
       { name: 'Discord Community', url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u' },
       { name: 'Slack Community', url: 'https://csesoc-community.slack.com/' },
       { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' },
-      { name: 'Tiktok', url: '#' },
-      { name: 'Youtube', url: 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg' }
+      { name: 'TikTok', url: '#' },
+      { name: 'YouTube', url: 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg' }
     ]
   })
 };

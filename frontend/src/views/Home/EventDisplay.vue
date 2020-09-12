@@ -11,25 +11,25 @@
 
 <template>
   <div id="event-display" class="content">
-    <v-container>
+    <v-container data-cy="event-section">
       <HeaderTitle
         title="UPCOMING EVENTS"
         subtitle="Your endless opportunities start here."
       />
       <!-- Catch a lack of events, or if events haven't been updated in 60 days. -->
-      <div v-if="events.length == 0 | updated > 86400 * 1000 * 60">
+      <div data-cy="event-alert" v-if="events.length == 0 | updated > 86400 * 1000 * 60">
         Stay tuned to our Facebook page for upcoming events!
       </div>
 
       <!-- Display all events in a sliding component on desktop viewports. -->
-      <v-slide-group show-arrows dark class="hidden-sm-and-down">
+      <v-slide-group data-cy="event-slider" show-arrows dark class="hidden-sm-and-down">
         <v-slide-item v-for="event in events" :key="event.id" style="margin-right: 20px;">
           <Event :event = "event"></Event>
         </v-slide-item>
       </v-slide-group>
 
       <!-- Otherwise, list all events on mobile. -->
-      <v-row class="hidden-md-and-up" v-for="event in events.slice(0,3)" :key="event.id">
+      <v-row data-cy="event-list" class="hidden-md-and-up" v-for="event in events.slice(0,3)" :key="event.id">
           <Event :event = "event" style="margin: 0 auto; margin-bottom: 20px;"></Event>
       </v-row>
     </v-container>

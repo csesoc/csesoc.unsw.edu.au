@@ -41,7 +41,7 @@ export default {
         title: 'Slack Community',
       },
       {
-        link: 'https://www.facebook.com/groups/csesoc',
+        link: 'https://bitly.com/CSESocCourseChats',
         logo: require('../../assets/facebook_logo.png'),
         title: 'Facebook Group',
       },

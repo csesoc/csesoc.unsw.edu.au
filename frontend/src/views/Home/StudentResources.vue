@@ -12,7 +12,7 @@
 
       <v-row no-gutters justify="space-between">
         <v-col xs="12" sm="7">
-          <a href="">
+          <a href="https://jobsboard.csesoc.unsw.edu.au/login">
           <div class="box big">
             <h2>Job Board</h2>
             <h3>A place where CSESoc students can look for relevant job opportunities.</h3>
