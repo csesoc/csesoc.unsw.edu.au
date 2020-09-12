@@ -156,8 +156,14 @@ h2 {
 }
 
 .logo-margin {
-  float:left;
-  padding:5%;
+  float: left;
+  padding: 5%;
+  transition: transform 0.1s;
+}
+
+.large-logo:hover, .mid-logo:hover, .small-logo:hover {
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 .large-logo {
