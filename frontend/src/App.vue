@@ -12,7 +12,7 @@
       <div class="flex-grow-1"></div>
 
       <!-- Menu button -->
-      <v-app-bar-nav-icon class="ma-2" @click.stop="showMenu = !showMenu"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon class="ma-2" data-cy="menu-toggle" @click.stop="showMenu = !showMenu"></v-app-bar-nav-icon>
     </v-app-bar>
     <v-main >
       <Menu v-if="showMenu" @shown="onMenuCollapse" />
