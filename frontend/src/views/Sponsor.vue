@@ -158,7 +158,6 @@ h2 {
 .logo-margin {
   float: left;
   padding: 5%;
-  transition: transform 0.2s;
 }
 
 .logo {
