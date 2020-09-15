@@ -18,7 +18,7 @@
       <v-container class="border" fluid>
           <div v-for="(sponsor, index) in tierOne" :key="sponsor.id" :style="marginStyle(index, largeLogoFilter)">
               <div class="logo-margin">
-                <img class="large-logo" :src="`data:image/png;base64,${sponsor.logo}`" v-on:click="onClickModal(sponsor)"/>
+                <img class="large-logo logo" :src="`data:image/png;base64,${sponsor.logo}`" v-on:click="onClickModal(sponsor)"/>
               </div>
               <div v-if="(index + 1) % largeLogoFilter === 0 || index === tierOne.length - 1" style="clear:both;"></div>
           </div>
@@ -28,7 +28,7 @@
       <v-container class="border" fluid>
           <div v-for="(sponsor, index) in tierTwo" :key="sponsor.id" :style="marginStyle(index, midLogoFilter)">
               <div class="logo-margin">
-                <img class="mid-logo" :src="`data:image/png;base64,${sponsor.logo}`" v-on:click="onClickModal(sponsor)"/>
+                <img class="mid-logo logo" :src="`data:image/png;base64,${sponsor.logo}`" v-on:click="onClickModal(sponsor)"/>
               </div>
               <div v-if="(index + 1) % midLogoFilter === 0 || index === tierTwo.length - 1" style="clear:both;"></div>
           </div>
@@ -38,7 +38,7 @@
       <v-container class="border" fluid>
           <div v-for="(sponsor, index) in tierThree" :key="sponsor.id" :style="marginStyle(index, smallLogoFilter)">
               <div class="logo-margin">
-                  <img class="small-logo" :src="`data:image/png;base64,${sponsor.logo}`" v-on:click="onClickModal(sponsor)"/>
+                  <img class="small-logo logo" :src="`data:image/png;base64,${sponsor.logo}`" v-on:click="onClickModal(sponsor)"/>
               </div>
               <div v-if="(index + 1) % smallLogoFilter === 0 || index === tierThree.length - 1" style="clear:both;"></div>
           </div>
@@ -156,8 +156,17 @@ h2 {
 }
 
 .logo-margin {
-  float:left;
-  padding:5%;
+  float: left;
+  padding: 5%;
+}
+
+.logo {
+  transition: transform 0.2s;
+}
+
+.logo:hover {
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 .large-logo {
