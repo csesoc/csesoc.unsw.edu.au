@@ -68,14 +68,14 @@ export default {
           switch (res.status) {
             case 202:
               this.$refs.form.reset();
-              console.log(`Message sent: ${res}`);
+              // console.log(`Message sent: ${res}`);
               break;
             case 400:
-              console.error(`Invalid form: ${res}`);
-              console.log(res);
+              // console.error(`Invalid form: ${res}`);
+              // console.log(res);
               break;
             default:
-              console.error(`Failed to send message: ${res}`);
+              // console.error(`Failed to send message: ${res}`);
           }
         });
     },

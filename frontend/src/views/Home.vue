@@ -204,11 +204,11 @@ export default {
     APIClient.resourcesAPI('/preview')
       .then((responseJson) => {
         this.resourceItems = responseJson;
-      })
-      .catch((error) => {
-        // fix this
-        console.log(error);
       });
+    // .catch((error) => {
+    // fix this
+    // console.log(error);
+    // });
 
     APIClient.eventsAPI()
       .then((responseJson) => {
