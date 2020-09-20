@@ -29,30 +29,11 @@
         Some other text
       </v-col>
     </v-row>-->
-    <div class="flex-grid">
-      <div class="col col--md-12">100%</div>
-      <div class="col col--md-6">50%</div>
-      <div class="col col--md-6">50%</div>
-      <div class="col col--md-4">33%</div>
-      <div class="col col--md-4">33%</div>
-      <div class="col col--md-4">33%</div>
-      <div class="col col--md-3">25%</div>
-      <div class="col col--md-3">25%</div>
-      <div class="col col--md-3">25%</div>
-      <div class="col col--md-3">25%</div>
-      <div class="col col--md-4">33%</div>
-      <div class="col col--md-8">66%</div>
-      <div class="col col--md-8">66%</div>
-      <div class="col col--md-4">33%</div>
-      <div class="col col--md-3">25%</div>
-      <div class="col col--md-6">50%</div>
-      <div class="col col--md-3">25%</div>
-    </div>
 
     <div class="btns">
-      <button class="btn-primary">Primary</button>
-      <button class="btn-secondary">Secondary</button>
-      <button class="btn-accent">Accent</button>
+      <button class="btn--sm btn--primary">Primary</button>
+      <button class="btn--sm btn--secondary">Secondary</button>
+      <button class="btn--sm btn--accent">Accent</button>
     </div>
   </v-container>
 </template>

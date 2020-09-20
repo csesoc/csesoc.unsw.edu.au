@@ -22,11 +22,12 @@ module.exports = {
     ],
     'max-len': ['error',
       {
-        code: 130, ignoreUrls: true,
+        code: 130, ignoreUrls: true, ignoreStrings: true,
       },
     ],
     'comma-dangle': 'off',
-    "linebreak-style": 0
+    'linebreak-style': 0,
+    'global-require': 'off',
   },
 
   parserOptions: {
