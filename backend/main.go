@@ -164,9 +164,11 @@ func serveAPI(e *echo.Echo) {
 	// Swagger Setup
 	////////////////
 
-	println("Serving Swagger...")
-	// SwaggerUI can be accessed from: http://localhost:1323/swagger/index.html
-	e.GET("/swagger/*", echoSwagger.WrapHandler)
+	if DEVELOPMENT {
+		println("Serving Swagger...")
+		// SwaggerUI can be accessed from: http://localhost:1323/swagger/index.html
+		e.GET("/swagger/*", echoSwagger.WrapHandler)
+	}
 
 	///////////////////////
 	// Binding API Handlers
