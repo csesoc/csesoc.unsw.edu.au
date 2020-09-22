@@ -132,6 +132,7 @@ func servePages(e *echo.Echo) {
 	// Serve our static assists under the /static/ endpoint
 	e.GET("/js/*", echo.WrapHandler(assetHandler))
 	e.GET("/css/*", echo.WrapHandler(assetHandler))
+	e.GET("/img/*", echo.WrapHandler(assetHandler))
 
 	echo.NotFoundHandler = func(c echo.Context) error {
 		// TODO: Render your 404 page
