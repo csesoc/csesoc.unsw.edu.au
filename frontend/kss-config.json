@@ -1,0 +1,9 @@
+{
+    "title": "CSESOC Living Style Guide",
+    "source": "src/styles",
+    "destination": "src/styleguide/",
+    "builder": "node_modules/michelangelo/kss_styleguide/custom-template/",
+    "css": [
+        "../styles/global.css"
+    ]
+}

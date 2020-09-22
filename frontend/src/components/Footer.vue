@@ -13,7 +13,7 @@
         >
           <div class="white-text" style="margin-bottom:20%" data-cy="footer-address">
           <a href="/">
-            <v-img class="img-size" src="@/assets/csesoc-logo-white.svg" data-cy="footer-logo"/>
+            <img class="img-size" src="@/assets/csesoc-logo-white.svg" data-cy="footer-logo"/>
           </a>
           <br/>B03 CSE Building K17, UNSW
           <br/>
@@ -103,7 +103,7 @@ export default {
 
 .white-text a {
   text-decoration: none;
-  color: white;
+  color: $light-color;
   padding-right:$space-xxs;
 }
 

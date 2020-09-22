@@ -88,3 +88,6 @@ backend/main
 # cypress output
 frontend/cypress/videos/
 frontend/cypress/screenshots/
+
+# styleguide output
+styleguide

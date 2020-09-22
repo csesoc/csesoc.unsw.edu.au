@@ -1,6 +1,13 @@
 // ----------------------------------------------------------------------
-    // Icons
+// Icons
 // ----------------------------------------------------------------------
+
+// Icons
+// 
+// Utilities for your icons. Please use these as often as possible and 
+// add where needed.
+// 
+// Styleguide Components.icons
 
 /**
  * Utility classes for icons
@@ -11,8 +18,10 @@
 
 .icon-text-aligner {
     display:flex;
-    align-items:center;
-
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    
     > *:nth-child(2) {
         margin-left: $space-xxs;
     }

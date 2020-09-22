@@ -9,21 +9,29 @@
 -->
 
 <template>
-  <h1># {{ title }}</h1>
+  <div class="header-title">
+    <h1>{{ title }}</h1>
+    <h4 v-if="subtitle !== false">{{ subtitle }}</h4>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'HeaderTitle',
-  props: ['title']
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    subtitle: {
+      default: false,
+    }
+  }
 };
 </script>
 
-<style scoped>
-h1 {
-  font-size: 60px;
-  font-weight: bold;
-  margin-bottom: 1.3rem;
-  text-transform: lowercase;
+<style lang="scss" scoped>
+.header-title {
+  padding-bottom: $space-xs;
 }
 </style>
