@@ -124,7 +124,7 @@ func servePages(e *echo.Echo) {
 	println("Serving pages...")
 
 	// Setup our assetHandler and point it to our static build location
-	assetHandler := http.FileServer(http.Dir("../../frontend/dist/"))
+	assetHandler := http.FileServer(http.Dir("./dist/"))
 
 	// Setup a new echo route to load the build as our base path
 	e.GET("/", echo.WrapHandler(assetHandler))
@@ -132,6 +132,7 @@ func servePages(e *echo.Echo) {
 	// Serve our static assists under the /static/ endpoint
 	e.GET("/js/*", echo.WrapHandler(assetHandler))
 	e.GET("/css/*", echo.WrapHandler(assetHandler))
+	e.GET("/img/*", echo.WrapHandler(assetHandler))
 
 	echo.NotFoundHandler = func(c echo.Context) error {
 		// TODO: Render your 404 page

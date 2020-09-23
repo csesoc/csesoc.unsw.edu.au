@@ -1,0 +1,17 @@
+version: "3"
+services:
+  production:
+    image: production
+    build: .
+    ports: 
+      - '1323:1323'
+    depends_on:
+      - mongo
+    container_name: production
+  mongo:
+    image: mongo:3.6.20-xenial
+    restart: always
+    ports:
+      - '27017:27017'
+    container_name: mongo
+    
