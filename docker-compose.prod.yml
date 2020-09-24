@@ -8,6 +8,7 @@ services:
       - '1323:1323'
     security_opt:
       - no-new-privileges
+    read_only: true
     depends_on:
       - mongo
     container_name: production
@@ -18,5 +19,6 @@ services:
       - '27017:27017'
     security_opt:
       - no-new-privileges
+    read-only: true
     container_name: mongo
     
