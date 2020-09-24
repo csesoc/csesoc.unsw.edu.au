@@ -19,6 +19,5 @@ services:
       - '27017:27017'
     security_opt:
       - no-new-privileges
-    read-only: true
     container_name: mongo
     
