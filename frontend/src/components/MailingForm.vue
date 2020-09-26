@@ -50,7 +50,7 @@ export default {
     body: '',
     rules: {
       required: (value) => !!value || 'Required',
-      email: (value) => value.length === 0 || isEmail(value) || 'Invalid e-mail',
+      email: (value) => value === undefined || value.length === 0 || isEmail(value) || 'Invalid e-mail',
     },
   }),
   methods: {
