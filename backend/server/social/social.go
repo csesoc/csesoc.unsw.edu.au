@@ -59,11 +59,8 @@ func Setup(client *mongo.Client) {
 		log.Fatal("Could not retrive social links from JSON")
 	}
 
-	optUpsert := options.Update().SetUpsert(true)
 	for _, social := range socials {
-		filter := bson.M{"id": social.SocialID}
-		update := bson.M{"$set": social}
-		if _, err := socialColl.UpdateOne(context.TODO(), filter, update, optUpsert); err != nil {
+		if _, err := socialColl.InsertOne(context.TODO(), social); err != nil {
 			log.Printf("Could not insert social link " + social.Title + " " + err.Error())
 		}
 	}

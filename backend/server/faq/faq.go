@@ -52,14 +52,11 @@ func Setup(client *mongo.Client) {
 	// Fetching faq list
 	faqs, err := readFaqJSON()
 	if err != nil {
-		log.Fatal("Could not retrive faqs from JSON")
+		log.Fatal("Could not retrive Faqs from JSON")
 	}
 
-	optUpsert := options.Update().SetUpsert(true)
 	for _, faq := range faqs {
-		filter := bson.M{"question": faq.Question}
-		update := bson.M{"$set": faq}
-		if _, err := faqColl.UpdateOne(context.TODO(), filter, update, optUpsert); err != nil {
+		if _, err := faqColl.InsertOne(context.TODO(), faq); err != nil {
 			log.Printf("Could not insert faqs " + faq.Question + " " + err.Error())
 		}
 	}
