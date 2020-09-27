@@ -57,7 +57,7 @@ func Setup(client *mongo.Client) {
 
 	optUpsert := options.Update().SetUpsert(true)
 	for _, faq := range faqs {
-		filter := bson.M{"name": faq.Question}
+		filter := bson.M{"question": faq.Question}
 		update := bson.M{"$set": faq}
 		if _, err := faqColl.UpdateOne(context.TODO(), filter, update, optUpsert); err != nil {
 			log.Printf("Could not insert faqs " + faq.Question + " " + err.Error())
@@ -103,7 +103,6 @@ func HandleGet(c echo.Context) error {
 // HELPERS
 //////////
 
-// retrieveFaqs - Retrieve an faq from the database
 func retrieveFaqs() ([]*Faq, error) {
 	var results []*Faq
 

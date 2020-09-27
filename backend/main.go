@@ -209,6 +209,7 @@ func serveAPI(e *echo.Echo) {
 		}
 
 		// SOCIAL
+		social.Setup(client)
 		socialAPI := v1.Group("/social")
 		{
 			socialAPI.GET("", social.HandleGet)
