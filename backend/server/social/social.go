@@ -26,10 +26,9 @@ import (
 
 // Social - struct to contain social links data
 type Social struct {
-	SocialID int    `json:"id" validate:"min=0"`
-	Title    string `json:"title" validate:"required"`
-	Link     string `json:"link" validate:"required,url"`
-	Source   string `json:"src"`
+	Title  string `json:"title" validate:"required"`
+	Link   string `json:"link" validate:"required,url"`
+	Source string `json:"src"`
 }
 
 var socialColl *mongo.Collection
@@ -46,7 +45,7 @@ func Setup(client *mongo.Client) {
 	opt := options.Index()
 	opt.SetUnique(true)
 	index := mongo.IndexModel{
-		Keys:    bson.M{"id": 1},
+		Keys:    bson.M{"title": 1},
 		Options: opt,
 	}
 	if _, err := socialColl.Indexes().CreateOne(context.Background(), index); err != nil {
