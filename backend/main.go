@@ -202,6 +202,7 @@ func serveAPI(e *echo.Echo) {
 		}
 
 		// FAQ
+		faq.Setup(client)
 		faqsAPI := v1.Group("/faq")
 		{
 			faqsAPI.GET("", faq.HandleGet)
