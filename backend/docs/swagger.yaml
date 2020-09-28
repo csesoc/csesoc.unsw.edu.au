@@ -23,6 +23,9 @@ definitions:
         type: string
       question:
         type: string
+    required:
+    - answer
+    - question
     type: object
   resources.Resource:
     properties:
@@ -42,14 +45,15 @@ definitions:
     type: object
   social.Social:
     properties:
-      id:
-        type: integer
       link:
         type: string
       src:
         type: string
       title:
         type: string
+    required:
+    - link
+    - title
     type: object
   sponsor.Sponsor:
     properties:
@@ -107,6 +111,12 @@ paths:
             items:
               $ref: '#/definitions/faq.Faq'
             type: array
+        "500":
+          description: Service unavailable
+          headers:
+            error:
+              description: Missing questions and/or answer fields
+              type: string
         "503":
           description: Service unavailable
           headers:
@@ -216,7 +226,7 @@ paths:
       summary: Handle a sponsorship enquiry by adding it to a dispatch bundle
       tags:
       - mailing
-  /responses/preview:
+  /resources/preview:
     get:
       responses:
         "200":
@@ -243,6 +253,12 @@ paths:
             items:
               $ref: '#/definitions/social.Social'
             type: array
+        "500":
+          description: Service unavailable
+          headers:
+            error:
+              description: Missing fields
+              type: string
         "503":
           description: Service unavailable
           headers:
