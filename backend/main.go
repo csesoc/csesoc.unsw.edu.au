@@ -202,12 +202,14 @@ func serveAPI(e *echo.Echo) {
 		}
 
 		// FAQ
+		faq.Setup(client)
 		faqsAPI := v1.Group("/faq")
 		{
 			faqsAPI.GET("", faq.HandleGet)
 		}
 
 		// SOCIAL
+		social.Setup(client)
 		socialAPI := v1.Group("/social")
 		{
 			socialAPI.GET("", social.HandleGet)

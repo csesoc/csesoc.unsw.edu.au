@@ -8,11 +8,16 @@
 package faq
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 
 	. "csesoc.unsw.edu.au/m/v2/server"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 
 	"github.com/labstack/echo/v4"
 )
@@ -21,6 +26,40 @@ import (
 type Faq struct {
 	Question string `json:"question" validate:"required"`
 	Answer   string `json:"answer" validate:"required"`
+}
+
+var faqColl *mongo.Collection
+
+////////
+// SETUP
+////////
+
+// Setup - setup the collection to be used for faq
+func Setup(client *mongo.Client) {
+	faqColl = client.Database("csesoc").Collection("faqs")
+
+	// Creating unique index for sponsor name
+	opt := options.Index()
+	opt.SetUnique(true)
+	index := mongo.IndexModel{
+		Keys:    bson.M{"question": 1},
+		Options: opt,
+	}
+	if _, err := faqColl.Indexes().CreateOne(context.Background(), index); err != nil {
+		log.Fatal("Could not create index: ", err)
+	}
+
+	// Fetching faq list
+	faqs, err := readFaqJSON()
+	if err != nil {
+		log.Fatal("Could not retrive Faqs from JSON")
+	}
+
+	for _, faq := range faqs {
+		if _, err := faqColl.InsertOne(context.TODO(), faq); err != nil {
+			log.Printf("Could not insert faqs " + faq.Question + " " + err.Error())
+		}
+	}
 }
 
 ///////////
@@ -37,11 +76,11 @@ type Faq struct {
 // @Header 503 {string} error "Unable to retrieve FAQs"
 // @Router /faq [get]
 func HandleGet(c echo.Context) error {
-	faqs, err := readFaqJSON()
+	faqs, err := retrieveFaqs()
 
 	if err != nil {
 		return c.JSON(http.StatusServiceUnavailable, H{
-			"error": "Unable to retrieve FAQs",
+			"error": "Unable to retrieve FAQs from database",
 		})
 	}
 
@@ -60,6 +99,21 @@ func HandleGet(c echo.Context) error {
 //////////
 // HELPERS
 //////////
+
+func retrieveFaqs() ([]*Faq, error) {
+	var results []*Faq
+
+	curr, err := faqColl.Find(context.TODO(), bson.M{})
+	// decode result into faq array
+	if err == nil {
+		for curr.Next(context.TODO()) {
+			var elem Faq
+			curr.Decode(&elem)
+			results = append(results, &elem)
+		}
+	}
+	return results, err
+}
 
 func readFaqJSON() ([]Faq, error) {
 	byteValue, err := ReadJSON("faq")

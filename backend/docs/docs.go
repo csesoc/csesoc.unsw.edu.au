@@ -73,6 +73,15 @@ var doc = `{
                             }
                         }
                     },
+                    "500": {
+                        "description": "Service unavailable",
+                        "headers": {
+                            "error": {
+                                "type": "string",
+                                "description": "Missing questions and/or answer fields"
+                            }
+                        }
+                    },
                     "503": {
                         "description": "Service unavailable",
                         "headers": {
@@ -236,7 +245,7 @@ var doc = `{
                 }
             }
         },
-        "/responses/preview": {
+        "/resources/preview": {
             "get": {
                 "tags": [
                     "resources"
@@ -277,6 +286,15 @@ var doc = `{
                             "type": "array",
                             "items": {
                                 "$ref": "#/definitions/social.Social"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Service unavailable",
+                        "headers": {
+                            "error": {
+                                "type": "string",
+                                "description": "Missing fields"
                             }
                         }
                     },
@@ -523,6 +541,10 @@ var doc = `{
         },
         "faq.Faq": {
             "type": "object",
+            "required": [
+                "answer",
+                "question"
+            ],
             "properties": {
                 "answer": {
                     "type": "string"
@@ -557,10 +579,11 @@ var doc = `{
         },
         "social.Social": {
             "type": "object",
+            "required": [
+                "link",
+                "title"
+            ],
             "properties": {
-                "id": {
-                    "type": "integer"
-                },
                 "link": {
                     "type": "string"
                 },
