@@ -76,7 +76,7 @@
       <h2>Still have some questions?</h2>
       <br>
 
-      <v-btn-toggle v-model="activeForm">
+      <v-btn-toggle v-model="activeForm" mandatory>
         <v-btn value="general" data-cy="general-form-selector">
           Enquiry
         </v-btn>
