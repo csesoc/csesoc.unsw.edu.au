@@ -26,8 +26,7 @@ jobs:
         run: go test ./...
         working-directory: ./backend/server
         env:
-          TESTING_JWT: ${{ secrets.TESTING_JWT }}
-          
+          TESTING_JWT: ${{ secrets.TESTING_JWT }} 
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
