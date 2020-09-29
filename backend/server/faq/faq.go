@@ -55,8 +55,12 @@ func Setup(client *mongo.Client) {
 		log.Fatal("Could not retrive Faqs from JSON")
 	}
 
+	// Try to update; insert if document is not found
+	optUpsert := options.Update().SetUpsert(true)
 	for _, faq := range faqs {
-		if _, err := faqColl.InsertOne(context.TODO(), faq); err != nil {
+		filter := bson.M{"name": faq.Question}
+		update := bson.M{"$set": faq}
+		if _, err := faqColl.UpdateOne(context.TODO(), filter, update, optUpsert); err != nil {
 			log.Printf("Could not insert faqs " + faq.Question + " " + err.Error())
 		}
 	}
