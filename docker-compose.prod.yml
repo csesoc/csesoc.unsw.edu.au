@@ -3,8 +3,12 @@ services:
   production:
     image: production
     build: .
+    restart: always
     ports: 
       - '1323:1323'
+    security_opt:
+      - no-new-privileges
+    read_only: true
     depends_on:
       - mongo
     container_name: production
@@ -13,5 +17,7 @@ services:
     restart: always
     ports:
       - '27017:27017'
+    security_opt:
+      - no-new-privileges
     container_name: mongo
     

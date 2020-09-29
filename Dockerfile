@@ -22,11 +22,6 @@ COPY --from=vue-dependencies /app/dist/ ./dist
 # Copy server files 
 COPY ./backend ./
 
-RUN ls
-
-# # Initialise go modules
-# RUN go mod init
-
 # Build go dependencies
 RUN go mod download
 
