@@ -62,8 +62,8 @@ var mailjetClient *mailjet.Client
 // Setup - initialises a session with the Mailjet API and stores it in a global variable
 func Setup() {
 	if DEVELOPMENT {
-		infoEmail = "vemofaw770@qatw.net"
-		sponsorshipEmail = "vemofaw770@qatw.net"
+		infoEmail = DEV_INFO_EMAIL
+		sponsorshipEmail = DEV_SPONSORSHIP_EMAIL
 	}
 
 	mailjetClient = mailjet.NewMailjetClient(MAILJET_PUBLIC_KEY, MAILJET_PRIVATE_KEY)
