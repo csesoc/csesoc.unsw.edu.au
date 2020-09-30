@@ -13,7 +13,6 @@ package mailing
 
 import (
 	"net/http"
-	"os"
 	"time"
 
 	. "csesoc.unsw.edu.au/m/v2/server"
@@ -21,10 +20,8 @@ import (
 	"github.com/mailjet/mailjet-apiv3-go"
 )
 
-var INFO_EMAIL = "info@csesoc.org.au"
-var SPONSORSHIP_EMAIL = "sponsorship@csesoc.org.au"
-
-const PUBLIC_KEY = "8afb96baef07230483a2a5ceca97d55d"
+var infoEmail = "info@csesoc.org.au"
+var sponsorshipEmail = "sponsorship@csesoc.org.au"
 
 type messageType int
 
@@ -65,14 +62,11 @@ var mailjetClient *mailjet.Client
 // Setup - initialises a session with the Mailjet API and stores it in a global variable
 func Setup() {
 	if DEVELOPMENT {
-		INFO_EMAIL = "projects.website+info@csesoc.org.au"
-		SPONSORSHIP_EMAIL = "projects.website+sponsorship@csesoc.org.au"
+		infoEmail = DEV_INFO_EMAIL
+		sponsorshipEmail = DEV_SPONSORSHIP_EMAIL
 	}
 
-	// Get Docker env variable: MAILJET_TOKEN
-	var token = os.Getenv("MAILJET_TOKEN")
-
-	mailjetClient = mailjet.NewMailjetClient(PUBLIC_KEY, token)
+	mailjetClient = mailjet.NewMailjetClient(MAILJET_PUBLIC_KEY, MAILJET_PRIVATE_KEY)
 
 	// Start mailing timers
 	go mailingTimer()
@@ -202,13 +196,13 @@ func mailingTimer() {
 // DispatchEnquiryBundles - public trigger for dispatching enquiries
 func DispatchEnquiryBundles() {
 	if len(generalBundle) > 0 {
-		if sendEmail(INFO_EMAIL, "Website info enquiry bundle", joinEnquiries(generalBundle)) {
+		if sendEmail(infoEmail, "Website info enquiry bundle", joinEnquiries(generalBundle)) {
 			// If sent successfully, clear bundle
 			generalBundle = nil
 		}
 	}
 	if len(sponsorshipBundle) > 0 {
-		if sendEmail(SPONSORSHIP_EMAIL, "Website sponsorship enquiry bundle", joinEnquiries(sponsorshipBundle)) {
+		if sendEmail(sponsorshipEmail, "Website sponsorship enquiry bundle", joinEnquiries(sponsorshipBundle)) {
 			// If sent successfully, clear bundle
 			sponsorshipBundle = nil
 		}
@@ -218,7 +212,7 @@ func DispatchEnquiryBundles() {
 // DispatchFeedbackBundle - public trigger for dispatching feedbacks
 func DispatchFeedbackBundle() {
 	if len(feedbackBundle) > 0 {
-		if sendEmail(INFO_EMAIL, "Website feedback bundle", joinFeedbacks(feedbackBundle)) {
+		if sendEmail(infoEmail, "Website feedback bundle", joinFeedbacks(feedbackBundle)) {
 			// If sent successfully, clear bundle
 			feedbackBundle = nil
 		}
