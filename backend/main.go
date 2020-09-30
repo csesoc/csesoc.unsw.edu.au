@@ -133,6 +133,7 @@ func servePages(e *echo.Echo) {
 	e.GET("/js/*", echo.WrapHandler(assetHandler))
 	e.GET("/css/*", echo.WrapHandler(assetHandler))
 	e.GET("/img/*", echo.WrapHandler(assetHandler))
+	e.GET("/fonts/*", echo.WrapHandler(assetHandler))
 
 	echo.NotFoundHandler = func(c echo.Context) error {
 		// TODO: Render your 404 page
