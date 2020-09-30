@@ -72,29 +72,29 @@ h1 {
 
 h2 {
   font-size: $text-lg;
-  font-weight: 800;
+  font-weight: bold;
 }
 
 h3 {
   font-size: $text-lg;
-  font-weight: 200;
+  font-weight: normal;
 }
 
 h4 {
   font-size: $text-sm;
-  font-weight: 800;
+  font-weight: bold;
 }
 
 p {
   font-size: $text-xs;
-  font-weight: 200;
+  font-weight: normal;
   line-height: $body-line-height;
   margin-bottom: $space-xxxs;
 }
 
 button {
   font-size: $text-sm;
-  font-weight: 800;
+  font-weight: bold;
 }
 
 // ----------------------------------------------------------------------
