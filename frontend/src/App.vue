@@ -49,7 +49,7 @@ export default {
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Core Sans C', Arial, sans-serif;
+  font-family: 'Gotham', Arial, sans-serif;
 }
 
 html, body {
