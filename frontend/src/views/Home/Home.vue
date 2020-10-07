@@ -53,7 +53,6 @@ export default {
     Mission,
     CommunityLinks,
     EventDisplay,
-    Slideshow,
     StudentResources,
     SponsorUs,
   },
