@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content hidden-sm-and-down">
     <InfiniteSlideshow duration="32s" direction="reverse">
     <img height="250px" src="@/assets/banner-1.jpg" style="padding-left: 20px; padding-right: 20px;">
     <img height="250px" src="@/assets/banner-2.jpg" style="padding-left: 20px; padding-right: 20px;">
