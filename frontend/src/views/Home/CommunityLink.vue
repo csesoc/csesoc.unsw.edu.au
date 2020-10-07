@@ -14,7 +14,7 @@
           subtitle="Find our stall at O-week, or just turn up to an event and get to know us!"
         />
       </v-row>
-      <v-row class="pa-0" data-cy="communityLinks-images">
+      <v-row class="hidden-sm-and-down" data-cy="communityLinks-images">
         <!-- Display community links -->
         <v-col cols="4" align="center" class="pa-0" v-for="channel in communityLinks" :key="channel.title">
           <a :href="channel.link">
