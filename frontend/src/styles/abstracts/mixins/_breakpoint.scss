@@ -22,9 +22,9 @@
  * We use bootstrap breakpoints.
  */ 
 
-$breakpoint-small: 576px;
+$breakpoint-small: 640px;
 $breakpoint-medium: 768px;
-$breakpoint-large: 991px;
+$breakpoint-large: 1024px;
 $breakpoint-extra: 1200px; 
 
 @mixin breakpoint($size, $type: max, $pixels: $breakpoint-small) {
