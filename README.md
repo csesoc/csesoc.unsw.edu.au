@@ -83,6 +83,12 @@ https://localhost:1323/api/v1/sponsors
 
 The API documentation is handled by [Swagger](https://swagger.io/) and can be found by navigating to `0.0.0.0:1323/swagger/index.html` (`[::]:1323/swagger/index.html`). Notice that it's also in the port that serves the APIs themselves. Swagger was adopted to employ a 'docs-as-code' approach to allow developers to quickly and efficiently write documentation ad-hoc, as well as having a permanent space for future teams to read up on API while working with it. Lastly, Swagger is intuitive and provides an interactive way to contact the APIs.
 
+## Living Style Guide
+
+To help create a unique and consistent brand identity, we have looked at creating a living style guide for developers to utilise to be able to build components on our website more easily while still fitting in with the overall vision of wireframes, stylesheets and design guidelines. To run the living style guide on your local machine, run `yarn run kss` from the frontend folder. This will create css files for a local server you use to serve the files necessary to visualise the guide. Then once a local server is running proceed to the `frontend/src/styleguide/` and open the html file to begin browsing.
+
+_There is currently no way to visualise the fonts used. Fix in progress._
+
 ## Running tests
 
 The project uses Github Actions for continuous integration and automated testing. Testing will always be written at the beginning of each sprint and run every time a push is detected on your feat/fix/hotfix branch or a merge/push to dev.
