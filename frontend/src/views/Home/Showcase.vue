@@ -10,7 +10,7 @@
       <v-row no-gutters>
         <v-col class="pa-0" cols="6">
           <h1>
-            We inspire the programmers of the future.
+            {{quote}}
           </h1>
         </v-col>
       </v-row>
@@ -27,6 +27,14 @@
     </v-container>
   </div>
 </template>
+
+<script>
+export default {
+  data: () => ({
+    quote: 'We inspire the programmers of the future.',
+  })
+};
+</script>
 
 <style lang="scss" scoped>
 #showcase {
