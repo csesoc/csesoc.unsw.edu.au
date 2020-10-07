@@ -1,16 +1,22 @@
 <template>
   <div class="content">
     <InfiniteSlideshow duration="32s" direction="reverse">
-    <img height="250px" src="@/assets/banner-1.jpg" style="padding-left: 20px; padding-right: 20px;">
-    <img height="250px" src="@/assets/banner-2.jpg" style="padding-left: 20px; padding-right: 20px;">
-    <img height="250px" src="@/assets/banner-3.jpg" style="padding-left: 20px; padding-right: 20px;">
-    <img height="250px" src="@/assets/banner-4.jpg" style="padding-left: 20px; padding-right: 20px;">
+    <img
+      height="250px"
+      v-for="banner in banners"
+      :key="banner.src"
+      :src="banner.src"
+      style="padding-left: 20px; padding-right: 20px;"
+    >
     </InfiniteSlideshow>
     <InfiniteSlideshow duration="35s" direction="reverse">
-    <img height="250px" src="@/assets/banner-1.jpg" style="padding-left: 20px; padding-right: 20px;">
-    <img height="250px" src="@/assets/banner-2.jpg" style="padding-left: 20px; padding-right: 20px;">
-    <img height="250px" src="@/assets/banner-3.jpg" style="padding-left: 20px; padding-right: 20px;">
-    <img height="250px" src="@/assets/banner-4.jpg" style="padding-left: 20px; padding-right: 20px;">
+    <img
+      height="250px"
+      v-for="banner in banners"
+      :key="banner.src"
+      :src="banner.src"
+      style="padding-left: 20px; padding-right: 20px;"
+    >
     </InfiniteSlideshow>
   </div>
 </template>
@@ -21,7 +27,14 @@ import InfiniteSlideshow from '@/components/InfiniteSlideshow';
 export default {
   components: {
     InfiniteSlideshow,
-  }
+  },
+  data: () => ({
+    banners: [
+      { src: require('../../assets/banner-1.jpg') },
+      { src: require('../../assets/banner-2.jpg') },
+      { src: require('../../assets/banner-3.jpg') },
+      { src: require('../../assets/banner-4.jpg') }],
+  }),
 };
 </script>
 
