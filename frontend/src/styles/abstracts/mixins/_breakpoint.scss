@@ -22,11 +22,6 @@
  * We use bootstrap breakpoints.
  */ 
 
-$breakpoint-small: 600px;
-$breakpoint-medium: 960px;
-$breakpoint-large: 1264px;
-$breakpoint-extra: 1904px; 
-
 @mixin breakpoint($size, $type: max, $pixels: $breakpoint-small) {
   @media screen and (#{$type}-width: $breakpoint-#{$size}) {
     @content;
