@@ -8,12 +8,10 @@
    <div id="mission" class="content">
     <v-container>
     <HeaderTitle :title="'CSESOC\'S MISSION'" />
-    <!-- <h1 class="mission--h1"> CSESOCS MISSION </h1> -->
     <v-row no-gutters justify="end">
       <v-col cols="5" class="mission--p">
       <p class="text--md">
-        "To empower every person and every organization on the planet to achieve more.
-        We strive to create local opportunity, growth, and impact in every country around the world. "
+        {{mission}}
       </p>
       </v-col>
     </v-row>
@@ -28,7 +26,10 @@ export default {
   name: 'Mission',
   components: {
     HeaderTitle
-  }
+  },
+  data: () => ({
+    mission: '"To empower every person and every organization on the planet to achieve more. We strive to create local opportunity, growth, and impact in every country around the world."',
+  }),
 };
 </script>
 <style lang="scss" scoped>

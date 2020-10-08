@@ -44,7 +44,6 @@ export default {
   name: 'Home',
   data: () => ({
     drawer: false,
-    // resourceItems: [],
     eventItems: [],
     loadTime: new Date().getTime(),
     lastEventUpdate: 0
@@ -59,15 +58,6 @@ export default {
     SponsorUs,
   },
   mounted() {
-    // APIClient.resourcesAPI('/preview')
-    //   .then((responseJson) => {
-    //     this.resourceItems = responseJson;
-    //   })
-    //   .catch((error) => {
-    //     // fix this
-    //     console.log(error);
-    //   });
-
     APIClient.eventsAPI()
       .then((responseJson) => {
         this.eventItems = responseJson.events;
