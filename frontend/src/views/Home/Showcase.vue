@@ -38,12 +38,13 @@ export default {
 
 <style lang="scss" scoped>
 #showcase {
-  background-image: linear-gradient(transparent, transparent, $dark-color-1), url(../../assets/landingPageHeaderBackground.png);
+  background-image: linear-gradient(transparent, transparent, $dark-color-1), url(../../assets/landing_page/test.png);
+  background-size: cover;
+  background-attachment:local;
   background-position: 75% 50%;
   height: 100vh;
   align-items: center;
   justify-content: center;
-  background-size: 150%;
 }
 
 .btn--join-us {
