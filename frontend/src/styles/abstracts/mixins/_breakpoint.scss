@@ -9,7 +9,7 @@
 
 // ----------------------------------------------------------------------
 
-  // #Breakpoint Variables
+// #Breakpoint Variables
 
 // ----------------------------------------------------------------------
 
@@ -22,8 +22,8 @@
  * We use bootstrap breakpoints.
  */ 
 
-@mixin breakpoint($size, $type: max, $pixels: $breakpoint-small) {
-  @media screen and (#{$type}-width: $breakpoint-#{$size}) {
+@mixin breakpoint($size) {
+  @media screen and (max-width: $size) {
     @content;
   }
 }
