@@ -12,7 +12,6 @@
 
       <v-row no-gutters justify="space-between">
         <v-col xs="12" sm="7">
-          <!-- <a target="_blank" href="https://jobsboard.csesoc.unsw.edu.au/login"> -->
           <a target="_blank" :href="resources.big_box_1.link">
           <div data-cy="resources-box" class="box big">
             <h2>{{resources.big_box_1.title}}</h2>
