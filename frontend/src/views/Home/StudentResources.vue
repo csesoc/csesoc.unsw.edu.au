@@ -22,7 +22,7 @@
         </v-col>
         <v-col xs="12" sm="4">
           <a target="_blank" :href="resources.small_box_1.link">
-          <div data-cy="resources-box" class="box small rounded-lg">
+          <div data-cy="resources-box" class="box small rounded-lg hidden-xs-only">
             <h2>{{resources.small_box_1.title}}</h2>
             <v-img data-cy="resources-img" :src="resources.small_box_1.src" contain class="image" />
           </div>
@@ -30,7 +30,7 @@
         </v-col>
         <v-col xs="12" sm="4">
           <a target="_blank" :href="resources.small_box_2.link">
-          <div data-cy="resources-box" class="box small rounded-lg">
+          <div data-cy="resources-box" class="box small rounded-lg hidden-xs-only">
             <h2>{{resources.small_box_2.title}}</h2>
             <v-img data-cy="resources-img" :src="resources.small_box_2.src" class="image" />
           </div>
