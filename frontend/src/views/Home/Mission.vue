@@ -33,10 +33,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-// #mission {
+#mission {
 //   background-image: linear-gradient($dark-color-1, transparent, $dark-color-1), url(../../assets/mission.jpg);
-//   height: 100vh;
+  height: 100vh;
 //   background-size: 50%;
 //   padding-top: $space-sm;
-// }
+}
 </style>
