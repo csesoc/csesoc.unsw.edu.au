@@ -14,13 +14,13 @@
           subtitle="Find our stall at O-week, or just turn up to an event and get to know us!"
         />
       </v-row>
-      <v-row class="hidden-sm-and-down" data-cy="communityLinks-images">
+      <v-row data-cy="communityLinks-images">
         <!-- Display community links -->
         <v-col cols="4" align="center" class="pa-0" v-for="channel in communityLinks" :key="channel.title">
           <a :href="channel.link">
             <img :src="channel.logo" class="logo zoom" data-cy="community-links-image">
           </a>
-          <h2>{{channel.title}}</h2>
+          <h2 class="hidden-sm-and-down">{{channel.title}}</h2>
         </v-col>
       </v-row>
     </v-container>
@@ -60,10 +60,15 @@ export default {
 
 <style scoped lang="scss">
 .logo {
-  width: 150px;
+  width: 37%;
   height: auto;
   margin-bottom: $space-xxs;
   transition: transform .2s;
+
+  @media only screen and (max-width: $breakpoint-medium) {
+    width: 50%;
+  }
+
 }
 
 .logo:hover {
