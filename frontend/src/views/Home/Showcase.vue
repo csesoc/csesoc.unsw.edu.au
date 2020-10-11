@@ -38,7 +38,7 @@ export default {
 
 <style lang="scss" scoped>
 #showcase {
-  background-image: linear-gradient(transparent, transparent, $dark-color-1), url(../../assets/landing_page/test.png);
+  background-image: linear-gradient(transparent, transparent, $dark-color-1), url(../../assets/landing_page/test1.png);
   background-size: cover;
   background-attachment:local;
   background-position: 75% 50%;
