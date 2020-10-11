@@ -14,7 +14,7 @@
     rel="noreferrer noopener"
   >
     <v-hover v-slot:default="{ hover }">
-      <v-img :src="event.fb_cover_img">
+      <v-img class="event-cover" :src="event.fb_cover_img">
         <!-- Display extra event information on hover -->
         <v-expand-transition>
           <div
@@ -77,6 +77,10 @@ export default {
   .event-card {
     width: 32em;
     max-width: 90vw;
+  }
+
+  .event-cover {
+    height: 100%;
   }
 
   .info-card {
