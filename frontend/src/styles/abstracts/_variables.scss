@@ -1,5 +1,3 @@
-@use "sass:math";
-
 // ----------------------------------------------------------------------
 // Layout Breakpoints
 // ----------------------------------------------------------------------
@@ -9,14 +7,26 @@ $breakpoint-large: 1264px;
 $breakpoint-extra: 1904px;
 
 // ----------------------------------------------------------------------
-// Font Sizes and Base Values
+// Font Base Values
 // ----------------------------------------------------------------------
 $text-base-size: 1em;
 $text-scale-ratio: 1.25;
-$text-xs: $text-base-size;
-$text-sm: $text-base-size * math.pow($text-scale-ratio, 1);
-$text-md: $text-base-size * math.pow($text-scale-ratio, 2);
-$text-lg: $text-base-size * math.pow($text-scale-ratio, 3);
-$text-xl: $text-base-size * math.pow($text-scale-ratio, 6);
-$text-xxl: $text-base-size * math.pow($text-scale-ratio, 8);
-$text-xxxl: $text-base-size * math.pow($text-scale-ratio, 9);
+
+// ----------------------------------------------------------------------
+// Spacing Base Values
+// ----------------------------------------------------------------------
+$spacing-base-size: 1em;
+$spacing-scale-ratio:1.25;
+
+// ----------------------------------------------------------------------
+// Media Variables
+// ----------------------------------------------------------------------
+body {
+    @include breakpoint($breakpoint-small) {
+        font-size: 12px;
+    }
+
+    @include breakpoint($breakpoint-medium) {
+        font-size: 14px;
+    }
+}
