@@ -63,7 +63,7 @@ export default {
 
 <style lang="scss" scoped>
 #sponsor {
-  background-image: url(../../assets/landing_page/test2.png);
+  background-image: linear-gradient(transparent, transparent, $dark-color-1), url(../../assets/landing_page/sponsor_us.png);
   background-size: cover;
   background-attachment: local;
 }
