@@ -1,29 +1,24 @@
 // ----------------------------------------------------------------------
 // Typography
 // ----------------------------------------------------------------------
-
 @use "sass:math";
 
 // ----------------------------------------------------------------------
-// #Type Scale
-// ----------------------------------------------------------------------
-$text-xs: 1em;
-$text-sm: 1em * math.pow($text-scale-ratio, 1);
-$text-md: 1em * math.pow($text-scale-ratio, 2);
-$text-lg: 1em * math.pow($text-scale-ratio, 3);
-$text-xl: 1em * math.pow($text-scale-ratio, 6);
-$text-xxl: 1em * math.pow($text-scale-ratio, 8);
-$text-xxxl: 1em * math.pow($text-scale-ratio, 9);
+// #Typography Values
+//----------------------------------------------------------------------
+$text-xs: $text-base-size;
+$text-sm: $text-base-size * math.pow($text-scale-ratio, 1);
+$text-md: $text-base-size * math.pow($text-scale-ratio, 2);
+$text-lg: $text-base-size * math.pow($text-scale-ratio, 3);
+$text-xl: $text-base-size * math.pow($text-scale-ratio, 6);
+$text-xxl: $text-base-size * math.pow($text-scale-ratio, 8);
+$text-xxxl: $text-base-size * math.pow($text-scale-ratio, 9);
 
 // ----------------------------------------------------------------------
 // #Line Height
 // ----------------------------------------------------------------------
 $heading-line-height: 1.5;
 $body-line-height: 2.5;
-
-body {
-  font-size: $text-base-size;
-}
 
 h1,
 h2,

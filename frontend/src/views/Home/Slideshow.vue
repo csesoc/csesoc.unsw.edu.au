@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content hidden-sm-and-down">
     <InfiniteSlideshow duration="32s" direction="reverse">
     <img
       height="250px"

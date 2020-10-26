@@ -1,19 +1,32 @@
 // ----------------------------------------------------------------------
 // Layout Breakpoints
 // ----------------------------------------------------------------------
-$maxWidth: 1280;
-$laptop-padding:72px;
+$breakpoint-small: 600px;
+$breakpoint-medium: 960px;
+$breakpoint-large: 1264px;
+$breakpoint-extra: 1904px;
 
 // ----------------------------------------------------------------------
-// Font Sizes and Base Values
+// Font Base Values
 // ----------------------------------------------------------------------
 $text-base-size: 1em;
 $text-scale-ratio: 1.25;
 
 // ----------------------------------------------------------------------
-// Grid
+// Spacing Base Values
 // ----------------------------------------------------------------------
-$grid-columns: 12;
-$grid-gap: 40px;
-$gap-horizontal: $grid-gap;
-$gap-vertical: $grid-gap * 3;
+$spacing-base-size: 1em;
+$spacing-scale-ratio:1.25;
+
+// ----------------------------------------------------------------------
+// Media Variables
+// ----------------------------------------------------------------------
+body {
+    @include breakpoint($breakpoint-small) {
+        font-size: 12px;
+    }
+
+    @include breakpoint($breakpoint-medium) {
+        font-size: 14px;
+    }
+}
