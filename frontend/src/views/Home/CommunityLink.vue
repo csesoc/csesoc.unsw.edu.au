@@ -17,7 +17,7 @@
       <v-row data-cy="communityLinks-images">
         <!-- Display community links -->
         <v-col cols="4" align="center" class="pa-0" v-for="channel in communityLinks" :key="channel.title">
-          <a :href="channel.link">
+          <a target="_blank" :href="channel.link">
             <img :src="channel.logo" class="logo zoom" data-cy="community-links-image">
           </a>
           <h2 class="hidden-sm-and-down">{{channel.title}}</h2>
