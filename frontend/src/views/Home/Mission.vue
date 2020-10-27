@@ -39,12 +39,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-#mission {
-  // background-image: linear-gradient($dark-color-1, transparent, $dark-color-1), url(../../assets/mission.jpg);
-  // height: 100vh;
-  // background-size: 50%;
-  // padding-top: $space-sm;
-}
 
 .image {
   max-width: 100%;
