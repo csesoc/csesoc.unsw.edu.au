@@ -10,7 +10,7 @@
     <HeaderTitle :title="'CSESOC\'S MISSION'" />
     <v-row no-gutters justify="end">
       <v-col xs="12" sm="6">
-        <v-img data-cy="mission-img" contain :src="mission.image" class="image"/>
+        <img data-cy="mission-img" contain :src="mission.image" class="image"/>
       </v-col>
       <v-col xs="12" sm="6" align-self="center">
         <p data-cy="mission-statement" class="text--md">
