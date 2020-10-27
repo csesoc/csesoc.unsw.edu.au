@@ -14,7 +14,7 @@
       </v-col>
       <v-col xs="12" sm="6" align-self="center">
         <p data-cy="mission-statement" class="text--md">
-          {{mission.statement}}
+          "{{mission.statement}}"
         </p>
       </v-col>
     </v-row>
@@ -33,7 +33,7 @@ export default {
   data: () => ({
     mission: {
       image: require('../../assets/landing_page/mission.png'),
-      statement: '"To empower every person and every organization on the planet to achieve more. We strive to create local opportunity, growth, and impact in every country around the world."',
+      statement: 'To empower every person and every organization on the planet to achieve more. We strive to create local opportunity, growth, and impact in every country around the world.',
     },
   }),
 };

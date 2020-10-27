@@ -7,6 +7,6 @@ describe('Mission Landing Page', () => {
     //  Make sure it is visible.
     cy.get('[data-cy=mission-img]').should('be.visible');
     // Make sure that there is a statement, whatever that statement may be.
-    cy.get('[data-cy=mission-statement]');
+    cy.get('[data-cy=mission-statement]').contains(/\w+/);
   });
 });
