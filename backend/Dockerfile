@@ -20,5 +20,17 @@ RUN go get github.com/githubnemo/CompileDaemon
 # Expose port for binding
 EXPOSE 1323
 
+# Install dependencies
+RUN apt-get update
+RUN apt-get install -y libkrb5-dev
+
+# Manually install MongoDB Tools
+RUN mkdir -p $GOPATH/src/github.com/mongodb
+RUN cd $GOPATH/src/github.com/mongodb
+RUN git clone https://github.com/mongodb/mongo-tools
+RUN cd mongo-tools
+RUN export GOROOT=/usr/local/go
+RUN ./make build
+
 # Run go build and execute the ./main file generated
 ENTRYPOINT CompileDaemon --build="go build -o main ." --command="./main"
