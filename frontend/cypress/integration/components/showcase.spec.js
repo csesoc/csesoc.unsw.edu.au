@@ -1,4 +1,4 @@
-describe('Community Links Landing Page', () => {
+describe('Showcase Landing Page', () => {
     beforeEach(() => {
       cy.visit('/');
     });
