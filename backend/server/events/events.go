@@ -14,9 +14,9 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"os"
 	"sort"
 	"time"
-	"os"
 
 	"io/ioutil"
 	"net/http"
@@ -97,8 +97,7 @@ type (
 // @Summary Get a list of upcoming events
 // @Tags events
 // @Success 200 {array} Event
-// @Failure 500 "Internal server error"
-// @Header 500 {string} error "Unable to retrieve events from file"
+// @Failure 500 {string} error "Unable to retrieve events from file"
 // @Router /events [get]
 func HandleGet(c echo.Context) error {
 	fp, err := filepath.Abs("static/events.json")

@@ -77,10 +77,8 @@ func Setup(client *mongo.Client) {
 // @Summary Return all social media links
 // @Tags social
 // @Success 200 {array} Social
-// @Failure 500 "Service unavailable"
-// @Header 500 {string} error "Missing fields"
-// @Failure 503 "Service unavailable"
-// @Header 503 {string} error "Unable to retrieve social media links"
+// @Failure 500 {string} error "Missing fields"
+// @Failure 503 {string} error "Unable to retrieve social media links"
 // @Router /social [get]
 func HandleGet(c echo.Context) error {
 	socials, err := retrieveSocials()

@@ -74,8 +74,7 @@ func Setup(client *mongo.Client) {
 // @Summary Get a list of resources stored
 // @Tags resources
 // @Success 200 {array} Resource
-// @Failure 500 "Internal server error"
-// @Header 500 {string} error "Unable to retrieve resources from database"
+// @Failure 500 {string} error "Unable to retrieve resources from database"
 // @Router /resources/preview [get]
 func HandleGetPreview(c echo.Context) error {
 	var results []*Resource
