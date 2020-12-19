@@ -1,7 +1,7 @@
 <template>
   <v-app id="main-app">
     <!-- Navigation bar/app bar goes here -->
-    <v-app-bar app color="transparent" width="100vw">
+    <v-app-bar app color="transparent" elevation="0" width="100vw">
       <!-- Logo -->
       <RouterLink to="/" v-on:click.native="showMenu = false">
         <v-container class="fill-height" style="max-height: 64px; max-width:100px">
