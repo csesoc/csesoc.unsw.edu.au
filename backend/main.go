@@ -79,10 +79,8 @@ func main() {
 	serveAPI(e)
 	println("Web server is online :)")
 
-	// Disable the fetch timer until we get access to the actual CSESoc page
-	if !DEVELOPMENT {
-		go events.FetchTimer()
-	}
+	//Enable live updates of FB events
+	go events.FetchTimer()
 
 	// Bind quit to listen to Interrupt signals
 	quit := make(chan os.Signal)
