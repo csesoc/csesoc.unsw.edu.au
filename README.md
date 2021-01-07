@@ -24,6 +24,8 @@ Once that's done, clone the repo.
 git clone https://github.com/csesoc/csesoc.unsw.edu.au
 ```
 
+For the sake of development, please also have Golang installed on your local machine and yarn as a your JS package manager.
+
 ### Setting up environment variables
 
 All tokens are being treated as environment variables and are purposely left out of the GitHub repository. The easiest way is to inject these secrets into the container as environment variables.
