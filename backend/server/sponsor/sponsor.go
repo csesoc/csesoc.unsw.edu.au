@@ -86,10 +86,8 @@ func Setup(client *mongo.Client) {
 // @Param detail formData string true "Detail"
 // @Success 201 "Created"
 // @Header 201 {string} response "Sponsor added"
-// @Failure 400 "Bad request"
-// @Header 400 {string} error "Invalid form"
-// @Failure 409 "Conflict"
-// @Header 409 {string} error "Sponsor already exists on database"
+// @Failure 400 {string} error "Invalid form"
+// @Failure 409 {string} error "Sponsor already exists on database"
 // @Router /sponsors [post]
 // @Security BearerAuthKey
 func HandleNew(c echo.Context) error {
@@ -130,8 +128,7 @@ func HandleNew(c echo.Context) error {
 // @Tags sponsors
 // @Param name path string true "Sponsor name"
 // @Success 200 {object} Sponsor
-// @Failure 404 "Not found"
-// @Header 404 {string} error "No such sponsor"
+// @Failure 404 {string} error "No such sponsor"
 // @Router /sponsors/{name} [get]
 func HandleGetSingle(c echo.Context) error {
 	var result Sponsor
@@ -149,8 +146,7 @@ func HandleGetSingle(c echo.Context) error {
 // @Tags sponsors
 // @Param tier query integer false "Valid sponsor tier, 0-2 inclusive" mininum(0) maxinum(2)
 // @Success 200 {array} Sponsor
-// @Failure 500 "Internal server error"
-// @Header 500 {string} error "Unable to retrieve sponsors from database"
+// @Failure 500 {string} error "Unable to retrieve sponsors from database"
 // @Router /sponsors [get]
 func HandleGetMultiple(c echo.Context) error {
 	tier := c.QueryParam("tier")
@@ -170,8 +166,7 @@ func HandleGetMultiple(c echo.Context) error {
 // @Param name path string true "Sponsor name"
 // @Success 204 "No content"
 // @Header 204 {string} response "Sponsor deleted"
-// @Failure 500 "Internal server error"
-// @Header 500 {string} error "Unable to delete sponsor from database"
+// @Failure 500 {string} error "Unable to delete sponsor from database"
 // @Router /sponsors/{name} [delete]
 // @Security BearerAuthKey
 func HandleDelete(c echo.Context) error {

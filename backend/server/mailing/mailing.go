@@ -129,8 +129,7 @@ func handleMessage(c echo.Context, mt messageType) error {
 // @Param body formData string true "Message body"
 // @Success 202 "Accepted"
 // @Header 202 {string} response "Enquiry added to dispatch bundle"
-// @Failure 400 "Bad request"
-// @Header 400 {string} error "Invalid form"
+// @Failure 400 {string} error "Invalid form"
 // @Router /mailing/general [post]
 func HandleGeneralMessage(c echo.Context) error {
 	return handleMessage(c, generalType)
@@ -144,8 +143,7 @@ func HandleGeneralMessage(c echo.Context) error {
 // @Param body formData string true "Message body"
 // @Success 202 "Accepted"
 // @Header 202 {string} response "Enquiry added to dispatch bundle"
-// @Failure 400 "Bad request"
-// @Header 400 {string} error "Invalid form"
+// @Failure 400 {string} error "Invalid form"
 // @Router /mailing/sponsorship [post]
 func HandleSponsorshipMessage(c echo.Context) error {
 	return handleMessage(c, sponsorshipType)
@@ -159,8 +157,7 @@ func HandleSponsorshipMessage(c echo.Context) error {
 // @Param body formData string true "Message body"
 // @Success 202 "Accepted"
 // @Header 202 {string} response "Feedback added to dispatch bundle"
-// @Failure 400 "Bad request"
-// @Header 400 {string} error "Invalid form"
+// @Failure 400 {string} error "Invalid form"
 // @Router /mailing/feedback [post]
 func HandleFeedbackMessage(c echo.Context) error {
 	return handleMessage(c, feedbackType)
