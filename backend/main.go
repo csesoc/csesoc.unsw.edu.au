@@ -35,7 +35,6 @@ import (
 	_ "csesoc.unsw.edu.au/m/v2/docs"
 
 	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
 
 	"github.com/go-playground/validator/v10"
@@ -188,8 +187,10 @@ func serveAPI(e *echo.Echo) {
 		sponsorsAPI := v1.Group("/sponsors")
 		{
 			sponsorsAPI.GET("/:name", sponsor.HandleGetSingle)
-			sponsorsAPI.POST("", sponsor.HandleNew, middleware.JWT(JWT_SECRET))
-			sponsorsAPI.DELETE("/:name", sponsor.HandleDelete, middleware.JWT(JWT_SECRET))
+			sponsorsAPI.POST("", sponsor.HandleNew)
+			sponsorsAPI.DELETE("/:name", sponsor.HandleDelete)
+			// sponsorsAPI.POST("", sponsor.HandleNew, middleware.JWT(JWT_SECRET))
+			// sponsorsAPI.DELETE("/:name", sponsor.HandleDelete, middleware.JWT(JWT_SECRET))
 			sponsorsAPI.GET("", sponsor.HandleGetMultiple)
 		}
 
