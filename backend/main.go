@@ -35,7 +35,6 @@ import (
 	_ "csesoc.unsw.edu.au/m/v2/docs"
 
 	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
 
 	"github.com/go-playground/validator/v10"
