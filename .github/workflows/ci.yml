@@ -35,7 +35,7 @@ jobs:
         run: yarn
         working-directory: ./frontend
       - name: Cypress Tests
-        uses: cypress-io/github-action@v1
+        uses: cypress-io/github-action@v2
         with:
           start: yarn serve
           wait-on: http://localhost:8080 
