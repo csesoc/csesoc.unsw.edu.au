@@ -188,8 +188,10 @@ func serveAPI(e *echo.Echo) {
 		sponsorsAPI := v1.Group("/sponsors")
 		{
 			sponsorsAPI.GET("/:name", sponsor.HandleGetSingle)
-			sponsorsAPI.POST("", sponsor.HandleNew, middleware.JWT(JWT_SECRET))
-			sponsorsAPI.DELETE("/:name", sponsor.HandleDelete, middleware.JWT(JWT_SECRET))
+			sponsorsAPI.POST("", sponsor.HandleNew)
+			sponsorsAPI.DELETE("/:name", sponsor.HandleDelete)
+			// sponsorsAPI.POST("", sponsor.HandleNew, middleware.JWT(JWT_SECRET))
+			// sponsorsAPI.DELETE("/:name", sponsor.HandleDelete, middleware.JWT(JWT_SECRET))
 			sponsorsAPI.GET("", sponsor.HandleGetMultiple)
 		}
 
