@@ -1,7 +1,7 @@
 <template>
   <v-app id="main-app">
     <!-- Navigation bar/app bar goes here -->
-    <v-app-bar app dark width="100vw">
+    <v-app-bar app color="transparent" elevation="0" width="100vw">
       <!-- Logo -->
       <RouterLink to="/" v-on:click.native="showMenu = false">
         <v-container class="fill-height" style="max-height: 64px; max-width:100px">
@@ -12,9 +12,9 @@
       <div class="flex-grow-1"></div>
 
       <!-- Menu button -->
-      <v-app-bar-nav-icon class="ma-2" data-cy="menu-toggle" @click.stop="showMenu = !showMenu"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon color="white" class="ma-2" data-cy="menu-toggle" @click.stop="showMenu = !showMenu" />
     </v-app-bar>
-    <v-main >
+    <v-main class="pa-0">
       <Menu v-if="showMenu" @shown="onMenuCollapse" />
       <RouterView style="overflow-x: hidden" />
       <Footer />
@@ -58,4 +58,5 @@ html, body {
   overflow-x: hidden;
   box-sizing: border-box;
 }
+
 </style>
