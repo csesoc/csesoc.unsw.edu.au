@@ -1,0 +1,116 @@
+// ----------------------------------------------------------------------
+// Buttons
+// ----------------------------------------------------------------------
+
+// Buttons
+//
+// Various button styles. All buttons should come with a size.
+// Only small buttons can come with primary, secondary or accent 
+// gradients.
+//
+// Markup:
+// <button class="btn {{modifier_class}}">Button Element</button>
+//
+// .btn--sm - Small button
+// .btn--lg - Large button
+// .btn--primary - Small primary button.
+// .btn--secondary - Small secondary button.
+// .btn--accent - Small accent button. 
+//
+// Styleguide Components.button
+
+// ----------------------------------------------------------------------
+// #Variables
+// ----------------------------------------------------------------------
+$btn-radius: 5px;
+
+// ----------------------------------------------------------------------
+// #Default Variables
+// ----------------------------------------------------------------------
+.btn {
+  display: inline-flex;
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+  line-height: 1;
+
+  padding: $space-xxxs $space-xxs;
+
+  color: $light-color;
+
+  transition: .2s;
+
+  &:active {
+    transition: none;
+  }
+
+  .icon {
+    color: inherit;
+    flex-shrink: 0;
+  }
+}
+
+// ----------------------------------------------------------------------
+// #Sizing Variations
+// ----------------------------------------------------------------------
+.btn--sm {
+  @extend .btn;
+  font-size: $text-sm;
+  border-radius: $btn-radius;
+}
+
+.btn--lg {
+  @extend .btn;
+  font-size: $text-lg;
+  border: 2px solid $light-color;
+}
+
+.btn--full-width {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+// ----------------------------------------------------------------------
+// #Colour Variations
+// ----------------------------------------------------------------------
+.btn--primary {
+  @extend .btn--sm;
+  @include linearGradient($primary-color, $secondary-color-2)
+}
+
+.btn--secondary {
+  @extend .btn--sm;
+  @include linearGradient($primary-color, $secondary-color-1)
+}
+
+.btn--accent {
+  @extend .btn--sm;
+  @include linearGradient($dark-color-1, $dark-color-2);
+  outline-color: $light-color;
+}
+
+.btn[disabled] {
+  cursor: not-allowed;
+
+  &:visited {
+    color: inherit;
+  }
+}
+
+// ----------------------------------------------------------------------
+// #Button Groups
+// ----------------------------------------------------------------------
+.btns {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: -1 * $space-xs;
+
+  >* {
+    margin: 0 $space-xs $space-xs 0;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}

@@ -1,0 +1,403 @@
+basePath: /api/v1
+definitions:
+  events.Event:
+    properties:
+      description:
+        type: string
+      end_time:
+        type: integer
+      fb_cover_img:
+        type: string
+      fb_event_id:
+        type: string
+      name:
+        type: string
+      place:
+        type: string
+      start_time:
+        type: integer
+    type: object
+  faq.Faq:
+    properties:
+      answer:
+        type: string
+      question:
+        type: string
+    required:
+    - answer
+    - question
+    type: object
+  resources.Resource:
+    properties:
+      description:
+        type: string
+      link:
+        type: string
+      src:
+        type: string
+      title:
+        type: string
+    required:
+    - description
+    - link
+    - src
+    - title
+    type: object
+  social.Social:
+    properties:
+      link:
+        type: string
+      src:
+        type: string
+      title:
+        type: string
+    required:
+    - link
+    - title
+    type: object
+  sponsor.Sponsor:
+    properties:
+      detail:
+        type: string
+      logo:
+        type: string
+      name:
+        type: string
+      tier:
+        type: integer
+      url:
+        type: string
+    required:
+    - detail
+    - logo
+    - name
+    - tier
+    - url
+    type: object
+info:
+  contact:
+    email: projects.website@csesoc.org.au
+    name: Project Lead
+  description: Swagger API for the CSESoc Website project.
+  license: {}
+  termsOfService: http://swagger.io/terms/
+  title: CSESoc Website Swagger API
+  version: "1.0"
+paths:
+  /events:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/events.Event'
+            type: array
+        "500":
+          description: Internal server error
+          headers:
+            error:
+              description: Unable to retrieve events from file
+              type: string
+      summary: Get a list of upcoming events
+      tags:
+      - events
+  /faq:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/faq.Faq'
+            type: array
+        "500":
+          description: Service unavailable
+          headers:
+            error:
+              description: Missing questions and/or answer fields
+              type: string
+        "503":
+          description: Service unavailable
+          headers:
+            error:
+              description: Unable to retrieve FAQs
+              type: string
+      summary: Return all faq questions and answers pairs
+      tags:
+      - faq
+  /mailing/feedback:
+    post:
+      parameters:
+      - description: Name
+        in: formData
+        name: name
+        type: string
+      - description: Email
+        in: formData
+        name: email
+        type: string
+      - description: Message body
+        in: formData
+        name: body
+        required: true
+        type: string
+      responses:
+        "202":
+          description: Accepted
+          headers:
+            response:
+              description: Feedback added to dispatch bundle
+              type: string
+        "400":
+          description: Bad request
+          headers:
+            error:
+              description: Invalid form
+              type: string
+      summary: Handle a feedback by adding it to a dispatch bundle
+      tags:
+      - mailing
+  /mailing/general:
+    post:
+      parameters:
+      - description: Name
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: Email
+        in: formData
+        name: email
+        required: true
+        type: string
+      - description: Message body
+        in: formData
+        name: body
+        required: true
+        type: string
+      responses:
+        "202":
+          description: Accepted
+          headers:
+            response:
+              description: Enquiry added to dispatch bundle
+              type: string
+        "400":
+          description: Bad request
+          headers:
+            error:
+              description: Invalid form
+              type: string
+      summary: Handle a general enquiry by adding it to a dispatch bundle
+      tags:
+      - mailing
+  /mailing/sponsorship:
+    post:
+      parameters:
+      - description: Name
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: Email
+        in: formData
+        name: email
+        required: true
+        type: string
+      - description: Message body
+        in: formData
+        name: body
+        required: true
+        type: string
+      responses:
+        "202":
+          description: Accepted
+          headers:
+            response:
+              description: Enquiry added to dispatch bundle
+              type: string
+        "400":
+          description: Bad request
+          headers:
+            error:
+              description: Invalid form
+              type: string
+      summary: Handle a sponsorship enquiry by adding it to a dispatch bundle
+      tags:
+      - mailing
+  /resources/preview:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/resources.Resource'
+            type: array
+        "500":
+          description: Internal server error
+          headers:
+            error:
+              description: Unable to retrieve resources from database
+              type: string
+      summary: Get a list of resources stored
+      tags:
+      - resources
+  /social:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/social.Social'
+            type: array
+        "500":
+          description: Service unavailable
+          headers:
+            error:
+              description: Missing fields
+              type: string
+        "503":
+          description: Service unavailable
+          headers:
+            error:
+              description: Unable to retrieve social media links
+              type: string
+      summary: Return all social media links
+      tags:
+      - social
+  /sponsors:
+    get:
+      parameters:
+      - description: Valid sponsor tier, 0-2 inclusive
+        in: query
+        maximum: 2
+        minimum: 0
+        name: tier
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/sponsor.Sponsor'
+            type: array
+        "500":
+          description: Internal server error
+          headers:
+            error:
+              description: Unable to retrieve sponsors from database
+              type: string
+      summary: Get a list of sponsors stored
+      tags:
+      - sponsors
+    post:
+      consumes:
+      - Content-Type application/x-www-form-urlencoded
+      parameters:
+      - description: Bearer <token>
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Name
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: Logo in base64
+        in: formData
+        name: logo
+        required: true
+        type: string
+      - description: Valid tier
+        in: formData
+        maximum: 2
+        minimum: 0
+        name: tier
+        required: true
+        type: integer
+      - description: Detail
+        in: formData
+        name: detail
+        required: true
+        type: string
+      responses:
+        "201":
+          description: Created
+          headers:
+            response:
+              description: Sponsor added
+              type: string
+        "400":
+          description: Bad request
+          headers:
+            error:
+              description: Invalid form
+              type: string
+        "409":
+          description: Conflict
+          headers:
+            error:
+              description: Sponsor already exists on database
+              type: string
+      security:
+      - BearerAuthKey: []
+      summary: Add a new sponsor
+      tags:
+      - sponsors
+  /sponsors/{name}:
+    delete:
+      parameters:
+      - description: Bearer <token>
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Sponsor name
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No content
+          headers:
+            response:
+              description: Sponsor deleted
+              type: string
+        "500":
+          description: Internal server error
+          headers:
+            error:
+              description: Unable to delete sponsor from database
+              type: string
+      security:
+      - BearerAuthKey: []
+      summary: Delete a sponsor
+      tags:
+      - sponsors
+    get:
+      parameters:
+      - description: Sponsor name
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/sponsor.Sponsor'
+        "404":
+          description: Not found
+          headers:
+            error:
+              description: No such sponsor
+              type: string
+      summary: Find entry for a specific sponsor
+      tags:
+      - sponsors
+swagger: "2.0"

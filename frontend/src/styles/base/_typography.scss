@@ -1,0 +1,144 @@
+// ----------------------------------------------------------------------
+// Typography
+// ----------------------------------------------------------------------
+@use "sass:math";
+
+// ----------------------------------------------------------------------
+// #Typography Values
+//----------------------------------------------------------------------
+$text-xs: $text-base-size;
+$text-sm: $text-base-size * math.pow($text-scale-ratio, 1);
+$text-md: $text-base-size * math.pow($text-scale-ratio, 2);
+$text-lg: $text-base-size * math.pow($text-scale-ratio, 3);
+$text-xl: $text-base-size * math.pow($text-scale-ratio, 6);
+$text-xxl: $text-base-size * math.pow($text-scale-ratio, 8);
+$text-xxxl: $text-base-size * math.pow($text-scale-ratio, 9);
+
+// ----------------------------------------------------------------------
+// #Line Height
+// ----------------------------------------------------------------------
+$heading-line-height: 1.5;
+$body-line-height: 2.5;
+
+h1,
+h2,
+h3,
+h4,
+form legend {
+  margin-bottom: $space-xxs;
+  line-height: $heading-line-height;
+}
+
+// ----------------------------------------------------------------------
+// #Text Size
+// ----------------------------------------------------------------------
+.text--xxxl {
+  font-size: $text-xxxl;
+}
+
+.text--xxl {
+  font-size: $text-xxl;
+}
+
+.text--xl {
+  font-size: $text-xl;
+}
+
+.text--lg {
+  font-size: $text-lg;
+}
+
+.text--md {
+  font-size: $text-md;
+}
+
+.text--sm {
+  font-size: $text-sm;
+}
+
+.text--xs {
+  font-size: $text-xs;
+}
+
+h1 {
+  font-size: $text-xl;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: $text-lg;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: $text-lg;
+  font-weight: 200;
+}
+
+h4 {
+  font-size: $text-sm;
+  font-weight: 800;
+}
+
+p {
+  font-size: $text-xs;
+  font-weight: 200;
+  line-height: $body-line-height;
+  margin-bottom: $space-xxxs;
+}
+
+button {
+  font-size: $text-sm;
+  font-weight: 800;
+}
+
+// ----------------------------------------------------------------------
+// #Text Component - class used to stylize blocks
+// ----------------------------------------------------------------------
+.text-container {
+
+  h2,
+  h3,
+  h4 {
+    margin-top: $space-md;
+  }
+
+  ul,
+  ol,
+  p {
+    margin-bottom: $space-sm;
+  }
+}
+
+// Tags
+//
+// Tags guide. Apologies for not being able to import the font.
+//
+// Weight: 1
+//
+// Markup:
+// <h1>Heading 1</h1>
+// <h2>Heading 2</h2>
+// <h3>Heading 3</h3>
+// <h4>Heading 4</h4>
+// <p>Lorem Ipsum</p>
+//
+// h1 - Use for title of content sections. Used by HeaderTitle component.
+// h2 - Use for subtitle of content sections or captions.
+//
+// Styleguide Base.typography.tags
+
+// Size Classes
+//
+// Size classes can also be used to match design if heading tags are not to
+// be used. Most commonly sized fonts are displayed.
+//
+// Markup:
+// <div class="{{modifier_class}}">Lorem Ipsum</div>
+//
+// .text--sm - Small equivalent of h4
+// .text--md - Medium size
+// .text--lg - Large equivalent of h2 and h3
+// .text--xl - X - Large equivalent of h1
+//
+// Styleguide Base.typography.size-classes

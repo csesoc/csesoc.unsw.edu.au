@@ -79,3 +79,15 @@ typings/
 
 # vue build
 dist/
+backend/main
+
+# vscode configurations
+**/.vscode/
+.vs
+
+# cypress output
+frontend/cypress/videos/
+frontend/cypress/screenshots/
+
+# styleguide output
+styleguide

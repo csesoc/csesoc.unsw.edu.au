@@ -1,0 +1,42 @@
+{
+  "name": "csesoc-website",
+  "version": "0.9.1",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve --silent",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "kss": "sass src/styles/global.scss src/styles/global.css && kss --config kss-config.json"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "validator": "^13.1.1",
+    "vue": "^2.6.10",
+    "vue-router": "^3.3.4",
+    "vuetify": "^2.3.4",
+    "webpack": "^4.43.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.2",
+    "@vue/cli-plugin-eslint": "~4.5.2",
+    "@vue/cli-service": "~4.5.2",
+    "@vue/eslint-config-airbnb": "^5.1.0",
+    "@vue/test-utils": "^1.0.3",
+    "babel-eslint": "^10.0.1",
+    "css-loader": "^4.2.2",
+    "cypress": "^5.1.0",
+    "eslint": "^7.6.0",
+    "eslint-plugin-cypress": "^2.11.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "kss": "^3.0.1",
+    "michelangelo": "^0.8.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.3",
+    "vue-cli-plugin-vuetify": "^2.0.7",
+    "vue-template-compiler": "^2.6.10",
+    "vuetify-loader": "^1.6.0"
+  },
+  "peerDependencies": {
+    "webpack": "^4.43.0"
+  }
+}

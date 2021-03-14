@@ -1,0 +1,29 @@
+// ----------------------------------------------------------------------
+
+// Media Query Breakpoints
+
+// ----------------------------------------------------------------------
+
+// example @include breakpoint(940) { width:80%; }
+
+
+// ----------------------------------------------------------------------
+
+// #Breakpoint Variables
+
+// ----------------------------------------------------------------------
+
+/** 
+ * These breakpoint variables are used as follows:
+ * - small screen sizes for phones
+ * - medium for tablets
+ * - large for laptops
+ * - extra large for desktop computers
+ * We use bootstrap breakpoints.
+ */ 
+
+@mixin breakpoint($size) {
+  @media screen and (max-width: $size) {
+    @content;
+  }
+}

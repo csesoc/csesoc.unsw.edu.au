@@ -1,0 +1,33 @@
+// ----------------------------------------------------------------------
+// Icons
+// ----------------------------------------------------------------------
+
+// Icons
+// 
+// Utilities for your icons. Please use these as often as possible and 
+// add where needed.
+// 
+// Styleguide Components.icons
+
+/**
+ * Utility classes for icons
+ */
+.icon {
+    color: $light-color
+}
+
+.icon-text-aligner {
+    display:flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    
+    > *:nth-child(2) {
+        margin-left: $space-xxs;
+    }
+
+    .icon {
+        color: inherit;
+        flex-shrink: 0;
+    }
+}
