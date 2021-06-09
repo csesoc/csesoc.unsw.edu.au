@@ -6,14 +6,13 @@
     - sponsors
     - become a sponsor form
 -->
-
 <template>
   <div>
     <header id="showcase">
       <v-img max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
     </header>
     <v-container class="margin" fluid>
-      <h1 class="border text-h1 font-weight-bold" style="padding:25px;">Sponsors</h1>
+      <h1 class=border font-weight-bold style="padding:25px;">Sponsors</h1>
       <h2 class="text-h4">Principal <br> Sponsors</h2>
       <v-container class="border" fluid>
           <div v-for="(sponsor, index) in tierOne" :key="sponsor.id" :style="marginStyle(index, largeLogoFilter)">
@@ -47,7 +46,7 @@
     </v-container>
     <SponsorModal v-model="dialog" v-bind:title="currentSponsor.name" v-bind:body="currentSponsor.detail"> </SponsorModal>
 
-    <h1 class="text-center text-h1 font-weight-bold">Become a <br> Sponsor</h1>
+    <h1 class="text-center font-weight-bold">Become a <br> Sponsor</h1>
     <v-card flat tile style="margin-left:15%">
       <MailingForm type="sponsorship"></MailingForm>
     </v-card>
@@ -96,14 +95,12 @@ export default {
   methods: {
     marginStyle(index, limit) {
       const style = {};
-
       const row = parseInt((index) / limit, 10);
       if (row % 2 === 0) {
         style['margin-left'] = '10%';
       } else {
         style['margin-left'] = '15%';
       }
-
       return style;
     },
     onClickModal(sponsor) {
@@ -149,10 +146,14 @@ h2 {
 .border {
   border-left: 1px groove black;
   padding-bottom: 2%;
+  padding-right: 10vw;
+  display:flex;
+  flex-wrap: wrap;
 }
 
 .margin {
   margin-left: 5%;
+
 }
 
 .logo-margin {
@@ -182,5 +183,11 @@ h2 {
 .small-logo {
   max-width:125px;
   max-height:205px;
+}
+
+@media only screen and (max-width: 300px) {
+  h2{
+    color:white;
+  }
 }
 </style>
