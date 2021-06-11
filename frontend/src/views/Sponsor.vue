@@ -87,11 +87,7 @@ export default {
       .then((responseJson) => {
         this.sponsors = responseJson;
       });
-    // a
-    const arr = Array.from(document.getElementsByClassName('text-h4'));
-    this.views = arr;
-    // console.log(this.views);
-    // downButton.addEventlistener('click', this.onClickScroll);
+    this.getAnchorElements();
   },
   methods: {
     marginStyle(index, limit) {
@@ -108,9 +104,16 @@ export default {
       this.currentSponsor = sponsor;
       this.dialog = true;
     },
+    getAnchorElements() {
+      const arr = Array.from(document.getElementsByClassName('text-h4'));
+      this.views = arr;
+    },
     onClickScroll() {
       const next = this.views.shift();
-      next.scrollIntoView({ behaviour: 'smooth' });
+      next.scrollIntoView({ behavior: 'smooth' });
+      if (this.views.length === 0) {
+        this.getAnchorElements();
+      }
     }
   }
 };
