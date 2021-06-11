@@ -11,6 +11,8 @@
     <header id="showcase">
       <v-img max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
     </header>
+    <div class=down-button @click="onClickScroll">
+    </div >
     <v-container class="margin" fluid>
       <h1 class=border font-weight-bold style="padding:25px;">Sponsors</h1>
       <h2 class="text-h4">Principal <br> Sponsors</h2>
@@ -45,17 +47,11 @@
       <div style="clear:both;"></div>
     </v-container>
     <SponsorModal v-model="dialog" v-bind:title="currentSponsor.name" v-bind:body="currentSponsor.detail"> </SponsorModal>
-
-    <h1 class="text-center font-weight-bold">Become a <br> Sponsor</h1>
-    <v-card flat tile style="margin-left:15%">
-      <MailingForm type="sponsorship"></MailingForm>
-    </v-card>
   </div>
 </template>
 
 <script type="text/javascript">
 import SponsorModal from '@/components/SponsorModal';
-import MailingForm from '@/components/MailingForm';
 import APIClient from '../utils/APIClient';
 
 export default {
@@ -64,6 +60,7 @@ export default {
     currentSponsor: {},
     sponsors: [],
     dialog: false,
+    views: [],
 
     // Constants
     largeLogoFilter: 3,
@@ -72,7 +69,6 @@ export default {
   }),
   components: {
     SponsorModal,
-    MailingForm
   },
   computed: {
     // functions to determine sizing category of sponsor based on their value
@@ -91,6 +87,11 @@ export default {
       .then((responseJson) => {
         this.sponsors = responseJson;
       });
+    // a
+    const arr = Array.from(document.getElementsByClassName('text-h4'));
+    this.views = arr;
+    // console.log(this.views);
+    // downButton.addEventlistener('click', this.onClickScroll);
   },
   methods: {
     marginStyle(index, limit) {
@@ -106,6 +107,10 @@ export default {
     onClickModal(sponsor) {
       this.currentSponsor = sponsor;
       this.dialog = true;
+    },
+    onClickScroll() {
+      const next = this.views.shift();
+      next.scrollIntoView({ behaviour: 'smooth' });
     }
   }
 };
@@ -153,7 +158,7 @@ h2 {
 
 .margin {
   margin-left: 5%;
-
+  margin-bottom: 15%;
 }
 
 .logo-margin {
@@ -183,6 +188,20 @@ h2 {
 .small-logo {
   max-width:125px;
   max-height:205px;
+}
+
+.down-button {
+  position: fixed;
+  left: 50vw;
+  top: 90vh;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: red;
+}
+
+.down-button:hover {
+  background: blue;
 }
 
 @media only screen and (max-width: 300px) {
