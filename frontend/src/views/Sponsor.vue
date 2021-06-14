@@ -12,6 +12,7 @@
       <v-img max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
     </header>
     <div class=down-button @click="onClickScroll">
+      <img src="@/assets/downbutton.png"/>
     </div >
     <v-container class="margin" fluid>
       <h1 class=border font-weight-bold style="padding:25px;">Sponsors</h1>
@@ -200,11 +201,17 @@ h2 {
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  background: red;
 }
 
-.down-button:hover {
-  background: blue;
+.down-button > img {
+  object-fit: cover;
+  width: 100%;
+  filter:opacity(60%);
+}
+
+.down-button > img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 @media only screen and (max-width: 300px) {
