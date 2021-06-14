@@ -18,8 +18,15 @@
   </v-container>
 </template>
 <script>
+export default {
+  name: 'Resources',
+  props: ['route'],
+  beforeRouteEnter(to, from, next) {
+    document.location.href = 'https://media.csesoc.org.au/tag/csesoc/';
+    next('/');
+  }
+};
 </script>
-
 <style lang="scss" scoped>
 .col {
   background-color: $primary-color;
