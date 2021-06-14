@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 Vue.use(Router);
-
 export default new Router({
   routes: [
     {
@@ -19,6 +18,10 @@ export default new Router({
       path: '/resources',
       name: 'resources',
       component: () => import('../views/Resources.vue'),
+      redirect: (to) => {
+        console.log(to);
+        window.location.href = 'https://media.csesoc.org.au/tag/csesoc/';
+      },
     },
     {
       path: '/sponsors',
