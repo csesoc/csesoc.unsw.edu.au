@@ -6,14 +6,16 @@
     - sponsors
     - become a sponsor form
 -->
-
 <template>
   <div>
     <header id="showcase">
       <v-img max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
     </header>
+    <div class=down-button @click="onClickScroll">
+      <img src="@/assets/downbutton.png"/>
+    </div >
     <v-container class="margin" fluid>
-      <h1 class="border text-h1 font-weight-bold" style="padding:25px;">Sponsors</h1>
+      <h1 class=border font-weight-bold style="padding:25px;">Sponsors</h1>
       <h2 class="text-h4">Principal <br> Sponsors</h2>
       <v-container class="border" fluid>
           <div v-for="(sponsor, index) in tierOne" :key="sponsor.id" :style="marginStyle(index, largeLogoFilter)">
@@ -46,17 +48,11 @@
       <div style="clear:both;"></div>
     </v-container>
     <SponsorModal v-model="dialog" v-bind:title="currentSponsor.name" v-bind:body="currentSponsor.detail"> </SponsorModal>
-
-    <h1 class="text-center text-h1 font-weight-bold">Become a <br> Sponsor</h1>
-    <v-card flat tile style="margin-left:15%">
-      <MailingForm type="sponsorship"></MailingForm>
-    </v-card>
   </div>
 </template>
 
 <script type="text/javascript">
 import SponsorModal from '@/components/SponsorModal';
-import MailingForm from '@/components/MailingForm';
 import APIClient from '../utils/APIClient';
 
 export default {
@@ -65,6 +61,7 @@ export default {
     currentSponsor: {},
     sponsors: [],
     dialog: false,
+    views: [],
 
     // Constants
     largeLogoFilter: 3,
@@ -73,7 +70,6 @@ export default {
   }),
   components: {
     SponsorModal,
-    MailingForm
   },
   computed: {
     // functions to determine sizing category of sponsor based on their value
@@ -92,23 +88,33 @@ export default {
       .then((responseJson) => {
         this.sponsors = responseJson;
       });
+    this.getAnchorElements();
   },
   methods: {
     marginStyle(index, limit) {
       const style = {};
-
       const row = parseInt((index) / limit, 10);
       if (row % 2 === 0) {
         style['margin-left'] = '10%';
       } else {
         style['margin-left'] = '15%';
       }
-
       return style;
     },
     onClickModal(sponsor) {
       this.currentSponsor = sponsor;
       this.dialog = true;
+    },
+    getAnchorElements() {
+      const arr = Array.from(document.getElementsByClassName('text-h4'));
+      this.views = arr;
+    },
+    onClickScroll() {
+      const next = this.views.shift();
+      next.scrollIntoView({ behavior: 'smooth' });
+      if (this.views.length === 0) {
+        this.getAnchorElements();
+      }
     }
   }
 };
@@ -149,10 +155,14 @@ h2 {
 .border {
   border-left: 1px groove black;
   padding-bottom: 2%;
+  padding-right: 10vw;
+  display:flex;
+  flex-wrap: wrap;
 }
 
 .margin {
   margin-left: 5%;
+  margin-bottom: 15%;
 }
 
 .logo-margin {
@@ -182,5 +192,31 @@ h2 {
 .small-logo {
   max-width:125px;
   max-height:205px;
+}
+
+.down-button {
+  position: fixed;
+  left: 50vw;
+  top: 90vh;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.down-button > img {
+  object-fit: cover;
+  width: 100%;
+  filter:opacity(60%);
+}
+
+.down-button > img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+@media only screen and (max-width: 300px) {
+  h2{
+    color:white;
+  }
 }
 </style>
