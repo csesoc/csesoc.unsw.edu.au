@@ -73,7 +73,7 @@ export default {
       { name: 'About', url: '/#/about' },
       { name: 'Resources', url: '/#/resources' },
       { name: 'Sponsorships', url: '/#/sponsors' },
-      { name: 'Engage', url: '/#/engage' }
+      { name: 'Contact Us', url: '/#/engage' }
     ],
     csesocExternal: [
       { name: 'CSESoc Media', url: 'https://media.csesoc.org.au/' },
@@ -83,14 +83,13 @@ export default {
       { name: 'UNSW Handbook', url: 'https://www.handbook.unsw.edu.au/' }
     ],
     media: [
+      { name: 'Discord Community', url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u' },
       { name: 'Facebook Page', url: 'https://www.facebook.com/csesoc/' },
       { name: 'Facebook Group', url: 'https://www.facebook.com/csesoc/' },
-      { name: 'Instagram', url: 'https://www.instagram.com/csesoc_unsw/' },
-      { name: 'Discord Community', url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u' },
-      { name: 'Slack Community', url: 'https://csesoc-community.slack.com/' },
       { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' },
-      { name: 'TikTok', url: '#' },
-      { name: 'YouTube', url: 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg' }
+      { name: 'Instagram', url: 'https://www.instagram.com/csesoc_unsw/' },
+      { name: 'YouTube', url: 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg' },
+      { name: 'TikTok', url: '#' }
     ]
   })
 };
