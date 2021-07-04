@@ -31,8 +31,6 @@ describe('Mailing forms', () => {
   it('ensures the name label is different in a sponsorship form', () => {
     // Visit sponsors page
     cy.visit('/#/sponsors');
-    // Ensure the mailing form exists in the Sponsors page
-    cy.get('[data-cy=mailing-form]');
     // Check if name label changed to the sponsorship form version
     cy.get('[data-cy=sponsorship-name-label]').contains('Company Name').should('have.class', 'required');
   });
