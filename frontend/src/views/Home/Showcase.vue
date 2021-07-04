@@ -31,7 +31,7 @@
 <script>
 export default {
   data: () => ({
-    quote: 'We inspire the programmers of the future.',
+    quote: 'We inspire the pogchamps of the future.',
   })
 };
 </script>
