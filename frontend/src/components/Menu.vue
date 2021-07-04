@@ -33,16 +33,16 @@
           <v-col xs="12" sm="6">
             <div class="page-links-container" @click.stop="hide">
               <RouterLink to="/about" class="link" data-cy="about-link">
-                <h2>001 | About</h2>
+                <h2>0x0 | About</h2>
               </RouterLink>
               <RouterLink to="/resources" class="link" data-cy="resources-link">
-                <h2>010 | Resources</h2>
+                <h2>0x1 | Resources</h2>
               </RouterLink>
               <RouterLink to="/sponsors" class="link" data-cy="sponsors-link">
-                <h2>011 | Sponsors</h2>
+                <h2>0x2 | Sponsors</h2>
               </RouterLink>
               <RouterLink to="/engage" class="link" data-cy="engage-link">
-                <h2>100 | Engage</h2>
+                <h2>0x3 | Contact</h2>
               </RouterLink>
             </div>
           </v-col>
@@ -66,7 +66,7 @@
         <v-row no-gutters class="footer">
           <p style="display: inline;">
             <img height="14px" src="@/assets/moon-icon.png" style="padding-right: 5px;">
-            We're sorry, only Dark Mode is available at CSESoc.
+            B03 CSE Building K17, UNSW
           </p>
         </v-row>
       </v-container>
