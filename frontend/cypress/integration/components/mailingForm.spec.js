@@ -28,13 +28,6 @@ describe('Mailing forms', () => {
     cy.get('[data-cy=general-send-button]').should('not.be.disabled');
   });
 
-  it('ensures the name label is different in a sponsorship form', () => {
-    // Visit sponsors page
-    cy.visit('/#/sponsors');
-    // Check if name label changed to the sponsorship form version
-    cy.get('[data-cy=sponsorship-name-label]').contains('Company Name').should('have.class', 'required');
-  });
-
   it('checks labels and validation of a feedback form', () => {
     // Visit engage page
     cy.visit('/#/engage');
