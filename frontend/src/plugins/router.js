@@ -8,27 +8,27 @@ export default new Router({
     {
       path: '/',
       name: 'root',
-      component: () => import('../views/Home/Home.vue'),
+      component: () => import('../views/Home/Home'),
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import('../views/About.vue'),
+      component: () => import('../views/About'),
     },
     {
       path: '/resources',
       name: 'resources',
-      component: () => import('../views/Resources.vue'),
+      component: () => import('../views/Resources'),
     },
     {
       path: '/sponsors',
       name: 'sponsors',
-      component: () => import('../views/Sponsor.vue'),
+      component: () => import('../views/Sponsor'),
     },
     {
       path: '/engage',
       name: 'engage',
-      component: () => import('../views/Engage.vue'),
+      component: () => import('../views/Engage'),
     }
   ],
   scrollBehavior() {
