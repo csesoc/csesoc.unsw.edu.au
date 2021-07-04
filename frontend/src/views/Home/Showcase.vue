@@ -19,7 +19,7 @@
           <button
             class="btn--join-us"
             data-cy=joinus-button
-            @click="scrollto('joinus')">
+            @click="redirect('https://member.arc.unsw.edu.au/s/clubdetail?clubid=0016F0000371VxAQAU')">
               Join Us
           </button>
         </v-col>
