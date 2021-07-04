@@ -33,6 +33,7 @@ export default {
   data: () => ({
     mission: {
       image: require('../../assets/landing_page/mission.png'),
+      // I really hope we have something better than this.
       statement: 'To empower every person and every organization on the planet to achieve more. We strive to create local opportunity, growth, and impact in every country around the world.',
     },
   }),
