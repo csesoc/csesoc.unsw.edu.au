@@ -11,7 +11,7 @@
     <header id="showcase">
       <v-img max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
     </header>
-    <div class=down-button @click="onClickScroll">
+    <div class=down-button @click="onClickScroll" @scroll.passive="handleScroll">
       <img src="@/assets/downbutton.png"/>
     </div >
     <v-container class="margin" fluid>
@@ -88,7 +88,11 @@ export default {
       .then((responseJson) => {
         this.sponsors = responseJson;
       });
+    window.addEventListener('scroll', this.handleScroll, true);
     this.getAnchorElements();
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll, true);
   },
   methods: {
     marginStyle(index, limit) {
@@ -105,15 +109,45 @@ export default {
       this.currentSponsor = sponsor;
       this.dialog = true;
     },
+    // populate the views array (the array containing the links to each heading)
     getAnchorElements() {
       const arr = Array.from(document.getElementsByClassName('text-h4'));
+      console.log(`arr = ${arr}`);
       this.views = arr;
     },
+    // on click wil take you to the next heading
     onClickScroll() {
-      const next = this.views.shift();
-      next.scrollIntoView({ behavior: 'smooth' });
-      if (this.views.length === 0) {
-        this.getAnchorElements();
+      try {
+        if (this.views.length > 0) {
+          const next = this.views.shift();
+          next.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          // repopulate views array
+          this.getAnchorElements();
+          // scroll to top
+          const top = document.getElementById('showcase');
+          top.scrollIntoView({ behavior: 'smooth' });
+        }
+        console.log(this.views);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    // check if current windowTop beyond the next in line view
+    // if it is beyond it, pop it from list of views
+    // since we want the button to bring us down not back up again
+    handleScroll(e) {
+      const scrollY = e.target.scrollTop;
+      try {
+        // if views empty
+        if (this.views.length === 0) {
+          // flip button 180 degrees vertically
+        } else if (scrollY >= this.views[0].offsetTop) {
+          // pop the first element in views array
+          this.views.shift();
+        }
+      } catch (err) {
+        console.log(err);
       }
     }
   }
