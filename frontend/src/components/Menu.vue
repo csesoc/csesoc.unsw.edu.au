@@ -33,16 +33,16 @@
           <v-col xs="12" sm="6">
             <div class="page-links-container" @click.stop="hide">
               <RouterLink to="/about" class="link" data-cy="about-link">
-                <h2>001 | About</h2>
+                <h2>~/ About Us</h2>
               </RouterLink>
               <RouterLink to="/resources" class="link" data-cy="resources-link">
-                <h2>010 | Resources</h2>
+                <h2>~/ Resources</h2>
               </RouterLink>
               <RouterLink to="/sponsors" class="link" data-cy="sponsors-link">
-                <h2>011 | Sponsors</h2>
+                <h2>~/ Sponsors</h2>
               </RouterLink>
               <RouterLink to="/engage" class="link" data-cy="engage-link">
-                <h2>100 | Engage</h2>
+                <h2>~/ Get in Touch</h2>
               </RouterLink>
             </div>
           </v-col>
@@ -66,7 +66,7 @@
         <v-row no-gutters class="footer">
           <p style="display: inline;">
             <img height="14px" src="@/assets/moon-icon.png" style="padding-right: 5px;">
-            We're sorry, only Dark Mode is available at CSESoc.
+            B03 CSE Building K17, UNSW
           </p>
         </v-row>
       </v-container>
@@ -79,13 +79,10 @@ export default {
   name: 'Menu',
   data: () => ({
     socialLinks: [
-      { name: 'Facebook', url: 'https://www.facebook.com/csesoc/' },
-      { name: 'Instagram', url: 'https://www.instagram.com/csesoc_unsw/' },
       { name: 'Discord Community', url: 'https://bitly.com/CSESocCourseChats' },
-      { name: 'Slack Community', url: 'https://csesoc-community.slack.com/' },
-      { name: 'YouTube', url: 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg' },
+      { name: 'CSESoc Media', url: 'https://media.csesoc.org.au' },
+      { name: 'Facebook', url: 'https://www.facebook.com/csesoc/' },
       { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' },
-      { name: 'TikTok', url: '#' },
     ]
   }),
   methods: {
@@ -193,6 +190,7 @@ export default {
       color: white;
       cursor: pointer; /* To simulate a link */
       font-weight: normal;
+      font-size: 140%;
       transition: all .2s ease-in-out;
       width: fit-content;
       margin-left: auto;
@@ -206,7 +204,7 @@ export default {
 
       &:hover {
         font-weight: bolder;
-        font-size: $text-sm;
+        font-size: $text-md;
       }
     }
   }

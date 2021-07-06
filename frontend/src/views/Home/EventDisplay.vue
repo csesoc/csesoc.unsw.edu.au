@@ -14,11 +14,11 @@
     <v-container data-cy="event-section">
       <HeaderTitle
         title="UPCOMING EVENTS"
-        subtitle="Your endless opportunities start here."
+        subtitle="We run a wide-variety of events for fun, learning new skills and careers."
       />
       <!-- Catch a lack of events, or if events haven't been updated in 60 days. -->
       <div data-cy="event-alert" v-if="events.length == 0 | updated > 86400 * 1000 * 60">
-        Stay tuned to our Facebook page for upcoming events!
+        For full listings, check out the CSESoc Discord or our Facebook page!
       </div>
 
       <!-- Display all events in a sliding component on desktop viewports. -->
