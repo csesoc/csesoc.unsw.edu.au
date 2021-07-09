@@ -19,8 +19,8 @@
           <button
             class="btn--join-us"
             data-cy=joinus-button
-            @click="redirect('https://member.arc.unsw.edu.au/s/clubdetail?clubid=0016F0000371VxAQAU')">
-              Join Us
+            @click="joinusClick">
+            Join Us
           </button>
         </v-col>
       </v-row>
@@ -32,7 +32,12 @@
 export default {
   data: () => ({
     quote: 'Hello World!',
-  })
+  }),
+  methods: {
+    joinusClick() {
+      window.open('https://member.arc.unsw.edu.au/s/clubdetail?clubid=0016F0000371VxAQAU', '_blank');
+    }
+  }
 };
 </script>
 
