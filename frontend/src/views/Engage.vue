@@ -13,16 +13,21 @@
   <v-app>
     <v-parallax
       height="300"
-      src="https://images.unsplash.com/photo-1592251170558-01228a0a06f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=80"
+      src="../assets/fade.png"
     ></v-parallax>
 
     <!-- Joining -->
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <HeaderTitle title="Joining"></HeaderTitle>
-      All students enrolled in a CSE degree is a member of CSESoc. This the case you're not, follow the instructions below:
+      <p><b>Everybody is welcome to join CSESoc! To get started as a UNSW student, all you have to do is <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfDrhmyDz6F3Q98EEouoUYENwOzCWG1tEes_wJKl8xRzR84gg/viewform"
+            >sign up with spARC</a>!
+      <a href="https://member.arc.unsw.edu.au/s/clubdetail?clubid=0016F0000371VxAQAU"> join us!</a></b></p>
+      <p><b>Even if you aren't a member, our Discord, social media and resources are mostly freely available to everybody.
+        We look forward to hearing from you!</b></p>
       <v-expansion-panels flat accordion id="show">
         <v-expansion-panel>
-          <v-expansion-panel-header class="title py-3">I'm not an Arc member, can I join?</v-expansion-panel-header>
+          <v-expansion-panel-header class="title py-3">Joining UNSW spARC</v-expansion-panel-header>
           <v-expansion-panel-content>
             You need to sign up at Arc in order to join any society on campus.
             <br />Joining Arc (for free!) means you can unlock all the best bits of student life.
@@ -42,7 +47,7 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
-          <v-expansion-panel-header class="title py-3">I'm not a CSE student, can I join?</v-expansion-panel-header>
+          <v-expansion-panel-header class="title py-3">I'm not a CSE or UNSW student, can I join?</v-expansion-panel-header>
           <v-expansion-panel-content>
             If you are not enrolled in a CSE program or course, you need to
             <a
@@ -63,7 +68,7 @@
     <!-- FAQ -->
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <HeaderTitle title="FAQ"></HeaderTitle>
-      <v-expansion-panels flat accordion id="show" style="padding: 20px 20%">
+      <v-expansion-panels flat accordion id="show" style="padding: 20px">
         <v-expansion-panel v-for="faq in faqLinks" :key="faq.question">
           <v-expansion-panel-header class="title py-3">{{ faq.question }}</v-expansion-panel-header>
           <v-expansion-panel-content>{{ faq.answer }}</v-expansion-panel-content>

@@ -11,17 +11,20 @@
 
 <template>
   <v-app>
-
+    <v-parallax
+      height="300"
+      src="../assets/fade.png"
+    ></v-parallax>
     <!-- About -->
-    <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
+    <v-container ref="content-start" style="padding: 0px 30px 10px 30px">
       <HeaderTitle title="About"></HeaderTitle>
-      <p>
+      <p><b>
         CSESoc is the principal representative body for computing students on campus. We are one of the biggest and most
         active societies at UNSW, catering to over 3500 CSE students spanning across degrees in
         Computer Science, Software Engineering, Bioinformatics and Computer Engineering.
         We are here to fulfil the needs of computing students and also promote computing in all
         its forms through weekly social and technical events throughout the year.
-      </p>
+      </b></p>
       <p>
         We are a society for the students, by the students. As a CSE student, here's how we can help you:
         We organise and run weekly events, including Trivia, Movie, Poker, and Boardgame Nights, LAN Parties,
@@ -43,7 +46,7 @@
     </v-container>
 
     <!-- Executives & Directors -->
-    <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
+    <v-container ref="content-start" style="padding: 0px 30px 10px 30px">
       <HeaderTitle title="Executives & Directors"></HeaderTitle>
       <p>
         The Executives and Directors are responsible for organising the society to make sure that things get done. Execs
@@ -90,7 +93,7 @@
     </v-container>
 
     <!-- Subcommittees -->
-    <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
+    <v-container ref="content-start" style="padding: 0px 30px 10px 30px">
       <HeaderTitle title="Subcommittees"></HeaderTitle>
       <p>
         The CSESoc Subcommittees are an integral part of our society and are responsible for directly interacting with the

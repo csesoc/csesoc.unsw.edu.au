@@ -1,5 +1,71 @@
 [
    {
+      "year": "2021",
+      "data": {
+         "Executives": {
+            "Co-Presidents": [
+               "Michael Gribben",
+               "Shrey Sudhir"
+            ],
+            "Secretary": [
+               "Clarence Feng"
+            ],
+            "Treasurer": [
+               "Jiamin Guo"
+            ],
+            "Arc Delegate": [
+               "Kaiqi Li"
+            ],
+            "Grievance Officer": [
+               "Shrey Sudhir"
+            ]
+         },
+         "Directors": {
+            "Careers": [
+               "Cece Zhu",
+               "Finley Goush",
+               "Cecilia Ni",
+               "Rani Jiang"
+            ],
+            "CompClub": [
+               "Evan Lee",
+               "Haley Gu"
+            ],
+            "Creative": [
+               "Gary Sun",
+               "Sandeep Das"
+            ],
+            "Internals": [
+               "An Thy Tran"
+            ],
+            "Marketing": [
+               "Eddy Wong",
+               "Edwina Adisusila"
+            ],
+            "Media": [
+               "Angeni Bai",
+               "Ryan King"
+            ],
+            "Socials": [
+               "Evan T. Lee",
+               "Lachlan Ting"
+            ],
+            "Projects": [
+               "Esther Wong",
+               "Zac Kologlu"
+            ],
+            "Student Network": [
+               "Giuliana De Bellis",
+               "Hayes Choy"
+            ],
+            "Workshops": [
+               "Colin Hon",
+               "James Davidson"
+            ]
+         }
+      }
+   },
+   {
       "year": "2020",
       "data": {
          "Executives": {

@@ -65,7 +65,7 @@
       <v-container class="stack-elem">
         <v-row no-gutters class="footer">
           <p style="display: inline;">
-            <img height="14px" src="@/assets/moon-icon.png" style="padding-right: 5px;">
+            <img height="14px" src="@/assets/home-icon.png" style="padding-right: 5px;">
             B03 CSE Building K17, UNSW
           </p>
         </v-row>
