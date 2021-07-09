@@ -108,7 +108,7 @@ export default {
 
 .white-text a:hover {
   font-weight: 900;
-  transition-duration: 0.5s;
+  transition-duration: 0.1s;
 }
 
 .nav-divider {
