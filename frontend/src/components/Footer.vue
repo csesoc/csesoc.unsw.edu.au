@@ -19,7 +19,7 @@
           <br/>
           <a href="mailto:csesoc@csesoc.org.au" > csesoc@csesoc.org.au </a>
           </div>
-          © 2020 — CSESoc UNSW
+          © 2021 — CSESoc UNSW
         </v-col>
         <v-col
           sm="6"
@@ -46,7 +46,7 @@
               <v-col
                 sm="6"
               >
-                <h4 data-cy="footer-resources-title">For your better future</h4>
+                <h4 data-cy="footer-resources-title">CSESoc Sites</h4>
                 <v-list-item class="anchor-items" v-for="url in csesocExternal" :key="url.name">
                   <v-list-item-content data-cy=footer-resources-link>
                     <a :href="url.url">
@@ -79,7 +79,7 @@ export default {
       { name: 'CSESoc Media', url: 'https://media.csesoc.org.au/' },
       { name: 'CSESoc Blog', url: 'https://blog.csesoc.org.au/' },
       { name: 'CSESoc Compclub', url: 'https://compclub.csesoc.unsw.edu.au/' },
-      { name: 'UNSW CSE', url: 'https://www.engineering.unsw.edu.au/computer-science-engineering/' },
+      { name: 'CSE Faculty', url: 'https://www.engineering.unsw.edu.au/computer-science-engineering/' },
       { name: 'UNSW Handbook', url: 'https://www.handbook.unsw.edu.au/' }
     ],
     media: [
@@ -89,7 +89,7 @@ export default {
       { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' },
       { name: 'Instagram', url: 'https://www.instagram.com/csesoc_unsw/' },
       { name: 'YouTube', url: 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg' },
-      { name: 'TikTok', url: '#' }
+      { name: 'TikTok', url: 'https://www.tiktok.com/@csesoc?lang=en' }
     ]
   })
 };

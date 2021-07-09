@@ -36,9 +36,9 @@ export default {
     communityLinks: [
       // community links have a link, logo and title
       {
-        link: 'https://csesoc-community.slack.com/',
-        logo: require('../../assets/slack_logo.png'),
-        title: 'Slack Community',
+        link: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u',
+        logo: require('../../assets/discord_logo.png'),
+        title: 'Discord Server',
       },
       {
         link: 'https://bitly.com/CSESocCourseChats',
@@ -46,9 +46,9 @@ export default {
         title: 'Facebook Group',
       },
       {
-        link: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u',
-        logo: require('../../assets/discord_logo.png'),
-        title: 'Discord Server',
+        link: 'https://www.linkedin.com/company/csesoc/',
+        logo: require('../../assets/linkedin_logo.png'),
+        title: 'LinkedIn',
       }
     ]
   }),

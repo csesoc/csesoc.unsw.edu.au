@@ -66,7 +66,7 @@ export default {
         src: require('../../assets/resource-job-board.png'),
       },
       small_box_1: {
-        link: '',
+        link: 'https://media.csesoc.org.au/first-year-guide/',
         title: 'First Year Guide',
         src: require('../../assets/resource-first-year-guide.png')
       },
@@ -76,7 +76,7 @@ export default {
         src: require('../../assets/resource-media.png'),
       },
       big_box_2: {
-        link: '',
+        link: 'https://notangles.csesoc.unsw.edu.au/',
         title: 'Notangles',
         description: 'Trimster timetabling tool - no more timetable tangles!',
         src: require('../../assets/resource-notangles.png'),
