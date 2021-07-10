@@ -10,7 +10,7 @@
 
 <template>
   <div class="header-title">
-    <h1>{{ title }}</h1>
+    <h1 v-bind:style="{padding: padding}">{{ title }}</h1>
     <h4 v-if="subtitle !== false">{{ subtitle }}</h4>
   </div>
 </template>
@@ -25,7 +25,18 @@ export default {
     },
     subtitle: {
       default: false,
+    },
+    padding: {
+      required: false,
     }
   }
 };
 </script>
+
+<style scoped>
+@media only screen and (max-width: 450px) {
+  .header-title > h1 {
+    font-size: 2.5em;
+  }
+}
+</style>
