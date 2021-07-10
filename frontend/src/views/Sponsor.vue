@@ -11,7 +11,7 @@
     <header id="showcase">
       <v-img max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
     </header>
-    <div class=down-button @click="onClickScroll" @scroll.passive="handleScroll">
+    <div class=down-button @click="onClickScroll" @scroll.passive="handleScroll" ref="downButton">
       <img src="@/assets/downbutton.png"/>
     </div >
     <v-container class="margin" fluid>
@@ -61,7 +61,7 @@ export default {
     currentSponsor: {},
     sponsors: [],
     dialog: false,
-    views: [],
+    scrollY: 0,
 
     // Constants
     largeLogoFilter: 3,
@@ -89,7 +89,6 @@ export default {
         this.sponsors = responseJson;
       });
     window.addEventListener('scroll', this.handleScroll, true);
-    this.getAnchorElements();
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll, true);
@@ -109,26 +108,27 @@ export default {
       this.currentSponsor = sponsor;
       this.dialog = true;
     },
-    // populate the views array (the array containing the links to each heading)
-    getAnchorElements() {
+    calculateNextTitle() {
       const arr = Array.from(document.getElementsByClassName('text-h4'));
-      console.log(`arr = ${arr}`);
-      this.views = arr;
+      // find the next element if there is such a thing
+      for (let i = 0; i < arr.length; i += 1) {
+        const element = arr[i];
+        if (element.offsetTop - this.scrollY > 0) {
+          return element;
+        }
+      }
+      return null;
     },
     // on click wil take you to the next heading
     onClickScroll() {
       try {
-        if (this.views.length > 0) {
-          const next = this.views.shift();
-          next.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          // repopulate views array
-          this.getAnchorElements();
+        const next = this.calculateNextTitle(window.scrollY);
+        if (next === null) {
           // scroll to top
-          const top = document.getElementById('showcase');
-          top.scrollIntoView({ behavior: 'smooth' });
+          document.getElementById('showcase').scrollIntoView({ behavior: 'smooth' });
+        } else {
+          next.scrollIntoView({ behavior: 'smooth' });
         }
-        console.log(this.views);
       } catch (err) {
         console.log(err);
       }
@@ -137,14 +137,13 @@ export default {
     // if it is beyond it, pop it from list of views
     // since we want the button to bring us down not back up again
     handleScroll(e) {
-      const scrollY = e.target.scrollTop;
+      this.scrollY = e.target.scrollTop;
       try {
-        // if views empty
-        if (this.views.length === 0) {
-          // flip button 180 degrees vertically
-        } else if (scrollY >= this.views[0].offsetTop) {
-          // pop the first element in views array
-          this.views.shift();
+        if (this.calculateNextTitle() == null) {
+          // TODO flip button
+          this.$refs.downButton.className = 'down-button down-button-rotate';
+        } else {
+          this.$refs.downButton.className = 'down-button';
         }
       } catch (err) {
         console.log(err);
@@ -246,6 +245,9 @@ h2 {
 .down-button > img:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+.down-button-rotate {
+  transform: rotate(180deg);
 }
 
 @media only screen and (max-width: 300px) {
