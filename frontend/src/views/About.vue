@@ -17,7 +17,7 @@
     ></v-parallax>
     <!-- About -->
     <v-container ref="content-start" style="padding: 0px 30px 10px 30px">
-      <HeaderTitle title="About"></HeaderTitle>
+      <HeaderTitle title="About" padding="50px 0px 0px 0px"></HeaderTitle>
       <p><b>
         CSESoc is the principal representative body for computing students on campus. We are one of the biggest and most
         active societies at UNSW, catering to over 3500 CSE students spanning across degrees in
