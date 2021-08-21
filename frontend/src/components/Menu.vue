@@ -12,9 +12,11 @@
       <v-container class="stack-elem">
         <v-row no-gutters>
           <!-- Logo -->
-          <v-col cols="2">
+          <v-col>
             <RouterLink to="/">
-              <v-img @click.stop="hide" class="logo-btn" width="140px" height="32px" src="@/assets/csesoc-logo-white.svg" />
+            <v-container @click.stop="hide" class="logo-btn">
+              <img src="@/assets/csesoc-logo-white.svg"/>
+            </v-container>
             </RouterLink>
           </v-col>
           <!-- Spacer -->
