@@ -209,4 +209,14 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 600px){
+  .social-links-container{
+    display: none;
+  }
+  h2{
+    font-size:16.5px;
+  }
+}
+
 </style>
