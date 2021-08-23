@@ -1,7 +1,7 @@
 <template>
   <v-app id="main-app">
     <!-- Navigation bar/app bar goes here -->
-    <v-app-bar app color="transparent" elevation="0" width="100vw">
+    <v-app-bar app color="transparent" class="blend" elevation="0" width="100vw">
       <!-- Logo -->
       <RouterLink to="/" v-on:click.native="showMenu = false">
         <v-container class="fill-height" style="max-height: 64px; max-width:100px">
@@ -57,6 +57,10 @@ html, body {
   height: 100vh;
   overflow-x: hidden;
   box-sizing: border-box;
+}
+
+.blend{
+  mix-blend-mode: exclusion;
 }
 
 </style>
