@@ -1,33 +1,23 @@
-# Docker compose development version 
 version: "3"
 services:
-    frontend:
-        image: frontend
-        build: ./frontend
-        ports:
-            - '8080:8080'
-        container_name: frontend
-        volumes:
-            - /app/node_modules
-            - ./frontend:/app
-        environment: 
-            - CHOKIDAR_USEPOLLING=true
-    backend:
-        image: backend
-        build: ./backend
-        ports:
-            - '1323:1323'
-        volumes:
-            - ./backend:/app/server
-        container_name: backend
-        environment: 
-            - MAILJET_TOKEN=${MAILJET_TOKEN}
-            - FB_TOKEN=${FB_TOKEN}
-            - JWT_SECRET=${JWT_SECRET}
-            - TESTING_JWT=${TESTING_JWT}
-    mongo:
-        image: mongo:latest
-        restart: always
-        ports:
-            - '27017:27017'
-        container_name: mongo
+  production:
+    image: production
+    build: .
+    restart: always
+    ports: 
+      - '1323:1323'
+    security_opt:
+      - no-new-privileges
+    read_only: true
+    depends_on:
+      - mongo
+    container_name: production
+  mongo:
+    image: mongo:3.6.20-xenial
+    restart: always
+    ports:
+      - '27017:27017'
+    security_opt:
+      - no-new-privileges
+    container_name: mongo
+    
