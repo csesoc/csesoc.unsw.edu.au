@@ -9,5 +9,5 @@ RUN yarn install
 
 # Build dependencies into dist folder, copy line may change as we restructure
 COPY . .
-RUN yarn build
+gi
 ENTRYPOINT yarn serve build
