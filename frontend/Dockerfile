@@ -11,5 +11,4 @@ RUN yarn install
 COPY . .
 RUN yarn build
 RUN npm install -g serve
-RUN serve -s dist
-ENTRYPOINT yarn serve build
+ENTRYPOINT serve -s dist
