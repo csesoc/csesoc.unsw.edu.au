@@ -130,7 +130,7 @@ export default {
           next.scrollIntoView({ behavior: 'smooth' });
         }
       } catch (err) {
-        console.log(err);
+        /* console.log(err); */
       }
     },
     // check if current windowTop beyond the next in line view
@@ -146,7 +146,7 @@ export default {
           this.$refs.downButton.className = 'down-button';
         }
       } catch (err) {
-        console.log(err);
+        /* console.log(err); */
       }
     }
   }
