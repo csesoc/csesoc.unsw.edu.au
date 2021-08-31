@@ -130,7 +130,11 @@ export default {
           next.scrollIntoView({ behavior: 'smooth' });
         }
       } catch (err) {
+<<<<<<< HEAD
         /* console.log(err); */
+=======
+        // console.log(err);
+>>>>>>> b7588efc9c7116c4f977c31a164fde30381b985c
       }
     },
     // check if current windowTop beyond the next in line view
@@ -146,7 +150,11 @@ export default {
           this.$refs.downButton.className = 'down-button';
         }
       } catch (err) {
+<<<<<<< HEAD
         /* console.log(err); */
+=======
+        // console.log(err);
+>>>>>>> b7588efc9c7116c4f977c31a164fde30381b985c
       }
     }
   }
