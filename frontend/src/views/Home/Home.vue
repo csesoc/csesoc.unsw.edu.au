@@ -18,7 +18,7 @@
     <!-- Mission -->
     <Mission />
     <!--Events-->
-    <EventDisplay :events="eventItems" :updated="lastEventUpdate" />
+    <!-- <EventDisplay :events="eventItems" :updated="lastEventUpdate" /> -->
     <!-- Slideshow -->
     <Slideshow />
     <!-- Student Resources -->
@@ -34,11 +34,11 @@
 import Showcase from '@/views/Home/Showcase';
 import Mission from '@/views/Home/Mission';
 import CommunityLinks from '@/views/Home/CommunityLink';
-import EventDisplay from '@/views/Home/EventDisplay';
+// import EventDisplay from '@/views/Home/EventDisplay';
 import Slideshow from '@/views/Home/Slideshow';
 import StudentResources from '@/views/Home/StudentResources';
 import SponsorUs from '@/views/Home/SponsorUs';
-import APIClient from '../../utils/APIClient';
+// import APIClient from '../../utils/APIClient';
 
 export default {
   name: 'Home',
@@ -52,18 +52,18 @@ export default {
     Showcase,
     Mission,
     CommunityLinks,
-    EventDisplay,
+    // EventDisplay,
     Slideshow,
     StudentResources,
     SponsorUs,
   },
-  mounted() {
-    APIClient.eventsAPI()
-      .then((responseJson) => {
-        this.eventItems = responseJson.events;
-        this.lastEventUpdate = this.loadTime - responseJson.updated * 1000;
-      });
-  },
+  // mounted() {
+  //   APIClient.eventsAPI()
+  //     .then((responseJson) => {
+  //       this.eventItems = responseJson.events;
+  //       this.lastEventUpdate = this.loadTime - responseJson.updated * 1000;
+  //     });
+  // },
   methods: {
     scrollto(anchor) {
       const element = this.$refs[anchor];
