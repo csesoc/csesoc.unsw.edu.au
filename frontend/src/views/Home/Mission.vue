@@ -13,7 +13,7 @@
         <img data-cy="mission-img" contain :src="mission.image" class="image"/>
       </v-col>
       <v-col xs="12" sm="6" align-self="center">
-        <p data-cy="mission-statement" class="text--md">
+        <p data-cy="mission-statement" class="text--sm">
           "{{mission.statement}}"
         </p>
       </v-col>
@@ -42,7 +42,7 @@ export default {
 <style lang="scss" scoped>
 
 .image {
-  max-width: 100%;
+  max-width: 90%;
   max-height: 100%;
 }
 </style>

@@ -12,21 +12,21 @@
 -->
 
 <template>
-  <div id="home">
+  <div id="home" >
     <!-- Showcase -->
-    <Showcase />
+    <Showcase class="padding"/>
     <!-- Mission -->
-    <Mission />
+    <Mission  class="padding"/>
     <!--Events-->
-    <EventDisplay :events="eventItems" :updated="lastEventUpdate" />
+    <EventDisplay :events="eventItems" :updated="lastEventUpdate"  class="padding"/>
     <!-- Slideshow -->
-    <Slideshow />
+    <Slideshow  class="padding"/>
     <!-- Student Resources -->
-    <StudentResources />
+    <StudentResources  class="padding"/>
     <!-- Community Links -->
-    <CommunityLinks />
+    <CommunityLinks  class="padding"/>
     <!-- Sponsor -->
-    <SponsorUs />
+    <SponsorUs class="padding"/>
   </div>
 </template>
 
@@ -80,4 +80,9 @@ export default {
   box-sizing: border-box;
   color: $light-color;
 }
+
+.padding{
+  padding: 0.5em;
+}
+
 </style>

@@ -77,6 +77,14 @@ export default {
   @extend .btn--lg;
 }
 
+@media screen and (max-width: 600px){
+  .btn--sponsorUs{
+    float: none;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
 .btn--sponsorUs:hover {
   transition: 0.4s;
   // when on hover, change background from transparent to $brand-color with light opacity

@@ -8,7 +8,7 @@
   <div id="showcase" class="content">
     <v-container>
       <v-row no-gutters>
-        <v-col class="pa-0" cols="6">
+        <v-col class="pa-0" cols="12">
           <h1>
             {{quote}}
           </h1>
@@ -55,6 +55,18 @@ export default {
 .btn--join-us {
   @extend .btn--lg;
   float: right;
+}
+
+@media screen and (max-width: 600px){
+  .btn--join-us{
+    float: none;
+    margin: 0 auto;
+    display: block;
+  }
+
+  h1{
+    text-align: center;
+  }
 }
 
 .btn--join-us:hover {
