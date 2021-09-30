@@ -1,6 +1,6 @@
 # csesoc.unsw.edu.au
 
-This repo houses the CSESoc website.
+This repo houses the static CSESoc website which will stand in for the new CMS-based website while it is in development.
 
 ## Getting Started
 
@@ -26,48 +26,37 @@ git clone https://github.com/csesoc/csesoc.unsw.edu.au
 
 For the sake of development, please also have Golang installed on your local machine and yarn as a your JS package manager.
 
-### Setting up environment variables
-
-All tokens are being treated as environment variables and are purposely left out of the GitHub repository. The easiest way is to inject these secrets into the container as environment variables.
-
-Contact the website project lead to get the tokens sent directly to you via secure mediums.
-
-Docker expects a file named `.env` in the root directory of the project containing environment variables in the following format:
-
-``` text
-{variable_name}={variable_value}
-```
-
-Here is a sample valid `.env` file:
-
-``` text
-ENV_VAR1=0123456789
-ENV_VAR2=super_secure_secret
-```
-
-These environment variables are only reacheable during the building process of the Docker containers, not in the container themselves (by default). To pass them into their relevant container the `docker-compose.yml` file specifies the required env variables under the *environment* field for each service. Please read the section on [Security](#security).
-
 ### Installing
-
-*Please check back regularly as deployment steps may change at any point within these early stages of development. Thank you for your patience.*
 
 With the repo cloned, proceed to checkout to the dev branch.
 
 From the root folder of the dev branch, run the following command in your terminal.
 
 ``` script
-docker-compose up -d --build
+docker-compose -f docker-compose-dev.yml up -d --build
 ```
 
 This will automatically build the images required for the containers, as well as the containers for the first time. After this images will not need to be built again until changes have been made to the dependencies. For subsequent runs, remove the `--build`.
 
-The '-d' is to start the container in the background and leave them running. There will be three containers that start up `frontend`, `backend` and `mongo`. Once you are finished developing, run:
+The '-d' is to start the container in the background and leave them running. There will be three containers that start up `frontend`, `backend` and `mongo`.
+Note: once you have built the containers from here, you can do most docker operations from the UI such as starting/stopping the containers. You will only *need* to do this for your first setup or if you delete the containers / purge your docker data.
+
+If you would rather use the commandline, once you are finished developing, run:
 
 ``` script
 docker-compose down -v
 ```
 
 which kills your containers and removes any bind mounts and named volumes but keeps your images. Be sure to use `docker-compose --help` for any additional help or other options.
+
+You can also run just
+``` script
+docker-compose down
+```
+
+if you want to erase your images from docker too (which can save some disk space).
+
+You may want to be wary of docker as it is *extremely resource hungry*. It can occupy several gigs of RAM and will noticably cause increased battery drainage because it is constantly making use of the CPU. For your sanity you may want to make sure you *stop all containers and shut docker down* if you aren't working on the repo for your own sanity - if you have 32gb of RAM or greater <and aren't using battery power> this probably won't be an issue. 
 
 To access the website, the static files will be served on `0.0.0.0:8080` (`[::]:8080`) while the backend APIs are served on `0.0.0.0:1323` (`[::]:1323`). Make sure when you are making calls from the frontend to the backend in development stage, you use the suffix of the api call and not call with the domain e.g
 
@@ -136,18 +125,6 @@ To simplify things we are using environment variables instead of Docker Secrets.
 * [Golang](https://golang.org/) - Used to write the API and server backend.
 * [Swagger](https://swagger.io/) - API documentation framework
 
-## System Architecture
-
-For more on the system's architecture, please head to the [confluence page](https://compclub.atlassian.net/wiki/spaces/Projects/pages/845414415/Architectural+Guide).
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Authors
-
-* **Tommy Truong** - *Initial work for README.md file* - [glebme](https://github.com/glebme)
-* **Sergio Mercado Ruiz** - *Setting up environment variables, API Documentation and Security sections.* - [sergiomercado19](https://github.com/sergiomercado19)
 
 ## License
 
