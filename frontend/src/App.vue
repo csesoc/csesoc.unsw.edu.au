@@ -12,7 +12,12 @@
       <div class="flex-grow-1"></div>
 
       <!-- Menu button -->
-      <v-app-bar-nav-icon color="white" class="ma-2" data-cy="menu-toggle" @click.stop="showMenu = !showMenu" />
+      <v-app-bar-nav-icon
+        color="white"
+        class="ma-2"
+        data-cy="menu-toggle"
+        @click.stop="showMenu = !showMenu"
+      />
     </v-app-bar>
     <v-main class="pa-0">
       <Menu v-if="showMenu" @shown="onMenuCollapse" />
@@ -33,7 +38,7 @@ export default {
   }),
   components: {
     Footer,
-    Menu,
+    Menu
   },
   methods: {
     onMenuCollapse(val) {
@@ -52,15 +57,15 @@ export default {
   font-family: 'Core Sans C', Arial, sans-serif;
 }
 
-html, body {
+html,
+body {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
   box-sizing: border-box;
 }
 
-.blend{
+.blend {
   mix-blend-mode: exclusion;
 }
-
 </style>

@@ -5,35 +5,29 @@
 -->
 
 <template>
-  <v-footer color="#000033" padless >
+  <v-footer color="#000033" padless>
     <v-container class="white--text" style="padding:60px 72px" fluid>
       <v-row no-gutters>
-        <v-col
-          sm="6"
-        >
+        <v-col sm="6">
           <div class="white-text" style="margin-bottom:20%" data-cy="footer-address">
-          <a href="/">
-            <img class="img-size" src="@/assets/csesoc-logo-white.svg" data-cy="footer-logo"/>
-          </a>
-          <br/>B03 CSE Building K17, UNSW
-          <br/>
-          <a href="mailto:csesoc@csesoc.org.au" > csesoc@csesoc.org.au </a>
+            <a href="/">
+              <img class="img-size" src="@/assets/csesoc-logo-white.svg" data-cy="footer-logo" />
+            </a>
+            <br />B03 CSE Building K17, UNSW
+            <br />
+            <a href="mailto:csesoc@csesoc.org.au"> csesoc@csesoc.org.au </a>
           </div>
           © 2021 — CSESoc UNSW
         </v-col>
-        <v-col
-          sm="6"
-        >
+        <v-col sm="6">
           <div class="white-text">
-            <div class="nav-divider" data-cy = "footer-internal-link">
+            <div class="nav-divider" data-cy="footer-internal-link">
               <a v-for="url in csesocInternal" :key="url.name" :href="url.url">
-              {{ url.name }}
+                {{ url.name }}
               </a>
             </div>
             <v-row style="margin-top:25px" no-gutters>
-              <v-col
-                sm="6"
-              >
+              <v-col sm="6">
                 <h4 data-cy="footer-media-title">Social Media</h4>
                 <v-list-item class="anchor-items" v-for="url in media" :key="url.name">
                   <v-list-item-content data-cy="footer-media-link">
@@ -43,12 +37,10 @@
                   </v-list-item-content>
                 </v-list-item>
               </v-col>
-              <v-col
-                sm="6"
-              >
+              <v-col sm="6">
                 <h4 data-cy="footer-resources-title">CSESoc Sites</h4>
                 <v-list-item class="anchor-items" v-for="url in csesocExternal" :key="url.name">
-                  <v-list-item-content data-cy=footer-resources-link>
+                  <v-list-item-content data-cy="footer-resources-link">
                     <a :href="url.url">
                       {{ url.name }}
                     </a>
@@ -83,7 +75,11 @@ export default {
       { name: 'UNSW Handbook', url: 'https://www.handbook.unsw.edu.au/' }
     ],
     media: [
-      { name: 'Discord Community', url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u' },
+      {
+        name: 'Discord Community',
+        url:
+          'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u'
+      },
       { name: 'Facebook Page', url: 'https://www.facebook.com/csesoc/' },
       { name: 'Facebook Group', url: 'https://www.facebook.com/csesoc/' },
       { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' },
@@ -103,7 +99,7 @@ export default {
 .white-text a {
   text-decoration: none;
   color: $light-color;
-  padding-right:$space-xxs;
+  padding-right: $space-xxs;
 }
 
 .white-text a:hover {
@@ -113,15 +109,15 @@ export default {
 
 .nav-divider {
   padding-bottom: $space-xxs;
-  border-bottom:2px solid white;
+  border-bottom: 2px solid white;
 }
 
 .anchor-items {
-  margin-left:-15px;
+  margin-left: -15px;
 }
 
 .img-size {
-  max-width:300px;
-  max-height:200px;
+  max-width: 300px;
+  max-height: 200px;
 }
 </style>

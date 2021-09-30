@@ -8,7 +8,8 @@
 -->
 
 <template>
-  <v-card class="event-card"
+  <v-card
+    class="event-card"
     :href="`https://facebook.com/${event.fb_event_id}`"
     target="_blank"
     rel="noreferrer noopener"
@@ -17,12 +18,9 @@
       <v-img class="event-cover" :src="event.fb_cover_img">
         <!-- Display extra event information on hover -->
         <v-expand-transition>
-          <div
-            v-if="hover"
-            class="info-card transition-fast-in-fast-out v-card--reveal"
-          >
+          <div v-if="hover" class="info-card transition-fast-in-fast-out v-card--reveal">
             <strong><div id="name" class="text--lg" v-text="event.name"/></strong>
-            <div class="event__place" v-if="event.place != undefined" v-text="'@ '+event.place"/>
+            <div class="event__place" v-if="event.place != undefined" v-text="'@ ' + event.place" />
             <div id="date" v-text="getDateString(event.start_time, event.end_time)"></div>
           </div>
         </v-expand-transition>
@@ -45,16 +43,17 @@ export default {
       const sDay = days[start.getDay()];
       const sDate = start.getDate();
       const sMonth = months[start.getMonth()];
-      const sHour = (start.getHours() > 12) ? start.getHours() - 12 : start.getHours();
-      const sMin = (start.getMinutes() === 0) ? '' : `:${(start.getMinutes() < 10 ? '0' : '')}${start.getMinutes()}`;
-      const sMerid = (start.getHours() >= 12) ? 'PM' : 'AM';
+      const sHour = start.getHours() > 12 ? start.getHours() - 12 : start.getHours();
+      const sMin =
+        start.getMinutes() === 0 ? '' : `:${start.getMinutes() < 10 ? '0' : ''}${start.getMinutes()}`;
+      const sMerid = start.getHours() >= 12 ? 'PM' : 'AM';
       if (unix2 === undefined) {
         return `${sDay} ${sDate} ${sMonth} at ${sHour}${sMin} ${sMerid}`;
       }
       // if the date is the same, we just need to display start and end times of the event
-      const eHour = (end.getHours() > 12) ? end.getHours() - 12 : end.getHours();
-      const eMin = (end.getMinutes() === 0) ? '' : `:${(end.getMinutes() < 10 ? '0' : '')}${end.getMinutes()}`;
-      const eMerid = (end.getHours() >= 12) ? 'PM' : 'AM';
+      const eHour = end.getHours() > 12 ? end.getHours() - 12 : end.getHours();
+      const eMin = end.getMinutes() === 0 ? '' : `:${end.getMinutes() < 10 ? '0' : ''}${end.getMinutes()}`;
+      const eMerid = end.getHours() >= 12 ? 'PM' : 'AM';
       if (start.getDate() === end.getDate() && start.getMonth() === end.getMonth()) {
         // eg. Thurs 1 Jan 12 PM to 1:30 PM
         return `${sDay} ${sDate} ${sMonth} at ${sHour}${sMin} ${sMerid} - ${eHour}${eMin} ${eMerid}`;
@@ -73,31 +72,29 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.event-card {
+  width: 32em;
+  max-width: 90vw;
+}
 
-  .event-card {
-    width: 32em;
-    max-width: 90vw;
-  }
+.event-cover {
+  height: 100%;
+}
 
-  .event-cover {
-    height: 100%;
-  }
+.info-card {
+  background-color: $primary-color;
+  background: linear-gradient(0deg, $primary-color, $secondary-color-2);
+  color: $light-color;
+  box-sizing: border-box;
+  height: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-  .info-card {
-    background-color: $primary-color;
-    background: linear-gradient(0deg, $primary-color, $secondary-color-2);
-    color: $light-color;
-    box-sizing: border-box;
-    height: 100%;
-    padding-left: 30px;
-    padding-right: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  #date {
-    font-size: 1.3em;
-  }
-
+#date {
+  font-size: 1.3em;
+}
 </style>

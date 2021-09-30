@@ -11,43 +11,82 @@
     <header id="showcase">
       <v-img max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
     </header>
-    <div class=down-button @click="onClickScroll" @scroll.passive="handleScroll" ref="downButton">
-      <img src="@/assets/downbutton.png"/>
-    </div >
+    <div class="down-button" @click="onClickScroll" @scroll.passive="handleScroll" ref="downButton">
+      <img src="@/assets/downbutton.png" />
+    </div>
     <v-container class="margin" fluid>
-      <h1 class=border font-weight-bold style="padding:25px;">Sponsors</h1>
-      <h2 class="text-h4">Principal <br> Sponsors</h2>
+      <h1 class="border" font-weight-bold style="padding:25px;">Sponsors</h1>
+      <h2 class="text-h4">
+        Principal <br />
+        Sponsors
+      </h2>
       <v-container class="border" fluid>
-          <div v-for="(sponsor, index) in tierOne" :key="sponsor.id" :style="marginStyle(index, largeLogoFilter)">
-              <div class="logo-margin">
-                <img class="large-logo logo" :src="`data:image/png;base64,${sponsor.logo}`" v-on:click="onClickModal(sponsor)"/>
-              </div>
-              <div v-if="(index + 1) % largeLogoFilter === 0 || index === tierOne.length - 1" style="clear:both;"></div>
+        <div
+          v-for="(sponsor, index) in tierOne"
+          :key="sponsor.id"
+          :style="marginStyle(index, largeLogoFilter)"
+        >
+          <div class="logo-margin">
+            <img
+              class="large-logo logo"
+              :src="`data:image/png;base64,${sponsor.logo}`"
+              v-on:click="onClickModal(sponsor)"
+            />
           </div>
+          <div
+            v-if="(index + 1) % largeLogoFilter === 0 || index === tierOne.length - 1"
+            style="clear:both;"
+          ></div>
+        </div>
       </v-container>
       <div style="clear:both;"></div>
-      <h2 class="text-h4">Major <br> Sponsors</h2>
+      <h2 class="text-h4">
+        Major <br />
+        Sponsors
+      </h2>
       <v-container class="border" fluid>
-          <div v-for="(sponsor, index) in tierTwo" :key="sponsor.id" :style="marginStyle(index, midLogoFilter)">
-              <div class="logo-margin">
-                <img class="mid-logo logo" :src="`data:image/png;base64,${sponsor.logo}`" v-on:click="onClickModal(sponsor)"/>
-              </div>
-              <div v-if="(index + 1) % midLogoFilter === 0 || index === tierTwo.length - 1" style="clear:both;"></div>
+        <div v-for="(sponsor, index) in tierTwo" :key="sponsor.id" :style="marginStyle(index, midLogoFilter)">
+          <div class="logo-margin">
+            <img
+              class="mid-logo logo"
+              :src="`data:image/png;base64,${sponsor.logo}`"
+              v-on:click="onClickModal(sponsor)"
+            />
           </div>
+          <div
+            v-if="(index + 1) % midLogoFilter === 0 || index === tierTwo.length - 1"
+            style="clear:both;"
+          ></div>
+        </div>
       </v-container>
       <div style="clear:both;"></div>
-      <h2 class="text-h4">Affiliate <br> Sponsors</h2>
+      <h2 class="text-h4">
+        Affiliate <br />
+        Sponsors
+      </h2>
       <v-container class="border" fluid>
-          <div v-for="(sponsor, index) in tierThree" :key="sponsor.id" :style="marginStyle(index, smallLogoFilter)">
-              <div class="logo-margin">
-                  <img class="small-logo logo" :src="`data:image/png;base64,${sponsor.logo}`" v-on:click="onClickModal(sponsor)"/>
-              </div>
-              <div v-if="(index + 1) % smallLogoFilter === 0 || index === tierThree.length - 1" style="clear:both;"></div>
+        <div
+          v-for="(sponsor, index) in tierThree"
+          :key="sponsor.id"
+          :style="marginStyle(index, smallLogoFilter)"
+        >
+          <div class="logo-margin">
+            <img
+              class="small-logo logo"
+              :src="`data:image/png;base64,${sponsor.logo}`"
+              v-on:click="onClickModal(sponsor)"
+            />
           </div>
+          <div
+            v-if="(index + 1) % smallLogoFilter === 0 || index === tierThree.length - 1"
+            style="clear:both;"
+          ></div>
+        </div>
       </v-container>
       <div style="clear:both;"></div>
     </v-container>
-    <SponsorModal v-model="dialog" v-bind:title="currentSponsor.name" v-bind:body="currentSponsor.detail"> </SponsorModal>
+    <SponsorModal v-model="dialog" v-bind:title="currentSponsor.name" v-bind:body="currentSponsor.detail">
+    </SponsorModal>
   </div>
 </template>
 
@@ -69,25 +108,24 @@ export default {
     smallLogoFilter: 5
   }),
   components: {
-    SponsorModal,
+    SponsorModal
   },
   computed: {
     // functions to determine sizing category of sponsor based on their value
     tierOne() {
-      return this.sponsors.filter((x) => x.tier === 2);
+      return this.sponsors.filter(x => x.tier === 2);
     },
     tierTwo() {
-      return this.sponsors.filter((x) => x.tier === 1);
+      return this.sponsors.filter(x => x.tier === 1);
     },
     tierThree() {
-      return this.sponsors.filter((x) => x.tier === 0);
+      return this.sponsors.filter(x => x.tier === 0);
     }
   },
   mounted() {
-    APIClient.fetchSponsors()
-      .then((responseJson) => {
-        this.sponsors = responseJson;
-      });
+    APIClient.fetchSponsors().then(responseJson => {
+      this.sponsors = responseJson;
+    });
     window.addEventListener('scroll', this.handleScroll, true);
   },
   beforeDestroy() {
@@ -96,7 +134,7 @@ export default {
   methods: {
     marginStyle(index, limit) {
       const style = {};
-      const row = parseInt((index) / limit, 10);
+      const row = parseInt(index / limit, 10);
       if (row % 2 === 0) {
         style['margin-left'] = '10%';
       } else {
@@ -155,21 +193,21 @@ export default {
 
 <style scoped>
 h1 {
-  padding-top:50px;
-  padding-bottom:50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 h2 {
-  padding-top:65px;
-  padding-bottom:65px;
-  margin-left:-2%;
-  max-width:150px
+  padding-top: 65px;
+  padding-bottom: 65px;
+  margin-left: -2%;
+  max-width: 150px;
 }
 
 #showcase {
   align-items: center;
   background-blend-mode: darken;
-  background-image: url("../assets/black_lozenge_@2X.png");
+  background-image: url('../assets/black_lozenge_@2X.png');
   background-position: center;
   background-repeat: repeat;
   display: flex;
@@ -189,7 +227,7 @@ h2 {
   border-left: 1px groove black;
   padding-bottom: 2%;
   padding-right: 10vw;
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
 }
 
@@ -213,18 +251,18 @@ h2 {
 }
 
 .large-logo {
-  max-width:225px;
-  max-height:205px;
+  max-width: 225px;
+  max-height: 205px;
 }
 
 .mid-logo {
-  max-width:175px;
-  max-height:205px;
+  max-width: 175px;
+  max-height: 205px;
 }
 
 .small-logo {
-  max-width:125px;
-  max-height:205px;
+  max-width: 125px;
+  max-height: 205px;
 }
 
 .down-button {
@@ -239,7 +277,7 @@ h2 {
 .down-button > img {
   object-fit: cover;
   width: 100%;
-  filter:opacity(60%);
+  filter: opacity(60%);
 }
 
 .down-button > img:hover {
@@ -251,8 +289,8 @@ h2 {
 }
 
 @media only screen and (max-width: 300px) {
-  h2{
-    color:white;
+  h2 {
+    color: white;
   }
 }
 </style>

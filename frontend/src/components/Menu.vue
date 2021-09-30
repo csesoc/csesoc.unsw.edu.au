@@ -14,14 +14,26 @@
           <!-- Logo -->
           <v-col cols="2">
             <RouterLink to="/">
-              <v-img @click.stop="hide" class="logo-btn" width="140px" height="32px" src="@/assets/csesoc-logo-white.svg" />
+              <v-img
+                @click.stop="hide"
+                class="logo-btn"
+                width="140px"
+                height="32px"
+                src="@/assets/csesoc-logo-white.svg"
+              />
             </RouterLink>
           </v-col>
           <!-- Spacer -->
           <v-spacer></v-spacer>
           <!-- Close -->
           <v-col cols="1">
-            <v-img @click.stop="hide" class="close-btn" width="32px" height="32px" src="@/assets/close-icon.svg" />
+            <v-img
+              @click.stop="hide"
+              class="close-btn"
+              width="32px"
+              height="32px"
+              src="@/assets/close-icon.svg"
+            />
           </v-col>
         </v-row>
       </v-container>
@@ -51,7 +63,7 @@
             <div class="social-links-container">
               <div class="push-down">
                 <div v-for="link in socialLinks" :key="link.name" class="link" data-cy="menu-social-link">
-                  <a target="_blank" :href="link.url" >
+                  <a target="_blank" :href="link.url">
                     {{ link.name }}
                   </a>
                 </div>
@@ -65,7 +77,7 @@
       <v-container class="stack-elem">
         <v-row no-gutters class="footer">
           <p style="display: inline;">
-            <img height="14px" src="@/assets/home-icon.png" style="padding-right: 5px;">
+            <img height="14px" src="@/assets/home-icon.png" style="padding-right: 5px;" />
             B03 CSE Building K17, UNSW
           </p>
         </v-row>
@@ -82,7 +94,7 @@ export default {
       { name: 'Discord Community', url: 'https://bitly.com/CSESocCourseChats' },
       { name: 'CSESoc Media', url: 'https://media.csesoc.org.au' },
       { name: 'Facebook', url: 'https://www.facebook.com/csesoc/' },
-      { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' },
+      { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' }
     ]
   }),
   methods: {
@@ -161,7 +173,7 @@ export default {
     color: white;
     cursor: pointer; /* To simulate a link */
     font-weight: normal;
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 
     h2 {
       cursor: pointer; /* To simulate a link */
@@ -191,7 +203,7 @@ export default {
       cursor: pointer; /* To simulate a link */
       font-weight: normal;
       font-size: 140%;
-      transition: all .2s ease-in-out;
+      transition: all 0.2s ease-in-out;
       width: fit-content;
       margin-left: auto;
 
@@ -210,13 +222,12 @@ export default {
   }
 }
 
-@media screen and (max-width: 600px){
-  .social-links-container{
+@media screen and (max-width: 600px) {
+  .social-links-container {
     display: none;
   }
-  h2{
-    font-size:16.5px;
+  h2 {
+    font-size: 16.5px;
   }
 }
-
 </style>

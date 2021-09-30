@@ -11,14 +11,14 @@
 -->
 
 <template>
-    <v-dialog v-model="show" max-width="500">
-      <v-card>
-        <v-card-title class="headline">{{title}}</v-card-title>
-        <v-card-text>
-            {{body}}
-        </v-card-text>
-      </v-card>
-    </v-dialog>
+  <v-dialog v-model="show" max-width="500">
+    <v-card>
+      <v-card-title class="headline">{{ title }}</v-card-title>
+      <v-card-text>
+        {{ body }}
+      </v-card-text>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>
@@ -42,5 +42,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
