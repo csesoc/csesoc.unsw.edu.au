@@ -71,8 +71,8 @@ export default {
     email: '',
     body: '',
     rules: {
-      required: value => !!value || 'Required',
-      email: value => value === undefined || value.length === 0 || isEmail(value) || 'Invalid e-mail'
+      required: (value) => !!value || 'Required',
+      email: (value) => value === undefined || value.length === 0 || isEmail(value) || 'Invalid e-mail'
     }
   }),
   methods: {
@@ -85,7 +85,7 @@ export default {
       return lc;
     },
     send() {
-      APIClient.mailingAPI(MAILING_URL[this.type], this.name, this.email, this.body).then(res => {
+      APIClient.mailingAPI(MAILING_URL[this.type], this.name, this.email, this.body).then((res) => {
         switch (res.status) {
           case 202:
             this.$refs.form.reset();

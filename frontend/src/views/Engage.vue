@@ -124,11 +124,11 @@ export default {
   },
 
   mounted() {
-    APIClient.socialsAPI().then(responseJson => {
+    APIClient.socialsAPI().then((responseJson) => {
       this.socialLinks = responseJson;
     });
 
-    APIClient.faqsAPI().then(responseJson => {
+    APIClient.faqsAPI().then((responseJson) => {
       this.faqLinks = responseJson;
     });
   }

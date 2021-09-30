@@ -44,8 +44,7 @@ export default {
       const sDate = start.getDate();
       const sMonth = months[start.getMonth()];
       const sHour = start.getHours() > 12 ? start.getHours() - 12 : start.getHours();
-      const sMin =
-        start.getMinutes() === 0 ? '' : `:${start.getMinutes() < 10 ? '0' : ''}${start.getMinutes()}`;
+      const sMin = start.getMinutes() === 0 ? '' : `:${start.getMinutes() < 10 ? '0' : ''}${start.getMinutes()}`;
       const sMerid = start.getHours() >= 12 ? 'PM' : 'AM';
       if (unix2 === undefined) {
         return `${sDay} ${sDate} ${sMonth} at ${sHour}${sMin} ${sMerid}`;

@@ -113,17 +113,17 @@ export default {
   computed: {
     // functions to determine sizing category of sponsor based on their value
     tierOne() {
-      return this.sponsors.filter(x => x.tier === 2);
+      return this.sponsors.filter((x) => x.tier === 2);
     },
     tierTwo() {
-      return this.sponsors.filter(x => x.tier === 1);
+      return this.sponsors.filter((x) => x.tier === 1);
     },
     tierThree() {
-      return this.sponsors.filter(x => x.tier === 0);
+      return this.sponsors.filter((x) => x.tier === 0);
     }
   },
   mounted() {
-    APIClient.fetchSponsors().then(responseJson => {
+    APIClient.fetchSponsors().then((responseJson) => {
       this.sponsors = responseJson;
     });
     window.addEventListener('scroll', this.handleScroll, true);

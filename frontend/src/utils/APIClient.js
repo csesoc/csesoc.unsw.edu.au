@@ -1,11 +1,12 @@
-import { SPONSORS_URL, EVENTS_URL, SOCIAL_URL, FAQ_URL, RESOURCES_URL } from './Constants';
+import {
+  SPONSORS_URL, EVENTS_URL, SOCIAL_URL, FAQ_URL, RESOURCES_URL
+} from './Constants';
 
-const APICall = (url, headers, convertToJson = true) =>
-  fetch(url, headers)
-    .then(res => (convertToJson ? res.json() : res))
-    .then(res => res);
+const APICall = (url, headers, convertToJson = true) => fetch(url, headers)
+  .then((res) => (convertToJson ? res.json() : res))
+  .then((res) => res);
 
-const getHeaders = token => {
+const getHeaders = (token) => {
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json'
