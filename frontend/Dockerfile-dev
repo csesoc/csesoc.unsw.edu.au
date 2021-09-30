@@ -9,7 +9,4 @@ RUN yarn install
 
 # Build dependencies into dist folder, copy line may change as we restructure
 COPY . .
-RUN yarn build
-RUN npm install -g serve
-ENTRYPOINT serve -s dist
-
+ENTRYPOINT yarn serve

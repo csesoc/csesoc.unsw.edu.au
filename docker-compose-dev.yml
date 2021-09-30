@@ -3,7 +3,9 @@ version: "3"
 services:
     frontend:
         image: frontend
-        build: ./frontend
+        build: 
+            context: ./frontend
+            dockerfile: Dockerfile-dev
         ports:
             - '8080:8080'
         container_name: frontend
