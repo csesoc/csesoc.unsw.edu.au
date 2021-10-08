@@ -83,9 +83,6 @@
 <script type="text/javascript">
 export default {
   name: 'Navbar',
-  data: () => ({
-    showMenu: false
-  }),
   methods: {
     goto(refName) {
       const element = document.getElementById(refName);

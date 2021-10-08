@@ -1,6 +1,5 @@
 <template>
   <v-app id="main-app">
-    <!-- Navigation bar/app bar goes here -->
     <Navbar />
     <v-main class="pa-0">
       <Menu v-if="showMenu" @shown="onMenuCollapse" />
