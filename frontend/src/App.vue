@@ -1,19 +1,7 @@
 <template>
   <v-app id="main-app">
     <!-- Navigation bar/app bar goes here -->
-    <v-app-bar app color="transparent" class="blend" elevation="0" width="100vw">
-      <!-- Logo -->
-      <RouterLink to="/" v-on:click.native="showMenu = false">
-        <v-container class="fill-height" style="max-height: 64px; max-width:100px">
-          <v-img src="@/assets/csesocwhiteblue.png" />
-        </v-container>
-      </RouterLink>
-
-      <div class="flex-grow-1"></div>
-
-      <!-- Menu button -->
-      <v-app-bar-nav-icon color="white" class="ma-2" data-cy="menu-toggle" @click.stop="showMenu = !showMenu" />
-    </v-app-bar>
+    <Navbar />
     <v-main class="pa-0">
       <Menu v-if="showMenu" @shown="onMenuCollapse" />
       <RouterView style="overflow-x: hidden" />
@@ -25,6 +13,7 @@
 <script>
 import Footer from '@/components/Footer';
 import Menu from '@/components/Menu';
+import Navbar from '@/components/Navbar';
 
 export default {
   name: 'App',
@@ -34,6 +23,7 @@ export default {
   components: {
     Footer,
     Menu,
+    Navbar,
   },
   methods: {
     onMenuCollapse(val) {
@@ -62,5 +52,4 @@ html, body {
 .blend{
   mix-blend-mode: exclusion;
 }
-
 </style>
