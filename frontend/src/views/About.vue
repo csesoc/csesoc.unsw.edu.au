@@ -76,7 +76,7 @@
                   <tbody>
                     <tr v-for="(roleValue, roleName) in tierValue" :key="roleName">
                       <th>{{roleName}}</th>
-                      <td>
+                      <td id="name_container">
                         <tr v-for="name in roleValue" :key="name">
                           {{name}}
                         </tr>
@@ -307,5 +307,10 @@ td {
 
 th {
   padding-right: 10px;
+}
+
+#name_container > * {
+  display: block;
+  margin: 7px 0px 7px 0px;
 }
 </style>
