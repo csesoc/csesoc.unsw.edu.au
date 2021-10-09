@@ -34,6 +34,7 @@ export default {
 
 <style lang="scss">
 @import 'assets/font/stylesheet.css';
+@import url('http://use.fontawesome.com/releases/v5.13.0/css/all.css');
 /** Must keep html and body seperate to allow scrolling */
 * {
   margin: 0;
