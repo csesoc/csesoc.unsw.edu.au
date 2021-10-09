@@ -77,7 +77,7 @@
                     <tr v-for="(roleValue, roleName) in tierValue" :key="roleName">
                       <th>{{roleName}}</th>
                       <td>
-                        <tr v-for="name in roleValue" :key="name">
+                        <tr v-for="name in roleValue" :key="name" style="display: block; margin: 7px 0px 7px 0px;">
                           {{name}}
                         </tr>
                       </td>
