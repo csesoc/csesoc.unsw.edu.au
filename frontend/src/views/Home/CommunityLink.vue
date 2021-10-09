@@ -18,7 +18,9 @@
         <!-- Display community links -->
         <v-col cols="4" align="center" class="pa-0" v-for="channel in communityLinks" :key="channel.title">
           <a target="_blank" :href="channel.link">
-            <img :src="channel.logo" class="logo zoom" data-cy="community-links-image">
+            <!-- <img :src="channel.logo" class="logo zoom" data-cy="community-links-image"> -->
+            <v-icon name=""></v-icon>
+            <i :class="channel.logo"></i>
           </a>
           <h2 class="hidden-sm-and-down">{{channel.title}}</h2>
         </v-col>
@@ -37,7 +39,7 @@ export default {
       // community links have a link, logo and title
       {
         link: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u',
-        logo: require('../../assets/discord_logo.png'),
+        logo: 'fab fa-discord',
         title: 'Discord Server',
       },
       {
@@ -53,7 +55,7 @@ export default {
     ]
   }),
   components: {
-    HeaderTitle
+    HeaderTitle,
   }
 };
 </script>
