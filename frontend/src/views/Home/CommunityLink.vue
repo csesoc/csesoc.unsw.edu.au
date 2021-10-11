@@ -21,7 +21,7 @@
       <v-layout row wrap justify-space-between data-cy="communityLinks-images">
         <v-col cols="12" xs="12" sm="4" md="4" v-for="channel in communityLinks" :key="channel.title" >
           <v-btn block outlined color="white" target="_blank" :href="channel.link" class="logo">
-            <v-icon class="main-icons">{{`mdi-${channel.logo}`}}</v-icon>
+            <i :class="channel.logo"></i>
             <div class="link-text">{{channel.title}}</div>
           </v-btn>
         </v-col>
@@ -39,7 +39,7 @@
       <div class="d-flex justify-space-between icon-container hide-xs-and-down">
         <div v-for="channel in communityLinks2" :key="channel.logo">
           <v-btn :href="channel.link" color="white light-2" target="_blank" icon class="other-btn">
-            <v-icon :size="size">{{`mdi-${channel.logo}`}}</v-icon>
+            <i :class="channel.logo"></i>
           </v-btn>
         </div>
       </div>
@@ -58,17 +58,17 @@ export default {
       {
         // https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u
         link: 'https://discord.com/invite/b5ynAtP',
-        logo: 'discord',
+        logo: 'fab fa-discord',
         title: 'Discord',
       },
       {
         link: 'https://www.facebook.com/csesoc/',
-        logo: 'facebook',
+        logo: 'fab fa-facebook',
         title: 'Facebook',
       },
       {
         link: 'https://www.facebook.com/groups/2509117190/?ref=pages_group_cta',
-        logo: 'account-group',
+        logo: 'fas fa-users',
         title: 'Facebook Group',
       }
     ],
@@ -76,27 +76,27 @@ export default {
     communityLinks2: [
       {
         link: 'https://twitter.com/csesoc?lang=en',
-        logo: 'twitter',
+        logo: 'fab fa-twitter',
       },
       {
         link: 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg',
-        logo: 'youtube-subscription',
+        logo: 'fab fa-youtube',
       },
       {
         link: 'https://www.instagram.com/csesoc_unsw/?hl=en',
-        logo: 'instagram',
+        logo: 'fab fa-instagram',
       },
       {
         link: 'https://www.tiktok.com/@csesoc?lang=en',
-        logo: 'music-note-eighth',
+        logo: 'fab fa-tiktok',
       },
       {
         link: 'https://www.facebook.com/csesoc/photos/a.279434445422868/4432507913448813/',
-        logo: 'wechat',
+        logo: 'fab fa-weixin',
       },
       {
         link: 'https://www.linkedin.com/company/csesoc/',
-        logo: 'linkedin',
+        logo: 'fab fa-linkedin-in',
       },
 
     ]
@@ -144,7 +144,7 @@ export default {
   }
 }
 
-.main-icons {
+.logo i {
   margin-right: 30px;
   @media screen and (min-width: 1904px) {
     font-size: 45px;
@@ -166,7 +166,7 @@ export default {
     margin-right: 5px;
   }
   @media screen and (min-width: 0px) and (max-width: 599px) {
-    font-size: 32px;
+    font-size: 25px;
     margin-right: 5px;
   }
 }
@@ -198,15 +198,39 @@ export default {
   margin: 0 auto;
   //512
   @media (min-width: 512px) and (max-width: 599px) {
-    width: 90%;
-    margin: 0 auto;
+    width: 80%;
   }
-  @media (min-width: 0px) and (max-width: 512px) {
-    width: auto;
+  @media (min-width: 421px) and (max-width: 512px) {
+    width: 90%;
+  }
+  @media (min-width: 0px) and (max-width: 420px) {
+    width: 100%;
   }
 }
 
 .other-btn:hover {
   transform: scale(1.3);
 }
+
+.other-btn i {
+  @media screen and (min-width: 1904px) {
+    font-size: 45px;
+  }
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    font-size: 40px;
+  }
+  @media screen and (min-width: 871px) and (max-width: 1263px) {
+    font-size: 30px;
+  }
+  @media screen and (min-width: 727px) and (max-width: 944px) {
+    font-size: 27px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 726px) {
+    font-size: 25px;
+  }
+  @media screen and (min-width: 0px) and (max-width: 599px) {
+    font-size: 26px;
+  }
+}
+
 </style>
