@@ -20,9 +20,8 @@
       </v-row>
       <v-layout row wrap justify-space-between data-cy="communityLinks-images">
         <v-col cols="12" xs="12" sm="4" md="4" v-for="channel in communityLinks" :key="channel.title" >
-          <v-btn block outlined color="white" target="_blank" :href="channel.link">
-            <!-- <img :src="channel.logo" class="logo" data-cy="community-links-image"> -->
-            <v-icon class="icons">{{`mdi-${channel.logo}`}}</v-icon>
+          <v-btn block outlined color="white" target="_blank" :href="channel.link" class="logo">
+            <v-icon class="main-icons">{{`mdi-${channel.logo}`}}</v-icon>
             <div class="link-text">{{channel.title}}</div>
           </v-btn>
         </v-col>
@@ -37,16 +36,13 @@
           <v-btn outline block class="primary"> 1</v-btn>
         </v-flex> -->
       </v-layout>
-      <div class="d-flex justify-space-between icon-container">
+      <div class="d-flex justify-space-between icon-container hide-xs-and-down">
         <div v-for="channel in communityLinks2" :key="channel.logo">
-          <v-btn :href="channel.link" icon color="white light-2">
-            <v-icon>{{`mdi-${channel.logo}`}}</v-icon>
+          <v-btn :href="channel.link" color="white light-2" target="_blank" icon class="other-btn">
+            <v-icon :size="size">{{`mdi-${channel.logo}`}}</v-icon>
           </v-btn>
         </div>
       </div>
-      <!-- <v-layout>
-        <v-icon></v-icon>
-      </v-layout> -->
     </v-container>
   </div>
 </template>
@@ -57,7 +53,6 @@ import HeaderTitle from '@/components/HeaderTitle';
 export default {
   name: 'CommunityLinks',
   data: () => ({
-
     communityLinks: [
       // community links have a link, logo and title
       {
@@ -108,6 +103,22 @@ export default {
   }),
   components: {
     HeaderTitle,
+  },
+
+  computed: {
+    size() {
+      if (this.$vuetify.breakpoint.width <= 520) {
+        return 30;
+      }
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return 40;
+        case 'sm': return 30;
+        case 'md': return 40;
+        case 'lg': return 50;
+        case 'xl': return 50;
+        default: return 10;
+      }
+    },
   }
 };
 </script>
@@ -115,17 +126,16 @@ export default {
 <style scoped lang="scss">
 .logo {
   width: 30px;
-  height: auto;
- // margin-bottom: $space-xxs;
+  margin-bottom: $space-xxs;
   transition: transform .2s;
-
-  @media only screen and (max-width: $breakpoint-medium) {
-    width: 30px;
+  min-height: 70px;
+  @media screen and (min-width: 0px) and (max-width: 599px) {
+    min-height: 50px;
   }
 }
 
 .logo:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 .content {
   @media screen and (max-width: 960px) {
@@ -133,57 +143,70 @@ export default {
     padding-right: 20px;
   }
 }
-.v-btn {
-  min-height: 70px;
-}
 
-.v-icon {
-  margin-right: 10px;
-  @media screen and (min-width: 960px) {
+.main-icons {
+  margin-right: 30px;
+  @media screen and (min-width: 1904px) {
+    font-size: 45px;
+  }
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
     font-size: 40px;
+    margin-right: 20px;
   }
-  @media screen and (min-width: 845px) {
+  @media screen and (min-width: 871px) and (max-width: 1263px) {
     font-size: 30px;
+    margin-right: 15px;
   }
-  @media screen and (min-width: 788px){
+  @media screen and (min-width: 727px) and (max-width: 944px) {
+    font-size: 27px;
+    margin-right: 10px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 726px) {
     font-size: 25px;
+    margin-right: 5px;
   }
-  @media screen and (min-width: 700px){
-    font-size: 20px;
-  }
-  @media screen and (min-width: 600px){
-    font-size: 18px;
-  }
-  @media screen and (max-width: 600px){
-    font-size: 30px;
+  @media screen and (min-width: 0px) and (max-width: 599px) {
+    font-size: 32px;
+    margin-right: 5px;
   }
 }
 
 .link-text {
   font-weight: bold;
-  @media screen and (min-width: 1264px) {
+  @media screen and (min-width: 1904px) {
     font-size: 30px;
   }
-  @media screen and (min-width: 845px) {
-    font-size: 20px;
-  }
-  @media screen and (min-width: 788px){
-    font-size: 18px;
-  }
-  @media screen and (min-width: 700px) {
-    font-size: 14px;
-  }
-  @media screen and (min-width: 600px) {
-    font-size: 11px;
-  }
-  @media screen and (max-width: 600px){
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
     font-size: 25px;
   }
-
-  .icon-container {
-    width: 500px;
-    height: 10px;
+  @media screen and (min-width: 945px) and (max-width: 1263px) {
+    font-size: 20px;
+  }
+  @media screen and (min-width: 727px) and (max-width: 944px) {
+    font-size: 15px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 726px) {
+    font-size: 11px;
+  }
+  @media screen and (min-width: 0px) and (max-width: 599px) {
+    font-size: 18px;
   }
 }
 
+.icon-container {
+  width: 70%;
+  margin: 0 auto;
+  //512
+  @media (min-width: 512px) and (max-width: 599px) {
+    width: 90%;
+    margin: 0 auto;
+  }
+  @media (min-width: 0px) and (max-width: 512px) {
+    width: auto;
+  }
+}
+
+.other-btn:hover {
+  transform: scale(1.3);
+}
 </style>
