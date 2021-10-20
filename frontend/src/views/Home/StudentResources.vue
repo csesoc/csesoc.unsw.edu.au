@@ -10,29 +10,40 @@
     <v-container class="resource--styles">
       <HeaderTitle title="STUDENT RESOURCES" />
 
-      <v-row no-gutters justify="space-between">
-        <v-col xs="12" sm="7">
+      <v-row justify="space-between">
+        <v-col xs="12" sm="4">
           <a target="_blank" :href="resources.big_box_1.link">
-          <div data-cy="resources-box" class="box big">
+          <div data-cy="resources-box" class="box big rounded-lg">
             <h2>{{resources.big_box_1.title}}</h2>
             <h3>{{resources.big_box_1.description}}</h3>
-            <v-img data-cy="resources-img" :src="resources.big_box_1.src" contain class="image" />
+            <v-img data-cy="resources-img" :src="resources.big_box_1.src" class="image hidden-xs-only" />
           </div>
           </a>
         </v-col>
-        <v-col xs="12" sm="4">
+        <v-col cols="12" sm="4">
           <a target="_blank" :href="resources.small_box_1.link">
-          <div data-cy="resources-box" class="box small rounded-lg hidden-xs-only">
+          <div data-cy="resources-box" class="box small rounded-lg">
             <h2>{{resources.small_box_1.title}}</h2>
-            <v-img data-cy="resources-img" :src="resources.small_box_1.src" contain class="image" />
+            <h3 class="hidden-sm-above">{{resources.small_box_1.description}}</h3>
+            <v-img data-cy="resources-img" :src="resources.small_box_1.src"  class="image hidden-xs-only" />
           </div>
           </a>
         </v-col>
-        <v-col xs="12" sm="4">
+        <v-col cols="12" sm="4">
           <a target="_blank" :href="resources.small_box_2.link">
-          <div data-cy="resources-box" class="box small rounded-lg hidden-xs-only">
+          <div data-cy="resources-box" class="box small rounded-lg">
             <h2>{{resources.small_box_2.title}}</h2>
-            <v-img data-cy="resources-img" :src="resources.small_box_2.src" class="image" />
+            <h3>{{resources.small_box_2.description}}</h3>
+            <v-img data-cy="resources-img" :src="resources.small_box_2.src" class="image hidden-xs-only" />
+          </div>
+          </a>
+        </v-col>
+        <v-col cols="12" sm="4">
+          <a target="_blank" :href="resources.small_box_2.link">
+          <div data-cy="resources-box" class="box small rounded-lg">
+            <h2>{{resources.big_box_2.title}}</h2>
+            <h3>{{resources.big_box_2.description}}</h3>
+            <v-img data-cy="resources-img" :src="resources.big_box_2.src" class="image hidden-xs-only" />
           </div>
           </a>
         </v-col>
@@ -41,7 +52,7 @@
           <div data-cy="resources-box" class="box big rounded-lg">
             <h2>{{resources.big_box_2.title}}</h2>
             <h3>{{resources.big_box_2.description}}</h3>
-            <v-img data-cy="resources-img" :src="resources.big_box_2.src" class="image" />
+            <v-img data-cy="resources-img" :src="resources.big_box_2.src" class="image hidden-xs-only" />
           </div>
           </a>
         </v-col>
@@ -68,11 +79,13 @@ export default {
       small_box_1: {
         link: 'https://media.csesoc.org.au/first-year-guide/',
         title: 'First Year Guide',
+        description: 'The ultimate guide to conquering first year at CSE.',
         src: require('../../assets/resource-first-year-guide.png')
       },
       small_box_2: {
         link: 'https://media.csesoc.org.au/',
         title: 'CSESOC Media',
+        description: 'All things content',
         src: require('../../assets/resource-media.png'),
       },
       big_box_2: {
@@ -117,8 +130,8 @@ export default {
         }
 
         h2 {
-          padding-top: $space-xs;
-          padding-bottom: $space-xxs;
+          padding-top: calc($space-xs/2);
+          font-size: 150%;
           margin: 0;
           padding-left: 35px;
           padding-right: 35px;
@@ -127,11 +140,13 @@ export default {
         h3 {
           padding-left: 35px;
           padding-right: 35px;
+          font-size: 100%;
         }
 
         .image {
           border-bottom-left-radius: 10px;
           border-bottom-right-radius: 10px;
+          bottom: 0;
           transition: transform .2s;
         }
       }
