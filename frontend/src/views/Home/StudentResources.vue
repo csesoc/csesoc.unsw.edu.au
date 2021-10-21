@@ -11,48 +11,57 @@
       <HeaderTitle title="STUDENT RESOURCES" />
 
       <v-row justify="space-between">
-        <v-col xs="12" sm="4">
-          <a target="_blank" :href="resources.big_box_1.link">
+        <v-col xs="12" sm="4"> <!-- Jobs -->
+          <a target="_blank" :href="resources.jobs_board.link">
           <div data-cy="resources-box" class="box big rounded-lg">
-            <h2>{{resources.big_box_1.title}}</h2>
-            <h3>{{resources.big_box_1.description}}</h3>
-            <v-img data-cy="resources-img" :src="resources.big_box_1.src" class="image hidden-xs-only" />
+            <h2>{{resources.jobs_board.title}}</h2>
+            <h3>{{resources.jobs_board.description}}</h3>
+            <v-img data-cy="resources-img" :src="resources.jobs_board.src" class="image hidden-xs-only" />
           </div>
           </a>
         </v-col>
-        <v-col cols="12" sm="4">
-          <a target="_blank" :href="resources.small_box_1.link">
+        <v-col cols="12" sm="4"> <!-- CompClub -->
+          <a target="_blank" :href="resources.comp_club.link">
           <div data-cy="resources-box" class="box small rounded-lg">
-            <h2>{{resources.small_box_1.title}}</h2>
-            <h3 class="hidden-sm-above">{{resources.small_box_1.description}}</h3>
-            <v-img data-cy="resources-img" :src="resources.small_box_1.src"  class="image hidden-xs-only" />
+            <h2>{{resources.comp_club.title}}</h2>
+            <h3 class="hidden-sm-above">{{resources.comp_club.description}}</h3>
+            <v-img data-cy="resources-img" :src="resources.comp_club.src"  class="image hidden-xs-only" />
           </div>
           </a>
         </v-col>
-        <v-col cols="12" sm="4">
-          <a target="_blank" :href="resources.small_box_2.link">
+        <v-col cols="12" sm="4"> <!-- Notangles -->
+          <a target="_blank" :href="resources.notangles.link">
           <div data-cy="resources-box" class="box small rounded-lg">
-            <h2>{{resources.small_box_2.title}}</h2>
-            <h3>{{resources.small_box_2.description}}</h3>
-            <v-img data-cy="resources-img" :src="resources.small_box_2.src" class="image hidden-xs-only" />
+            <h2>{{resources.notangles.title}}</h2>
+            <h3>{{resources.notangles.description}}</h3>
+            <v-img data-cy="resources-img" :src="resources.notangles.src" class="image hidden-xs-only" />
           </div>
           </a>
         </v-col>
-        <v-col cols="12" sm="4">
-          <a target="_blank" :href="resources.small_box_2.link">
+        <v-col cols="12"> <!-- Media -->
+          <a target="_blank" :href="resources.media.link">
           <div data-cy="resources-box" class="box small rounded-lg">
-            <h2>{{resources.big_box_2.title}}</h2>
-            <h3>{{resources.big_box_2.description}}</h3>
-            <v-img data-cy="resources-img" :src="resources.big_box_2.src" class="image hidden-xs-only" />
+            <h2>{{resources.media.title}}</h2>
+            <h3>{{resources.media.description}}</h3>
+            <v-img data-cy="resources-img" max-height="100px" :src="resources.media.src" class="image hidden-xs-only" />
           </div>
           </a>
         </v-col>
-        <v-col xs="12" sm="7">
-          <a target="_blank" :href="resources.small_box_2.link">
+        <v-col xs="12" sm="6"> <!-- First year guide -->
+          <a target="_blank" :href="resources.first_year_guide.link">
           <div data-cy="resources-box" class="box big rounded-lg">
-            <h2>{{resources.big_box_2.title}}</h2>
-            <h3>{{resources.big_box_2.description}}</h3>
-            <v-img data-cy="resources-img" :src="resources.big_box_2.src" class="image hidden-xs-only" />
+            <h2>{{resources.first_year_guide.title}}</h2>
+            <h3>{{resources.first_year_guide.description}}</h3>
+            <v-img data-cy="resources-img" :src="resources.first_year_guide.src" class="image hidden-xs-only" />
+          </div>
+          </a>
+        </v-col>
+        <v-col xs="12" sm="6"> <!-- Preenrollment guide -->
+          <a target="_blank" :href="resources.pre_enrollment_guide.link">
+          <div data-cy="resources-box" class="box big rounded-lg">
+            <h2>{{resources.pre_enrollment_guide.title}}</h2>
+            <h3>{{resources.pre_enrollment_guide.description}}</h3>
+            <v-img data-cy="resources-img" :src="resources.pre_enrollment_guide.src" class="image hidden-xs-only" />
           </div>
           </a>
         </v-col>
@@ -70,28 +79,40 @@ export default {
   },
   data: () => ({
     resources: {
-      big_box_1: {
+      jobs_board: {
         link: 'https://jobsboard.csesoc.unsw.edu.au/login',
         title: 'Job Board',
         description: 'A place where CSESoc students can look for relevant job opportunities.',
         src: require('../../assets/resource-job-board.png'),
       },
-      small_box_1: {
+      first_year_guide: {
         link: 'https://media.csesoc.org.au/first-year-guide/',
         title: 'First Year Guide',
         description: 'The ultimate guide to conquering first year at CSE.',
         src: require('../../assets/resource-first-year-guide.png')
       },
-      small_box_2: {
+      media: {
         link: 'https://media.csesoc.org.au/',
         title: 'CSESOC Media',
         description: 'All things content',
         src: require('../../assets/resource-media.png'),
       },
-      big_box_2: {
+      comp_club: {
+        link: 'compClub',
+        title: 'Comp Club',
+        description: 'Get in contact with one of our partnering societies',
+        src: require('../../assets/resource-first-year-guide.png')
+      },
+      notangles: {
         link: 'https://notangles.csesoc.unsw.edu.au/',
         title: 'Notangles',
         description: 'Trimster timetabling tool - no more timetable tangles!',
+        src: require('../../assets/resource-notangles.png'),
+      },
+      pre_enrollment_guide: {
+        link: 'https://notangles.csesoc.unsw.edu.au/',
+        title: 'Pre-enrollment Guide',
+        description: 'Learn how to get a headstart on uni',
         src: require('../../assets/resource-notangles.png'),
       }
     },
