@@ -63,7 +63,12 @@
             <h2>{{resources.pe_guide.title}}</h2>
             <h3>{{resources.pe_guide.description}}</h3>
             <div class="flex-grow-1"></div>
-            <v-img data-cy="resources-img" max-height="80px" :src="resources.pe_guide.src" class="image hidden-xs-only" />
+            <v-img
+              data-cy="resources-img"
+              max-height="80px"
+              :src="resources.pe_guide.src"
+              class="image hidden-xs-only"
+            />
           </div>
           </a>
         </v-col>
@@ -103,7 +108,7 @@ export default {
         link: 'compClub',
         title: 'Comp Club',
         description: 'Get in contact with one of our partnering societies',
-        src: require('../../assets/resource-first-year-guide.png')
+        // TODO: CompClub photo
       },
       notangles: {
         link: 'https://notangles.csesoc.unsw.edu.au/',
@@ -112,10 +117,10 @@ export default {
         src: require('../../assets/resource-notangles.png'),
       },
       pe_guide: {
-        link: 'https://notangles.csesoc.unsw.edu.au/',
+        link: ' https://media.csesoc.org.au/pre-enrolment-guide/',
         title: 'Pre-enrollment Guide',
         description: 'Learn how to get a headstart on uni',
-        src: require('../../assets/resource-notangles.png'),
+        src: require('../../assets/resource-pre-enrolment-guide.jpg'),
       }
     },
   })
@@ -169,7 +174,7 @@ export default {
         .image {
           border-bottom-left-radius: 10px;
           border-bottom-right-radius: 10px;
-          bottom: 0;
+          top: 0;
           transition: transform .2s;
         }
       }
