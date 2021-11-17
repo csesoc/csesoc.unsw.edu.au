@@ -6,7 +6,7 @@
 
 <template>
   <!-- Student Resources -->
-  <div id="student-resouces" class="content">
+  <div id="student-resources" class="content">
     <v-container class="resource--styles">
       <HeaderTitle title="STUDENT RESOURCES" />
 
@@ -129,6 +129,9 @@ export default {
 
 <style lang="scss" scoped>
 // Student resources
+.content {
+  padding-top: 50px;
+}
 .resource--styles {
   color: $light-color;
 
