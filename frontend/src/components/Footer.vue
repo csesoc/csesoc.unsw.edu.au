@@ -9,7 +9,7 @@
     <v-container class="white--text" style="padding:60px 72px" fluid>
       <v-row no-gutters>
         <v-col
-          cols="12" sm="6"
+          cols="12" sm="5"
         >
           <div class="white-text" style="margin-bottom:20%" data-cy="footer-address">
           <a href="/">
@@ -21,10 +21,13 @@
           </div>
           © 2021 — CSESoc UNSW
         </v-col>
-        <v-col cols="12" sm="6">
-          <div class="white-text">
+        <v-col>
+          <!-- Puts padding between logo and socials -->
+        </v-col>
+        <v-col cols="12" sm="5">
+          <div class="white-text socials">
             <h4 data-cy="footer-media-title">Social Media</h4>
-            <v-row class="links" style="margin-top:20px" no-gutters>
+            <v-row style="margin-top:20px" no-gutters>
               <v-col cols="6">
                 <v-list-item class="anchor-items" v-for="url in mediaLeft" :key="url.name">
                   <v-list-item-content data-cy="footer-media-link">
@@ -35,7 +38,6 @@
                 </v-list-item>
               </v-col>
               <v-col cols="6">
-                <div class="flex-grow-0"></div>
                 <v-list-item class="anchor-items" v-for="url in mediaRight" :key="url.name">
                   <v-list-item-content data-cy="footer-media-link">
                     <a :href="url.url">
@@ -116,7 +118,7 @@ export default {
   max-height:200px;
 }
 
-.links {
-  display: flex;
+.socials {
+  margin-top: 60px;
 }
 </style>
