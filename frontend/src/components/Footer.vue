@@ -9,7 +9,7 @@
     <v-container class="white--text" style="padding:60px 72px" fluid>
       <v-row no-gutters>
         <v-col
-          sm="6"
+          cols="12" sm="6"
         >
           <div class="white-text" style="margin-bottom:20%" data-cy="footer-address">
           <a href="/">
@@ -21,21 +21,12 @@
           </div>
           © 2021 — CSESoc UNSW
         </v-col>
-        <v-col
-          sm="6"
-        >
+        <v-col cols="12" sm="6">
           <div class="white-text">
-            <div class="nav-divider" data-cy = "footer-internal-link">
-              <a v-for="url in csesocInternal" :key="url.name" :href="url.url">
-              {{ url.name }}
-              </a>
-            </div>
-            <v-row style="margin-top:25px" no-gutters>
-              <v-col
-                sm="6"
-              >
-                <h4 data-cy="footer-media-title">Social Media</h4>
-                <v-list-item class="anchor-items" v-for="url in media" :key="url.name">
+            <h4 data-cy="footer-media-title">Social Media</h4>
+            <v-row class="links" style="margin-top:20px" no-gutters>
+              <v-col cols="6">
+                <v-list-item class="anchor-items" v-for="url in mediaLeft" :key="url.name">
                   <v-list-item-content data-cy="footer-media-link">
                     <a :href="url.url">
                       {{ url.name }}
@@ -43,12 +34,10 @@
                   </v-list-item-content>
                 </v-list-item>
               </v-col>
-              <v-col
-                sm="6"
-              >
-                <h4 data-cy="footer-resources-title">CSESoc Sites</h4>
-                <v-list-item class="anchor-items" v-for="url in csesocExternal" :key="url.name">
-                  <v-list-item-content data-cy=footer-resources-link>
+              <v-col cols="6">
+                <div class="flex-grow-0"></div>
+                <v-list-item class="anchor-items" v-for="url in mediaRight" :key="url.name">
+                  <v-list-item-content data-cy="footer-media-link">
                     <a :href="url.url">
                       {{ url.name }}
                     </a>
@@ -82,11 +71,13 @@ export default {
       { name: 'CSE Faculty', url: 'https://www.engineering.unsw.edu.au/computer-science-engineering/' },
       { name: 'UNSW Handbook', url: 'https://www.handbook.unsw.edu.au/' }
     ],
-    media: [
+    mediaLeft: [
       { name: 'Discord Community', url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u' },
       { name: 'Facebook Page', url: 'https://www.facebook.com/csesoc/' },
       { name: 'Facebook Group', url: 'https://www.facebook.com/csesoc/' },
-      { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' },
+      { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' }
+    ],
+    mediaRight: [
       { name: 'Instagram', url: 'https://www.instagram.com/csesoc_unsw/' },
       { name: 'YouTube', url: 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg' },
       { name: 'TikTok', url: 'https://www.tiktok.com/@csesoc?lang=en' }
@@ -123,5 +114,9 @@ export default {
 .img-size {
   max-width:300px;
   max-height:200px;
+}
+
+.links {
+  display: flex;
 }
 </style>
