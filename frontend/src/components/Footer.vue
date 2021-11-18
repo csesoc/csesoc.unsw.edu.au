@@ -6,12 +6,12 @@
 
 <template>
   <v-footer color="#000033" padless >
-    <v-container class="white--text" style="padding:60px 72px" fluid>
+    <v-container class="white--text" style="padding:40px 72px" fluid>
       <v-row no-gutters>
         <v-col
           sm="5" cols="12"
         >
-          <div class="white-text" style="margin-bottom:20%" data-cy="footer-address">
+          <div class="white-text" style="margin-bottom:10%" data-cy="footer-address">
           <a href="/">
             <img class="img-size" src="@/assets/csesoc-logo-white.svg" data-cy="footer-logo"/>
           </a>
