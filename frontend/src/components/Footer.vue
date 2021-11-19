@@ -6,7 +6,7 @@
 
 <template>
   <v-footer color="#000033" padless >
-    <v-container class="white--text" style="padding:40px 72px" fluid>
+    <v-container class="white--text" style="padding:60px 72px" fluid>
       <v-row no-gutters>
         <v-col cols="12" sm="5" order-sm="7" >
           <div class="white-text socials">
@@ -115,5 +115,9 @@ export default {
 .img-size {
   max-width:300px;
   max-height:200px;
+}
+
+.socials {
+  margin-top: 60px;
 }
 </style>
