@@ -55,7 +55,35 @@
 
 <script type="text/javascript">
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  data: () => ({
+    // sponsors have name, logo, 'tier' value, and link
+    csesocInternal: [
+      { name: 'Home', url: '/' },
+      { name: 'About', url: '/#/about' },
+      { name: 'Resources', url: '/#/resources' },
+      { name: 'Sponsorships', url: '/#/sponsors' },
+      { name: 'Contact Us', url: '/#/engage' }
+    ],
+    csesocExternal: [
+      { name: 'CSESoc Media', url: 'https://media.csesoc.org.au/' },
+      { name: 'CSESoc Blog', url: 'https://blog.csesoc.org.au/' },
+      { name: 'CSESoc Compclub', url: 'https://compclub.csesoc.unsw.edu.au/' },
+      { name: 'CSE Faculty', url: 'https://www.engineering.unsw.edu.au/computer-science-engineering/' },
+      { name: 'UNSW Handbook', url: 'https://www.handbook.unsw.edu.au/' }
+    ],
+    mediaLeft: [
+      { name: 'Discord Community', url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u' },
+      { name: 'Facebook Page', url: 'https://www.facebook.com/csesoc/' },
+      { name: 'Facebook Group', url: 'https://www.facebook.com/csesoc/' },
+      { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' }
+    ],
+    mediaRight: [
+      { name: 'Instagram', url: 'https://www.instagram.com/csesoc_unsw/' },
+      { name: 'YouTube', url: 'https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg' },
+      { name: 'TikTok', url: 'https://www.tiktok.com/@csesoc?lang=en' }
+    ]
+  })
 };
 </script>
 
