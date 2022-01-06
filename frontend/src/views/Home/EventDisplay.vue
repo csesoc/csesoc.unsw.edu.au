@@ -13,18 +13,15 @@
   <div id="event-display" class="content">
     <v-container data-cy="event-section" class="Container">
       <v-container>
-        <HeaderTitle
-          title="UPCOMING EVENTS"
-          subtitle="We run a wide-variety of events for fun, learning new skills and careers."
-        />
-        <!-- Catch a lack of events, or if events haven't been updated in 60 days. -->
-        <div data-cy="event-alert" v-if="events.length == 0 | updated > 86400 * 1000 * 60">
-          For full listings, check out the CSESoc Discord or our Facebook page!
-        </div>
+        <HeaderTitle title="EVENTS" />
+        <p class="text--md">
+          {{ subtitle }}
+        </p>
       </v-container>
       <!-- Facebook embedded event page viewer -->
       <v-container class="Embed">
-        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcsesoc&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+        <iframe
+          src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcsesoc&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
           width="340"
           height="500"
           style="border:none;overflow:hidden"
@@ -60,26 +57,30 @@ export default {
   props: ['events', 'updated'],
   components: {
     // Event,
-    HeaderTitle,
-  }
+    HeaderTitle
+  },
+  data: () => ({
+    subtitle:
+      'We run a wide-variety of events for fun, learning new skills and careers. For full listings, check out the CSESoc Discord or our Facebook page!'
+  })
 };
 </script>
 
 <style scoped>
+.Container {
+  display: flex;
+  flex-direction: row;
+}
+.Embed {
+  display: flex;
+  justify-content: center;
+}
+@media screen and (max-width: 700px) {
   .Container {
-    display: flex;
-    flex-direction: row;
+    flex-direction: column;
   }
   .Embed {
-    display: flex;
-    justify-content: center;
+    margin-top: 50px;
   }
-  @media screen and (max-width: 700px) {
-    .Container {
-      flex-direction: column;
-    }
-    .Embed {
-      margin-top: 50px;
-    }
-  }
+}
 </style>

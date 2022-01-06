@@ -8,7 +8,7 @@
   <v-footer color="#000033" padless>
     <v-container class="white--text" style="padding:60px 72px" fluid>
       <v-row no-gutters>
-        <v-col cols="12" sm="5" order-sm="7" >
+        <v-col cols="12" sm="5" order-sm="7">
           <div class="white-text socials">
             <h4 data-cy="footer-media-title">Social Media</h4>
             <v-row style="margin-top:20px" no-gutters>
@@ -36,15 +36,19 @@
         <v-col order-sm="5">
           <!-- Puts padding between logo and socials -->
         </v-col>
-        <v-col cols="12" sm="5" order-sm="1"
-          :class="{'mt-10': $vuetify.breakpoint.smAndDown,'mt-0': $vuetify.breakpoint.mdAndUp}">
+        <v-col
+          cols="12"
+          sm="5"
+          order-sm="1"
+          :class="{ 'mt-10': $vuetify.breakpoint.smAndDown, 'mt-0': $vuetify.breakpoint.mdAndUp }"
+        >
           <div class="white-text" style="margin-bottom:20%" data-cy="footer-address">
-          <a href="/">
-            <img class="img-size" src="@/assets/csesoc-logo-white.svg" data-cy="footer-logo"/>
-          </a>
-          <br/>B03 CSE Building K17, UNSW
-          <br/>
-          <a href="mailto:csesoc@csesoc.org.au" > csesoc@csesoc.org.au </a>
+            <a href="/">
+              <img class="img-size" src="@/assets/csesoc-logo-white.svg" data-cy="footer-logo" />
+            </a>
+            <br />B03 CSE Building K17, UNSW
+            <br />
+            <a href="mailto:csesoc@csesoc.org.au"> csesoc@csesoc.org.au </a>
           </div>
           © 2021 — CSESoc UNSW
         </v-col>
@@ -73,7 +77,11 @@ export default {
       { name: 'UNSW Handbook', url: 'https://www.handbook.unsw.edu.au/' }
     ],
     mediaLeft: [
-      { name: 'Discord Community', url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u' },
+      {
+        name: 'Discord Community',
+        url:
+          'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u'
+      },
       { name: 'Facebook Page', url: 'https://www.facebook.com/csesoc/' },
       { name: 'Facebook Group', url: 'https://www.facebook.com/csesoc/' },
       { name: 'LinkedIn', url: 'https://www.linkedin.com/company/csesoc/' }
@@ -91,32 +99,26 @@ export default {
 .white-text {
   @extend p;
 }
-
 .white-text a {
   text-decoration: none;
   color: $light-color;
   padding-right: $space-xxs;
 }
-
 .white-text a:hover {
   font-weight: 900;
   transition-duration: 0.1s;
 }
-
 .nav-divider {
   padding-bottom: $space-xxs;
   border-bottom: 2px solid white;
 }
-
 .anchor-items {
   margin-left: -15px;
 }
-
 .img-size {
   max-width: 300px;
   max-height: 200px;
 }
-
 .socials {
   margin-top: 60px;
 }
