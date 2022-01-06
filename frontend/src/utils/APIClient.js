@@ -18,7 +18,7 @@ const getHeaders = (token) => {
 const getClient = (method, body) => {
   const client = {
     method,
-    headers: getHeaders(),
+    headers: getHeaders()
   };
   if (body) client.body = body;
   return client;

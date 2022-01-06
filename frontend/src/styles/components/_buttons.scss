@@ -5,7 +5,7 @@
 // Buttons
 //
 // Various button styles. All buttons should come with a size.
-// Only small buttons can come with primary, secondary or accent 
+// Only small buttons can come with primary, secondary or accent
 // gradients.
 //
 // Markup:
@@ -15,7 +15,7 @@
 // .btn--lg - Large button
 // .btn--primary - Small primary button.
 // .btn--secondary - Small secondary button.
-// .btn--accent - Small accent button. 
+// .btn--accent - Small accent button.
 //
 // Styleguide Components.button
 
@@ -38,7 +38,7 @@ $btn-radius: 5px;
 
   color: $light-color;
 
-  transition: .2s;
+  transition: 0.2s;
 
   &:active {
     transition: none;
@@ -76,12 +76,12 @@ $btn-radius: 5px;
 // ----------------------------------------------------------------------
 .btn--primary {
   @extend .btn--sm;
-  @include linearGradient($primary-color, $secondary-color-2)
+  @include linearGradient($primary-color, $secondary-color-2);
 }
 
 .btn--secondary {
   @extend .btn--sm;
-  @include linearGradient($primary-color, $secondary-color-1)
+  @include linearGradient($primary-color, $secondary-color-1);
 }
 
 .btn--accent {
@@ -106,7 +106,7 @@ $btn-radius: 5px;
   flex-wrap: wrap;
   margin-bottom: -1 * $space-xs;
 
-  >* {
+  > * {
     margin: 0 $space-xs $space-xs 0;
 
     &:last-of-type {

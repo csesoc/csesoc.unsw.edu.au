@@ -11,20 +11,25 @@
 
 <template>
   <v-app>
-    <v-parallax
-      height="300"
-      src="../assets/fade.png"
-    ></v-parallax>
+    <v-parallax height="300" src="../assets/fade.png"></v-parallax>
 
     <!-- Joining -->
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <HeaderTitle title="Joining"></HeaderTitle>
-      <p><b>Everybody is welcome to join CSESoc! To get started as a UNSW student, all you have to do is <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSfDrhmyDz6F3Q98EEouoUYENwOzCWG1tEes_wJKl8xRzR84gg/viewform"
-            >sign up with spARC</a>!
-      <a href="https://member.arc.unsw.edu.au/s/clubdetail?clubid=0016F0000371VxAQAU"> join us!</a></b></p>
-      <p><b>Even if you aren't a member, our Discord, social media and resources are mostly freely available to everybody.
-        We look forward to hearing from you!</b></p>
+      <p>
+        <b>
+          Everybody is welcome to join CSESoc! To get started as a UNSW student, all you have to do is
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDrhmyDz6F3Q98EEouoUYENwOzCWG1tEes_wJKl8xRzR84gg/viewform"
+            >sign up with spARC</a
+          >! <a href="https://member.arc.unsw.edu.au/s/clubdetail?clubid=0016F0000371VxAQAU"> join us!</a></b
+        >
+      </p>
+      <p>
+        <b
+          >Even if you aren't a member, our Discord, social media and resources are mostly freely available to everybody. We look
+          forward to hearing from you!</b
+        >
+      </p>
       <v-expansion-panels flat accordion id="show">
         <v-expansion-panel>
           <v-expansion-panel-header class="title py-3">Joining UNSW spARC</v-expansion-panel-header>
@@ -50,9 +55,10 @@
           <v-expansion-panel-header class="title py-3">I'm not a CSE or UNSW student, can I join?</v-expansion-panel-header>
           <v-expansion-panel-content>
             If you are not enrolled in a CSE program or course, you need to
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSfDrhmyDz6F3Q98EEouoUYENwOzCWG1tEes_wJKl8xRzR84gg/viewform"
-            >sign up</a> as an associate member with a payment of $10 per semester.
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDrhmyDz6F3Q98EEouoUYENwOzCWG1tEes_wJKl8xRzR84gg/viewform"
+              >sign up</a
+            >
+            as an associate member with a payment of $10 per semester.
             <br />
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -79,7 +85,7 @@
     <!-- Forms -->
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <h2>Still have some questions?</h2>
-      <br>
+      <br />
 
       <v-btn-toggle v-model="activeForm" mandatory>
         <v-btn value="general" data-cy="general-form-selector">
@@ -93,7 +99,6 @@
       <v-card flat tile>
         <MailingForm :type="this.activeForm"></MailingForm>
       </v-card>
-
     </v-container>
   </v-app>
 </template>
@@ -119,18 +124,15 @@ export default {
   },
 
   mounted() {
-    APIClient.socialsAPI()
-      .then((responseJson) => {
-        this.socialLinks = responseJson;
-      });
+    APIClient.socialsAPI().then((responseJson) => {
+      this.socialLinks = responseJson;
+    });
 
-    APIClient.faqsAPI()
-      .then((responseJson) => {
-        this.faqLinks = responseJson;
-      });
+    APIClient.faqsAPI().then((responseJson) => {
+      this.faqLinks = responseJson;
+    });
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

@@ -16,17 +16,17 @@ $text-scale-ratio: 1.25;
 // Spacing Base Values
 // ----------------------------------------------------------------------
 $spacing-base-size: 1em;
-$spacing-scale-ratio:1.25;
+$spacing-scale-ratio: 1.25;
 
 // ----------------------------------------------------------------------
 // Media Variables
 // ----------------------------------------------------------------------
 body {
-    @include breakpoint($breakpoint-small) {
-        font-size: 12px;
-    }
+  @include breakpoint($breakpoint-small) {
+    font-size: 12px;
+  }
 
-    @include breakpoint($breakpoint-medium) {
-        font-size: 14px;
-    }
+  @include breakpoint($breakpoint-medium) {
+    font-size: 14px;
+  }
 }

@@ -10,7 +10,7 @@
 
 <template>
   <div class="header-title">
-    <h1 v-bind:style="{padding: padding}">{{ title }}</h1>
+    <h1 v-bind:style="{ padding: padding }">{{ title }}</h1>
     <h4 v-if="subtitle !== false">{{ subtitle }}</h4>
   </div>
 </template>
@@ -21,13 +21,13 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
+      required: true
     },
     subtitle: {
-      default: false,
+      default: false
     },
     padding: {
-      required: false,
+      required: false
     }
   }
 };
