@@ -7,7 +7,7 @@
  * space below the floated element to insert new content below. Also makes
  * sure that the element stays inside its container.
  */
-/** 
+/**
  * These breakpoint variables are used as follows:
  * - small screen sizes for phones
  * - medium for tablets
@@ -57,7 +57,7 @@ form legend {
 }
 
 h1 {
-  font-size: 3.8146972656em;
+  font-size: 1.8146972656em;
   font-weight: 800;
 }
 
@@ -68,7 +68,7 @@ h2 {
 
 h3 {
   font-size: 1.953125em;
-  font-weight: 200;
+  font-weight: 800;
 }
 
 h4 {
@@ -78,7 +78,7 @@ h4 {
 
 p {
   font-size: 1em;
-  font-weight: 200;
+  font-weight: 600;
   line-height: 2.5;
   margin-bottom: 20px;
 }
@@ -99,32 +99,50 @@ button {
   margin-bottom: 80px;
 }
 
-.btn, .btn--lg, .btn--sm, .btn--accent, .btn--secondary, .btn--primary {
+.btn,
+.btn--lg,
+.btn--sm,
+.btn--accent,
+.btn--secondary,
+.btn--primary {
   display: inline-flex;
   position: relative;
   white-space: nowrap;
   text-decoration: none;
   line-height: 1;
   padding: 20px 40px;
-  color: #FFFFFF;
+  color: #ffffff;
   transition: 0.2s;
 }
-.btn:active, .btn--lg:active, .btn--sm:active, .btn--accent:active, .btn--secondary:active, .btn--primary:active {
+.btn:active,
+.btn--lg:active,
+.btn--sm:active,
+.btn--accent:active,
+.btn--secondary:active,
+.btn--primary:active {
   transition: none;
 }
-.btn .icon, .btn--lg .icon, .btn--sm .icon, .btn--accent .icon, .btn--secondary .icon, .btn--primary .icon {
+.btn .icon,
+.btn--lg .icon,
+.btn--sm .icon,
+.btn--accent .icon,
+.btn--secondary .icon,
+.btn--primary .icon {
   color: inherit;
   flex-shrink: 0;
 }
 
-.btn--sm, .btn--accent, .btn--secondary, .btn--primary {
+.btn--sm,
+.btn--accent,
+.btn--secondary,
+.btn--primary {
   font-size: 1.25em;
   border-radius: 5px;
 }
 
 .btn--lg {
   font-size: 1.953125em;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #ffffff;
 }
 
 .btn--full-width {
@@ -134,38 +152,50 @@ button {
 }
 
 .btn--primary {
-  background: #3333CC;
+  background: #3333cc;
   /* Old browsers */
-  background: -moz-linear-gradient(top, #3333CC 0%, #9933CC 100%);
+  background: -moz-linear-gradient(top, #3333cc 0%, #9933cc 100%);
   /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3333CC), color-stop(100%, #9933CC));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #3333cc),
+    color-stop(100%, #9933cc)
+  );
   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #3333CC 0%, #9933CC 100%);
+  background: -webkit-linear-gradient(top, #3333cc 0%, #9933cc 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #3333CC 0%, #9933CC 100%);
+  background: -o-linear-gradient(top, #3333cc 0%, #9933cc 100%);
   /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #3333CC 0%, #9933CC 100%);
+  background: -ms-linear-gradient(top, #3333cc 0%, #9933cc 100%);
   /* IE10+ */
-  background: linear-gradient(to bottom, #3333CC 0%, #9933CC 100%);
+  background: linear-gradient(to bottom, #3333cc 0%, #9933cc 100%);
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#3333CC", endColorstr="#9933CC", GradientType=0 );
   /* IE6-9 */
 }
 
 .btn--secondary {
-  background: #3333CC;
+  background: #3333cc;
   /* Old browsers */
-  background: -moz-linear-gradient(top, #3333CC 0%, #66FFFF 100%);
+  background: -moz-linear-gradient(top, #3333cc 0%, #66ffff 100%);
   /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3333CC), color-stop(100%, #66FFFF));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #3333cc),
+    color-stop(100%, #66ffff)
+  );
   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #3333CC 0%, #66FFFF 100%);
+  background: -webkit-linear-gradient(top, #3333cc 0%, #66ffff 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #3333CC 0%, #66FFFF 100%);
+  background: -o-linear-gradient(top, #3333cc 0%, #66ffff 100%);
   /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #3333CC 0%, #66FFFF 100%);
+  background: -ms-linear-gradient(top, #3333cc 0%, #66ffff 100%);
   /* IE10+ */
-  background: linear-gradient(to bottom, #3333CC 0%, #66FFFF 100%);
+  background: linear-gradient(to bottom, #3333cc 0%, #66ffff 100%);
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#3333CC", endColorstr="#66FFFF", GradientType=0 );
   /* IE6-9 */
@@ -176,7 +206,13 @@ button {
   /* Old browsers */
   background: -moz-linear-gradient(top, #000033 0%, #191947 100%);
   /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #000033), color-stop(100%, #191947));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #000033),
+    color-stop(100%, #191947)
+  );
   /* Chrome,Safari4+ */
   background: -webkit-linear-gradient(top, #000033 0%, #191947 100%);
   /* Chrome10+,Safari5.1+ */
@@ -188,13 +224,23 @@ button {
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#000033", endColorstr="#191947", GradientType=0 );
   /* IE6-9 */
-  outline-color: #FFFFFF;
+  outline-color: #ffffff;
 }
 
-.btn[disabled], [disabled].btn--sm, [disabled].btn--lg, [disabled].btn--primary, [disabled].btn--secondary, [disabled].btn--accent {
+.btn[disabled],
+[disabled].btn--sm,
+[disabled].btn--lg,
+[disabled].btn--primary,
+[disabled].btn--secondary,
+[disabled].btn--accent {
   cursor: not-allowed;
 }
-.btn[disabled]:visited, [disabled].btn--sm:visited, [disabled].btn--lg:visited, [disabled].btn--primary:visited, [disabled].btn--secondary:visited, [disabled].btn--accent:visited {
+.btn[disabled]:visited,
+[disabled].btn--sm:visited,
+[disabled].btn--lg:visited,
+[disabled].btn--primary:visited,
+[disabled].btn--secondary:visited,
+[disabled].btn--accent:visited {
   color: inherit;
 }
 
@@ -220,7 +266,8 @@ button {
 .content {
   *zoom: 1;
 }
-.content:before, .content:after {
+.content:before,
+.content:after {
   content: "";
   display: table;
 }
@@ -232,7 +279,7 @@ button {
  * Utility classes for icons
  */
 .icon {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .icon-text-aligner {

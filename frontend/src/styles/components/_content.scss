@@ -3,23 +3,23 @@
 // ----------------------------------------------------------------------
 
 // Content
-// 
+//
 // Content class is used as the class name for all div tags that
 // contain a design component. Inside of a .content div, if content has
 // margins from the boundary of the page use a v-container to set that
 // margin. USe v-rows and v-cols to structure content.
 // layouts inside the component.
-// 
+//
 // Markup:
 // <div class="content">Lorem Ipsum</div>
-// 
+//
 // Styleguide Components.content
 
 .content {
-    @include clearfix;
-    height: 100%;
-    width: 100%;
-    text-align: left;
-    display: flex;
-    margin-bottom: $space-sm;
+  @include clearfix;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  margin-bottom: $space-sm;
 }

@@ -13,22 +13,44 @@
       <v-form ref="form" v-model="valid">
         <!-- Name -->
         <label :class="getLabelClass(!isType('feedback'))" :data-cy="`${this.type}-name-label`">
-          {{ isType('sponsorship') ? "Company Name" : "Name" }}
+          {{ isType('sponsorship') ? 'Company Name' : 'Name' }}
         </label>
-        <v-text-field class="input" placeholder="John Smith" v-model="name" :data-cy="`${this.type}-name-field`"
-          :rules="[ !isType('feedback') ? rules.required : true ]"></v-text-field>
+        <v-text-field
+          class="input"
+          placeholder="John Smith"
+          v-model="name"
+          :data-cy="`${this.type}-name-field`"
+          :rules="[!isType('feedback') ? rules.required : true]"
+        ></v-text-field>
         <!-- Email -->
-        <label :class="getLabelClass(!isType('feedback'))" :data-cy="`${this.type}-email-label`"> Email
+        <label :class="getLabelClass(!isType('feedback'))" :data-cy="`${this.type}-email-label`">
+          Email
         </label>
-        <v-text-field class="input" placeholder="john.smith@email.com" v-model="email" :data-cy="`${this.type}-email-field`"
-          :rules="[ rules.email, !isType('feedback') ? rules.required : true ]"></v-text-field>
+        <v-text-field
+          class="input"
+          placeholder="john.smith@email.com"
+          v-model="email"
+          :data-cy="`${this.type}-email-field`"
+          :rules="[rules.email, !isType('feedback') ? rules.required : true]"
+        ></v-text-field>
         <!-- Message -->
-        <label :class="getLabelClass(true)" :data-cy="`${this.type}-message-label`"> Message
-        </label>
-        <v-textarea class="input" placeholder="Message" v-model="body" :data-cy="`${this.type}-message-field`"
-          :rules="[ rules.required ]"></v-textarea>
+        <label :class="getLabelClass(true)" :data-cy="`${this.type}-message-label`"> Message </label>
+        <v-textarea
+          class="input"
+          placeholder="Message"
+          v-model="body"
+          :data-cy="`${this.type}-message-field`"
+          :rules="[rules.required]"
+        ></v-textarea>
         <!-- Send button -->
-        <v-btn text style="margin-left:60%" :disabled="!valid" @click="send" :data-cy="`${this.type}-send-button`">Send ></v-btn>
+        <v-btn
+          text
+          style="margin-left:60%"
+          :disabled="!valid"
+          @click="send"
+          :data-cy="`${this.type}-send-button`"
+          >Send ></v-btn
+        >
       </v-form>
     </v-col>
   </v-row>
@@ -50,8 +72,8 @@ export default {
     body: '',
     rules: {
       required: (value) => !!value || 'Required',
-      email: (value) => value === undefined || value.length === 0 || isEmail(value) || 'Invalid e-mail',
-    },
+      email: (value) => value === undefined || value.length === 0 || isEmail(value) || 'Invalid e-mail'
+    }
   }),
   methods: {
     isType(name) {
@@ -63,22 +85,21 @@ export default {
       return lc;
     },
     send() {
-      APIClient.mailingAPI(MAILING_URL[this.type], this.name, this.email, this.body)
-        .then((res) => {
-          switch (res.status) {
-            case 202:
-              this.$refs.form.reset();
-              // console.log(`Message sent: ${res}`);
-              break;
-            case 400:
-              // console.error(`Invalid form: ${res}`);
-              // console.log(res);
-              break;
-            default:
-              // console.error(`Failed to send message: ${res}`);
-          }
-        });
-    },
+      APIClient.mailingAPI(MAILING_URL[this.type], this.name, this.email, this.body).then((res) => {
+        switch (res.status) {
+          case 202:
+            this.$refs.form.reset();
+            // console.log(`Message sent: ${res}`);
+            break;
+          case 400:
+            // console.error(`Invalid form: ${res}`);
+            // console.log(res);
+            break;
+          default:
+          // console.error(`Failed to send message: ${res}`);
+        }
+      });
+    }
   }
 };
 </script>
@@ -90,17 +111,17 @@ export default {
 }
 
 .input {
-  margin-left:15%;
-  width:50%;
+  margin-left: 15%;
+  width: 50%;
 }
 
 .input-label {
-  padding-top:20px;
-  float:left;
+  padding-top: 20px;
+  float: left;
 }
 
 .required:after {
-  content:" *";
+  content: ' *';
   color: red;
-  }
+}
 </style>

@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <v-footer color="#000033" padless >
+  <v-footer color="#000033" padless>
     <v-container class="white--text" style="padding:60px 72px" fluid>
       <v-row no-gutters>
         <v-col cols="12" sm="5" order-sm="7" >
@@ -95,7 +95,7 @@ export default {
 .white-text a {
   text-decoration: none;
   color: $light-color;
-  padding-right:$space-xxs;
+  padding-right: $space-xxs;
 }
 
 .white-text a:hover {
@@ -105,16 +105,16 @@ export default {
 
 .nav-divider {
   padding-bottom: $space-xxs;
-  border-bottom:2px solid white;
+  border-bottom: 2px solid white;
 }
 
 .anchor-items {
-  margin-left:-15px;
+  margin-left: -15px;
 }
 
 .img-size {
-  max-width:300px;
-  max-height:200px;
+  max-width: 300px;
+  max-height: 200px;
 }
 
 .socials {
