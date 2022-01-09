@@ -78,7 +78,7 @@ export default {
       big_box_2: {
         link: 'https://notangles.csesoc.unsw.edu.au/',
         title: 'Notangles',
-        description: 'Trimster timetabling tool - no more timetable tangles!',
+        description: 'Trimester timetabling tool - no more timetable tangles!',
         src: require('../../assets/resource-notangles.png'),
       }
     },
