@@ -25,33 +25,39 @@
         </b>
       </p>
       <p>
-        We are a society for the students, by the students. As a CSE student, here's how we can help you: We
-        organise and run weekly events, including Trivia, Movie, Poker, and Boardgame Nights, LAN Parties,
-        Workshops, Code Jams, Tech Talks, and our famous Free Weekly BBQ. We run a highly successful First
-        Year Camp, offering new CSE students (both undergraduate and postgraduate) a weekend of Trivia, Dance
-        Parties, Scavenger Hunts and general frivolity with the chance to meet and mingle with other
-        newcomers. The society is entirely run by CSE student volunteers. All CSE Students are automatically
-        members, and there are plenty of opportunities to get involved with running events and activities. We
-        cater to new and returning students alike, with a mix of events designed to have something for
-        everyone. Events are open to all members and nearly all are free to attend. We're as passionate about
-        computing as you are; we provide technical events to teach you new skills, as well as a fortnightly
-        magazine to keep you updated on what's new and interesting within the university, school and industry.
+        <b>
+          We are a society for the students, by the students. As a CSE student, here's how we can help you: We
+          organise and run weekly events, including Trivia, Movie, Poker, and Boardgame Nights, LAN Parties,
+          Workshops, Code Jams, Tech Talks, and our famous Free Weekly BBQ. We run a highly successful First
+          Year Camp, offering new CSE students (both undergraduate and postgraduate) a weekend of Trivia,
+          Dance Parties, Scavenger Hunts and general frivolity with the chance to meet and mingle with other
+          newcomers. The society is entirely run by CSE student volunteers. All CSE Students are automatically
+          members, and there are plenty of opportunities to get involved with running events and activities.
+          We cater to new and returning students alike, with a mix of events designed to have something for
+          everyone. Events are open to all members and nearly all are free to attend. We're as passionate
+          about computing as you are; we provide technical events to teach you new skills, as well as a
+          fortnightly magazine to keep you updated on what's new and interesting within the university, school
+          and industry.</b
+        >
       </p>
-      <p>
-        Most of all, we're here to help you settle in and have a great time at UNSW!
-      </p>
+      <p><b> Most of all, we're here to help you settle in and have a great time at UNSW!</b></p>
     </v-container>
 
     <!-- Executives & Directors -->
     <v-container ref="content-start" style="padding: 0px 30px 10px 30px">
       <HeaderTitle title="Executives & Directors"></HeaderTitle>
       <p>
-        The Executives and Directors are responsible for organising the society to make sure that things get
-        done. Execs are elected annually by CSE students at the end of the preceding year and Directors are
-        selected by Execs.
+        <b>
+          The Executives and Directors are responsible for organising the society to make sure that things get
+          done. Execs are elected annually by CSE students at the end of the preceding year and Directors are
+          selected by Execs. Please see our Election Nomination Guide
+          <a href="https://media.csesoc.org.au/election-nomination-guide/">here</a>.
+        </b>
       </p>
       <p>
-        The CSESoc Executive and Director teams for the current and past years are:
+        <b>
+          The CSESoc Executive and Director teams for the current and past years are:
+        </b>
       </p>
 
       <v-tabs class="elevation-2" vertical dark>
@@ -81,8 +87,14 @@
                     <tr v-for="(roleValue, roleName) in tierValue" :key="roleName">
                       <th>{{ roleName }}</th>
                       <td>
-                        <tr v-for="name in roleValue" :key="name" style="display: block; margin: 7px 0px 7px 0px;">
-                          {{name}}
+                        <tr
+                          v-for="name in roleValue"
+                          :key="name"
+                          style="display: block; margin: 7px 0px 7px 0px;"
+                        >
+                          {{
+                            name
+                          }}
                         </tr>
                       </td>
                     </tr>
@@ -99,13 +111,16 @@
     <v-container ref="content-start" style="padding: 0px 30px 10px 30px">
       <HeaderTitle title="Subcommittees"></HeaderTitle>
       <p>
-        The CSESoc Subcommittees are an integral part of our society and are responsible for directly
-        interacting with the students and sponsors through events, publications, this website, etc. Each
-        subcommittee is run by the portfolio directors, and those directors are selected by the executive and
-        is part of the director board. The CSESoc Executive and Directors hope you have enjoyed our events and
-        activities - so much so that you wish to get involved! If you are interested in volunteering in a
-        specific area or are thinking about running for an executive position in the future, then joining a
-        subcom is the best way to get involved, meet other people and try something new!
+        <b>
+          The CSESoc Subcommittees are an integral part of our society and are responsible for directly
+          interacting with the students and sponsors through events, publications, this website, etc. Each
+          subcommittee is run by the portfolio directors, and those directors are selected by the executive
+          and is part of the director board. The CSESoc Executive and Directors hope you have enjoyed our
+          events and activities - so much so that you wish to get involved! If you are interested in
+          volunteering in a specific area or are thinking about running for an executive position in the
+          future, then joining a subcom is the best way to get involved, meet other people and try something
+          new!
+        </b>
       </p>
       <v-expansion-panels flat accordion id="show">
         <v-expansion-panel>
@@ -258,26 +273,34 @@
     <v-container ref="content-start" style="padding: 20px 30px 10px 30px">
       <HeaderTitle title="History"></HeaderTitle>
       <p>
-        CSESoc was formed in October 2006 from the old CompSoc and SESoc societies. CompSoc helped represent
-        the interests of students studying Computer Engineering, Computer Science and postgraduate courses,
-        while SESoc was the representative body for Software Engineering students. Both societies provided
-        technical and social support to their members. In the best interests of everyone, the societies merged
-        to provide a better experience to all CSE students.
+        <b>
+          CSESoc was formed in October 2006 from the old CompSoc and SESoc societies. CompSoc helped represent
+          the interests of students studying Computer Engineering, Computer Science and postgraduate courses,
+          while SESoc was the representative body for Software Engineering students. Both societies provided
+          technical and social support to their members. In the best interests of everyone, the societies
+          merged to provide a better experience to all CSE students.
+        </b>
       </p>
       <p>
-        CSESoc now represents students enrolled in Computer Science, Computer Engineering, Software
-        Engineering, Bioinformatics Engineering, or a post‐graduate program administered by CSE (research or
-        coursework).
+        <b>
+          CSESoc now represents students enrolled in Computer Science, Computer Engineering, Software
+          Engineering, Bioinformatics Engineering, or a post‐graduate program administered by CSE (research or
+          coursework).
+        </b>
       </p>
       <p>
-        Even today CSESoc continues to be an integral part of the student experience. Many students make the
-        most of their time at university by joining a working group in first year to get a taste of the
-        society. If you are enthusiastic and interested you can nominate yourself or be nominated for a
-        position in the Exec at the end of the year.
+        <b>
+          Even today CSESoc continues to be an integral part of the student experience. Many students make the
+          most of their time at university by joining a working group in first year to get a taste of the
+          society. If you are enthusiastic and interested you can nominate yourself or be nominated for a
+          position in the Exec at the end of the year.
+        </b>
       </p>
       <p>
-        Being part of a society is a great way to meet new people and gain extra skills that employers look
-        for in the industry.
+        <b>
+          Being part of a society is a great way to meet new people and gain extra skills that employers look
+          for in the industry.
+        </b>
       </p>
     </v-container>
   </v-app>
