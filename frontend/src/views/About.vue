@@ -40,6 +40,15 @@
           and industry.</b
         >
       </p>
+      <p>
+        <b>
+          While you are enrolled in a CSE course or a CSE program, you are automatically considered a member
+          of the society and you will automatically receive emails about our upcoming events. If you are not
+          enrolled at CSE, then you can still become a member by emailing us at csesoc@csesoc.org.au. Even if
+          you aren't a member, our Discord, social media and resources are mostly freely available to
+          everybody. We look forward to hearing from you!
+        </b>
+      </p>
       <p><b> Most of all, we're here to help you settle in and have a great time at UNSW!</b></p>
     </v-container>
 
