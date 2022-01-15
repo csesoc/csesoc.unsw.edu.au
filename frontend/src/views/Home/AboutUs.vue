@@ -34,7 +34,6 @@ export default {
   data: () => ({
     mission: {
       image: require('../../assets/landing_page/mission.png'),
-      // I really hope we have something better than this.
       statement:
         'We are one of the biggest and most active societies at UNSW, catering to over 3500 CSE students spanning across degrees in Computer Science, Software Engineering, Bioinformatics and Computer Engineering.'
     }
