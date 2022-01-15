@@ -9,15 +9,6 @@
       style="padding-left: 20px; padding-right: 20px;"
     >
     </InfiniteSlideshow>
-    <InfiniteSlideshow duration="35s" direction="reverse">
-    <img
-      height="250px"
-      v-for="banner in banners"
-      :key="banner.src"
-      :src="banner.src"
-      style="padding-left: 20px; padding-right: 20px;"
-    >
-    </InfiniteSlideshow>
   </div>
 </template>
 
