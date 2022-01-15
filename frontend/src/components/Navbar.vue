@@ -26,6 +26,11 @@
           </a>
         </v-col>
         <v-col class="d-flex align-center justify-center">
+          <a @click="goto('event-display')" style="text-decoration: none;">
+            <v-btn text color="white">EVENTS</v-btn>
+          </a>
+        </v-col>
+        <v-col class="d-flex align-center justify-center">
           <a @click="goto('resources')" style="text-decoration: none;">
             <v-btn text color="white">RESOURCES</v-btn>
           </a>
@@ -60,6 +65,11 @@
               <v-list-item>
                 <a @click="goto('community')" style="text-decoration: none; color: black;">
                   Get in touch
+                </a>
+              </v-list-item>
+              <v-list-item>
+                <a @click="goto('event-display')" style="text-decoration: none; color: black;">
+                  Events
                 </a>
               </v-list-item>
               <v-list-item>
