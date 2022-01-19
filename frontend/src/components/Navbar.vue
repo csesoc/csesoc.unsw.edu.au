@@ -31,7 +31,7 @@
           </a>
         </v-col>
         <v-col class="d-flex align-center justify-center">
-          <a @click="goto('resources')" style="text-decoration: none;">
+          <a @click="goto('student-resources')" style="text-decoration: none;">
             <v-btn text color="white">RESOURCES</v-btn>
           </a>
         </v-col>
@@ -73,7 +73,7 @@
                 </a>
               </v-list-item>
               <v-list-item>
-                <a @click="goto('resources')" style="text-decoration: none; color: black;">
+                <a @click="goto('student-resources')" style="text-decoration: none; color: black;">
                   Resources
                 </a>
               </v-list-item>
