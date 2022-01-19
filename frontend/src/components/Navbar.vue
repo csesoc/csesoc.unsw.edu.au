@@ -11,27 +11,32 @@
     <v-container class="hidden-sm-and-down">
       <v-row class="d-flex justify-center">
         <v-col class="d-flex align-center justify-start">
-          <a @click="goto('showcase')" style="text-decoration: none;">
+          <RouterLink to="/" style="text-decoration: none;" v-on:click.native="showMenu = false">
             <v-img contain max-height="60px" max-width="100px" src="@/assets/csesocwhiteblue.png" />
-          </a>
+          </RouterLink>
         </v-col>
         <v-col class="d-flex align-center justify-center">
-          <a @click="goto('mission')" style="text-decoration: none;">
+          <a @click="goto('aboutus')" style="text-decoration: none;">
             <v-btn text color="white">ABOUT US</v-btn>
           </a>
         </v-col>
         <v-col class="d-flex align-center justify-center">
-          <a @click="goto('student-resources')" style="text-decoration: none;">
+          <a @click="goto('community')" style="text-decoration: none;">
             <v-btn text color="white">GET IN TOUCH</v-btn>
           </a>
         </v-col>
         <v-col class="d-flex align-center justify-center">
-          <a @click="goto('student-resources')" style="text-decoration: none;">
-              <v-btn text color="white">RESOURCES</v-btn>
+          <a @click="goto('event-display')" style="text-decoration: none;">
+            <v-btn text color="white">EVENTS</v-btn>
           </a>
         </v-col>
         <v-col class="d-flex align-center justify-center">
-            <v-btn text to="/sponsorship" color="white">SPONSORSHIP</v-btn>
+          <a @click="goto('resources')" style="text-decoration: none;">
+            <v-btn text color="white">RESOURCES</v-btn>
+          </a>
+        </v-col>
+        <v-col class="d-flex align-center justify-center">
+          <v-btn text to="/sponsors" color="white">SPONSORSHIP</v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -40,7 +45,7 @@
     <v-container class="hidden-md-and-up">
       <v-row class="d-flex justify-space-between">
         <v-col class="d-flex align-center">
-          <RouterLink  to="/" style="text-decoration: none;" v-on:click.native="showMenu = false">
+          <RouterLink to="/" style="text-decoration: none;" v-on:click.native="showMenu = false">
             <v-img contain max-height="40px" max-width="100px" src="@/assets/csesocwhiteblue.png" />
           </RouterLink>
         </v-col>
@@ -53,7 +58,7 @@
             </template>
             <v-list>
               <v-list-item>
-                <a @click="goto('mission')" style="text-decoration: none; color: black;">
+                <a @click="goto('aboutus')" style="text-decoration: none; color: black;">
                   About us
                 </a>
               </v-list-item>
@@ -63,12 +68,17 @@
                 </a>
               </v-list-item>
               <v-list-item>
-                <a @click="goto('student-resources')" style="text-decoration: none; color: black;">
+                <a @click="goto('event-display')" style="text-decoration: none; color: black;">
+                  Events
+                </a>
+              </v-list-item>
+              <v-list-item>
+                <a @click="goto('resources')" style="text-decoration: none; color: black;">
                   Resources
                 </a>
               </v-list-item>
               <v-list-item>
-                <RouterLink style="text-decoration: none; color: black;" to="/sponsorship">
+                <RouterLink style="text-decoration: none; color: black;" to="/sponsors">
                   Sponsorship
                 </RouterLink>
               </v-list-item>

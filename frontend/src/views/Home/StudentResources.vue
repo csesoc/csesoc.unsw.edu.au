@@ -86,7 +86,7 @@ import HeaderTitle from '@/components/HeaderTitle';
 
 export default {
   components: {
-    HeaderTitle,
+    HeaderTitle
   },
   data: () => ({
     resources: {
@@ -94,7 +94,7 @@ export default {
         link: 'https://jobsboard.csesoc.unsw.edu.au/login',
         title: 'Job Board',
         description: 'A place where CSESoc students can look for relevant job opportunities.',
-        src: require('../../assets/resource-job-board.png'),
+        src: require('../../assets/resource-job-board.png')
       },
       fy_guide: {
         link: 'https://media.csesoc.org.au/first-year-guide/',
@@ -126,7 +126,7 @@ export default {
         description: 'Learn how to get a headstart on uni',
         src: require('../../assets/resource-pre-enrolment-guide.jpg'),
       }
-    },
+    }
   })
 };
 </script>

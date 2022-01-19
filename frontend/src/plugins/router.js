@@ -7,28 +7,28 @@ export default new Router({
     {
       path: '/',
       name: 'root',
-      component: () => import('../views/Home/Home'),
+      component: () => import('../views/Home/Home')
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import('../views/About'),
+      component: () => import('../views/About')
     },
-    {
-      path: '/resources',
-      name: 'resources',
-      component: () => import('../views/Resources'),
-    },
+    // {
+    //   path: '/resources',
+    //   name: 'resources',
+    //   component: () => import('../views/Resources')
+    // },
     {
       path: '/sponsors',
       name: 'sponsors',
-      component: () => import('../views/Sponsor'),
+      component: () => import('../views/Sponsor')
     },
-    {
-      path: '/engage',
-      name: 'engage',
-      component: () => import('../views/Engage'),
-    }
+    // {
+    //   path: '/engage',
+    //   name: 'engage',
+    //   component: () => import('../views/Engage')
+    // }
   ],
   scrollBehavior() {
     // Scroll to top for all route navigations

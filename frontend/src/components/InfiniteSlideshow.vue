@@ -52,10 +52,10 @@ export default {
         'animation-delay': this.delay,
         'animation-direction': this.direction,
         'animation-duration': this.duration,
-        'animation-play-state': (this.paused) ? 'paused' : 'running'
+        'animation-play-state': this.paused ? 'paused' : 'running'
       };
     }
-  },
+  }
 };
 </script>
 

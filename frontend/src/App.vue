@@ -41,14 +41,15 @@ export default {
   font-family: 'Core Sans C', Arial, sans-serif;
 }
 
-html, body {
+html,
+body {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
   box-sizing: border-box;
 }
 
-.blend{
+.blend {
   mix-blend-mode: exclusion;
 }
 </style>

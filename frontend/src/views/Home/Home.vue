@@ -16,15 +16,15 @@
     <!-- Showcase -->
     <Showcase />
     <!-- Mission -->
-    <Mission />
-    <!--Events-->
-    <EventDisplay :events="eventItems" :updated="lastEventUpdate" />
+    <AboutUs />
     <!-- Slideshow -->
     <Slideshow />
-    <!-- Student Resources -->
-    <StudentResources />
     <!-- Community Links -->
     <CommunityLinks />
+    <!--Events-->
+    <EventDisplay :events="eventItems" :updated="lastEventUpdate" />
+    <!-- Student Resources -->
+    <StudentResources />
     <!-- Sponsor -->
     <SponsorUs />
   </div>
@@ -32,7 +32,7 @@
 
 <script>
 import Showcase from '@/views/Home/Showcase';
-import Mission from '@/views/Home/Mission';
+import AboutUs from '@/views/Home/AboutUs';
 import CommunityLinks from '@/views/Home/CommunityLink';
 import EventDisplay from '@/views/Home/EventDisplay';
 import Slideshow from '@/views/Home/Slideshow';
@@ -50,7 +50,7 @@ export default {
   }),
   components: {
     Showcase,
-    Mission,
+    AboutUs,
     CommunityLinks,
     EventDisplay,
     Slideshow,
