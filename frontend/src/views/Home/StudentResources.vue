@@ -10,13 +10,14 @@
     <v-container class="resource--styles">
       <HeaderTitle title="STUDENT RESOURCES" />
 
-      <v-row  justify="space-between">
+      <v-row justify="space-between">
         <v-col cols="12" sm="4"> <!-- Jobs -->
           <a target="_blank" :href="resources.jobs_board.link">
           <div data-cy="resources-box" class="box primary rounded-lg">
             <h2>{{resources.jobs_board.title}}</h2>
             <h3>{{resources.jobs_board.description}}</h3>
-            <v-img data-cy="resources-img" max-height="80px" :src="resources.jobs_board.src" class="image hidden-xs-only" />
+            <v-img data-cy="resources-img" max-height="80px" position='top'
+              :src="resources.jobs_board.src" class="image hidden-xs-only" />
           </div>
           </a>
         </v-col>
@@ -26,7 +27,8 @@
             <h2>{{resources.comp_club.title}}</h2>
             <h3 class="hidden-sm-above">{{resources.comp_club.description}}</h3>
             <div class="flex-grow-1"></div>
-            <v-img data-cy="resources-img" max-height="80px" :src="resources.comp_club.src"  class="image hidden-xs-only" />
+            <v-img data-cy="resources-img" max-height="80px" position='top'
+              :src="resources.comp_club.src"  class="image hidden-xs-only" />
           </div>
           </a>
         </v-col>
@@ -35,7 +37,8 @@
           <div data-cy="resources-box" class="box primary rounded-lg">
             <h2>{{resources.notangles.title}}</h2>
             <h3>{{resources.notangles.description}}</h3>
-            <v-img data-cy="resources-img" max-height="80px" :src="resources.notangles.src" class="image hidden-xs-only" />
+            <v-img data-cy="resources-img" max-height="80px"
+              :src="resources.notangles.src" position='top' class="image hidden-xs-only" />
           </div>
           </a>
         </v-col>
@@ -44,7 +47,8 @@
           <div data-cy="resources-box" class="box secondary rounded-lg">
             <h2>{{resources.media.title}}</h2>
             <h3>{{resources.media.description}}</h3>
-            <v-img data-cy="resources-img" max-height="100px" :src="resources.media.src" class="image hidden-xs-only" />
+            <v-img data-cy="resources-img" max-height="100px"
+              :src="resources.media.src" position='top' class="image hidden-xs-only" />
           </div>
           </a>
         </v-col>
@@ -53,7 +57,8 @@
           <div data-cy="resources-box" class="box primary rounded-lg">
             <h2>{{resources.fy_guide.title}}</h2>
             <h3>{{resources.fy_guide.description}}</h3>
-            <v-img data-cy="resources-img" max-height="80px" :src="resources.fy_guide.src" class="image hidden-xs-only"/>
+            <v-img data-cy="resources-img"
+              :src="resources.fy_guide.src" position='top' class="image hidden-xs-only  flex-grow-1"/>
           </div>
           </a>
         </v-col>
@@ -62,12 +67,11 @@
           <div data-cy="resources-box" class="box secondary rounded-lg">
             <h2>{{resources.pe_guide.title}}</h2>
             <h3>{{resources.pe_guide.description}}</h3>
-            <div class="flex-grow-1"></div>
             <v-img
               data-cy="resources-img"
-              max-height="80px"
+              position="top"
               :src="resources.pe_guide.src"
-              class="image hidden-xs-only"
+              class="image align hidden-xs-only"
             />
           </div>
           </a>
@@ -152,6 +156,7 @@ export default {
         flex-direction: column;
         height: 100%;
         overflow: hidden;
+        max-height: 250px;
 
         &.primary{
           @include linearGradient($primary-color, $secondary-color-2);
@@ -166,12 +171,14 @@ export default {
           margin: 0;
           padding-left: 35px;
           padding-right: 35px;
+          // margin-bottom: 0px;
         }
 
         h3 {
           padding-left: 35px;
           padding-right: 35px;
           font-size: 100%;
+          // margin-bottom: 0px;
         }
 
         .image {
