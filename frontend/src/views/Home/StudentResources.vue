@@ -6,42 +6,103 @@
 
 <template>
   <!-- Student Resources -->
-  <div id="resources" class="content">
+  <div id="student-resources" class="content">
     <v-container class="resource--styles">
       <HeaderTitle title="STUDENT RESOURCES" />
 
-      <v-row no-gutters justify="space-between">
-        <v-col xs="12" sm="7">
-          <a target="_blank" :href="resources.big_box_1.link">
-            <div data-cy="resources-box" class="box big">
-              <h2>{{ resources.big_box_1.title }}</h2>
-              <h3>{{ resources.big_box_1.description }}</h3>
-              <v-img data-cy="resources-img" :src="resources.big_box_1.src" contain class="image" />
+      <v-row justify="space-between">
+        <v-col cols="12" sm="4">
+          <!-- Jobs -->
+          <a target="_blank" :href="resources.jobs_board.link">
+            <div data-cy="resources-box" class="box primary rounded-lg">
+              <h2>{{ resources.jobs_board.title }}</h2>
+              <h3>{{ resources.jobs_board.description }}</h3>
+              <v-img
+                data-cy="resources-img"
+                max-height="80px"
+                position="top"
+                :src="resources.jobs_board.src"
+                class="image hidden-xs-only"
+              />
             </div>
           </a>
         </v-col>
-        <v-col xs="12" sm="4">
-          <a target="_blank" :href="resources.small_box_1.link">
-            <div data-cy="resources-box" class="box small rounded-lg hidden-xs-only">
-              <h2>{{ resources.small_box_1.title }}</h2>
-              <v-img data-cy="resources-img" :src="resources.small_box_1.src" contain class="image" />
+        <v-col cols="12" sm="4">
+          <!-- CompClub -->
+          <a target="_blank" :href="resources.comp_club.link">
+            <div data-cy="resources-box" class="box secondary rounded-lg">
+              <h2>{{ resources.comp_club.title }}</h2>
+              <h3 class="hidden-sm-above">{{ resources.comp_club.description }}</h3>
+              <div class="flex-grow-1"></div>
+              <v-img
+                data-cy="resources-img"
+                max-height="80px"
+                position="top"
+                :src="resources.comp_club.src"
+                class="image hidden-xs-only"
+              />
             </div>
           </a>
         </v-col>
-        <v-col xs="12" sm="4">
-          <a target="_blank" :href="resources.small_box_2.link">
-            <div data-cy="resources-box" class="box small rounded-lg hidden-xs-only">
-              <h2>{{ resources.small_box_2.title }}</h2>
-              <v-img data-cy="resources-img" :src="resources.small_box_2.src" class="image" />
+        <v-col cols="12" sm="4">
+          <!-- Notangles -->
+          <a target="_blank" :href="resources.notangles.link">
+            <div data-cy="resources-box" class="box primary rounded-lg">
+              <h2>{{ resources.notangles.title }}</h2>
+              <h3>{{ resources.notangles.description }}</h3>
+              <v-img
+                data-cy="resources-img"
+                max-height="80px"
+                :src="resources.notangles.src"
+                position="top"
+                class="image hidden-xs-only"
+              />
             </div>
           </a>
         </v-col>
-        <v-col xs="12" sm="7">
-          <a target="_blank" :href="resources.small_box_2.link">
-            <div data-cy="resources-box" class="box big rounded-lg">
-              <h2>{{ resources.big_box_2.title }}</h2>
-              <h3>{{ resources.big_box_2.description }}</h3>
-              <v-img data-cy="resources-img" :src="resources.big_box_2.src" class="image" />
+        <v-col cols="12" sm="12">
+          <!-- Media -->
+          <a target="_blank" :href="resources.media.link">
+            <div data-cy="resources-box" class="box secondary rounded-lg">
+              <h2>{{ resources.media.title }}</h2>
+              <h3>{{ resources.media.description }}</h3>
+              <v-img
+                data-cy="resources-img"
+                max-height="100px"
+                :src="resources.media.src"
+                position="top"
+                class="image hidden-xs-only"
+              />
+            </div>
+          </a>
+        </v-col>
+        <v-col cols="12" sm="6">
+          <!-- First year guide -->
+          <a target="_blank" :href="resources.fy_guide.link">
+            <div data-cy="resources-box" class="box primary rounded-lg">
+              <h2>{{ resources.fy_guide.title }}</h2>
+              <h3>{{ resources.fy_guide.description }}</h3>
+              <v-img
+                data-cy="resources-img"
+                :src="resources.fy_guide.src"
+                position="top"
+                class="image hidden-xs-only  flex-grow-1"
+              />
+            </div>
+          </a>
+        </v-col>
+        <v-col cols="12" sm="6">
+          <!-- Preenrollment guide -->
+          <a target="_blank" :href="resources.pe_guide.link">
+            <div data-cy="resources-box" class="box secondary rounded-lg">
+              <h2>{{ resources.pe_guide.title }}</h2>
+              <h3>{{ resources.pe_guide.description }}</h3>
+              <v-img
+                data-cy="resources-img"
+                position="top"
+                :src="resources.pe_guide.src"
+                class="image align hidden-xs-only"
+              />
             </div>
           </a>
         </v-col>
@@ -59,27 +120,40 @@ export default {
   },
   data: () => ({
     resources: {
-      big_box_1: {
+      jobs_board: {
         link: 'https://jobsboard.csesoc.unsw.edu.au/login',
         title: 'Job Board',
         description: 'A place where CSESoc students can look for relevant job opportunities.',
         src: require('../../assets/resource-job-board.png')
       },
-      small_box_1: {
+      fy_guide: {
         link: 'https://media.csesoc.org.au/first-year-guide/',
         title: 'First Year Guide',
+        description: 'The ultimate guide to conquering first year at CSE.',
         src: require('../../assets/resource-first-year-guide.png')
       },
-      small_box_2: {
+      media: {
         link: 'https://media.csesoc.org.au/',
         title: 'CSESOC Media',
+        description: 'All things content',
         src: require('../../assets/resource-media.png')
       },
-      big_box_2: {
+      comp_club: {
+        link: 'https://compclub.csesoc.unsw.edu.au/',
+        title: 'Comp Club',
+        description: 'Promoting computing to high school students'
+      },
+      notangles: {
         link: 'https://notangles.csesoc.unsw.edu.au/',
         title: 'Notangles',
-        description: 'Trimester timetabling tool - no more timetable tangles!',
+        description: 'Trimster timetabling tool - no more timetable tangles!',
         src: require('../../assets/resource-notangles.png')
+      },
+      pe_guide: {
+        link: ' https://media.csesoc.org.au/pre-enrolment-guide/',
+        title: 'Pre-enrolment Guide',
+        description: 'Learn how to get a headstart on uni',
+        src: require('../../assets/resource-pre-enrolment-guide.jpg')
       }
     }
   })
@@ -88,6 +162,9 @@ export default {
 
 <style lang="scss" scoped>
 // Student resources
+.content {
+  padding-top: 50px;
+}
 .resource--styles {
   color: $light-color;
 
@@ -108,30 +185,36 @@ export default {
         flex-direction: column;
         height: 100%;
         overflow: hidden;
+        max-height: 250px;
+        padding-top: 2vh;
 
-        &.big {
+        &.primary {
           @include linearGradient($primary-color, $secondary-color-2);
         }
-        &.small {
+        &.secondary {
           @include linearGradient($primary-color, $secondary-color-1);
         }
 
         h2 {
-          padding-top: $space-xs;
-          padding-bottom: $space-xxs;
+          padding-top: calc($space-xs/2);
+          font-size: 1.6rem;
           margin: 0;
           padding-left: 35px;
           padding-right: 35px;
+          // margin-bottom: 0px;
         }
 
         h3 {
           padding-left: 35px;
           padding-right: 35px;
+          font-size: 1.2rem;
+          // margin-bottom: 0px;
         }
 
         .image {
           border-bottom-left-radius: 10px;
           border-bottom-right-radius: 10px;
+          top: 0;
           transition: transform 0.2s;
         }
       }
