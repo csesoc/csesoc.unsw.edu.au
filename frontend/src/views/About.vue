@@ -88,7 +88,7 @@
                   <thead>
                     <tr>
                       <th colspan="2">
-                        <h3>{{ tierName }}</h3>
+                        <h3 style="margin: 30px 0px 0px 0px">{{ tierName }}</h3>
                       </th>
                     </tr>
                   </thead>
@@ -99,7 +99,7 @@
                         <tr
                           v-for="name in roleValue"
                           :key="name"
-                          style="display: block; margin: 7px 0px 7px 0px;"
+                          style="display: block; margin: 5px 0px 7px 0px;"
                         >
                           {{
                             name
