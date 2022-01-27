@@ -21,15 +21,15 @@ export default {
   },
   data: () => ({
     banners: [
-      { src: require('../../assets/b1.png') },
-      { src: require('../../assets/b2.png') },
-      { src: require('../../assets/b3.png') },
-      { src: require('../../assets/b4.png') },
-      { src: require('../../assets/b5.png') },
-      { src: require('../../assets/b6.png') },
-      { src: require('../../assets/b7.png') },
-      { src: require('../../assets/b8.png') },
-      { src: require('../../assets/b9.jpg') }
+      { src: require('../../assets/slideshow/b1.png') },
+      { src: require('../../assets/slideshow/b2.png') },
+      { src: require('../../assets/slideshow/b3.png') },
+      { src: require('../../assets/slideshow/b4.png') },
+      { src: require('../../assets/slideshow/b5.png') },
+      { src: require('../../assets/slideshow/b6.png') },
+      { src: require('../../assets/slideshow/b7.png') },
+      { src: require('../../assets/slideshow/b8.png') },
+      { src: require('../../assets/slideshow/b9.jpg') }
     ]
   })
 };

@@ -29,7 +29,7 @@
           <div class="logo-margin">
             <img
               class="large-logo logo"
-              :src="`data:image/png;base64,${sponsor.logo}`"
+              :src="`@/assets/sponsors/${sponsor.logo}`"
               v-on:click="onClickModal(sponsor)"
             />
           </div>
@@ -49,7 +49,7 @@
           <div class="logo-margin">
             <img
               class="mid-logo logo"
-              :src="`data:image/png;base64,${sponsor.logo}`"
+              :src="`@/assets/sponsors/${sponsor.logo}`"
               v-on:click="onClickModal(sponsor)"
             />
           </div>
@@ -73,7 +73,7 @@
           <div class="logo-margin">
             <img
               class="small-logo logo"
-              :src="`data:image/png;base64,${sponsor.logo}`"
+              :src="`@/assets/sponsors/${sponsor.logo}`"
               v-on:click="onClickModal(sponsor)"
             />
           </div>
@@ -92,13 +92,14 @@
 
 <script type="text/javascript">
 import SponsorModal from '@/components/SponsorModal';
-import APIClient from '../utils/APIClient';
+
+const sponsorData = require('@/assets/sponsors_mini.json');
 
 export default {
   name: 'Sponsor',
   data: () => ({
     currentSponsor: {},
-    sponsors: [],
+    sponsors: sponsorData,
     dialog: false,
     scrollY: 0,
 
@@ -123,9 +124,6 @@ export default {
     }
   },
   mounted() {
-    APIClient.fetchSponsors().then((responseJson) => {
-      this.sponsors = responseJson;
-    });
     window.addEventListener('scroll', this.handleScroll, true);
   },
   beforeDestroy() {

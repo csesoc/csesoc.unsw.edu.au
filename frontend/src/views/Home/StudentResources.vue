@@ -124,19 +124,19 @@ export default {
         link: 'https://jobsboard.csesoc.unsw.edu.au/login',
         title: 'Job Board',
         description: 'A place where CSESoc students can look for relevant job opportunities.',
-        src: require('../../assets/resource-job-board.png')
+        src: require('../../assets/resources/resource-job-board.png')
       },
       fy_guide: {
         link: 'https://media.csesoc.org.au/first-year-guide/',
         title: 'First Year Guide',
         description: 'The ultimate guide to conquering first year at CSE.',
-        src: require('../../assets/resource-first-year-guide.png')
+        src: require('../../assets/resources/resource-first-year-guide.png')
       },
       media: {
         link: 'https://media.csesoc.org.au/',
         title: 'CSESOC Media',
         description: 'All things content',
-        src: require('../../assets/resource-media.png')
+        src: require('../../assets/resources/resource-media.png')
       },
       comp_club: {
         link: 'https://compclub.csesoc.unsw.edu.au/',
@@ -147,13 +147,13 @@ export default {
         link: 'https://notangles.csesoc.unsw.edu.au/',
         title: 'Notangles',
         description: 'Trimster timetabling tool - no more timetable tangles!',
-        src: require('../../assets/resource-notangles.png')
+        src: require('../../assets/resources/resource-notangles.png')
       },
       pe_guide: {
         link: ' https://media.csesoc.org.au/pre-enrolment-guide/',
         title: 'Pre-enrolment Guide',
         description: 'Learn how to get a headstart on uni',
-        src: require('../../assets/resource-pre-enrolment-guide.jpg')
+        src: require('../../assets/resources/resource-pre-enrolment-guide.jpg')
       }
     }
   })
