@@ -14,9 +14,11 @@
         </v-col>
         <v-col xs="12" sm="6" align-self="center">
           <p data-cy="mission-statement" class="text--md">{{ mission.statement }}</p>
-          <v-btn block outlined color="white" icon class="btn--sm">
-            SEE MORE
-          </v-btn>
+          <RouterLink to="/about" style="text-decoration: none;" v-on:click.native="showMenu = false">
+            <v-btn block outlined color="white" icon class="btn--sm">
+              SEE MORE
+            </v-btn>
+          </RouterLink>
         </v-col>
       </v-row>
     </v-container>
