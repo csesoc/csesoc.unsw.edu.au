@@ -70,6 +70,7 @@ export default {
 .Container {
   display: flex;
   flex-direction: row;
+  padding-top: 50px;
 }
 .Embed {
   display: flex;

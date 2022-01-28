@@ -45,4 +45,7 @@ export default {
   max-width: 100%;
   max-height: 100%;
 }
+.content {
+  padding-top: 50px;
+}
 </style>
