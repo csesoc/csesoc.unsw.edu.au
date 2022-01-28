@@ -8,14 +8,11 @@
 -->
 <template>
   <div>
-    <header id="showcase">
-      <v-img max-width="80vw" max-height="30vh" contain src="@/assets/csesocwhiteblue.png" />
-    </header>
     <div class="down-button" @click="onClickScroll" @scroll.passive="handleScroll" ref="downButton">
       <img src="@/assets/downbutton.png" />
     </div>
     <v-container class="margin" fluid>
-      <h1 class="border" font-weight-bold style="padding:25px;">Sponsors</h1>
+      <h1 font-weight-bold style="padding:25px;">Sponsors</h1>
       <h2 class="text-h4">
         Principal <br />
         Sponsors
@@ -24,12 +21,12 @@
         <div
           v-for="(sponsor, index) in tierOne"
           :key="sponsor.id"
-          :style="marginStyle(index, largeLogoFilter)"
+          :style="marginStyle()"
         >
           <div class="logo-margin">
             <img
               class="large-logo logo"
-              :src="`@/assets/sponsors/${sponsor.logo}`"
+              :src="`${require('../assets/sponsors/' + sponsor.logo)}`"
               v-on:click="onClickModal(sponsor)"
             />
           </div>
@@ -45,11 +42,11 @@
         Sponsors
       </h2>
       <v-container class="border" fluid>
-        <div v-for="(sponsor, index) in tierTwo" :key="sponsor.id" :style="marginStyle(index, midLogoFilter)">
+        <div v-for="(sponsor, index) in tierTwo" :key="sponsor.id" :style="marginStyle()">
           <div class="logo-margin">
             <img
               class="mid-logo logo"
-              :src="`@/assets/sponsors/${sponsor.logo}`"
+              :src="`${require('../assets/sponsors/' + sponsor.logo)}`"
               v-on:click="onClickModal(sponsor)"
             />
           </div>
@@ -68,12 +65,12 @@
         <div
           v-for="(sponsor, index) in tierThree"
           :key="sponsor.id"
-          :style="marginStyle(index, smallLogoFilter)"
+          :style="marginStyle()"
         >
           <div class="logo-margin">
             <img
               class="small-logo logo"
-              :src="`@/assets/sponsors/${sponsor.logo}`"
+              :src="`${require('../assets/sponsors/' + sponsor.logo)}`"
               v-on:click="onClickModal(sponsor)"
             />
           </div>
@@ -85,7 +82,7 @@
       </v-container>
       <div style="clear:both;"></div>
     </v-container>
-    <SponsorModal v-model="dialog" v-bind:title="currentSponsor.name" v-bind:body="currentSponsor.detail">
+    <SponsorModal v-model="dialog" v-bind:title="currentSponsor.name" v-bind:body="currentSponsor.description">
     </SponsorModal>
   </div>
 </template>
@@ -114,13 +111,13 @@ export default {
   computed: {
     // functions to determine sizing category of sponsor based on their value
     tierOne() {
-      return this.sponsors.filter((x) => x.tier === 2);
+      return this.sponsors.filter((x) => x.level === 'P');
     },
     tierTwo() {
-      return this.sponsors.filter((x) => x.tier === 1);
+      return this.sponsors.filter((x) => x.level === 'M');
     },
     tierThree() {
-      return this.sponsors.filter((x) => x.tier === 0);
+      return this.sponsors.filter((x) => x.level === 'A');
     }
   },
   mounted() {
@@ -130,14 +127,8 @@ export default {
     window.removeEventListener('scroll', this.handleScroll, true);
   },
   methods: {
-    marginStyle(index, limit) {
-      const style = {};
-      const row = parseInt(index / limit, 10);
-      if (row % 2 === 0) {
-        style['margin-left'] = '10%';
-      } else {
-        style['margin-left'] = '15%';
-      }
+    marginStyle() {
+      const style = { 'margin-left': '10%' };
       return style;
     },
     onClickModal(sponsor) {
@@ -202,25 +193,6 @@ h2 {
   max-width: 150px;
 }
 
-#showcase {
-  align-items: center;
-  background-blend-mode: darken;
-  background-image: url('../assets/black_lozenge_@2X.png');
-  background-position: center;
-  background-repeat: repeat;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-  justify-content: center;
-  text-align: center;
-}
-
-#showcase img {
-  max-height: 30vh;
-  max-width: 30%;
-}
-
 .border {
   border-left: 1px groove black;
   padding-bottom: 2%;
@@ -230,8 +202,7 @@ h2 {
 }
 
 .margin {
-  margin-left: 5%;
-  margin-bottom: 15%;
+  margin: 5%;
 }
 
 .logo-margin {
@@ -249,18 +220,18 @@ h2 {
 }
 
 .large-logo {
-  max-width: 225px;
-  max-height: 205px;
+  max-width: 300px;
+  max-height: 200px;
 }
 
 .mid-logo {
-  max-width: 175px;
-  max-height: 205px;
+  max-width: 200px;
+  max-height: 150px;
 }
 
 .small-logo {
-  max-width: 125px;
-  max-height: 205px;
+  max-width: 150px;
+  max-height: 150px;
 }
 
 .down-button {
