@@ -17,13 +17,6 @@
             <div data-cy="resources-box" class="box primary rounded-lg">
               <h2>{{ resources.jobs_board.title }}</h2>
               <h3>{{ resources.jobs_board.description }}</h3>
-              <v-img
-                data-cy="resources-img"
-                max-height="80px"
-                position="top"
-                :src="resources.jobs_board.src"
-                class="image hidden-xs-only"
-              />
             </div>
           </a>
         </v-col>
@@ -34,13 +27,6 @@
               <h2>{{ resources.comp_club.title }}</h2>
               <h3 class="hidden-sm-above">{{ resources.comp_club.description }}</h3>
               <div class="flex-grow-1"></div>
-              <v-img
-                data-cy="resources-img"
-                max-height="80px"
-                position="top"
-                :src="resources.comp_club.src"
-                class="image hidden-xs-only"
-              />
             </div>
           </a>
         </v-col>
@@ -50,13 +36,6 @@
             <div data-cy="resources-box" class="box primary rounded-lg">
               <h2>{{ resources.notangles.title }}</h2>
               <h3>{{ resources.notangles.description }}</h3>
-              <v-img
-                data-cy="resources-img"
-                max-height="80px"
-                :src="resources.notangles.src"
-                position="top"
-                class="image hidden-xs-only"
-              />
             </div>
           </a>
         </v-col>
@@ -66,13 +45,6 @@
             <div data-cy="resources-box" class="box secondary rounded-lg">
               <h2>{{ resources.media.title }}</h2>
               <h3>{{ resources.media.description }}</h3>
-              <v-img
-                data-cy="resources-img"
-                max-height="100px"
-                :src="resources.media.src"
-                position="top"
-                class="image hidden-xs-only"
-              />
             </div>
           </a>
         </v-col>
@@ -82,12 +54,6 @@
             <div data-cy="resources-box" class="box primary rounded-lg">
               <h2>{{ resources.fy_guide.title }}</h2>
               <h3>{{ resources.fy_guide.description }}</h3>
-              <v-img
-                data-cy="resources-img"
-                :src="resources.fy_guide.src"
-                position="top"
-                class="image hidden-xs-only  flex-grow-1"
-              />
             </div>
           </a>
         </v-col>
@@ -97,12 +63,6 @@
             <div data-cy="resources-box" class="box secondary rounded-lg">
               <h2>{{ resources.pe_guide.title }}</h2>
               <h3>{{ resources.pe_guide.description }}</h3>
-              <v-img
-                data-cy="resources-img"
-                position="top"
-                :src="resources.pe_guide.src"
-                class="image align hidden-xs-only"
-              />
             </div>
           </a>
         </v-col>
@@ -123,20 +83,17 @@ export default {
       jobs_board: {
         link: 'https://jobsboard.csesoc.unsw.edu.au/login',
         title: 'Job Board',
-        description: 'A place where CSESoc students can look for relevant job opportunities.',
-        src: require('../../assets/resources/resource-job-board.png')
+        description: 'A place where CSESoc students can look for relevant job opportunities.'
       },
       fy_guide: {
         link: 'https://media.csesoc.org.au/first-year-guide/',
         title: 'First Year Guide',
-        description: 'The ultimate guide to conquering first year at CSE.',
-        src: require('../../assets/resources/resource-first-year-guide.png')
+        description: 'The ultimate guide to conquering first year at CSE.'
       },
       media: {
         link: 'https://media.csesoc.org.au/',
         title: 'CSESOC Media',
-        description: 'All things content',
-        src: require('../../assets/resources/resource-media.png')
+        description: 'All things content'
       },
       comp_club: {
         link: 'https://compclub.csesoc.unsw.edu.au/',
@@ -146,14 +103,12 @@ export default {
       notangles: {
         link: 'https://notangles.csesoc.unsw.edu.au/',
         title: 'Notangles',
-        description: 'Trimster timetabling tool - no more timetable tangles!',
-        src: require('../../assets/resources/resource-notangles.png')
+        description: 'Trimster timetabling tool - no more timetable tangles!'
       },
       pe_guide: {
-        link: ' https://media.csesoc.org.au/pre-enrolment-guide/',
-        title: 'Pre-enrolment Guide',
-        description: 'Learn how to get a headstart on uni',
-        src: require('../../assets/resources/resource-pre-enrolment-guide.jpg')
+        link: 'https://media.csesoc.org.au/enrolment-guide/',
+        title: 'Enrolment Guide',
+        description: 'Learn how to get a headstart on uni'
       }
     }
   })

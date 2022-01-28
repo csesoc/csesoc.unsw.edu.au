@@ -3,6 +3,7 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -23,7 +24,7 @@ export default new Router({
       path: '/sponsors',
       name: 'sponsors',
       component: () => import('../views/Sponsor')
-    },
+    }
     // {
     //   path: '/engage',
     //   name: 'engage',
@@ -32,6 +33,6 @@ export default new Router({
   ],
   scrollBehavior() {
     // Scroll to top for all route navigations
-    return { x: 0, y: 0 };
+    document.getElementById('main-app').scrollIntoView({ behavior: 'smooth' });
   }
 });

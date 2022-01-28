@@ -16,7 +16,7 @@
           </RouterLink>
         </v-col>
         <v-col class="d-flex align-center justify-end pr-10">
-          <v-btn text to='/about' class="mr-2" color="white">ABOUT US</v-btn>
+          <v-btn text to="/about" class="mr-2" color="white">ABOUT US</v-btn>
           <v-btn text to="/sponsors" class="ms-2" color="white">SPONSORSHIP</v-btn>
         </v-col>
       </v-row>
@@ -58,6 +58,6 @@
 
 <script type="text/javascript">
 export default {
-  name: 'SecondaryNavbar',
+  name: 'SecondaryNavbar'
 };
 </script>
