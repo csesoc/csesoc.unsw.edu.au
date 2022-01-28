@@ -138,6 +138,7 @@ export default {
   transform: scale(1.05);
 }
 .content {
+  padding-top: 50px;
   @media screen and (max-width: 960px) {
     padding-left: 20px;
     padding-right: 20px;

@@ -13,6 +13,7 @@
 
 <template>
   <div id="home">
+    <PrimaryNavbar />
     <!-- Showcase -->
     <Showcase />
     <!-- Mission -->
@@ -39,6 +40,7 @@ import Slideshow from '@/views/Home/Slideshow';
 import StudentResources from '@/views/Home/StudentResources';
 import SponsorUs from '@/views/Home/SponsorUs';
 import APIClient from '../../utils/APIClient';
+import PrimaryNavbar from '../../components/PrimaryNavbar';
 
 export default {
   name: 'Home',
@@ -56,6 +58,7 @@ export default {
     Slideshow,
     StudentResources,
     SponsorUs,
+    PrimaryNavbar,
   },
   mounted() {
     APIClient.eventsAPI()

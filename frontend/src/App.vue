@@ -1,6 +1,5 @@
 <template>
   <v-app id="main-app">
-    <Navbar />
     <v-main class="pa-0">
       <Menu v-if="showMenu" @shown="onMenuCollapse" />
       <RouterView style="overflow-x: hidden" />
@@ -12,7 +11,7 @@
 <script>
 import Footer from '@/components/Footer';
 import Menu from '@/components/Menu';
-import Navbar from '@/components/Navbar';
+// import Navbar from '@/components/Navbar';
 
 export default {
   name: 'App',
@@ -22,7 +21,7 @@ export default {
   components: {
     Footer,
     Menu,
-    Navbar,
+    // Navbar,
   },
   methods: {
     onMenuCollapse(val) {
