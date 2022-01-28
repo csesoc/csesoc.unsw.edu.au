@@ -11,6 +11,7 @@
 
 <template>
   <v-app>
+    <SecondaryNavbar />
     <v-parallax height="300" src="../assets/fade.png"></v-parallax>
     <!-- About -->
     <v-container ref="content-start" style="padding: 0px 30px 10px 30px">
@@ -317,6 +318,7 @@
 
 <script>
 import HeaderTitle from '@/components/HeaderTitle';
+import SecondaryNavbar from '../components/SecondaryNavbar';
 
 const fs = require('@/assets/execs_directs.json');
 
@@ -326,7 +328,8 @@ export default {
     execsDirects: fs
   }),
   components: {
-    HeaderTitle
+    HeaderTitle,
+    SecondaryNavbar
   }
 };
 </script>

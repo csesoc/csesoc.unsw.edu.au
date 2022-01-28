@@ -8,6 +8,7 @@
 -->
 <template>
   <div>
+    <SecondaryNavbar />
     <div class="down-button" @click="onClickScroll" @scroll.passive="handleScroll" ref="downButton">
       <img src="@/assets/downbutton.png" />
     </div>
@@ -89,6 +90,7 @@
 
 <script type="text/javascript">
 import SponsorModal from '@/components/SponsorModal';
+import SecondaryNavbar from '@/components/SecondaryNavbar';
 
 const sponsorData = require('@/assets/sponsors_mini.json');
 
@@ -106,7 +108,8 @@ export default {
     smallLogoFilter: 5
   }),
   components: {
-    SponsorModal
+    SponsorModal,
+    SecondaryNavbar
   },
   computed: {
     // functions to determine sizing category of sponsor based on their value

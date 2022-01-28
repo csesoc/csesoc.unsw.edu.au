@@ -14,7 +14,7 @@
         </v-col>
         <v-col xs="12" sm="6" align-self="center">
           <p data-cy="mission-statement" class="text--md">{{ mission.statement }}</p>
-          <v-btn to="/about" block outlined color="white" icon class="btn--sm">
+          <v-btn block outlined color="white" icon class="btn--sm">
             SEE MORE
           </v-btn>
         </v-col>

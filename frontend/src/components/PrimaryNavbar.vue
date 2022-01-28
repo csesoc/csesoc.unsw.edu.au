@@ -1,8 +1,8 @@
 <!--
-  Navbar
+  PrimaryNavbar
   --
-  This component is static on the top of the page and displays links to different parts
-    the screen
+  This component is static on the top of Home page and links to different parts of the screen.
+  Also links to the Sponsorship page.
 -->
 
 <template>
@@ -92,7 +92,7 @@
 
 <script type="text/javascript">
 export default {
-  name: 'Navbar',
+  name: 'PrimaryNavbar',
   methods: {
     goto(refName) {
       const element = document.getElementById(refName);
