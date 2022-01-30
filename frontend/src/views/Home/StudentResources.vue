@@ -42,7 +42,7 @@
         <v-col cols="12" sm="3">
           <!-- CSElectives -->
           <a target="_blank" :href="resources.cselectives.link">
-            <div data-cy="resources-box" class="box primary rounded-lg">
+            <div data-cy="resources-box" class="box secondary rounded-lg">
               <h2>{{ resources.cselectives.title }}</h2>
               <h3>{{ resources.cselectives.description }}</h3>
             </div>
