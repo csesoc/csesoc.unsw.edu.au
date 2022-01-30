@@ -8,7 +8,7 @@
   <div id="aboutus" class="content">
     <v-container>
       <HeaderTitle :title="'ABOUT US'" />
-      <v-row no-gutters justify="end">
+      <v-row no-gutters justify="start" class="about-info">
         <v-col xs="12" sm="6">
           <img data-cy="mission-img" contain :src="mission.image" class="image" />
         </v-col>
@@ -49,5 +49,11 @@ export default {
 }
 .content {
   padding-top: 50px;
+}
+.about-info {
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>
