@@ -11,7 +11,7 @@
       <HeaderTitle title="STUDENT RESOURCES" />
 
       <v-row justify="space-between">
-        <v-col cols="12" sm="4">
+        <v-col cols="12" sm="3">
           <!-- Jobs -->
           <a target="_blank" :href="resources.jobs_board.link">
             <div data-cy="resources-box" class="box primary rounded-lg">
@@ -20,7 +20,7 @@
             </div>
           </a>
         </v-col>
-        <v-col cols="12" sm="4">
+        <v-col cols="12" sm="3">
           <!-- CompClub -->
           <a target="_blank" :href="resources.comp_club.link">
             <div data-cy="resources-box" class="box secondary rounded-lg">
@@ -30,12 +30,21 @@
             </div>
           </a>
         </v-col>
-        <v-col cols="12" sm="4">
+        <v-col cols="12" sm="3">
           <!-- Notangles -->
           <a target="_blank" :href="resources.notangles.link">
             <div data-cy="resources-box" class="box primary rounded-lg">
               <h2>{{ resources.notangles.title }}</h2>
               <h3>{{ resources.notangles.description }}</h3>
+            </div>
+          </a>
+        </v-col>
+        <v-col cols="12" sm="3">
+          <!-- CSElectives -->
+          <a target="_blank" :href="resources.cselectives.link">
+            <div data-cy="resources-box" class="box primary rounded-lg">
+              <h2>{{ resources.cselectives.title }}</h2>
+              <h3>{{ resources.cselectives.description }}</h3>
             </div>
           </a>
         </v-col>
@@ -82,8 +91,13 @@ export default {
     resources: {
       jobs_board: {
         link: 'https://jobsboard.csesoc.unsw.edu.au/login',
-        title: 'Job Board',
+        title: 'Jobs Board',
         description: 'A place where CSESoc students can look for relevant job opportunities.'
+      },
+      cselectives: {
+        link: 'https://cselectives.csesoc.unsw.edu.au/',
+        title: 'CSElectives',
+        description: 'Read course reviews to help you pick your electives or even write your own!'
       },
       fy_guide: {
         link: 'https://media.csesoc.org.au/first-year-guide/',
