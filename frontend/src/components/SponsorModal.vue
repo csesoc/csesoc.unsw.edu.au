@@ -15,7 +15,7 @@
     <v-card>
       <v-card-title class="headline">{{ title }}</v-card-title>
       <v-card-text>
-        {{ body }}
+        <p v-html="body">{{ body }}</p>
       </v-card-text>
     </v-card>
   </v-dialog>
