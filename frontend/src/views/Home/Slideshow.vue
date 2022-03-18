@@ -6,6 +6,7 @@
         v-for="banner in banners"
         :key="banner.src"
         :src="banner.src"
+        loading="lazy"
         style="padding-left: 20px; padding-right: 20px;"
       />
     </InfiniteSlideshow>
