@@ -50,7 +50,7 @@
             <br />
             <a href="mailto:csesoc@csesoc.org.au"> csesoc@csesoc.org.au </a>
           </div>
-          © 2021 — CSESoc UNSW
+          © {{new Date().getFullYear()}} — CSESoc UNSW
         </v-col>
       </v-row>
     </v-container>
