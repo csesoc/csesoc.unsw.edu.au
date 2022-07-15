@@ -249,7 +249,7 @@
   {
     "alt_text": "Macquarie Group",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://www.macquarie.com.au/",
     "id": 114,
     "in_side_bar": 1,
     "level": "A",
@@ -260,7 +260,7 @@
   {
     "alt_text": "Bukalapak",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://www.bukalapak.com",
     "id": 115,
     "in_side_bar": 1,
     "level": "M",
@@ -271,7 +271,7 @@
   {
     "alt_text": "Wargaming",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://wargaming.com/en/",
     "id": 116,
     "in_side_bar": 1,
     "level": "A",
@@ -282,7 +282,7 @@
   {
     "alt_text": "Revolutionise Sport",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://www.revolutionise.com.au/",
     "id": 117,
     "in_side_bar": 1,
     "level": "A",
@@ -293,7 +293,7 @@
   {
     "alt_text": "Airwallex",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://www.airwallex.com/au",
     "id": 118,
     "in_side_bar": 1,
     "level": "A",
@@ -304,7 +304,7 @@
   {
     "alt_text": "No Moss",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://nomoss.co/",
     "id": 119,
     "in_side_bar": 1,
     "level": "A",
@@ -315,7 +315,7 @@
   {
     "alt_text": "Mantel Group",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://mantelgroup.com.au",
     "id": 120,
     "in_side_bar": 1,
     "level": "A",
@@ -326,7 +326,7 @@
   {
     "alt_text": "JDS",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://www.jds.net.au",
     "id": 121,
     "in_side_bar": 1,
     "level": "M",
@@ -337,7 +337,7 @@
   {
     "alt_text": "Checkbox",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://www.checkbox.ai",
     "id": 122,
     "in_side_bar": 1,
     "level": "A",
@@ -348,7 +348,7 @@
   {
     "alt_text": "Cognizant",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://www.cognizant.com/au/en",
     "id": 123,
     "in_side_bar": 1,
     "level": "A",
@@ -370,7 +370,7 @@
   {
     "alt_text": "Nine",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://www.nine.com.au",
     "id": 125,
     "in_side_bar": 1,
     "level": "A",
@@ -381,7 +381,7 @@
   {
     "alt_text": "Knapp",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://www.knapp.com/en/",
     "id": 126,
     "in_side_bar": 1,
     "level": "P",
@@ -392,7 +392,7 @@
   {
     "alt_text": "ZipCo",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://zip.co/au",
     "id": 127,
     "in_side_bar": 1,
     "level": "A",
@@ -403,7 +403,7 @@
   {
     "alt_text": "Mirvac",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://www.mirvac.com",
     "id": 128,
     "in_side_bar": 1,
     "level": "M",
@@ -414,7 +414,7 @@
   {
     "alt_text": "RecordPoint",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://www.recordpoint.com",
     "id": 129,
     "in_side_bar": 1,
     "level": "A",
@@ -425,7 +425,7 @@
   {
     "alt_text": "Prospa",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://www.prospa.com",
     "id": 130,
     "in_side_bar": 1,
     "level": "M",
@@ -436,7 +436,7 @@
   {
     "alt_text": "Dolby",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://www.dolby.com",
     "id": 131,
     "in_side_bar": 1,
     "level": "M",
@@ -447,7 +447,7 @@
   {
     "alt_text": "ROKT",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://www.rokt.com",
     "id": 132,
     "in_side_bar": 1,
     "level": "P",
@@ -458,7 +458,7 @@
   {
     "alt_text": "Qube Holdings",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://qube.com.au",
     "id": 133,
     "in_side_bar": 1,
     "level": "P",
@@ -469,7 +469,7 @@
   {
     "alt_text": "Pearler",
     "amount_paid": 2500,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "description": "https://pearler.com",
     "id": 134,
     "in_side_bar": 1,
     "level": "P",
