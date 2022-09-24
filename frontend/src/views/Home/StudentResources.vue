@@ -20,7 +20,7 @@
           </a>
         </v-col>
         <v-col cols="12" sm="3">
-          <!-- Circles -->
+          <!-- Structs -->
           <a target="_blank" :href="resources.structs.link">
             <div data-cy="resources-box" class="box primary rounded-lg">
               <h2>{{ resources.structs.title }}</h2>
