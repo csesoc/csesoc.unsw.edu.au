@@ -9,24 +9,32 @@
   <div id="student-resources" class="content">
     <v-container class="resource--styles">
       <HeaderTitle title="STUDENT RESOURCES" />
-
-      <v-row justify="space-between">
-        <v-col cols="12" sm="3">
-          <!-- Jobs -->
-          <a target="_blank" :href="resources.jobs_board.link">
+        <v-row justify="space-between">
+        <v-col cols="12" sm="12">
+          <!-- Circles -->
+          <a target="_blank" :href="resources.circles.link">
             <div data-cy="resources-box" class="box primary rounded-lg">
-              <h2>{{ resources.jobs_board.title }}</h2>
-              <h3>{{ resources.jobs_board.description }}</h3>
+              <h2>{{ resources.circles.title }}</h2>
+              <h3>{{ resources.circles.description }}</h3>
             </div>
           </a>
         </v-col>
         <v-col cols="12" sm="3">
-          <!-- CompClub -->
-          <a target="_blank" :href="resources.comp_club.link">
+          <!-- Structs -->
+          <a target="_blank" :href="resources.structs.link">
+            <div data-cy="resources-box" class="box primary rounded-lg">
+              <h2>{{ resources.structs.title }}</h2>
+              <h3>{{ resources.structs.description }}</h3>
+            </div>
+          </a>
+        </v-col>
+
+        <v-col cols="12" sm="3">
+          <!-- Jobs -->
+          <a target="_blank" :href="resources.jobs_board.link">
             <div data-cy="resources-box" class="box secondary rounded-lg">
-              <h2>{{ resources.comp_club.title }}</h2>
-              <h3 class="hidden-sm-above">{{ resources.comp_club.description }}</h3>
-              <div class="flex-grow-1"></div>
+              <h2>{{ resources.jobs_board.title }}</h2>
+              <h3>{{ resources.jobs_board.description }}</h3>
             </div>
           </a>
         </v-col>
@@ -48,10 +56,20 @@
             </div>
           </a>
         </v-col>
-        <v-col cols="12" sm="12">
+        <v-col cols="12" sm="6">
+          <!-- CompClub -->
+          <a target="_blank" :href="resources.comp_club.link">
+            <div data-cy="resources-box" class="box primary rounded-lg">
+              <h2>{{ resources.comp_club.title }}</h2>
+              <h3 class="hidden-sm-above">{{ resources.comp_club.description }}</h3>
+              <div class="flex-grow-1"></div>
+            </div>
+          </a>
+        </v-col>
+        <v-col cols="12" sm="6">
           <!-- Media -->
           <a target="_blank" :href="resources.media.link">
-            <div data-cy="resources-box" class="box secondary rounded-lg">
+            <div data-cy="resources-box" class="box primary rounded-lg">
               <h2>{{ resources.media.title }}</h2>
               <h3>{{ resources.media.description }}</h3>
             </div>
@@ -60,7 +78,7 @@
         <v-col cols="12" sm="6">
           <!-- First year guide -->
           <a target="_blank" :href="resources.fy_guide.link">
-            <div data-cy="resources-box" class="box primary rounded-lg">
+            <div data-cy="resources-box" class="box secondary rounded-lg">
               <h2>{{ resources.fy_guide.title }}</h2>
               <h3>{{ resources.fy_guide.description }}</h3>
             </div>
@@ -89,6 +107,16 @@ export default {
   },
   data: () => ({
     resources: {
+      circles: {
+        link: 'https://circles.csesoc.app/',
+        title: 'Circles',
+        description: 'A UNSW degree planner where you can explore and validate your degree structure.',
+      },
+      structs: {
+        link: 'https://structs.sh',
+        title: 'Structs',
+        description: 'An interactive data structure and algorithm visualiser and educational platform for computer science students.',
+      },
       jobs_board: {
         link: 'https://jobsboard.csesoc.unsw.edu.au/login',
         title: 'Jobs Board',
