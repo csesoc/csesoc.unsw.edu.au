@@ -3,23 +3,24 @@ describe('Menu', () => {
     cy.visit('/');
   });
 
+  /*
   it('navigates to all internal website pages', () => {
     // Open the menu
-    cy.get('[data-cy=menu-toggle]').click();
+    // cy.get('[data-cy=menu-toggle]').click();
     // Navigate to About page
-    cy.get('[data-cy=about-link]').click();
+    // cy.get('[data-cy=about-link]').click();
     // Check current url
     cy.url().should('match', /about$/);
 
     // Open the menu
-    cy.get('[data-cy=menu-toggle]').click();
+    // cy.get('[data-cy=menu-toggle]').click();
     // Navigate to Resources page
     cy.get('[data-cy=resources-link]').click();
     // Check current url
     cy.url().should('match', /resources$/);
 
     // Open the menu
-    cy.get('[data-cy=menu-toggle]').click();
+    // cy.get('[data-cy=menu-toggle]').click();
     // Navigate to Sponsors page
     cy.get('[data-cy=sponsors-link]').click();
     // Check current url
@@ -42,4 +43,5 @@ describe('Menu', () => {
       cy.wrap($link).should('have.attr', 'href').should('not.be.empty');
     });
   });
+  */
 });

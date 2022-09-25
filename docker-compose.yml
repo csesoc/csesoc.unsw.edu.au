@@ -20,4 +20,17 @@ services:
     security_opt:
       - no-new-privileges
     container_name: mongo
+  backend:
+        image: backend
+        build: ./backend
+        ports:
+            - '1323:1323'
+        volumes:
+            - ./backend:/app/server
+        container_name: backend
+        environment: 
+            - MAILJET_TOKEN=${MAILJET_TOKEN}
+            - FB_TOKEN=${FB_TOKEN}
+            - JWT_SECRET=${JWT_SECRET}
+            - TESTING_JWT=${TESTING_JWT}
     
