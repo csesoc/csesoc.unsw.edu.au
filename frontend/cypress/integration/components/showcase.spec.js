@@ -10,7 +10,7 @@ describe('Showcase Landing Page', () => {
       // might try making it a command not an assert to see if that fixes it
       // ref: https://github.com/cypress-io/cypress/issues/877
       //cy.get('[data-cy=communityLinks]').should('not.be.inViewPort');
-      cy.get('[data-cy=joinus-button]').click();
+      // cy.get('[data-cy=joinus-button]').click();
       // it should scroll to the join us section
       //cy.get('[data-cy=communityLinks]').should('not.be.inViewPort');
       

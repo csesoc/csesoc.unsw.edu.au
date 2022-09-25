@@ -5,7 +5,7 @@ describe('Menu', () => {
 
   it('navigates to all internal website pages', () => {
     // Open the menu
-    cy.get('[data-cy=menu-toggle]').click();
+    // cy.get('[data-cy=menu-toggle]').click();
     // Navigate to About page
     cy.get('[data-cy=about-link]').click();
     // Check current url
@@ -19,7 +19,7 @@ describe('Menu', () => {
     cy.url().should('match', /resources$/);
 
     // Open the menu
-    cy.get('[data-cy=menu-toggle]').click();
+    // cy.get('[data-cy=menu-toggle]').click();
     // Navigate to Sponsors page
     cy.get('[data-cy=sponsors-link]').click();
     // Check current url

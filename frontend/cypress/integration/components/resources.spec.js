@@ -5,7 +5,7 @@ describe('Resources Landing Page', () => {
 
   it('finds whether the text and images are displayed', () => {
     // Make sure that all 4 boxes appear
-    cy.get('[data-cy=resources-box]').should('have.length', 4);
+    cy.get('[data-cy=resources-box]').should('have.length', 9);
 
     // Make sure that all 4 boxes appear
     cy.get('[data-cy=resources-img]').each(($image) => {

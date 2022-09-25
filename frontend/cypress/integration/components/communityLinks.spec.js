@@ -11,7 +11,7 @@ describe('Community Links Landing Page', () => {
 
     // making sure that each image is being displayed, and is visible after hovering
     // TODO: figure out how to test the zoom feature, and also add sizing into it aswell
-    cy.get('[data-cy=community-links-image]')
+    cy.get('[data-cy=communityLinks-images]')
       .each(($logo) => {
         $logo.trigger('mouseover');
       });

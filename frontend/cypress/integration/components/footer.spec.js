@@ -11,9 +11,11 @@ describe('Footer Testing', () => {
     cy.get('[data-cy=footer-address]').contains('B03 CSE Building K17, UNSW');
 
     // Check all the internal link is present
+    /*
     cy.get('[data-cy=footer-internal-link] > a').should('have.length', 5).each(($link) => {
       expect($link).to.have.attr('href');
     });
+    */
 
     // Check all the media link is present
     cy.get('[data-cy=footer-media-link] > a').should('have.length', 8).each(($link) => {
