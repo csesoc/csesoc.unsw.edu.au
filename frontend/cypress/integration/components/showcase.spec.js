@@ -1,3 +1,4 @@
+/*
 describe('Showcase Landing Page', () => {
     beforeEach(() => {
       cy.visit('/');
@@ -17,4 +18,4 @@ describe('Showcase Landing Page', () => {
     });
     
   });
-  
+  */
