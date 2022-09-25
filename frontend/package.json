@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "imagemin-webp-webpack-plugin": "^3.3.6",
     "validator": "^13.1.1",
     "vue": "^2.6.10",
     "vue-router": "^3.3.4",

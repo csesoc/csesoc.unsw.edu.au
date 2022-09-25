@@ -6,6 +6,7 @@
         v-for="banner in banners"
         :key="banner.src"
         :src="banner.src"
+        loading="lazy"
         style="padding-left: 20px; padding-right: 20px;"
       />
     </InfiniteSlideshow>
@@ -21,15 +22,15 @@ export default {
   },
   data: () => ({
     banners: [
-      { src: require('../../assets/slideshow/b1.png') },
-      { src: require('../../assets/slideshow/b2.png') },
-      { src: require('../../assets/slideshow/b3.png') },
-      { src: require('../../assets/slideshow/b4.png') },
-      { src: require('../../assets/slideshow/b5.png') },
-      { src: require('../../assets/slideshow/b6.png') },
-      { src: require('../../assets/slideshow/b7.png') },
-      { src: require('../../assets/slideshow/b8.png') },
-      { src: require('../../assets/slideshow/b9.jpg') }
+      { src: require('../../assets/slideshow/b1.webp') },
+      { src: require('../../assets/slideshow/b2.webp') },
+      { src: require('../../assets/slideshow/b3.webp') },
+      { src: require('../../assets/slideshow/b4.webp') },
+      { src: require('../../assets/slideshow/b5.webp') },
+      { src: require('../../assets/slideshow/b6.webp') },
+      { src: require('../../assets/slideshow/b7.webp') },
+      { src: require('../../assets/slideshow/b8.webp') },
+      { src: require('../../assets/slideshow/b9.webp') }
     ]
   })
 };
