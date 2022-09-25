@@ -21,7 +21,7 @@ jobs:
           MAILJET_TOKEN: ${{ secrets.MAILJET_TOKEN }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           TESTING_JWT: ${{ secrets.TESTING_JWT }}
-        run: docker-compose up -d --build backend mongo
+        run: docker-compose up -d --build production
       - name: Golang Tests
         run: go test ./...
         working-directory: ./backend/server

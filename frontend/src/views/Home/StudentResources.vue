@@ -193,7 +193,7 @@ export default {
         }
 
         h2 {
-          padding-top: calc($space-xs/2);
+          padding-top: $space-xs/2;
           font-size: 1.6rem;
           margin: 0;
           padding-left: 35px;
