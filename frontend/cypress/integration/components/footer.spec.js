@@ -31,6 +31,6 @@ describe('Footer Testing', () => {
     });
     */
     // Check the resources title is display
-    cy.get('[data-cy=footer-resources-title]').contains('For your better future');
+    // cy.get('[data-cy=footer-resources-title]').contains('For your better future');
   });
 });
