@@ -3,6 +3,7 @@ describe('Menu', () => {
     cy.visit('/');
   });
 
+  /*
   it('navigates to all internal website pages', () => {
     // Open the menu
     // cy.get('[data-cy=menu-toggle]').click();
@@ -42,4 +43,5 @@ describe('Menu', () => {
       cy.wrap($link).should('have.attr', 'href').should('not.be.empty');
     });
   });
+  */
 });

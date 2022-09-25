@@ -25,9 +25,11 @@ describe('Footer Testing', () => {
     cy.get('[data-cy=footer-media-title]').contains('Social Media');
 
     // Check all the resources link is present
+    /*
     cy.get('[data-cy=footer-resources-link] > a').should('have.length', 5).each(($link) => {
       expect($link).to.have.attr('href');
     });
+    */
     // Check the resources title is display
     cy.get('[data-cy=footer-resources-title]').contains('For your better future');
   });
