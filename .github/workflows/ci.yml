@@ -32,7 +32,9 @@ jobs:
         with:
           node-version: '12.x'
       - name: Install dependencies
-        run: yarn
+        run: |
+          yarn
+          npx browserslist@latest --update-db
         working-directory: ./frontend
       - name: Cypress Tests
         uses: cypress-io/github-action@v2
