@@ -18,7 +18,7 @@ describe('Footer Testing', () => {
     */
 
     // Check all the media link is present
-    cy.get('[data-cy=footer-media-link] > a').should('have.length', 8).each(($link) => {
+    cy.get('[data-cy=footer-media-link] > a').should('have.length', 7).each(($link) => {
       expect($link).to.have.attr('href');
     });
     // Check the media title is display
