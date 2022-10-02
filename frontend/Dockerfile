@@ -1,5 +1,5 @@
 # Base image node to install Vue dependencies
-FROM node:14.2 AS build-stage
+FROM node:16-alpine AS build-stage
 
 WORKDIR /app
 
@@ -12,4 +12,3 @@ COPY . .
 RUN yarn build
 RUN npm install -g serve
 ENTRYPOINT serve -s dist
-
