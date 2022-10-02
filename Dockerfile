@@ -1,6 +1,6 @@
 # Use this Dockerfile for production builds
 # Use node image to install Vue dependencies
-FROM node:14.2 as vue-dependencies
+FROM node:16 as vue-dependencies
 
 # Set the working directory for the project in container
 WORKDIR /app 
