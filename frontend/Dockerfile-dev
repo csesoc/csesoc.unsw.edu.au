@@ -1,5 +1,5 @@
 # Base image node to install Vue dependencies
-FROM node:16 AS build-stage
+FROM node:16-alpine AS build-stage
 
 WORKDIR /app
 
