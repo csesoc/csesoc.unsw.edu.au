@@ -181,7 +181,7 @@ export default {
         display: flex;
         flex-direction: column;
         height: 100%;
-        overflow: scroll;
+        overflow: hidden;
         max-height: 250px;
         padding-top: 2vh;
 
