@@ -115,7 +115,7 @@ export default {
       structs: {
         link: 'https://structs.sh',
         title: 'Structs',
-        description: 'An interactive data structure and algorithm visualiser and educational platform for computer science students.',
+        description: 'An educational data structures and algorithms platform.',
       },
       jobs_board: {
         link: 'https://jobsboard.csesoc.unsw.edu.au/login',
@@ -145,7 +145,7 @@ export default {
       notangles: {
         link: 'https://notangles.csesoc.unsw.edu.au/',
         title: 'Notangles',
-        description: 'Trimster timetabling tool - no more timetable tangles!'
+        description: 'Trimester timetabling tool - no more timetable tangles!'
       },
       pe_guide: {
         link: 'https://media.csesoc.org.au/enrolment-guide/',
@@ -181,7 +181,7 @@ export default {
         display: flex;
         flex-direction: column;
         height: 100%;
-        overflow: hidden;
+        overflow: scroll;
         max-height: 250px;
         padding-top: 2vh;
 
@@ -194,7 +194,7 @@ export default {
 
         h2 {
           padding-top: $space-xs/2;
-          font-size: 1.6rem;
+          font-size: 1.8em;
           margin: 0;
           padding-left: 35px;
           padding-right: 35px;
@@ -204,7 +204,7 @@ export default {
         h3 {
           padding-left: 35px;
           padding-right: 35px;
-          font-size: 1.2rem;
+          font-size: 1.3em;
           // margin-bottom: 0px;
         }
 
