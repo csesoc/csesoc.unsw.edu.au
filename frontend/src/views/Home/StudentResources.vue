@@ -134,12 +134,12 @@ export default {
       },
       media: {
         link: 'https://media.csesoc.org.au/',
-        title: 'CSESOC Media',
+        title: 'CSESoc Media',
         description: 'All things content'
       },
       comp_club: {
         link: 'https://compclub.csesoc.unsw.edu.au/',
-        title: 'Comp Club',
+        title: 'CompClub',
         description: 'Promoting computing to high school students'
       },
       notangles: {
@@ -181,7 +181,7 @@ export default {
         display: flex;
         flex-direction: column;
         height: 100%;
-        overflow: scroll;
+        overflow: auto;
         max-height: 250px;
         padding-top: 2vh;
 
