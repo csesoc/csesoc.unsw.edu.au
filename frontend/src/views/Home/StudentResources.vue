@@ -138,7 +138,7 @@ export default {
         description: 'All things content'
       },
       comp_club: {
-        link: 'https://compclub.csesoc.unsw.edu.au/',
+        link: 'https://compclub.org/',
         title: 'CompClub',
         description: 'Promoting computing to high school students'
       },
