@@ -80,7 +80,7 @@ export default {
       {
         name: 'Discord Community',
         url:
-          'https://forms.office.com/Pages/ResponsePage.aspx?id=pM_2PxXn20i44Qhnufn7o6ecLZTBorREjnXuTY-JfmBUMEpOMFBDTU1UWkhBWllWRTNPOVJFMUNCRi4u'
+          'https://discord.gg/rwNkSjRzHs'
       },
       { name: 'Facebook Page', url: 'https://www.facebook.com/csesoc/' },
       { name: 'Facebook Group', url: 'https://www.facebook.com/csesoc/' },
