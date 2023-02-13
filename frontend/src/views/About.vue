@@ -20,7 +20,7 @@
         <b>
           CSESoc is the official representative body of computing students at UNSW. We are one of the largest
           and most active societies at UNSW, and the largest computing society in the southern hemisphere.
-          CSESoc comprises ~9,500 UNSW students spanning across degrees in Computer Science, Software
+          CSESoc comprises ~10k members spanning across degrees in Computer Science, Software
           Engineering, Bioinformatics and Computer Engineering. We are here to fulfil the social, personal and
           professional needs of CSE students, and promote computing through a variety of forms.
         </b>
@@ -45,26 +45,23 @@
           community
         </li>
         <li>
-          Facilitate an online community of ~3k Discord users, ~5k Facebook followers, ~600 YouTube subs, and
-          ~500 Instagram followers
+          Facilitate an online community of ~6k Discord users, ~6.7k Facebook followers, ~1.2k YouTube subs, and
+          ~1.6k Instagram followers
         </li>
       </ul>
     </v-container>
     <v-container ref="content-start" style="padding: 0px 30px 10px 30px">
-      <HeaderTitle title="2021 Statistics" padding="50px 0px 0px 0px"></HeaderTitle>
+      <HeaderTitle title="2022 Statistics" padding="50px 0px 0px 0px"></HeaderTitle>
       <p>
         <b>
           <ul class="stats-list">
-            <li>🥳 100+ events (more on the way!) 🥳</li>
-            <li>📸 40+ media articles, podcast, videos, streams 📸</li>
-            <li>💸 32 sponsors 💸</li>
-            <li>💬 400 000 discord messages 💬</li>
-            <li>✨ 190 volunteers ✨</li>
-            <li>📼 40 000 Youtube views 📼</li>
-            <li>📼 600+ Youtube Subs 📼</li>
+            <li>🥳 100+ events (35+ careers related revents) 🥳</li>
+            <li>💸 41 sponsors 💸</li>
+            <li>💬 480 000 discord messages 💬</li>
+            <li>✨ 200+ volunteers ✨</li>
+            <li>📼 Tiktok: 27.2k views, 2k+ likes 📼</li>
+            <li>📼 Podcast: 10k downloads, 600+ average viewers 📼</li>
             <li>🚸 500+ high school students reached 🚸</li>
-            <li>🧥374 hoodies 🧥</li>
-            <li>😷 250 face masks 😷</li>
           </ul>
         </b>
       </p>
