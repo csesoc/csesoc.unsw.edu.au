@@ -118,7 +118,7 @@ export default {
         description: 'An educational data structures and algorithms platform.',
       },
       jobs_board: {
-        link: 'https://jobsboard.csesoc.unsw.edu.au/login',
+        link: 'https://jobsboard.csesoc.unsw.edu.au/',
         title: 'Jobs Board',
         description: 'A place where CSESoc students can look for relevant job opportunities.'
       },
