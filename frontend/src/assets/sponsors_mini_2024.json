@@ -1,0 +1,177 @@
+[
+  {
+    "alt_text": "Jane Street",
+    "amount_paid": 2000,
+    "description": "Jane Street is a proprietary trading firm that operates around the clock and around the globe. We bring a deep understanding of markets, a scientific approach, and innovative technology to bear on the problem of trading profitably in the world's highly competitive financial markets. \r\n<br>\r\n<br>\r\nFounded in 2000, Jane Street employs over 500 people in offices in New York, London and Hong Kong. We are always recruiting top students and invite you to learn more about a career at Jane Street. The environment at Jane Street is open, informal, intellectual and fun. You can wear a t-shirt and jeans to the office every day, the kitchen is stocked, and discussions are always lively. Teaching and learning are central activities through classes, mentoring and discussion.",
+    "expiry_date": "2020-12-31",
+    "id": 40,
+    "in_side_bar": 1,
+    "level": "D",
+    "logo": "janestreet.png",
+    "name": "Jane Street",
+    "start_date": "2010-02-07",
+    "website": "https://www.janestreet.com/"
+  },
+  {
+    "alt_text": "TikTok",
+    "description": "https://www.tiktok.com/",
+    "level": "D",
+    "logo": "tiktok.png",
+    "name": "TikTok",
+    "website": "https://www.tiktok.com/"
+  },
+  {
+    "alt_text": "Atlassian",
+    "amount_paid": 4000,
+    "description": "Software is changing the world, and Atlassian is at the center of it all. With more than 65,000 global customers (including 85 of the Fortune 100) and a highly disruptive business model, we’re advancing the art of team collaboration with products like JIRA, Confluence, BitBucket and HipChat – and we’re just getting started. Motivated by honest values, an amazing culture, and consistent revenue growth, we’re out to unleash the potential of every team. From Amsterdam and Austin to Sydney and San Francisco, we’re looking for people who are powered by passion and eager to do the best work of their lives in a highly autonomous yet collaborative, no B.S. environment. Find out more at <a href=\"http://atlassian.com\">http://atlassian.com</a>.",
+    "expiry_date": "2020-12-31",
+    "id": 52,
+    "in_side_bar": 1,
+    "level": "G",
+    "logo": "atl.png",
+    "name": "Atlassian",
+    "start_date": "2010-02-07",
+    "website": "https://atlassian.com/"
+  },
+  {
+    "alt_text": "Citadel",
+    "amount_paid": 2500,
+    "description": "We analyze global markets with discipline and focus, and employ a range of strategies in an effort to deliver market-leading investment returns to our capital partners. We empower the most talented minds in finance with an unparalleled combination of deep fundamental research, predictive analytics, and leading-edge technology to identify and capture new opportunities. Our world-class global team brings together the art of investing with the science of finance to help our capital partners achieve their financial goals.\r\n\r\nWe drive our mission through a culture of excellence: constantly improving, continuously learning, rewarding results, and winning with integrity.",
+    "expiry_date": "2020-12-31",
+    "id": 113,
+    "in_side_bar": 1,
+    "level": "G",
+    "logo": "citadel.png",
+    "name": "Citadel",
+    "start_date": "2020-04-24",
+    "website": "https://www.citadel.com/"
+  },
+  {
+    "alt_text": "IMC Trading",
+    "amount_paid": 2000,
+    "description": "As one of the world’s leading market makers, IMC trades on more than 100 venues around the world and provides liquidity in more than 200,000 securities. Besides our on-screen market making in many asset classes globally, we are also a Designated Market Maker (DMM) on the New York Stock Exchange and our ETF desk in Europe leverages our experience, advanced technology and deep liquidity, to offer competitive pricing directly to qualified counterparties.\r\n \r\nAcross offices in Amsterdam, Chicago and Sydney, global teams of technologists and traders work together to design and develop the software, hardware, advanced networks and algorithms that drive our trading strategies and make us one of the world’s leading liquidity providers. We hire exceptional, insatiably curious problem-solvers and challenge them to anticipate change and continuously innovate in ways that will sustain our success. We recognize, and reward, the best ideas regardless of hierarchy. At IMC, anyone can make an impact and everyone is encouraged to do so.",
+    "expiry_date": "2020-12-31",
+    "id": 105,
+    "in_side_bar": 1,
+    "level": "G",
+    "logo": "imc.png",
+    "name": "IMC Trading",
+    "start_date": "2018-08-21",
+    "website": "https://www.imc.com/ap/"
+  },
+  {
+    "alt_text": "Neara",
+    "description": "https://neara.com/",
+    "level": "G",
+    "logo": "neara.png",
+    "name": "Neara",
+    "website": "https://neara.com/"
+  },
+  {
+    "alt_text": "Safety Culture",
+    "description": "https://safetyculture.com/",
+    "level": "G",
+    "logo": "safety.png",
+    "name": "Safety Culture",
+    "website": "https://safetyculture.com/"
+  },
+  {
+    "alt_text": "Appian",
+    "amount_paid": 650,
+    "description": "Appian Corporation is a cloud computing company currently headquartered in Tysons, Virginia, part of the Dulles Technology Corridor. Appian sells a Platform as a Service for building enterprise software applications. It is a leader in the Low-Code Development, Business process management, and Case Management markets.",
+    "expiry_date": "2020-12-31",
+    "id": 110,
+    "in_side_bar": 1,
+    "level": "S",
+    "logo": "appian.png",
+    "name": "Appian",
+    "start_date": "2020-02-11",
+    "website": "https://www.appian.com/"
+  },
+  {
+    "alt_text": "Flow Traders",
+    "description": "https://www.flowtraders.com/",
+    "level": "S",
+    "logo": "flowtraders.png",
+    "name": "Flow Traders",
+    "website": "https://www.flowtraders.com/"
+  },
+  {
+    "alt_text": "Macquarie Group",
+    "amount_paid": 2500,
+    "description": "https://www.macquarie.com.au/",
+    "id": 114,
+    "in_side_bar": 1,
+    "level": "S",
+    "logo": "mqb.png",
+    "name": "Macquarie Group",
+    "website": "https://www.macquarie.com.au/"
+  },
+  {
+    "alt_text": "Optiver",
+    "amount_paid": 2000,
+    "description": "Ready to accelerate your growth in one of the most dynamic and fascinating industries there is? \n Discover Optiver, a leading global trading firm powered by technical innovation. For 35+ years, Optiver has been improving financial markets around the world, making them more transparent and efficient for all participants. With our focus on cutting-edge engineering, data science and research, we actively trade on 70+ exchanges, where we're trusted to always provide accurate buy and sell pricing – no matter the market conditions. \n Whether your background is in Mathematics, Physics, Electrical Engineering, Software Development, Actuarial Studies, Finance or even Philosophy, there are many degree pathways to Optiver and all backgrounds are considered.",
+    "expiry_date": "2020-12-31",
+    "id": 41,
+    "in_side_bar": 1,
+    "level": "S",
+    "logo": "opt.png",
+    "name": "Optiver",
+    "start_date": "2010-02-07",
+    "website": "http://www.optiver.com/sydney/"
+  },
+  {
+    "alt_text": "Quantium",
+    "amount_paid": 2000,
+    "description": "Quantium was founded by like-minded executives from different disciplines across data, science and business. In everyday life, data forms the backbone of every decision we make, every lesson we learn and every direction we choose. Better data, better decisions, better outcomes. But it is so much more than just numbers and technology. It’s what we know, unearthing ideas to solve problems and grasping opportunities that could change the world.\r\n<br><br>\r\nWe are a global leader in the application of analytics to help our clients solve their most important problems. Using data, we power possibilities for organisations.",
+    "expiry_date": "2020-12-31",
+    "id": 91,
+    "in_side_bar": 1,
+    "level": "S",
+    "logo": "quant.png",
+    "name": "Quantium",
+    "start_date": "2017-02-20",
+    "website": "https://www.quantium.com/"
+  },
+  {
+    "alt_text": "Quickli",
+    "description": "https://quickli.com.au/",
+    "level": "S",
+    "logo": "quickli.png",
+    "name": "Quickli",
+    "website": "https://quickli.com.au/"
+  },
+  {
+    "alt_text": "Revolutionise Sport",
+    "amount_paid": 2500,
+    "description": "https://www.revolutionise.com.au/",
+    "id": 117,
+    "in_side_bar": 1,
+    "level": "S",
+    "logo": "rs.png",
+    "name": "Revolutionise Sport",
+    "website": "https://www.revolutionise.com.au/"
+  },
+  {
+    "alt_text": "RecordPoint",
+    "amount_paid": 2500,
+    "description": "https://www.recordpoint.com",
+    "id": 129,
+    "in_side_bar": 1,
+    "level": "S",
+    "logo": "rpt.png",
+    "name": "RecordPoint",
+    "website": "https://www.recordpoint.com"
+  },
+  {
+    "alt_text": "ZipCo",
+    "amount_paid": 2500,
+    "description": "https://zip.co/au",
+    "id": 127,
+    "in_side_bar": 1,
+    "level": "S",
+    "logo": "zip.png",
+    "name": "ZipCo",
+    "website": "https://zip.co/au"
+  }
+]
