@@ -15,7 +15,7 @@
     <v-container class="margin" fluid>
       <h1 font-weight-bold style="padding:25px;">Sponsors</h1>
       <h2 class="text-h4">
-        Principal <br />
+        Diamond <br />
         Sponsors
       </h2>
       <v-container class="border" fluid>
@@ -39,7 +39,7 @@
       </v-container>
       <div style="clear:both;"></div>
       <h2 class="text-h4">
-        Major <br />
+        Gold <br />
         Sponsors
       </h2>
       <v-container class="border" fluid>
@@ -59,7 +59,7 @@
       </v-container>
       <div style="clear:both;"></div>
       <h2 class="text-h4">
-        Affiliate <br />
+        Silver <br />
         Sponsors
       </h2>
       <v-container class="border" fluid>
@@ -92,7 +92,7 @@
 import SponsorModal from '@/components/SponsorModal';
 import SecondaryNavbar from '@/components/SecondaryNavbar';
 
-const sponsorData = require('@/assets/sponsors_mini.json');
+const sponsorData = require('@/assets/sponsors_mini_2024.json');
 
 export default {
   name: 'Sponsor',
@@ -114,13 +114,13 @@ export default {
   computed: {
     // functions to determine sizing category of sponsor based on their value
     tierOne() {
-      return this.sponsors.filter((x) => x.level === 'P');
+      return this.sponsors.filter((x) => x.level === 'D');
     },
     tierTwo() {
-      return this.sponsors.filter((x) => x.level === 'M');
+      return this.sponsors.filter((x) => x.level === 'G');
     },
     tierThree() {
-      return this.sponsors.filter((x) => x.level === 'A');
+      return this.sponsors.filter((x) => x.level === 'S');
     }
   },
   mounted() {
@@ -210,7 +210,7 @@ h2 {
 
 .logo-margin {
   float: left;
-  padding: 5%;
+  padding: 10%;
 }
 
 .logo {
@@ -228,12 +228,12 @@ h2 {
 }
 
 .mid-logo {
-  max-width: 200px;
+  max-width: 250px;
   max-height: 150px;
 }
 
 .small-logo {
-  max-width: 150px;
+  max-width: 175px;
   max-height: 150px;
 }
 
