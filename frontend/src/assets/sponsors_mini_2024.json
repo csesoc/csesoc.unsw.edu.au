@@ -184,5 +184,16 @@
     "logo": "zip.png",
     "name": "ZipCo",
     "website": "https://zip.co/au"
+  },
+  {
+    "alt_text": "Canva",
+    "amount_paid": 4000,
+    "description": "Canva is revolutionising design. Voted coolest tech company in Australia 2015, we work every day to make design accessible and easy for everyone. The technical challenges are complex and we promote a high level of autonomy in the way we work, consequently we look to hire the best. You will be surrounded by ex-Google engineers, ex-McKinsyites and other A-teamers. We look to identify and nurture people who are passionate about their craft and are constantly trying to get better at the fundamentals of their craft. Come be part of Australia's fastest growing startup and make a real impact.",
+    "id": 84,
+    "in_side_bar": 1,
+    "level": "S",
+    "logo": "canva.png",
+    "name": "Canva",
+    "website": "https://www.canva.com/"
   }
 ]
