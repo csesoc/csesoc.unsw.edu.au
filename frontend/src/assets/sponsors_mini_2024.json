@@ -164,6 +164,17 @@
     "website": "https://www.recordpoint.com"
   },
   {
+    "alt_text": "SIG Susquehanna",
+    "amount_paid": 2000,
+    "description": "We commit our own capital to trade financial products around the world. Building virtually all of our own trading technology from scratch, we are leaders and innovators in high performance, low latency trading. Our traders, quants, developers, and systems engineers work side-by-side to develop and implement our trading strategies. Each individual brings their unique expertise every day to help us make optimal decisions in the global financial markets.",
+    "id": 108,
+    "in_side_bar": 1,
+    "level": "S",
+    "logo": "sig.png",
+    "name": "SIG Susquehanna",
+    "website": "https://sig.com/"
+  },
+  {
     "alt_text": "ZipCo",
     "amount_paid": 2500,
     "description": "https://zip.co/au",
