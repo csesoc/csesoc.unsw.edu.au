@@ -30,11 +30,11 @@
         </v-col>
 
         <v-col cols="12" sm="3">
-          <!-- Jobs -->
-          <a target="_blank" :href="resources.jobs_board.link">
+          <!-- Freerooms -->
+          <a target="_blank" :href="resources.freerooms.link">
             <div data-cy="resources-box" class="box secondary rounded-lg">
-              <h2>{{ resources.jobs_board.title }}</h2>
-              <h3>{{ resources.jobs_board.description }}</h3>
+              <h2>{{ resources.freerooms.title }}</h2>
+              <h3>{{ resources.freerooms.description }}</h3>
             </div>
           </a>
         </v-col>
@@ -108,24 +108,19 @@ export default {
   data: () => ({
     resources: {
       circles: {
-        link: 'https://circles.csesoc.app/',
+        link: 'https://circles.devsoc.app/',
         title: 'Circles',
         description: 'A UNSW degree planner where you can explore and validate your degree structure.',
       },
       structs: {
-        link: 'https://structs.sh',
+        link: 'https://structs.sh/',
         title: 'Structs',
         description: 'An educational data structures and algorithms platform.',
       },
-      jobs_board: {
-        link: 'https://jobsboard.csesoc.unsw.edu.au/',
-        title: 'Jobs Board',
-        description: 'A place where CSESoc students can look for relevant job opportunities.'
-      },
-      cselectives: {
-        link: 'https://cselectives.csesoc.unsw.edu.au/',
-        title: 'CSElectives',
-        description: 'Read course reviews to help you pick your electives or even write your own!'
+      unilectives: {
+        link: 'https://unilectives.devsoc.app/',
+        title: 'Unilectives',
+        description: 'Your one-stop shop for UNSW course and elective reviews.'
       },
       fy_guide: {
         link: 'https://media.csesoc.org.au/first-year-guide/',
@@ -143,9 +138,14 @@ export default {
         description: 'Promoting computing to high school students'
       },
       notangles: {
-        link: 'https://notangles.csesoc.unsw.edu.au/',
+        link: 'https://notangles.devsoc.app/',
         title: 'Notangles',
-        description: 'Trimester timetabling tool - no more timetable tangles!'
+        description: 'An interactive drag-and-drop timetable planner designed to help UNSW students plan their ideal weekly timetable.'
+      },
+      freerooms: {
+        link: 'https://freerooms.devsoc.app/',
+        title: 'Freerooms',
+        description: 'A tool to view the timetable of any room on campus, and find an available room that suits all your needs.'
       },
       pe_guide: {
         link: 'https://media.csesoc.org.au/enrolment-guide/',
