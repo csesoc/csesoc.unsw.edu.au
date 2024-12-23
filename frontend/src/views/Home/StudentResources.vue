@@ -48,11 +48,11 @@
           </a>
         </v-col>
         <v-col cols="12" sm="3">
-          <!-- CSElectives -->
-          <a target="_blank" :href="resources.cselectives.link">
+          <!-- Unilectives -->
+          <a target="_blank" :href="resources.unilectives.link">
             <div data-cy="resources-box" class="box secondary rounded-lg">
-              <h2>{{ resources.cselectives.title }}</h2>
-              <h3>{{ resources.cselectives.description }}</h3>
+              <h2>{{ resources.unilectives.title }}</h2>
+              <h3>{{ resources.unilectives.description }}</h3>
             </div>
           </a>
         </v-col>
