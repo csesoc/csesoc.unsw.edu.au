@@ -92,7 +92,7 @@
 import SponsorModal from '@/components/SponsorModal';
 import SecondaryNavbar from '@/components/SecondaryNavbar';
 
-const sponsorData = require('@/assets/sponsors_mini_2024.json');
+const sponsorData = require('@/assets/sponsors_mini_2025.json');
 
 export default {
   name: 'Sponsor',
